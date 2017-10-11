@@ -1,0 +1,774 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		8E0244771F8C68C1004AA725 /* MTMALine.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E0244761F8C68C1004AA725 /* MTMALine.m */; };
+		8E02447A1F8CA2FB004AA725 /* MTKlineView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E0244791F8CA2FA004AA725 /* MTKlineView.m */; };
+		8E21E7691F564DB700CD55E0 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E21E7681F564DB700CD55E0 /* main.m */; };
+		8E21E76C1F564DB700CD55E0 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E21E76B1F564DB700CD55E0 /* AppDelegate.m */; };
+		8E21E76F1F564DB700CD55E0 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E21E76E1F564DB700CD55E0 /* ViewController.m */; };
+		8E21E7721F564DB700CD55E0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8E21E7701F564DB700CD55E0 /* Main.storyboard */; };
+		8E21E7741F564DB700CD55E0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8E21E7731F564DB700CD55E0 /* Assets.xcassets */; };
+		8E21E7771F564DB700CD55E0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8E21E7751F564DB700CD55E0 /* LaunchScreen.storyboard */; };
+		8E21E7821F564DB700CD55E0 /* __k_demoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E21E7811F564DB700CD55E0 /* __k_demoTests.m */; };
+		8E21E78D1F564DB700CD55E0 /* __k_demoUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E21E78C1F564DB700CD55E0 /* __k_demoUITests.m */; };
+		8E21E7A01F565C7A00CD55E0 /* TestController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E21E79E1F565C7A00CD55E0 /* TestController.m */; };
+		8E21E7A11F565C7A00CD55E0 /* TestController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8E21E79F1F565C7A00CD55E0 /* TestController.xib */; };
+		8E3896441F7F6E72006AEC92 /* MTMianKLineView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E3896431F7F6E72006AEC92 /* MTMianKLineView.m */; };
+		8E3896471F7F6F08006AEC92 /* MTKLine.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E3896461F7F6F08006AEC92 /* MTKLine.m */; };
+		8E4F2C0B1F7CFB990082A3F5 /* MTCurveKDJ.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E4F2C0A1F7CFB990082A3F5 /* MTCurveKDJ.m */; };
+		8E4F2C0E1F7D031F0082A3F5 /* MTCurveBOLL.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E4F2C0D1F7D031F0082A3F5 /* MTCurveBOLL.m */; };
+		8E5C86091F70EC8A00F5DE86 /* SJManageDataToModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E5C86081F70EC8A00F5DE86 /* SJManageDataToModel.m */; };
+		8E8CAAD01F57DCF1005D3B39 /* MTModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E8CAACF1F57DCF1005D3B39 /* MTModel.m */; };
+		8ED2E2431F7641A600251618 /* MTDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8ED2E2421F7641A500251618 /* MTDataManager.m */; };
+		8ED2E2461F7641D400251618 /* MTCurveProcess.m in Sources */ = {isa = PBXBuildFile; fileRef = 8ED2E2451F7641D400251618 /* MTCurveProcess.m */; };
+		8ED2E2491F76420400251618 /* MTCurveObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 8ED2E2481F76420400251618 /* MTCurveObject.m */; };
+		8ED2E24F1F76423A00251618 /* MTCurveMACD.m in Sources */ = {isa = PBXBuildFile; fileRef = 8ED2E24E1F76423A00251618 /* MTCurveMACD.m */; };
+		8EEF248E1F8B0BDE00C35E1C /* MTKLinePositionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EEF248D1F8B0BDE00C35E1C /* MTKLinePositionModel.m */; };
+		8EEF24921F8B0E0600C35E1C /* UIColor+CurveChart.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EEF24911F8B0E0600C35E1C /* UIColor+CurveChart.m */; };
+		8EEF24951F8B159100C35E1C /* MTCurveChartGlobalVariable.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EEF24941F8B159100C35E1C /* MTCurveChartGlobalVariable.m */; };
+		8EFBDE171F735E7C00F8554E /* SJCurveObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EFBDE161F735E7C00F8554E /* SJCurveObject.m */; };
+		8EFBDE1A1F736B4500F8554E /* SJCurveProcess.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EFBDE191F736B4500F8554E /* SJCurveProcess.m */; };
+		8EFF5ABF1F6F736900CD94F1 /* SJKlineModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EFF5ABE1F6F736900CD94F1 /* SJKlineModel.m */; };
+		8EFF5AC21F6FB0F600CD94F1 /* BaseTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EFF5AC11F6FB0F600CD94F1 /* BaseTest.m */; };
+		8EFF5AC51F6FB12800CD94F1 /* Test1.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EFF5AC41F6FB12800CD94F1 /* Test1.m */; };
+		8EFF5AC81F6FB13200CD94F1 /* Test2.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EFF5AC71F6FB13200CD94F1 /* Test2.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		8E21E77E1F564DB700CD55E0 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8E21E75C1F564DB700CD55E0 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8E21E7631F564DB700CD55E0;
+			remoteInfo = "分时k线demo";
+		};
+		8E21E7891F564DB700CD55E0 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8E21E75C1F564DB700CD55E0 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8E21E7631F564DB700CD55E0;
+			remoteInfo = "分时k线demo";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		8E0244751F8C68C1004AA725 /* MTMALine.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MTMALine.h; sourceTree = "<group>"; };
+		8E0244761F8C68C1004AA725 /* MTMALine.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MTMALine.m; sourceTree = "<group>"; };
+		8E0244781F8CA2FA004AA725 /* MTKlineView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MTKlineView.h; sourceTree = "<group>"; };
+		8E0244791F8CA2FA004AA725 /* MTKlineView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MTKlineView.m; sourceTree = "<group>"; };
+		8E21E7641F564DB700CD55E0 /* 分时k线demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "分时k线demo.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		8E21E7681F564DB700CD55E0 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		8E21E76A1F564DB700CD55E0 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		8E21E76B1F564DB700CD55E0 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		8E21E76D1F564DB700CD55E0 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		8E21E76E1F564DB700CD55E0 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		8E21E7711F564DB700CD55E0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		8E21E7731F564DB700CD55E0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		8E21E7761F564DB700CD55E0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		8E21E7781F564DB700CD55E0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8E21E77D1F564DB700CD55E0 /* 分时k线demoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "分时k线demoTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		8E21E7811F564DB700CD55E0 /* __k_demoTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = __k_demoTests.m; sourceTree = "<group>"; };
+		8E21E7831F564DB700CD55E0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8E21E7881F564DB700CD55E0 /* 分时k线demoUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "分时k线demoUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		8E21E78C1F564DB700CD55E0 /* __k_demoUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = __k_demoUITests.m; sourceTree = "<group>"; };
+		8E21E78E1F564DB700CD55E0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8E21E79D1F565C7A00CD55E0 /* TestController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestController.h; sourceTree = "<group>"; };
+		8E21E79E1F565C7A00CD55E0 /* TestController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestController.m; sourceTree = "<group>"; };
+		8E21E79F1F565C7A00CD55E0 /* TestController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TestController.xib; sourceTree = "<group>"; };
+		8E3896421F7F6E72006AEC92 /* MTMianKLineView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MTMianKLineView.h; sourceTree = "<group>"; };
+		8E3896431F7F6E72006AEC92 /* MTMianKLineView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MTMianKLineView.m; sourceTree = "<group>"; };
+		8E3896451F7F6F08006AEC92 /* MTKLine.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MTKLine.h; sourceTree = "<group>"; };
+		8E3896461F7F6F08006AEC92 /* MTKLine.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MTKLine.m; sourceTree = "<group>"; };
+		8E4F2C091F7CFB990082A3F5 /* MTCurveKDJ.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MTCurveKDJ.h; sourceTree = "<group>"; };
+		8E4F2C0A1F7CFB990082A3F5 /* MTCurveKDJ.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MTCurveKDJ.m; sourceTree = "<group>"; };
+		8E4F2C0C1F7D031F0082A3F5 /* MTCurveBOLL.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MTCurveBOLL.h; sourceTree = "<group>"; };
+		8E4F2C0D1F7D031F0082A3F5 /* MTCurveBOLL.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MTCurveBOLL.m; sourceTree = "<group>"; };
+		8E5C86071F70EC8A00F5DE86 /* SJManageDataToModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SJManageDataToModel.h; sourceTree = "<group>"; };
+		8E5C86081F70EC8A00F5DE86 /* SJManageDataToModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SJManageDataToModel.m; sourceTree = "<group>"; };
+		8E5C86111F70F1DD00F5DE86 /* SJCurveChartConstant.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SJCurveChartConstant.h; sourceTree = "<group>"; };
+		8E8CAACE1F57DCF1005D3B39 /* MTModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTModel.h; sourceTree = "<group>"; };
+		8E8CAACF1F57DCF1005D3B39 /* MTModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTModel.m; sourceTree = "<group>"; };
+		8ED2E2411F7641A500251618 /* MTDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTDataManager.h; sourceTree = "<group>"; };
+		8ED2E2421F7641A500251618 /* MTDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTDataManager.m; sourceTree = "<group>"; };
+		8ED2E2441F7641D400251618 /* MTCurveProcess.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTCurveProcess.h; sourceTree = "<group>"; };
+		8ED2E2451F7641D400251618 /* MTCurveProcess.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTCurveProcess.m; sourceTree = "<group>"; };
+		8ED2E2471F76420400251618 /* MTCurveObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTCurveObject.h; sourceTree = "<group>"; };
+		8ED2E2481F76420400251618 /* MTCurveObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTCurveObject.m; sourceTree = "<group>"; };
+		8ED2E24D1F76423A00251618 /* MTCurveMACD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTCurveMACD.h; sourceTree = "<group>"; };
+		8ED2E24E1F76423A00251618 /* MTCurveMACD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTCurveMACD.m; sourceTree = "<group>"; };
+		8EEF248C1F8B0BDE00C35E1C /* MTKLinePositionModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MTKLinePositionModel.h; sourceTree = "<group>"; };
+		8EEF248D1F8B0BDE00C35E1C /* MTKLinePositionModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MTKLinePositionModel.m; sourceTree = "<group>"; };
+		8EEF24901F8B0E0600C35E1C /* UIColor+CurveChart.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIColor+CurveChart.h"; sourceTree = "<group>"; };
+		8EEF24911F8B0E0600C35E1C /* UIColor+CurveChart.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIColor+CurveChart.m"; sourceTree = "<group>"; };
+		8EEF24931F8B159100C35E1C /* MTCurveChartGlobalVariable.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MTCurveChartGlobalVariable.h; sourceTree = "<group>"; };
+		8EEF24941F8B159100C35E1C /* MTCurveChartGlobalVariable.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MTCurveChartGlobalVariable.m; sourceTree = "<group>"; };
+		8EFBDE151F735E7C00F8554E /* SJCurveObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SJCurveObject.h; sourceTree = "<group>"; };
+		8EFBDE161F735E7C00F8554E /* SJCurveObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SJCurveObject.m; sourceTree = "<group>"; };
+		8EFBDE181F736B4500F8554E /* SJCurveProcess.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SJCurveProcess.h; sourceTree = "<group>"; };
+		8EFBDE191F736B4500F8554E /* SJCurveProcess.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SJCurveProcess.m; sourceTree = "<group>"; };
+		8EFF5ABD1F6F736900CD94F1 /* SJKlineModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SJKlineModel.h; sourceTree = "<group>"; };
+		8EFF5ABE1F6F736900CD94F1 /* SJKlineModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SJKlineModel.m; sourceTree = "<group>"; };
+		8EFF5AC01F6FB0F600CD94F1 /* BaseTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseTest.h; sourceTree = "<group>"; };
+		8EFF5AC11F6FB0F600CD94F1 /* BaseTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseTest.m; sourceTree = "<group>"; };
+		8EFF5AC31F6FB12800CD94F1 /* Test1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Test1.h; sourceTree = "<group>"; };
+		8EFF5AC41F6FB12800CD94F1 /* Test1.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Test1.m; sourceTree = "<group>"; };
+		8EFF5AC61F6FB13200CD94F1 /* Test2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Test2.h; sourceTree = "<group>"; };
+		8EFF5AC71F6FB13200CD94F1 /* Test2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Test2.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		8E21E7611F564DB700CD55E0 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8E21E77A1F564DB700CD55E0 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8E21E7851F564DB700CD55E0 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		8E21E75B1F564DB700CD55E0 = {
+			isa = PBXGroup;
+			children = (
+				8E21E7661F564DB700CD55E0 /* 分时k线demo */,
+				8E21E7801F564DB700CD55E0 /* 分时k线demoTests */,
+				8E21E78B1F564DB700CD55E0 /* 分时k线demoUITests */,
+				8E21E7651F564DB700CD55E0 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		8E21E7651F564DB700CD55E0 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				8E21E7641F564DB700CD55E0 /* 分时k线demo.app */,
+				8E21E77D1F564DB700CD55E0 /* 分时k线demoTests.xctest */,
+				8E21E7881F564DB700CD55E0 /* 分时k线demoUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		8E21E7661F564DB700CD55E0 /* 分时k线demo */ = {
+			isa = PBXGroup;
+			children = (
+				8E21E76A1F564DB700CD55E0 /* AppDelegate.h */,
+				8E21E76B1F564DB700CD55E0 /* AppDelegate.m */,
+				8E21E76D1F564DB700CD55E0 /* ViewController.h */,
+				8E21E76E1F564DB700CD55E0 /* ViewController.m */,
+				8E21E7701F564DB700CD55E0 /* Main.storyboard */,
+				8E21E79B1F565C5900CD55E0 /* 分时k线 */,
+				8E21E79C1F565C5900CD55E0 /* test */,
+				8E21E7731F564DB700CD55E0 /* Assets.xcassets */,
+				8E21E7751F564DB700CD55E0 /* LaunchScreen.storyboard */,
+				8E21E7781F564DB700CD55E0 /* Info.plist */,
+				8E21E7671F564DB700CD55E0 /* Supporting Files */,
+			);
+			path = "分时k线demo";
+			sourceTree = "<group>";
+		};
+		8E21E7671F564DB700CD55E0 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				8E21E7681F564DB700CD55E0 /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		8E21E7801F564DB700CD55E0 /* 分时k线demoTests */ = {
+			isa = PBXGroup;
+			children = (
+				8E21E7811F564DB700CD55E0 /* __k_demoTests.m */,
+				8E21E7831F564DB700CD55E0 /* Info.plist */,
+			);
+			path = "分时k线demoTests";
+			sourceTree = "<group>";
+		};
+		8E21E78B1F564DB700CD55E0 /* 分时k线demoUITests */ = {
+			isa = PBXGroup;
+			children = (
+				8E21E78C1F564DB700CD55E0 /* __k_demoUITests.m */,
+				8E21E78E1F564DB700CD55E0 /* Info.plist */,
+			);
+			path = "分时k线demoUITests";
+			sourceTree = "<group>";
+		};
+		8E21E79B1F565C5900CD55E0 /* 分时k线 */ = {
+			isa = PBXGroup;
+			children = (
+				8ED2E2401F76414800251618 /* techs */,
+				8E5595B01F6BAD2C004976B7 /* globalVariable */,
+				8E5595B11F6BAD2C004976B7 /* models */,
+				8E5595B21F6BAD2C004976B7 /* tools */,
+				8E5595B31F6BAD2C004976B7 /* views */,
+			);
+			path = "分时k线";
+			sourceTree = "<group>";
+		};
+		8E21E79C1F565C5900CD55E0 /* test */ = {
+			isa = PBXGroup;
+			children = (
+				8E21E79D1F565C7A00CD55E0 /* TestController.h */,
+				8E21E79E1F565C7A00CD55E0 /* TestController.m */,
+				8E21E79F1F565C7A00CD55E0 /* TestController.xib */,
+				8E8CAACE1F57DCF1005D3B39 /* MTModel.h */,
+				8E8CAACF1F57DCF1005D3B39 /* MTModel.m */,
+				8EFF5AC01F6FB0F600CD94F1 /* BaseTest.h */,
+				8EFF5AC11F6FB0F600CD94F1 /* BaseTest.m */,
+				8EFF5AC31F6FB12800CD94F1 /* Test1.h */,
+				8EFF5AC41F6FB12800CD94F1 /* Test1.m */,
+				8EFF5AC61F6FB13200CD94F1 /* Test2.h */,
+				8EFF5AC71F6FB13200CD94F1 /* Test2.m */,
+			);
+			path = test;
+			sourceTree = "<group>";
+		};
+		8E3896411F7F6E4C006AEC92 /* mianKLine */ = {
+			isa = PBXGroup;
+			children = (
+				8E3896421F7F6E72006AEC92 /* MTMianKLineView.h */,
+				8E3896431F7F6E72006AEC92 /* MTMianKLineView.m */,
+				8E3896451F7F6F08006AEC92 /* MTKLine.h */,
+				8E3896461F7F6F08006AEC92 /* MTKLine.m */,
+				8E0244751F8C68C1004AA725 /* MTMALine.h */,
+				8E0244761F8C68C1004AA725 /* MTMALine.m */,
+			);
+			path = mianKLine;
+			sourceTree = "<group>";
+		};
+		8E5595B01F6BAD2C004976B7 /* globalVariable */ = {
+			isa = PBXGroup;
+			children = (
+				8EEF248F1F8B0D9B00C35E1C /* theme */,
+				8E5C860D1F70F16A00F5DE86 /* constant */,
+				8EEF24931F8B159100C35E1C /* MTCurveChartGlobalVariable.h */,
+				8EEF24941F8B159100C35E1C /* MTCurveChartGlobalVariable.m */,
+			);
+			path = globalVariable;
+			sourceTree = "<group>";
+		};
+		8E5595B11F6BAD2C004976B7 /* models */ = {
+			isa = PBXGroup;
+			children = (
+				8E5C86071F70EC8A00F5DE86 /* SJManageDataToModel.h */,
+				8E5C86081F70EC8A00F5DE86 /* SJManageDataToModel.m */,
+				8EFBDE181F736B4500F8554E /* SJCurveProcess.h */,
+				8EFBDE191F736B4500F8554E /* SJCurveProcess.m */,
+				8EFBDE151F735E7C00F8554E /* SJCurveObject.h */,
+				8EFBDE161F735E7C00F8554E /* SJCurveObject.m */,
+				8EFF5ABD1F6F736900CD94F1 /* SJKlineModel.h */,
+				8EFF5ABE1F6F736900CD94F1 /* SJKlineModel.m */,
+				8EEF248C1F8B0BDE00C35E1C /* MTKLinePositionModel.h */,
+				8EEF248D1F8B0BDE00C35E1C /* MTKLinePositionModel.m */,
+			);
+			path = models;
+			sourceTree = "<group>";
+		};
+		8E5595B21F6BAD2C004976B7 /* tools */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = tools;
+			sourceTree = "<group>";
+		};
+		8E5595B31F6BAD2C004976B7 /* views */ = {
+			isa = PBXGroup;
+			children = (
+				8E5595B41F6BAD2C004976B7 /* kLine */,
+				8E5595B51F6BAD2C004976B7 /* shareTime */,
+			);
+			path = views;
+			sourceTree = "<group>";
+		};
+		8E5595B41F6BAD2C004976B7 /* kLine */ = {
+			isa = PBXGroup;
+			children = (
+				8E3896411F7F6E4C006AEC92 /* mianKLine */,
+				8E0244781F8CA2FA004AA725 /* MTKlineView.h */,
+				8E0244791F8CA2FA004AA725 /* MTKlineView.m */,
+			);
+			path = kLine;
+			sourceTree = "<group>";
+		};
+		8E5595B51F6BAD2C004976B7 /* shareTime */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = shareTime;
+			sourceTree = "<group>";
+		};
+		8E5C860D1F70F16A00F5DE86 /* constant */ = {
+			isa = PBXGroup;
+			children = (
+				8E5C86111F70F1DD00F5DE86 /* SJCurveChartConstant.h */,
+			);
+			path = constant;
+			sourceTree = "<group>";
+		};
+		8ED2E2401F76414800251618 /* techs */ = {
+			isa = PBXGroup;
+			children = (
+				8ED2E2411F7641A500251618 /* MTDataManager.h */,
+				8ED2E2421F7641A500251618 /* MTDataManager.m */,
+				8ED2E2441F7641D400251618 /* MTCurveProcess.h */,
+				8ED2E2451F7641D400251618 /* MTCurveProcess.m */,
+				8ED2E2471F76420400251618 /* MTCurveObject.h */,
+				8ED2E2481F76420400251618 /* MTCurveObject.m */,
+				8ED2E24D1F76423A00251618 /* MTCurveMACD.h */,
+				8ED2E24E1F76423A00251618 /* MTCurveMACD.m */,
+				8E4F2C091F7CFB990082A3F5 /* MTCurveKDJ.h */,
+				8E4F2C0A1F7CFB990082A3F5 /* MTCurveKDJ.m */,
+				8E4F2C0C1F7D031F0082A3F5 /* MTCurveBOLL.h */,
+				8E4F2C0D1F7D031F0082A3F5 /* MTCurveBOLL.m */,
+			);
+			path = techs;
+			sourceTree = "<group>";
+		};
+		8EEF248F1F8B0D9B00C35E1C /* theme */ = {
+			isa = PBXGroup;
+			children = (
+				8EEF24901F8B0E0600C35E1C /* UIColor+CurveChart.h */,
+				8EEF24911F8B0E0600C35E1C /* UIColor+CurveChart.m */,
+			);
+			path = theme;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		8E21E7631F564DB700CD55E0 /* 分时k线demo */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8E21E7911F564DB700CD55E0 /* Build configuration list for PBXNativeTarget "分时k线demo" */;
+			buildPhases = (
+				8E21E7601F564DB700CD55E0 /* Sources */,
+				8E21E7611F564DB700CD55E0 /* Frameworks */,
+				8E21E7621F564DB700CD55E0 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "分时k线demo";
+			productName = "分时k线demo";
+			productReference = 8E21E7641F564DB700CD55E0 /* 分时k线demo.app */;
+			productType = "com.apple.product-type.application";
+		};
+		8E21E77C1F564DB700CD55E0 /* 分时k线demoTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8E21E7941F564DB700CD55E0 /* Build configuration list for PBXNativeTarget "分时k线demoTests" */;
+			buildPhases = (
+				8E21E7791F564DB700CD55E0 /* Sources */,
+				8E21E77A1F564DB700CD55E0 /* Frameworks */,
+				8E21E77B1F564DB700CD55E0 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				8E21E77F1F564DB700CD55E0 /* PBXTargetDependency */,
+			);
+			name = "分时k线demoTests";
+			productName = "分时k线demoTests";
+			productReference = 8E21E77D1F564DB700CD55E0 /* 分时k线demoTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		8E21E7871F564DB700CD55E0 /* 分时k线demoUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8E21E7971F564DB700CD55E0 /* Build configuration list for PBXNativeTarget "分时k线demoUITests" */;
+			buildPhases = (
+				8E21E7841F564DB700CD55E0 /* Sources */,
+				8E21E7851F564DB700CD55E0 /* Frameworks */,
+				8E21E7861F564DB700CD55E0 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				8E21E78A1F564DB700CD55E0 /* PBXTargetDependency */,
+			);
+			name = "分时k线demoUITests";
+			productName = "分时k线demoUITests";
+			productReference = 8E21E7881F564DB700CD55E0 /* 分时k线demoUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		8E21E75C1F564DB700CD55E0 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0830;
+				ORGANIZATIONNAME = tianmaotao;
+				TargetAttributes = {
+					8E21E7631F564DB700CD55E0 = {
+						CreatedOnToolsVersion = 8.3.2;
+						DevelopmentTeam = 2BA6Q7UA48;
+						ProvisioningStyle = Automatic;
+					};
+					8E21E77C1F564DB700CD55E0 = {
+						CreatedOnToolsVersion = 8.3.2;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 8E21E7631F564DB700CD55E0;
+					};
+					8E21E7871F564DB700CD55E0 = {
+						CreatedOnToolsVersion = 8.3.2;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 8E21E7631F564DB700CD55E0;
+					};
+				};
+			};
+			buildConfigurationList = 8E21E75F1F564DB700CD55E0 /* Build configuration list for PBXProject "分时k线demo" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 8E21E75B1F564DB700CD55E0;
+			productRefGroup = 8E21E7651F564DB700CD55E0 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				8E21E7631F564DB700CD55E0 /* 分时k线demo */,
+				8E21E77C1F564DB700CD55E0 /* 分时k线demoTests */,
+				8E21E7871F564DB700CD55E0 /* 分时k线demoUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		8E21E7621F564DB700CD55E0 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8E21E7771F564DB700CD55E0 /* LaunchScreen.storyboard in Resources */,
+				8E21E7741F564DB700CD55E0 /* Assets.xcassets in Resources */,
+				8E21E7721F564DB700CD55E0 /* Main.storyboard in Resources */,
+				8E21E7A11F565C7A00CD55E0 /* TestController.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8E21E77B1F564DB700CD55E0 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8E21E7861F564DB700CD55E0 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		8E21E7601F564DB700CD55E0 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8ED2E2431F7641A600251618 /* MTDataManager.m in Sources */,
+				8E21E76F1F564DB700CD55E0 /* ViewController.m in Sources */,
+				8EFF5AC21F6FB0F600CD94F1 /* BaseTest.m in Sources */,
+				8ED2E24F1F76423A00251618 /* MTCurveMACD.m in Sources */,
+				8E3896471F7F6F08006AEC92 /* MTKLine.m in Sources */,
+				8ED2E2491F76420400251618 /* MTCurveObject.m in Sources */,
+				8EEF24951F8B159100C35E1C /* MTCurveChartGlobalVariable.m in Sources */,
+				8EEF24921F8B0E0600C35E1C /* UIColor+CurveChart.m in Sources */,
+				8E4F2C0E1F7D031F0082A3F5 /* MTCurveBOLL.m in Sources */,
+				8E4F2C0B1F7CFB990082A3F5 /* MTCurveKDJ.m in Sources */,
+				8E21E76C1F564DB700CD55E0 /* AppDelegate.m in Sources */,
+				8EEF248E1F8B0BDE00C35E1C /* MTKLinePositionModel.m in Sources */,
+				8ED2E2461F7641D400251618 /* MTCurveProcess.m in Sources */,
+				8EFF5AC51F6FB12800CD94F1 /* Test1.m in Sources */,
+				8E3896441F7F6E72006AEC92 /* MTMianKLineView.m in Sources */,
+				8E02447A1F8CA2FB004AA725 /* MTKlineView.m in Sources */,
+				8E5C86091F70EC8A00F5DE86 /* SJManageDataToModel.m in Sources */,
+				8EFF5ABF1F6F736900CD94F1 /* SJKlineModel.m in Sources */,
+				8E21E7691F564DB700CD55E0 /* main.m in Sources */,
+				8EFF5AC81F6FB13200CD94F1 /* Test2.m in Sources */,
+				8E21E7A01F565C7A00CD55E0 /* TestController.m in Sources */,
+				8E0244771F8C68C1004AA725 /* MTMALine.m in Sources */,
+				8EFBDE171F735E7C00F8554E /* SJCurveObject.m in Sources */,
+				8EFBDE1A1F736B4500F8554E /* SJCurveProcess.m in Sources */,
+				8E8CAAD01F57DCF1005D3B39 /* MTModel.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8E21E7791F564DB700CD55E0 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8E21E7821F564DB700CD55E0 /* __k_demoTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8E21E7841F564DB700CD55E0 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8E21E78D1F564DB700CD55E0 /* __k_demoUITests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		8E21E77F1F564DB700CD55E0 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8E21E7631F564DB700CD55E0 /* 分时k线demo */;
+			targetProxy = 8E21E77E1F564DB700CD55E0 /* PBXContainerItemProxy */;
+		};
+		8E21E78A1F564DB700CD55E0 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8E21E7631F564DB700CD55E0 /* 分时k线demo */;
+			targetProxy = 8E21E7891F564DB700CD55E0 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		8E21E7701F564DB700CD55E0 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				8E21E7711F564DB700CD55E0 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		8E21E7751F564DB700CD55E0 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				8E21E7761F564DB700CD55E0 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		8E21E78F1F564DB700CD55E0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		8E21E7901F564DB700CD55E0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		8E21E7921F564DB700CD55E0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 2BA6Q7UA48;
+				INFOPLIST_FILE = "分时k线demo/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "--tianmaotao--.--k-demo";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		8E21E7931F564DB700CD55E0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 2BA6Q7UA48;
+				INFOPLIST_FILE = "分时k线demo/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "--tianmaotao--.--k-demo";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		8E21E7951F564DB700CD55E0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = "分时k线demoTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "--tianmaotao--.--k-demoTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/分时k线demo.app/分时k线demo";
+			};
+			name = Debug;
+		};
+		8E21E7961F564DB700CD55E0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = "分时k线demoTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "--tianmaotao--.--k-demoTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/分时k线demo.app/分时k线demo";
+			};
+			name = Release;
+		};
+		8E21E7981F564DB700CD55E0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = "分时k线demoUITests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "--tianmaotao--.--k-demoUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = "分时k线demo";
+			};
+			name = Debug;
+		};
+		8E21E7991F564DB700CD55E0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = "分时k线demoUITests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "--tianmaotao--.--k-demoUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = "分时k线demo";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		8E21E75F1F564DB700CD55E0 /* Build configuration list for PBXProject "分时k线demo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8E21E78F1F564DB700CD55E0 /* Debug */,
+				8E21E7901F564DB700CD55E0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8E21E7911F564DB700CD55E0 /* Build configuration list for PBXNativeTarget "分时k线demo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8E21E7921F564DB700CD55E0 /* Debug */,
+				8E21E7931F564DB700CD55E0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8E21E7941F564DB700CD55E0 /* Build configuration list for PBXNativeTarget "分时k线demoTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8E21E7951F564DB700CD55E0 /* Debug */,
+				8E21E7961F564DB700CD55E0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8E21E7971F564DB700CD55E0 /* Build configuration list for PBXNativeTarget "分时k线demoUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8E21E7981F564DB700CD55E0 /* Debug */,
+				8E21E7991F564DB700CD55E0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 8E21E75C1F564DB700CD55E0 /* Project object */;
+}

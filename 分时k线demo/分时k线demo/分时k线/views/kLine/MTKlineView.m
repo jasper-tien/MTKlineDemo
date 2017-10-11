@@ -1,0 +1,117 @@
+//
+//  MTKlineView.m
+//  分时k线demo
+//
+//  Created by tianmaotao on 2017/10/10.
+//  Copyright © 2017年 tianmaotao. All rights reserved.
+//
+
+#import "MTKlineView.h"
+#import "MTMianKLineView.h"
+#import "UIColor+CurveChart.h"
+#import "MTCurveChartGlobalVariable.h"
+
+@interface MTKlineView ()<MTMianKLineViewDelegate, UIScrollViewDelegate>
+@property (nonatomic, strong) UIScrollView *scrollView;
+//主k线
+@property (nonatomic, strong) MTMianKLineView *mainKlineView;
+//记录ScrollView上一次次滑动的偏移量
+@property (nonatomic, assign) CGFloat previousScrollViewOffsetX;
+@property (nonatomic, assign) NSInteger startIndex;
+@end
+
+@implementation MTKlineView
+
+- (instancetype)initWithFrame:(CGRect)frame {
+    if (self = [super initWithFrame:frame]) {
+        self.backgroundColor = [UIColor assistBackgroundColor];
+        self.previousScrollViewOffsetX = 0;
+    }
+    
+    return self;
+}
+
+#pragma mark - UIScrollView delegate
+- (void)scrollViewDidScroll:(UIScrollView*)scrollView{
+    //================================================================================
+    // 左右滑动逻辑说明：主k线view的宽度略大于整个k线视图的宽度，当左右滑动到主k线的边界点时，去刷新显示在主k线视图上的数据，并调整主k线视图的位置
+    //================================================================================
+    CGPoint scrollViewOffset = scrollView.contentOffset;
+    CGFloat difValue = scrollViewOffset.x - self.previousScrollViewOffsetX;
+    if (ABS(difValue) < 10 || scrollViewOffset.x < 0) {
+        return;
+    }
+    int count = ABS(difValue) / ([MTCurveChartGlobalVariable kLineWidth] + [MTCurveChartGlobalVariable kLineGap]);
+    if (self.previousScrollViewOffsetX > scrollViewOffset.x) {
+        self.startIndex -= count;
+    } else {
+        self.startIndex += count;
+    }
+    
+    CGFloat mainKlineViewPointX = self.mainKlineView.frame.origin.x + difValue;
+    NSInteger length = 50;
+    if (self.startIndex < 0) {
+        self.startIndex = 0;
+        length += self.startIndex;
+    }
+    
+    // 重新绘制主k线
+    self.mainKlineView.needDrawKlneModels = [self.manager getMainKLineDatasWithRange:NSMakeRange(self.startIndex, length)];
+    [self.mainKlineView drawMainView];
+    self.mainKlineView.frame = CGRectMake(mainKlineViewPointX, self.mainKlineView.frame.origin.y, self.mainKlineView.frame.size.width, self.mainKlineView.frame.size.height);
+    self.previousScrollViewOffsetX = scrollViewOffset.x;
+}
+
+#pragma mark - setters and getters
+- (void)setManager:(MTDataManager *)manager {
+    //注入数据
+    _manager = manager;
+    CGFloat scrollViewWidth = self.scrollView.frame.size.width;
+    
+    //根据请求到的数据，确定scrollview的滑动区域
+    CGFloat scrollViewContentWidth = ([MTCurveChartGlobalVariable kLineGap] + [MTCurveChartGlobalVariable kLineWidth]) * [self.manager getMainKLineDatas].count;
+    if (scrollViewContentWidth < scrollViewWidth) {
+        scrollViewContentWidth = scrollViewWidth + 1;
+    }
+    self.scrollView.contentSize = CGSizeMake(scrollViewContentWidth, self.scrollView.frame.size.height);
+    
+    //================================================================================
+    //现在暂时把该方法作为k线界面的初始化入口
+    //
+    //================================================================================
+    //初始化状态显示最新的k线数据
+    CGFloat mainKlineViewWidth = self.mainKlineView.frame.size.width + 20;
+    CGFloat scrollViewFirstOffsetX = self.scrollView.contentSize.width - mainKlineViewWidth;
+    self.scrollView.contentOffset = CGPointMake(scrollViewFirstOffsetX, 0);
+    self.previousScrollViewOffsetX = scrollViewFirstOffsetX;
+    //绘制主k线
+    NSArray *mainKlineModels = [self.manager getMainKLineDatas];
+    self.startIndex = mainKlineModels.count - 50;
+    self.mainKlineView.needDrawKlneModels = [self.manager getMainKLineDatasWithRange:NSMakeRange(self.startIndex, 50)];
+    [self.mainKlineView drawMainView];
+}
+
+- (UIView *)mainKlineView {
+    if (!_mainKlineView) {
+        _mainKlineView = [[MTMianKLineView alloc] initWithDelegate:self];
+        CGFloat mainKlineViewHeight = self.frame.size.height / 2;
+        CGFloat mainKlineViewWidth = self.scrollView.frame.size.width + 20;
+        _mainKlineView.frame = CGRectMake(0, 0, mainKlineViewWidth, mainKlineViewHeight);
+        
+        [self.scrollView addSubview:_mainKlineView];
+    }
+    
+    return _mainKlineView;
+}
+
+- (UIScrollView *)scrollView {
+    if (!_scrollView) {
+        _scrollView = [[UIScrollView alloc] initWithFrame:self.bounds];
+        _scrollView.delegate = self;
+        [self addSubview:_scrollView];
+    }
+    
+    return _scrollView;
+}
+
+@end
