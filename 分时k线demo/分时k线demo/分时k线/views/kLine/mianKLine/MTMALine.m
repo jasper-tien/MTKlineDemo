@@ -30,10 +30,13 @@
     
     UIColor *lineColor = [UIColor whiteColor];
     if (self.techType == SJCurveTechType_KLine) {
-        lineColor = self.MAType == MT_MA7Type ? [UIColor ma7Color] : (self.MAType == MT_MA30Type ? [UIColor ma30Color] : [UIColor mainTextColor]);
+        lineColor = self.MAType == MT_MA7Type ? [UIColor MTOrangeColor] : (self.MAType == MT_MA30Type ? [UIColor MTBlueColor] : [UIColor MTYellowColor]);
     }
     if (self.techType ==  SJCurveTechType_Volume) {
-        lineColor = self.MAType == MT_MA5Type ? [UIColor ma7Color] : (self.MAType == MT_MA10Type ? [UIColor ma30Color] : [UIColor mainTextColor]);
+        lineColor = self.MAType == MT_MA5Type ? [UIColor MTvioletColor] : (self.MAType == MT_MA10Type ? [UIColor MTYellowColor] : [UIColor MTBlueColor]);
+    }
+    if (self.techType == SJCurveTechType_KDJ) {
+        lineColor = self.MAType == MT_KDJ_K ? [UIColor whiteColor] : (self.MAType == MT_KDJ_D ? [UIColor MTYellowColor] : [UIColor MTvioletColor]);
     }
     
     CGContextSetStrokeColorWithColor(self.context, lineColor.CGColor);

@@ -58,16 +58,29 @@
     return [UIColor colorWithRGBHex:0xe1e2e6];
 }
 
-#pragma mark ma7的颜色
-+(UIColor *)ma7Color
+#pragma mark 橙色
++(UIColor *)MTOrangeColor
 {
     return [UIColor colorWithRGBHex:0xff783c];
 }
 
-#pragma mark ma30颜色
-+(UIColor *)ma30Color
+#pragma mark 蓝色
++(UIColor *)MTBlueColor
 {
     return [UIColor colorWithRGBHex:0x49a5ff];
+}
+
+#pragma mark 紫色
++(UIColor *)MTvioletColor {
+    return [UIColor colorWithRGBHex:0x8b008b];
+}
++ (UIColor *)testColor {
+    return [UIColor colorWithRGBHex:0x8b008b];
+}
+
+#pragma mark 黄色
++(UIColor *)MTYellowColor {
+    return [UIColor colorWithRGBHex:0xffff00];
 }
 
 @end

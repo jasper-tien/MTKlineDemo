@@ -16,46 +16,55 @@
  *
  *  @return 转换后的结果
  */
-+(UIColor *)colorWithRGBHex:(UInt32)hex;
++ (UIColor *)colorWithRGBHex:(UInt32)hex;
 /**
  *  涨的颜色
  */
-+(UIColor *)increaseColor;
++ (UIColor *)increaseColor;
 
 
 /**
  *  跌的颜色
  */
-+(UIColor *)decreaseColor;
++ (UIColor *)decreaseColor;
 /**
  *  所有图表的背景颜色
  */
-+(UIColor *)backgroundColor;
++ (UIColor *)backgroundColor;
 
 /**
  *  辅助背景色
  */
-+(UIColor *)assistBackgroundColor;
++ (UIColor *)assistBackgroundColor;
 /**
  *  主文字颜色
  */
-+(UIColor *)mainTextColor;
++ (UIColor *)mainTextColor;
 
 /**
  *  辅助文字颜色
  */
-+(UIColor *)assistTextColor;
++ (UIColor *)assistTextColor;
 /**
  *  长按时线的颜色
  */
-+(UIColor *)longPressLineColor;
++ (UIColor *)longPressLineColor;
 /**
- *  ma7的颜色
+ *  橙色
  */
-+(UIColor *)ma7Color;
++ (UIColor *)MTOrangeColor;
 /**
- *  ma30的颜色
+ *  蓝色
  */
-+(UIColor *)ma30Color;
++ (UIColor *)MTBlueColor;
+/**
+ *  紫色
+ */
++ (UIColor *)MTvioletColor;
++ (UIColor *)testColor;
+/**
+ *  黄色
+ */
++ (UIColor *)MTYellowColor;
 
 @end

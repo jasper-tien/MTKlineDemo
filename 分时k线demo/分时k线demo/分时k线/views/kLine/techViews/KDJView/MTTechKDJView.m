@@ -37,19 +37,19 @@
     MTMALine *MALine = [[MTMALine alloc] initWithContext:context];
     MALine.techType = SJCurveTechType_KDJ;
     if (self.KPositionModels.count > 0) {
-        MALine.MAType = MT_MA5Type;
+        MALine.MAType = MT_KDJ_K;
         MALine.MAPositions = self.KPositionModels;
         [MALine draw];
     }
     
     if (self.DPositionModels.count > 0) {
-        MALine.MAType = MT_MA5Type;
+        MALine.MAType = MT_KDJ_D;
         MALine.MAPositions = self.DPositionModels;
         [MALine draw];
     }
     
     if (self.JPositionModels.count > 0) {
-        MALine.MAType = MT_MA5Type;
+        MALine.MAType = MT_KDJ_J;
         MALine.MAPositions = self.JPositionModels;
         [MALine draw];
     }
