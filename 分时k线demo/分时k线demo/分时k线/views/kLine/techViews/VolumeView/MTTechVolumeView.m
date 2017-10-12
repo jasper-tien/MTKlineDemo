@@ -50,7 +50,6 @@
 
 - (void)drawRect:(CGRect)rect {
     // Drawing code
-    [super drawRect:rect];
     CGContextRef context = UIGraphicsGetCurrentContext();
     MTMALine *MALine = [[MTMALine alloc] initWithContext:context];
     MALine.techType = SJCurveTechType_Volume;

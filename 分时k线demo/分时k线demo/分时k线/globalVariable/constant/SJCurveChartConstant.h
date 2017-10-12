@@ -59,6 +59,15 @@ typedef NS_ENUM(NSInteger, SJCurveShowType) {
  *  K线图的成交量最大的Y
  */
 #define  MTCurveChartKLineVolumeViewMaxY (self.frame.size.height)
+/**
+ *  K线图的副图上最小的Y
+ */
+#define MTCurveChartKLineAccessoryViewMinY 20
+
+/**
+ *  K线图的副图最大的Y
+ */
+#define MTCurveChartKLineAccessoryViewMaxY (self.frame.size.height)
 
 #pragma mark 曲线颜色
 #define Curve_Color_None 000000000 //

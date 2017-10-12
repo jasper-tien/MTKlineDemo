@@ -10,20 +10,18 @@
 #import "UIColor+CurveChart.h"
 #import "MTTechBaseView.h"
 #import "MTTechVolumeView.h"
-
-
-#import "MTTechVolumeView.h"
+#import "MTTechKDJView.h"
 
 @interface MTTechView ()
 @property (nonatomic, assign) SJCurveTechType techType;
-@property (nonatomic, strong) MTTechVolumeView *showTechView;
+@property (nonatomic, strong) MTTechBaseView *showTechView;
 @end
 
 @implementation MTTechView
 - (instancetype)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
         self.backgroundColor = [UIColor backgroundColor];
-        self.techType = SJCurveTechType_Volume; //默认成交量
+        self.techType = SJCurveTechType_KDJ; //默认成交量
     }
     
     return self;
@@ -52,7 +50,10 @@
         }
             break;
         case SJCurveTechType_KDJ: {
-            
+            MTTechKDJView *techKDJView = (MTTechKDJView *)self.showTechView;
+            techKDJView.needDrawKDJModels = self.needDrawTechModels;
+            //刷新指标
+            [techKDJView drawTechView];
         }
             break;
         case SJCurveTechType_BOLL: {
@@ -86,7 +87,8 @@
         }
             break;
         case SJCurveTechType_KDJ: {
-            
+            self.showTechView = [[MTTechKDJView alloc] initWithFrame:self.bounds];
+            [self addSubview:self.showTechView];
         }
             break;
         case SJCurveTechType_BOLL: {

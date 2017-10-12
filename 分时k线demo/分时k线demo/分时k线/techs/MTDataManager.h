@@ -16,6 +16,7 @@
 - (NSDictionary *)getDataModelDictionary;
 - (NSArray *)getMainKLineDatas;
 - (NSArray *)getMainKLineDatasWithRange:(NSRange)range;
-- (NSArray *)getVolumeDatas;
+- (NSArray *)getKDJDatas;
+- (NSArray *)getKDJDatasWithRange:(NSRange)range;
 - (NSArray *)getCurveDatasWithType:(SJCurveTechType)curveTechType;
 @end

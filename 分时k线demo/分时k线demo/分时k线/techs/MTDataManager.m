@@ -70,8 +70,21 @@
     return [NSArray arrayWithArray:[mainKlineDatas subarrayWithRange:range]];
 }
 
-- (NSArray *)getVolumeDatas {
-    return nil;
+- (NSArray *)getKDJDatas {
+    return self.dataModelDictionary[@"MTCurveKDJKey"];
+}
+
+- (NSArray *)getKDJDatasWithRange:(NSRange)range {
+    NSArray *KDJDatas = self.dataModelDictionary[@"MTCurveKDJKey"];
+    if (range.location >= KDJDatas.count) {
+        return nil;
+    }
+    
+    if ((range.location + range.length) > KDJDatas.count) {
+        range.length = KDJDatas.count - range.location;
+    }
+    
+    return [NSArray arrayWithArray:[KDJDatas subarrayWithRange:range]];
 }
 
 - (NSArray *)getCurveDatasWithType:(SJCurveTechType)curveTechType {

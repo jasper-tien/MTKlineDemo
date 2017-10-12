@@ -37,6 +37,7 @@
 		8EF933491F8F45130011E352 /* MTTechBaseView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EF933481F8F45130011E352 /* MTTechBaseView.m */; };
 		8EF9334F1F8F45A50011E352 /* MTTechVolumeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EF9334E1F8F45A50011E352 /* MTTechVolumeView.m */; };
 		8EF933521F8F45DA0011E352 /* MTVolume.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EF933511F8F45DA0011E352 /* MTVolume.m */; };
+		8EF933551F8F473D0011E352 /* MTTechKDJView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EF933541F8F473D0011E352 /* MTTechKDJView.m */; };
 		8EFBDE171F735E7C00F8554E /* SJCurveObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EFBDE161F735E7C00F8554E /* SJCurveObject.m */; };
 		8EFBDE1A1F736B4500F8554E /* SJCurveProcess.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EFBDE191F736B4500F8554E /* SJCurveProcess.m */; };
 		8EFF5ABF1F6F736900CD94F1 /* SJKlineModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EFF5ABE1F6F736900CD94F1 /* SJKlineModel.m */; };
@@ -123,6 +124,8 @@
 		8EF9334E1F8F45A50011E352 /* MTTechVolumeView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MTTechVolumeView.m; sourceTree = "<group>"; };
 		8EF933501F8F45DA0011E352 /* MTVolume.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MTVolume.h; sourceTree = "<group>"; };
 		8EF933511F8F45DA0011E352 /* MTVolume.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MTVolume.m; sourceTree = "<group>"; };
+		8EF933531F8F473D0011E352 /* MTTechKDJView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MTTechKDJView.h; sourceTree = "<group>"; };
+		8EF933541F8F473D0011E352 /* MTTechKDJView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MTTechKDJView.m; sourceTree = "<group>"; };
 		8EFBDE151F735E7C00F8554E /* SJCurveObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SJCurveObject.h; sourceTree = "<group>"; };
 		8EFBDE161F735E7C00F8554E /* SJCurveObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SJCurveObject.m; sourceTree = "<group>"; };
 		8EFBDE181F736B4500F8554E /* SJCurveProcess.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SJCurveProcess.h; sourceTree = "<group>"; };
@@ -412,6 +415,8 @@
 		8EF933461F8F44D60011E352 /* KDJView */ = {
 			isa = PBXGroup;
 			children = (
+				8EF933531F8F473D0011E352 /* MTTechKDJView.h */,
+				8EF933541F8F473D0011E352 /* MTTechKDJView.m */,
 			);
 			path = KDJView;
 			sourceTree = "<group>";
@@ -568,6 +573,7 @@
 				8EFF5AC51F6FB12800CD94F1 /* Test1.m in Sources */,
 				8E3896441F7F6E72006AEC92 /* MTMianKLineView.m in Sources */,
 				8E0360A61F8E193600B485A2 /* MTTechView.m in Sources */,
+				8EF933551F8F473D0011E352 /* MTTechKDJView.m in Sources */,
 				8E02447A1F8CA2FB004AA725 /* MTKlineView.m in Sources */,
 				8E5C86091F70EC8A00F5DE86 /* SJManageDataToModel.m in Sources */,
 				8EFF5ABF1F6F736900CD94F1 /* SJKlineModel.m in Sources */,

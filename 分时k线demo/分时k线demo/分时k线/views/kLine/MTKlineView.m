@@ -18,6 +18,8 @@
 @property (nonatomic, strong) MTMianKLineView *mainKlineView;
 //
 @property (nonatomic, strong) MTTechView *techView;
+//
+@property (nonatomic, assign) SJCurveTechType techType;
 //记录ScrollView上一次次滑动的偏移量
 @property (nonatomic, assign) CGFloat previousScrollViewOffsetX;
 //开始显示数据的index
@@ -30,6 +32,7 @@
     if (self = [super initWithFrame:frame]) {
         self.backgroundColor = [UIColor assistBackgroundColor];
         self.previousScrollViewOffsetX = 0;
+        self.techType = SJCurveTechType_KDJ;
     }
     
     return self;
@@ -63,8 +66,13 @@
     [self.mainKlineView drawMainView];
     
     //绘制指标
-    self.techView.needDrawTechModels = [self.manager getMainKLineDatasWithRange:NSMakeRange(self.startIndex, length)];
-    [self.techView drawTechViewWithType:SJCurveTechType_Volume];
+    if (self.techType == SJCurveTechType_Volume) {
+        self.techView.needDrawTechModels = [self.manager getMainKLineDatasWithRange:NSMakeRange(self.startIndex, mainKlineViewShowCount)];
+        [self.techView drawTechViewWithType:SJCurveTechType_Volume];
+    } else if (self.techType == SJCurveTechType_KDJ) {
+        self.techView.needDrawTechModels = [self.manager getKDJDatasWithRange:NSMakeRange(self.startIndex, mainKlineViewShowCount)];
+        [self.techView drawTechViewWithType:SJCurveTechType_KDJ];
+    }
     
     // 刷新主k线的位置
     CGFloat mainKlineViewPointX = self.mainKlineView.frame.origin.x + difValue;
@@ -103,8 +111,13 @@
     [self.mainKlineView drawMainView];
     
     //绘制指标
-    self.techView.needDrawTechModels = [self.manager getMainKLineDatasWithRange:NSMakeRange(self.startIndex, mainKlineViewShowCount)];
-    [self.techView drawTechViewWithType:SJCurveTechType_Volume];
+    if (self.techType == SJCurveTechType_Volume) {
+        self.techView.needDrawTechModels = [self.manager getMainKLineDatasWithRange:NSMakeRange(self.startIndex, mainKlineViewShowCount)];
+        [self.techView drawTechViewWithType:SJCurveTechType_Volume];
+    } else if (self.techType == SJCurveTechType_KDJ) {
+        self.techView.needDrawTechModels = [self.manager getKDJDatasWithRange:NSMakeRange(self.startIndex, mainKlineViewShowCount)];
+        [self.techView drawTechViewWithType:SJCurveTechType_KDJ];
+    }
     
 }
 
