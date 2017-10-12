@@ -37,7 +37,7 @@
 - (NSArray *)getTestArray {
     NSMutableArray *array = [NSMutableArray array];
     //伪造数据
-    for (int i = 0; i < 100; i++) {
+    for (int i = 0; i < 300; i++) {
         int op = (arc4random() % 1000) + 1;
         int cl = (arc4random() % 1000) + 1;
         NSNumber *open = [NSNumber numberWithInt:op];

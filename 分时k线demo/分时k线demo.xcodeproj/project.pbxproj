@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		8E0244771F8C68C1004AA725 /* MTMALine.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E0244761F8C68C1004AA725 /* MTMALine.m */; };
 		8E02447A1F8CA2FB004AA725 /* MTKlineView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E0244791F8CA2FA004AA725 /* MTKlineView.m */; };
+		8E0360A01F8E156C00B485A2 /* MTTechBaseView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E03609F1F8E156C00B485A2 /* MTTechBaseView.m */; };
+		8E0360A31F8E15B500B485A2 /* MTTechVolumeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E0360A21F8E15B500B485A2 /* MTTechVolumeView.m */; };
+		8E0360A61F8E193600B485A2 /* MTTechView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E0360A51F8E193600B485A2 /* MTTechView.m */; };
 		8E21E7691F564DB700CD55E0 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E21E7681F564DB700CD55E0 /* main.m */; };
 		8E21E76C1F564DB700CD55E0 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E21E76B1F564DB700CD55E0 /* AppDelegate.m */; };
 		8E21E76F1F564DB700CD55E0 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E21E76E1F564DB700CD55E0 /* ViewController.m */; };
@@ -62,6 +65,12 @@
 		8E0244761F8C68C1004AA725 /* MTMALine.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MTMALine.m; sourceTree = "<group>"; };
 		8E0244781F8CA2FA004AA725 /* MTKlineView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MTKlineView.h; sourceTree = "<group>"; };
 		8E0244791F8CA2FA004AA725 /* MTKlineView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MTKlineView.m; sourceTree = "<group>"; };
+		8E03609E1F8E156C00B485A2 /* MTTechBaseView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MTTechBaseView.h; sourceTree = "<group>"; };
+		8E03609F1F8E156C00B485A2 /* MTTechBaseView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MTTechBaseView.m; sourceTree = "<group>"; };
+		8E0360A11F8E15B500B485A2 /* MTTechVolumeView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MTTechVolumeView.h; sourceTree = "<group>"; };
+		8E0360A21F8E15B500B485A2 /* MTTechVolumeView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MTTechVolumeView.m; sourceTree = "<group>"; };
+		8E0360A41F8E193600B485A2 /* MTTechView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MTTechView.h; sourceTree = "<group>"; };
+		8E0360A51F8E193600B485A2 /* MTTechView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MTTechView.m; sourceTree = "<group>"; };
 		8E21E7641F564DB700CD55E0 /* 分时k线demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "分时k线demo.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8E21E7681F564DB700CD55E0 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		8E21E76A1F564DB700CD55E0 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -147,6 +156,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8E03609D1F8E152A00B485A2 /* techViews */ = {
+			isa = PBXGroup;
+			children = (
+				8E03609E1F8E156C00B485A2 /* MTTechBaseView.h */,
+				8E03609F1F8E156C00B485A2 /* MTTechBaseView.m */,
+				8E0360A11F8E15B500B485A2 /* MTTechVolumeView.h */,
+				8E0360A21F8E15B500B485A2 /* MTTechVolumeView.m */,
+				8E0360A41F8E193600B485A2 /* MTTechView.h */,
+				8E0360A51F8E193600B485A2 /* MTTechView.m */,
+			);
+			path = techViews;
+			sourceTree = "<group>";
+		};
 		8E21E75B1F564DB700CD55E0 = {
 			isa = PBXGroup;
 			children = (
@@ -301,6 +323,7 @@
 		8E5595B41F6BAD2C004976B7 /* kLine */ = {
 			isa = PBXGroup;
 			children = (
+				8E03609D1F8E152A00B485A2 /* techViews */,
 				8E3896411F7F6E4C006AEC92 /* mianKLine */,
 				8E0244781F8CA2FA004AA725 /* MTKlineView.h */,
 				8E0244791F8CA2FA004AA725 /* MTKlineView.m */,
@@ -501,12 +524,15 @@
 				8ED2E2461F7641D400251618 /* MTCurveProcess.m in Sources */,
 				8EFF5AC51F6FB12800CD94F1 /* Test1.m in Sources */,
 				8E3896441F7F6E72006AEC92 /* MTMianKLineView.m in Sources */,
+				8E0360A61F8E193600B485A2 /* MTTechView.m in Sources */,
 				8E02447A1F8CA2FB004AA725 /* MTKlineView.m in Sources */,
+				8E0360A01F8E156C00B485A2 /* MTTechBaseView.m in Sources */,
 				8E5C86091F70EC8A00F5DE86 /* SJManageDataToModel.m in Sources */,
 				8EFF5ABF1F6F736900CD94F1 /* SJKlineModel.m in Sources */,
 				8E21E7691F564DB700CD55E0 /* main.m in Sources */,
 				8EFF5AC81F6FB13200CD94F1 /* Test2.m in Sources */,
 				8E21E7A01F565C7A00CD55E0 /* TestController.m in Sources */,
+				8E0360A31F8E15B500B485A2 /* MTTechVolumeView.m in Sources */,
 				8E0244771F8C68C1004AA725 /* MTMALine.m in Sources */,
 				8EFBDE171F735E7C00F8554E /* SJCurveObject.m in Sources */,
 				8EFBDE1A1F736B4500F8554E /* SJCurveProcess.m in Sources */,

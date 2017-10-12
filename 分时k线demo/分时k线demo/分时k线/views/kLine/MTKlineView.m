@@ -8,6 +8,7 @@
 
 #import "MTKlineView.h"
 #import "MTMianKLineView.h"
+#import "MTTechView.h"
 #import "UIColor+CurveChart.h"
 #import "MTCurveChartGlobalVariable.h"
 
@@ -15,8 +16,11 @@
 @property (nonatomic, strong) UIScrollView *scrollView;
 //主k线
 @property (nonatomic, strong) MTMianKLineView *mainKlineView;
+//
+@property (nonatomic, strong) MTTechView *techView;
 //记录ScrollView上一次次滑动的偏移量
 @property (nonatomic, assign) CGFloat previousScrollViewOffsetX;
+//开始显示数据的index
 @property (nonatomic, assign) NSInteger startIndex;
 @end
 
@@ -38,7 +42,7 @@
     //================================================================================
     CGPoint scrollViewOffset = scrollView.contentOffset;
     CGFloat difValue = scrollViewOffset.x - self.previousScrollViewOffsetX;
-    if (ABS(difValue) < 10 || scrollViewOffset.x < 0) {
+    if (ABS(difValue) < ([MTCurveChartGlobalVariable kLineGap] + [MTCurveChartGlobalVariable kLineWidth]) || scrollViewOffset.x < 0) {
         return;
     }
     int count = ABS(difValue) / ([MTCurveChartGlobalVariable kLineWidth] + [MTCurveChartGlobalVariable kLineGap]);
@@ -48,16 +52,18 @@
         self.startIndex += count;
     }
     
-    CGFloat mainKlineViewPointX = self.mainKlineView.frame.origin.x + difValue;
-    NSInteger length = 50;
+    // 重新获取需要显示在主k线上的数据
+    NSInteger mainKlineViewShowCount = self.mainKlineView.frame.size.width / ([MTCurveChartGlobalVariable kLineGap] + [MTCurveChartGlobalVariable kLineWidth]);
+    NSInteger length = mainKlineViewShowCount;
     if (self.startIndex < 0) {
         self.startIndex = 0;
         length += self.startIndex;
     }
-    
-    // 重新绘制主k线
     self.mainKlineView.needDrawKlneModels = [self.manager getMainKLineDatasWithRange:NSMakeRange(self.startIndex, length)];
     [self.mainKlineView drawMainView];
+    
+    // 重新绘制主k线
+    CGFloat mainKlineViewPointX = self.mainKlineView.frame.origin.x + difValue;
     self.mainKlineView.frame = CGRectMake(mainKlineViewPointX, self.mainKlineView.frame.origin.y, self.mainKlineView.frame.size.width, self.mainKlineView.frame.size.height);
     self.previousScrollViewOffsetX = scrollViewOffset.x;
 }
@@ -80,28 +86,43 @@
     //
     //================================================================================
     //初始化状态显示最新的k线数据
-    CGFloat mainKlineViewWidth = self.mainKlineView.frame.size.width + 20;
+    CGFloat mainKlineViewWidth = self.mainKlineView.frame.size.width;
     CGFloat scrollViewFirstOffsetX = self.scrollView.contentSize.width - mainKlineViewWidth;
     self.scrollView.contentOffset = CGPointMake(scrollViewFirstOffsetX, 0);
     self.previousScrollViewOffsetX = scrollViewFirstOffsetX;
     //绘制主k线
+    NSInteger mainKlineViewShowCount = self.mainKlineView.frame.size.width / ([MTCurveChartGlobalVariable kLineGap] + [MTCurveChartGlobalVariable kLineWidth]);
     NSArray *mainKlineModels = [self.manager getMainKLineDatas];
-    self.startIndex = mainKlineModels.count - 50;
-    self.mainKlineView.needDrawKlneModels = [self.manager getMainKLineDatasWithRange:NSMakeRange(self.startIndex, 50)];
+    self.startIndex = mainKlineModels.count - mainKlineViewShowCount;
+    self.mainKlineView.needDrawKlneModels = [self.manager getMainKLineDatasWithRange:NSMakeRange(self.startIndex, mainKlineViewShowCount)];
     [self.mainKlineView drawMainView];
+    
+    //绘制指标
+    [self.techView drawTechViewWithType:SJCurveTechType_Volume];
 }
 
 - (UIView *)mainKlineView {
     if (!_mainKlineView) {
         _mainKlineView = [[MTMianKLineView alloc] initWithDelegate:self];
         CGFloat mainKlineViewHeight = self.frame.size.height / 2;
-        CGFloat mainKlineViewWidth = self.scrollView.frame.size.width + 20;
+        CGFloat mainKlineViewWidth = self.scrollView.frame.size.width;
         _mainKlineView.frame = CGRectMake(0, 0, mainKlineViewWidth, mainKlineViewHeight);
         
         [self.scrollView addSubview:_mainKlineView];
     }
     
     return _mainKlineView;
+}
+
+- (MTTechView *)techView {
+    if (!_techView) {
+        CGFloat techViewWidth = self.scrollView.frame.size.width;
+        CGFloat techViewHeight = self.frame.size.height / 2 - 20;
+        _techView = [[MTTechView alloc] initWithFrame:CGRectMake(0, self.frame.size.height / 2 + 20, techViewWidth, techViewHeight)];
+        [self addSubview:_techView];
+    }
+    
+    return _techView;
 }
 
 - (UIScrollView *)scrollView {
