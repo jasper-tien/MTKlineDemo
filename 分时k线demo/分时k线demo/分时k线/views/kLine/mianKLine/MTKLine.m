@@ -31,7 +31,7 @@
     
     CGContextRef context = self.context;
     //画笔的颜色
-    UIColor *lineColor = self.positionModel.closePoint.y > self.positionModel.openPoint.y ? [UIColor increaseColor] : [UIColor decreaseColor];
+    UIColor *lineColor = self.positionModel.closePoint.y < self.positionModel.openPoint.y ? [UIColor increaseColor] : [UIColor decreaseColor];
     CGContextSetStrokeColorWithColor(context, lineColor.CGColor);
     //画中间开盘和收盘实体线
     CGContextSetLineWidth(context, [MTCurveChartGlobalVariable kLineWidth]);

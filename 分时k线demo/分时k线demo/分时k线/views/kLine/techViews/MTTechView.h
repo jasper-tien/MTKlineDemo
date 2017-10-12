@@ -10,6 +10,7 @@
 #import "SJCurveChartConstant.h"
 
 @interface MTTechView : UIView
+@property (nonatomic, copy) NSArray *needDrawTechModels;
 - (instancetype)initWithFrame:(CGRect)frame;
 - (void)drawTechViewWithType:(SJCurveTechType)techType;
 @end

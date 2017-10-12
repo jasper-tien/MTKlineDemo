@@ -24,8 +24,9 @@
 @property (nonatomic, strong) NSNumber *MA_26;          //26个单位的均值（收盘价）
 @property (nonatomic, strong) NSNumber *MA_30;          //30个单位的均值（收盘价）
 
-@property (nonatomic, strong) NSNumber *volumeMA_7;     //7个单位的均值（成交量）
-@property (nonatomic, strong) NSNumber *volumeMA_30;    //30个单位的均值（成交量）
+@property (nonatomic, strong) NSNumber *volumeMA_5;     //5个单位的均值（成交量）
+@property (nonatomic, strong) NSNumber *volumeMA_10;     //10个单位的均值（成交量）
+@property (nonatomic, strong) NSNumber *volumeMA_20;    //20个单位的均值（成交量）
 
 @property (nonatomic, copy) NSNumber *sumOfLastClose;   //该Model及其之前所有收盘价之和
 @property (nonatomic, copy) NSNumber *sumOfLastVolume;  //该Model及其之前所有成交量之和

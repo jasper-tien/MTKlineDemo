@@ -17,6 +17,9 @@
     [self MA_12];
     [self MA_26];
     [self MA_30];
+    [self volumeMA_5];
+    [self volumeMA_10];
+    [self volumeMA_20];
 }
 
 - (NSNumber *)sumOfLastClose
@@ -29,8 +32,8 @@
 }
 
 - (NSNumber *)sumOfLastVolume {
-    if (!_sumOfLastClose) {
-        _sumOfLastClose = @(self.previousKlineModel.sumOfLastVolume.floatValue + self.close.floatValue);
+    if (!_sumOfLastVolume) {
+        _sumOfLastVolume = @(self.previousKlineModel.sumOfLastVolume.floatValue + self.volume.floatValue);
     }
     
     return _sumOfLastVolume;
@@ -101,6 +104,57 @@
     }
     
     return _MA_30;
+}
+
+- (NSNumber *)volumeMA_5
+{
+    if (!_volumeMA_5) {
+        NSInteger index = [self.mainKLineModels indexOfObject:self];
+        if (index >= 4) {
+            if (index > 4 && index < self.mainKLineModels.count) {
+                SJKlineModel *tempModel = self.mainKLineModels[index - 5];
+                _volumeMA_5 = @((self.sumOfLastVolume.floatValue - tempModel.sumOfLastVolume.floatValue) / 5);
+            } else {
+                _volumeMA_5 = @(self.sumOfLastVolume.floatValue / 5);
+            }
+        }
+    }
+    
+    return _volumeMA_5;
+}
+
+- (NSNumber *)volumeMA_10
+{
+    if (!_volumeMA_10) {
+        NSInteger index = [self.mainKLineModels indexOfObject:self];
+        if (index >= 9) {
+            if (index > 9 && index < self.mainKLineModels.count) {
+                SJKlineModel *tempModel = self.mainKLineModels[index - 10];
+                _volumeMA_10 = @((self.sumOfLastVolume.floatValue - tempModel.sumOfLastVolume.floatValue) / 10);
+            } else {
+                _volumeMA_10 = @(self.sumOfLastVolume.floatValue / 10);
+            }
+        }
+    }
+    
+    return _volumeMA_10;
+}
+
+- (NSNumber *)volumeMA_20
+{
+    if (!_volumeMA_20) {
+        NSInteger index = [self.mainKLineModels indexOfObject:self];
+        if (index >= 19) {
+            if (index > 19 && index < self.mainKLineModels.count) {
+                SJKlineModel *tempModel = self.mainKLineModels[index - 20];
+                _volumeMA_20 = @((self.sumOfLastVolume.floatValue - tempModel.sumOfLastVolume.floatValue) / 20);
+            } else {
+                _volumeMA_20 = @(self.sumOfLastVolume.floatValue / 20);
+            }
+        }
+    }
+    
+    return _volumeMA_20;
 }
 
 @end

@@ -62,9 +62,14 @@
     self.mainKlineView.needDrawKlneModels = [self.manager getMainKLineDatasWithRange:NSMakeRange(self.startIndex, length)];
     [self.mainKlineView drawMainView];
     
-    // 重新绘制主k线
+    //绘制指标
+    self.techView.needDrawTechModels = [self.manager getMainKLineDatasWithRange:NSMakeRange(self.startIndex, length)];
+    [self.techView drawTechViewWithType:SJCurveTechType_Volume];
+    
+    // 刷新主k线的位置
     CGFloat mainKlineViewPointX = self.mainKlineView.frame.origin.x + difValue;
     self.mainKlineView.frame = CGRectMake(mainKlineViewPointX, self.mainKlineView.frame.origin.y, self.mainKlineView.frame.size.width, self.mainKlineView.frame.size.height);
+    self.techView.frame = CGRectMake(mainKlineViewPointX, self.techView.frame.origin.y, self.techView.frame.size.width, self.techView.frame.size.height);
     self.previousScrollViewOffsetX = scrollViewOffset.x;
 }
 
@@ -98,7 +103,9 @@
     [self.mainKlineView drawMainView];
     
     //绘制指标
+    self.techView.needDrawTechModels = [self.manager getMainKLineDatasWithRange:NSMakeRange(self.startIndex, mainKlineViewShowCount)];
     [self.techView drawTechViewWithType:SJCurveTechType_Volume];
+    
 }
 
 - (UIView *)mainKlineView {
@@ -119,7 +126,7 @@
         CGFloat techViewWidth = self.scrollView.frame.size.width;
         CGFloat techViewHeight = self.frame.size.height / 2 - 20;
         _techView = [[MTTechView alloc] initWithFrame:CGRectMake(0, self.frame.size.height / 2 + 20, techViewWidth, techViewHeight)];
-        [self addSubview:_techView];
+        [self.scrollView addSubview:_techView];
     }
     
     return _techView;

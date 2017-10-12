@@ -2,7 +2,7 @@
 //  MTTechBaseView.h
 //  分时k线demo
 //
-//  Created by tianmaotao on 2017/10/11.
+//  Created by tianmaotao on 2017/10/12.
 //  Copyright © 2017年 tianmaotao. All rights reserved.
 //
 

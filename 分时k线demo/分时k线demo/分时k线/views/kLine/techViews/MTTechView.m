@@ -11,9 +11,12 @@
 #import "MTTechBaseView.h"
 #import "MTTechVolumeView.h"
 
+
+#import "MTTechVolumeView.h"
+
 @interface MTTechView ()
 @property (nonatomic, assign) SJCurveTechType techType;
-@property (nonatomic, strong) MTTechBaseView *showTechView;
+@property (nonatomic, strong) MTTechVolumeView *showTechView;
 @end
 
 @implementation MTTechView
@@ -28,12 +31,37 @@
 
 //通过指标类型刷新指标视图
 - (void)drawTechViewWithType:(SJCurveTechType)techType {
-    if (techType != self.techType) {
+    if (techType != self.techType || !self.showTechView) {
         [self createShowTechView:techType];
     }
     
-    //刷新指标
-    [self.showTechView drawTechView];
+    switch (self.techType) {
+        case SJCurveTechType_Volume: {
+            MTTechVolumeView *techVolumeView = (MTTechVolumeView *)self.showTechView;
+            techVolumeView.needDrawVolumeModels = self.needDrawTechModels;
+            //刷新指标
+            [techVolumeView drawTechView];
+        }
+            break;
+        case SJCurveTechType_Jine: {
+            
+        }
+            break;
+        case SJCurveTechType_MACD: {
+            
+        }
+            break;
+        case SJCurveTechType_KDJ: {
+            
+        }
+            break;
+        case SJCurveTechType_BOLL: {
+            
+        }
+            break;
+        default:
+            break;
+    }
 }
 
 //切换指标，重新创建一个新的指标view

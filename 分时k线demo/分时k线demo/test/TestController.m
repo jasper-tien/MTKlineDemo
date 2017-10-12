@@ -70,9 +70,10 @@
             
             low = [NSNumber numberWithInt:lo];
         }
+        NSNumber *volume = [NSNumber numberWithFloat:(arc4random() % 1000) + 1];
         
         NSString *time = [NSString stringWithFormat:@"%d", (arc4random() % 1000) + 1];
-        NSArray *arr = [NSArray arrayWithObjects:time, open,high,low, close, nil];
+        NSArray *arr = [NSArray arrayWithObjects:time, open,high,low, close, volume, nil];
         [array addObject:arr];
     }
     return array;

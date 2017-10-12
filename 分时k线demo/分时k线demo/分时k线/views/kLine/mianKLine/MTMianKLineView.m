@@ -28,8 +28,6 @@
  *  MA30位置数组
  */
 @property (nonatomic, strong) NSMutableArray *MA30Positions;
-//
-@property (nonatomic, assign) NSInteger startXPosition;
 
 @end
 
@@ -60,6 +58,7 @@
     }];
     
     MTMALine *MALine = [[MTMALine alloc] initWithContext:context];
+    MALine.techType = SJCurveTechType_KLine;
     MALine.MAType = MT_MA7Type;
     MALine.MAPositions = self.MA7Positions;
     [MALine draw];

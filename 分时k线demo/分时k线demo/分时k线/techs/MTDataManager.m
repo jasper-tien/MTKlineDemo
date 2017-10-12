@@ -21,7 +21,7 @@
         __block SJKlineModel *previousKlineModel = nil;
         [array enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
             NSArray *arr = (NSArray *)obj;
-            if (arr.count == 5) {
+            if (arr.count == 6) {
                 SJKlineModel *kLineModel = [[SJKlineModel alloc] init];
                 [mainKLineDatas addObject:kLineModel];
                 kLineModel.date = arr[0];
@@ -29,6 +29,7 @@
                 kLineModel.high = @([arr[2] floatValue]);
                 kLineModel.low = @([arr[3] floatValue]);
                 kLineModel.close = @([arr[4] floatValue]);
+                kLineModel.volume = @([arr[5] floatValue]);
                 kLineModel.mainKLineModels = mainKLineDatas;
                 kLineModel.previousKlineModel = previousKlineModel;
                 [kLineModel initData];

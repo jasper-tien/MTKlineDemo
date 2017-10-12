@@ -7,8 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "SJCurveChartConstant.h"
 typedef NS_ENUM(NSInteger, MTMAType){
-    MT_MA7Type = 0,
+    MT_MA5Type = 0,
+    MT_MA7Type,
+    MT_MA10Type,
+    MT_MA20Type,
     MT_MA30Type,
     MT_BOLL_MB,
     MT_BOLL_UP,
@@ -18,6 +22,7 @@ typedef NS_ENUM(NSInteger, MTMAType){
 @interface MTMALine : NSObject
 @property (nonatomic, strong) NSArray *MAPositions;
 @property (nonatomic, assign) MTMAType MAType;
+@property (nonatomic, assign) SJCurveTechType techType;
 
 - (instancetype)initWithContext:(CGContextRef)context;
 

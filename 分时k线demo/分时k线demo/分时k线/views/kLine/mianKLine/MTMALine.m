@@ -28,7 +28,13 @@
         return;
     }
     
-    UIColor *lineColor = self.MAType == MT_MA7Type ? [UIColor ma7Color] : (self.MAType == MT_MA30Type ? [UIColor ma30Color] : [UIColor mainTextColor]);
+    UIColor *lineColor = [UIColor whiteColor];
+    if (self.techType == SJCurveTechType_KLine) {
+        lineColor = self.MAType == MT_MA7Type ? [UIColor ma7Color] : (self.MAType == MT_MA30Type ? [UIColor ma30Color] : [UIColor mainTextColor]);
+    }
+    if (self.techType ==  SJCurveTechType_Volume) {
+        lineColor = self.MAType == MT_MA5Type ? [UIColor ma7Color] : (self.MAType == MT_MA10Type ? [UIColor ma30Color] : [UIColor mainTextColor]);
+    }
     
     CGContextSetStrokeColorWithColor(self.context, lineColor.CGColor);
     
