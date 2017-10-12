@@ -16,14 +16,16 @@
 @property (nonatomic, strong) UIScrollView *scrollView;
 //主k线
 @property (nonatomic, strong) MTMianKLineView *mainKlineView;
-//
+//指标view
 @property (nonatomic, strong) MTTechView *techView;
-//
+//当前需要实现的指标类型
 @property (nonatomic, assign) SJCurveTechType techType;
 //记录ScrollView上一次次滑动的偏移量
 @property (nonatomic, assign) CGFloat previousScrollViewOffsetX;
-//开始显示数据的index
-@property (nonatomic, assign) NSInteger startIndex;
+//数据开始显示的位置
+@property (nonatomic, assign) NSInteger showStartIndex;
+//数据的长度
+@property (nonatomic, assign) NSInteger showCount;
 @end
 
 @implementation MTKlineView
@@ -32,10 +34,34 @@
     if (self = [super initWithFrame:frame]) {
         self.backgroundColor = [UIColor assistBackgroundColor];
         self.previousScrollViewOffsetX = 0;
+        self.showCount = self.scrollView.frame.size.width / ([MTCurveChartGlobalVariable kLineGap] + [MTCurveChartGlobalVariable kLineWidth]);
         self.techType = SJCurveTechType_KDJ;
+        UIButton *btn = [[UIButton alloc] initWithFrame:CGRectMake(0, self.frame.size.height / 2 - 5, 100, 30)];
+        [btn setTitle:@"切换指标" forState:UIControlStateNormal];
+        [btn addTarget:self action:@selector(testAction:) forControlEvents:UIControlEventTouchUpInside];
+        NSLog(@"%@", self.scrollView);
+        [self addSubview:btn];
     }
+
     
     return self;
+}
+
+- (void)testAction:(UIButton *)sender {
+    if (self.techType == SJCurveTechType_Volume) {
+        self.techType = SJCurveTechType_KDJ;
+    } else if (self.techType == SJCurveTechType_KDJ) {
+        self.techType = SJCurveTechType_Volume;
+    }
+    
+    //刷新
+    if (self.techType == SJCurveTechType_Volume) {
+        self.techView.needDrawTechModels = [self.manager getMainKLineDatasWithRange:NSMakeRange(self.showStartIndex, self.showCount)];
+        [self.techView drawTechViewWithType:SJCurveTechType_Volume];
+    } else if (self.techType == SJCurveTechType_KDJ) {
+        self.techView.needDrawTechModels = [self.manager getKDJDatasWithRange:NSMakeRange(self.showStartIndex, self.showCount)];
+        [self.techView drawTechViewWithType:SJCurveTechType_KDJ];
+    }
 }
 
 #pragma mark - UIScrollView delegate
@@ -50,27 +76,24 @@
     }
     int count = ABS(difValue) / ([MTCurveChartGlobalVariable kLineWidth] + [MTCurveChartGlobalVariable kLineGap]);
     if (self.previousScrollViewOffsetX > scrollViewOffset.x) {
-        self.startIndex -= count;
+        self.showStartIndex -= count;
     } else {
-        self.startIndex += count;
+        self.showStartIndex += count;
     }
     
     // 重新获取需要显示在主k线上的数据
-    NSInteger mainKlineViewShowCount = self.mainKlineView.frame.size.width / ([MTCurveChartGlobalVariable kLineGap] + [MTCurveChartGlobalVariable kLineWidth]);
-    NSInteger length = mainKlineViewShowCount;
-    if (self.startIndex < 0) {
-        self.startIndex = 0;
-        length += self.startIndex;
+    if (self.showStartIndex < 0) {
+        self.showStartIndex = 0;
     }
-    self.mainKlineView.needDrawKlneModels = [self.manager getMainKLineDatasWithRange:NSMakeRange(self.startIndex, length)];
+    self.mainKlineView.needDrawKlneModels = [self.manager getMainKLineDatasWithRange:NSMakeRange(self.showStartIndex, self.showCount)];
     [self.mainKlineView drawMainView];
     
     //绘制指标
     if (self.techType == SJCurveTechType_Volume) {
-        self.techView.needDrawTechModels = [self.manager getMainKLineDatasWithRange:NSMakeRange(self.startIndex, mainKlineViewShowCount)];
+        self.techView.needDrawTechModels = [self.manager getMainKLineDatasWithRange:NSMakeRange(self.showStartIndex, self.showCount)];
         [self.techView drawTechViewWithType:SJCurveTechType_Volume];
     } else if (self.techType == SJCurveTechType_KDJ) {
-        self.techView.needDrawTechModels = [self.manager getKDJDatasWithRange:NSMakeRange(self.startIndex, mainKlineViewShowCount)];
+        self.techView.needDrawTechModels = [self.manager getKDJDatasWithRange:NSMakeRange(self.showStartIndex, self.showCount)];
         [self.techView drawTechViewWithType:SJCurveTechType_KDJ];
     }
     
@@ -104,18 +127,17 @@
     self.scrollView.contentOffset = CGPointMake(scrollViewFirstOffsetX, 0);
     self.previousScrollViewOffsetX = scrollViewFirstOffsetX;
     //绘制主k线
-    NSInteger mainKlineViewShowCount = self.mainKlineView.frame.size.width / ([MTCurveChartGlobalVariable kLineGap] + [MTCurveChartGlobalVariable kLineWidth]);
     NSArray *mainKlineModels = [self.manager getMainKLineDatas];
-    self.startIndex = mainKlineModels.count - mainKlineViewShowCount;
-    self.mainKlineView.needDrawKlneModels = [self.manager getMainKLineDatasWithRange:NSMakeRange(self.startIndex, mainKlineViewShowCount)];
+    self.showStartIndex = mainKlineModels.count - self.showCount;
+    self.mainKlineView.needDrawKlneModels = [self.manager getMainKLineDatasWithRange:NSMakeRange(self.showStartIndex, self.showCount)];
     [self.mainKlineView drawMainView];
     
     //绘制指标
     if (self.techType == SJCurveTechType_Volume) {
-        self.techView.needDrawTechModels = [self.manager getMainKLineDatasWithRange:NSMakeRange(self.startIndex, mainKlineViewShowCount)];
+        self.techView.needDrawTechModels = [self.manager getMainKLineDatasWithRange:NSMakeRange(self.showStartIndex, self.showCount)];
         [self.techView drawTechViewWithType:SJCurveTechType_Volume];
     } else if (self.techType == SJCurveTechType_KDJ) {
-        self.techView.needDrawTechModels = [self.manager getKDJDatasWithRange:NSMakeRange(self.startIndex, mainKlineViewShowCount)];
+        self.techView.needDrawTechModels = [self.manager getKDJDatasWithRange:NSMakeRange(self.showStartIndex, self.showCount)];
         [self.techView drawTechViewWithType:SJCurveTechType_KDJ];
     }
     
