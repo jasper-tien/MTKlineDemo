@@ -26,6 +26,9 @@
 @property (nonatomic, assign) NSInteger showStartIndex;
 //数据的长度
 @property (nonatomic, assign) NSInteger showCount;
+
+@property (nonatomic, copy) NSArray *testTechArr;
+@property (nonatomic, assign) NSInteger testIndex;
 @end
 
 @implementation MTKlineView
@@ -35,11 +38,13 @@
         self.backgroundColor = [UIColor assistBackgroundColor];
         self.previousScrollViewOffsetX = 0;
         self.showCount = self.scrollView.frame.size.width / ([MTCurveChartGlobalVariable kLineGap] + [MTCurveChartGlobalVariable kLineWidth]);
-        self.techType = SJCurveTechType_KDJ;
+        self.techType = SJCurveTechType_BOLL;
         UIButton *btn = [[UIButton alloc] initWithFrame:CGRectMake(0, self.frame.size.height / 2 - 5, 100, 30)];
         [btn setTitle:@"切换指标" forState:UIControlStateNormal];
         [btn addTarget:self action:@selector(testAction:) forControlEvents:UIControlEventTouchUpInside];
         NSLog(@"%@", self.scrollView);
+        self.testTechArr = [NSArray arrayWithObjects:@(SJCurveTechType_Volume),@(SJCurveTechType_KDJ),@(SJCurveTechType_BOLL), nil];
+        self.testIndex = 0;
         [self addSubview:btn];
     }
 
@@ -48,10 +53,18 @@
 }
 
 - (void)testAction:(UIButton *)sender {
-    if (self.techType == SJCurveTechType_Volume) {
-        self.techType = SJCurveTechType_KDJ;
-    } else if (self.techType == SJCurveTechType_KDJ) {
+    self.testIndex++;
+    if (self.testIndex > (self.testTechArr.count - 1)) {
+        self.testIndex = 0;
+    }
+    NSNumber *num = self.testTechArr[self.testIndex];
+    NSInteger index = [num integerValue];
+    if (index == SJCurveTechType_Volume) {
         self.techType = SJCurveTechType_Volume;
+    } else if (index == SJCurveTechType_KDJ) {
+        self.techType = SJCurveTechType_KDJ;
+    } else if (index == SJCurveTechType_BOLL) {
+        self.techType = SJCurveTechType_BOLL;
     }
     
     //刷新
@@ -61,6 +74,10 @@
     } else if (self.techType == SJCurveTechType_KDJ) {
         self.techView.needDrawTechModels = [self.manager getKDJDatasWithRange:NSMakeRange(self.showStartIndex, self.showCount)];
         [self.techView drawTechViewWithType:SJCurveTechType_KDJ];
+    } else if (self.techType == SJCurveTechType_BOLL) {
+        self.techView.needDrawTechModels = [self.manager getBOLLDatasWithRange:NSMakeRange(self.showStartIndex, self.showCount)];
+        self.techView.needDrawKlineModels = [self.manager getMainKLineDatasWithRange:NSMakeRange(self.showStartIndex, self.showCount)];
+        [self.techView drawTechViewWithType:SJCurveTechType_BOLL];
     }
 }
 
@@ -95,6 +112,10 @@
     } else if (self.techType == SJCurveTechType_KDJ) {
         self.techView.needDrawTechModels = [self.manager getKDJDatasWithRange:NSMakeRange(self.showStartIndex, self.showCount)];
         [self.techView drawTechViewWithType:SJCurveTechType_KDJ];
+    }else if (self.techType == SJCurveTechType_BOLL) {
+        self.techView.needDrawTechModels = [self.manager getBOLLDatasWithRange:NSMakeRange(self.showStartIndex, self.showCount)];
+        self.techView.needDrawKlineModels = [self.manager getMainKLineDatasWithRange:NSMakeRange(self.showStartIndex, self.showCount)];
+        [self.techView drawTechViewWithType:SJCurveTechType_BOLL];
     }
     
     // 刷新主k线的位置
@@ -139,6 +160,10 @@
     } else if (self.techType == SJCurveTechType_KDJ) {
         self.techView.needDrawTechModels = [self.manager getKDJDatasWithRange:NSMakeRange(self.showStartIndex, self.showCount)];
         [self.techView drawTechViewWithType:SJCurveTechType_KDJ];
+    }else if (self.techType == SJCurveTechType_BOLL) {
+        self.techView.needDrawTechModels = [self.manager getBOLLDatasWithRange:NSMakeRange(self.showStartIndex, self.showCount)];
+        self.techView.needDrawKlineModels = [self.manager getMainKLineDatasWithRange:NSMakeRange(self.showStartIndex, self.showCount)];
+        [self.techView drawTechViewWithType:SJCurveTechType_BOLL];
     }
     
 }

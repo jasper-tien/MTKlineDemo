@@ -19,7 +19,7 @@ typedef NS_ENUM(NSInteger, MTMAType){
     MT_BOLL_DN,
     MT_KDJ_K,
     MT_KDJ_D,
-    MT_KDJ_J
+    MT_KDJ_J,
 };
 
 @interface MTMALine : NSObject

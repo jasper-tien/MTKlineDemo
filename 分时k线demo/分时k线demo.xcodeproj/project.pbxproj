@@ -25,6 +25,7 @@
 		8E4F2C0B1F7CFB990082A3F5 /* MTCurveKDJ.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E4F2C0A1F7CFB990082A3F5 /* MTCurveKDJ.m */; };
 		8E4F2C0E1F7D031F0082A3F5 /* MTCurveBOLL.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E4F2C0D1F7D031F0082A3F5 /* MTCurveBOLL.m */; };
 		8E5C86091F70EC8A00F5DE86 /* SJManageDataToModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E5C86081F70EC8A00F5DE86 /* SJManageDataToModel.m */; };
+		8E6D18DF1F905C4500A82C39 /* MTBOLLUSALine.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E6D18DE1F905C4500A82C39 /* MTBOLLUSALine.m */; };
 		8E8CAAD01F57DCF1005D3B39 /* MTModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E8CAACF1F57DCF1005D3B39 /* MTModel.m */; };
 		8ED2E2431F7641A600251618 /* MTDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8ED2E2421F7641A500251618 /* MTDataManager.m */; };
 		8ED2E2461F7641D400251618 /* MTCurveProcess.m in Sources */ = {isa = PBXBuildFile; fileRef = 8ED2E2451F7641D400251618 /* MTCurveProcess.m */; };
@@ -38,6 +39,7 @@
 		8EF9334F1F8F45A50011E352 /* MTTechVolumeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EF9334E1F8F45A50011E352 /* MTTechVolumeView.m */; };
 		8EF933521F8F45DA0011E352 /* MTVolume.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EF933511F8F45DA0011E352 /* MTVolume.m */; };
 		8EF933551F8F473D0011E352 /* MTTechKDJView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EF933541F8F473D0011E352 /* MTTechKDJView.m */; };
+		8EF933581F8F7A930011E352 /* MTTechBOLLView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EF933571F8F7A930011E352 /* MTTechBOLLView.m */; };
 		8EFBDE171F735E7C00F8554E /* SJCurveObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EFBDE161F735E7C00F8554E /* SJCurveObject.m */; };
 		8EFBDE1A1F736B4500F8554E /* SJCurveProcess.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EFBDE191F736B4500F8554E /* SJCurveProcess.m */; };
 		8EFF5ABF1F6F736900CD94F1 /* SJKlineModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EFF5ABE1F6F736900CD94F1 /* SJKlineModel.m */; };
@@ -100,6 +102,8 @@
 		8E5C86071F70EC8A00F5DE86 /* SJManageDataToModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SJManageDataToModel.h; sourceTree = "<group>"; };
 		8E5C86081F70EC8A00F5DE86 /* SJManageDataToModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SJManageDataToModel.m; sourceTree = "<group>"; };
 		8E5C86111F70F1DD00F5DE86 /* SJCurveChartConstant.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SJCurveChartConstant.h; sourceTree = "<group>"; };
+		8E6D18DD1F905C4500A82C39 /* MTBOLLUSALine.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MTBOLLUSALine.h; sourceTree = "<group>"; };
+		8E6D18DE1F905C4500A82C39 /* MTBOLLUSALine.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MTBOLLUSALine.m; sourceTree = "<group>"; };
 		8E8CAACE1F57DCF1005D3B39 /* MTModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTModel.h; sourceTree = "<group>"; };
 		8E8CAACF1F57DCF1005D3B39 /* MTModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTModel.m; sourceTree = "<group>"; };
 		8ED2E2411F7641A500251618 /* MTDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTDataManager.h; sourceTree = "<group>"; };
@@ -126,6 +130,8 @@
 		8EF933511F8F45DA0011E352 /* MTVolume.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MTVolume.m; sourceTree = "<group>"; };
 		8EF933531F8F473D0011E352 /* MTTechKDJView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MTTechKDJView.h; sourceTree = "<group>"; };
 		8EF933541F8F473D0011E352 /* MTTechKDJView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MTTechKDJView.m; sourceTree = "<group>"; };
+		8EF933561F8F7A930011E352 /* MTTechBOLLView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MTTechBOLLView.h; sourceTree = "<group>"; };
+		8EF933571F8F7A930011E352 /* MTTechBOLLView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MTTechBOLLView.m; sourceTree = "<group>"; };
 		8EFBDE151F735E7C00F8554E /* SJCurveObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SJCurveObject.h; sourceTree = "<group>"; };
 		8EFBDE161F735E7C00F8554E /* SJCurveObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SJCurveObject.m; sourceTree = "<group>"; };
 		8EFBDE181F736B4500F8554E /* SJCurveProcess.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SJCurveProcess.h; sourceTree = "<group>"; };
@@ -408,6 +414,10 @@
 		8EF933451F8F44D60011E352 /* BOLLView */ = {
 			isa = PBXGroup;
 			children = (
+				8EF933561F8F7A930011E352 /* MTTechBOLLView.h */,
+				8EF933571F8F7A930011E352 /* MTTechBOLLView.m */,
+				8E6D18DD1F905C4500A82C39 /* MTBOLLUSALine.h */,
+				8E6D18DE1F905C4500A82C39 /* MTBOLLUSALine.m */,
 			);
 			path = BOLLView;
 			sourceTree = "<group>";
@@ -556,6 +566,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8E6D18DF1F905C4500A82C39 /* MTBOLLUSALine.m in Sources */,
 				8ED2E2431F7641A600251618 /* MTDataManager.m in Sources */,
 				8E21E76F1F564DB700CD55E0 /* ViewController.m in Sources */,
 				8EFF5AC21F6FB0F600CD94F1 /* BaseTest.m in Sources */,
@@ -576,6 +587,7 @@
 				8EF933551F8F473D0011E352 /* MTTechKDJView.m in Sources */,
 				8E02447A1F8CA2FB004AA725 /* MTKlineView.m in Sources */,
 				8E5C86091F70EC8A00F5DE86 /* SJManageDataToModel.m in Sources */,
+				8EF933581F8F7A930011E352 /* MTTechBOLLView.m in Sources */,
 				8EFF5ABF1F6F736900CD94F1 /* SJKlineModel.m in Sources */,
 				8E21E7691F564DB700CD55E0 /* main.m in Sources */,
 				8EFF5AC81F6FB13200CD94F1 /* Test2.m in Sources */,

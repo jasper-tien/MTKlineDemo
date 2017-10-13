@@ -38,6 +38,9 @@
     if (self.techType == SJCurveTechType_KDJ) {
         lineColor = self.MAType == MT_KDJ_K ? [UIColor whiteColor] : (self.MAType == MT_KDJ_D ? [UIColor MTYellowColor] : [UIColor MTvioletColor]);
     }
+    if (self.techType == SJCurveTechType_BOLL) {
+        lineColor = self.MAType == MT_BOLL_UP ? [UIColor MTYellowColor] : (self.MAType == MT_BOLL_MB ? [UIColor whiteColor] : [UIColor MTvioletColor]);
+    }
     
     CGContextSetStrokeColorWithColor(self.context, lineColor.CGColor);
     

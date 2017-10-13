@@ -57,6 +57,7 @@
             self.BOLL_SUBMD_SUM = @(previousCurveObject.BOLL_SUBMD_SUM.floatValue + self.BOLL_SUBMD.floatValue);
             MTCurveBOLL *curveObject20 = (MTCurveBOLL *)supArray[index - 20];
             self.BOLL_MD = @(sqrt((previousCurveObject.BOLL_SUBMD_SUM.floatValue - curveObject20.BOLL_SUBMD_SUM.floatValue)/ 20));
+            self.BOLL_MB = model.MA_26;
             self.BOLL_UP = @(self.BOLL_MB.floatValue + 2 * self.BOLL_MD.floatValue);
             self.BOLL_DN = @(self.BOLL_MB.floatValue - 2 * self.BOLL_MD.floatValue);
         }

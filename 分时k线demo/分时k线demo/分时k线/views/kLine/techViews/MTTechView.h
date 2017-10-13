@@ -11,6 +11,7 @@
 
 @interface MTTechView : UIView
 @property (nonatomic, copy) NSArray *needDrawTechModels;
+@property (nonatomic, copy) NSArray *needDrawKlineModels;
 - (instancetype)initWithFrame:(CGRect)frame;
 - (void)drawTechViewWithType:(SJCurveTechType)techType;
 @end

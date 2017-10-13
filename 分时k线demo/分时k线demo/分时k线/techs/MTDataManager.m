@@ -87,6 +87,23 @@
     return [NSArray arrayWithArray:[KDJDatas subarrayWithRange:range]];
 }
 
+- (NSArray *)getBOLLDatas {
+    return self.dataModelDictionary[@"MTCurveBOLLKey"];
+}
+
+- (NSArray *)getBOLLDatasWithRange:(NSRange)range {
+    NSArray *BOLLDatas = self.dataModelDictionary[@"MTCurveBOLLKey"];
+    if (range.location >= BOLLDatas.count) {
+        return nil;
+    }
+    
+    if ((range.location + range.length) > BOLLDatas.count) {
+        range.length = BOLLDatas.count - range.location;
+    }
+    
+    return [NSArray arrayWithArray:[BOLLDatas subarrayWithRange:range]];
+}
+
 - (NSArray *)getCurveDatasWithType:(SJCurveTechType)curveTechType {
     return nil;
 }
