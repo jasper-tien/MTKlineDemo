@@ -51,6 +51,11 @@
 - (void)drawRect:(CGRect)rect {
     // Drawing code
     CGContextRef context = UIGraphicsGetCurrentContext();
+    
+    NSString *titleStr = [NSString stringWithFormat:@"成交量"];
+    CGPoint drawTitlePoint = CGPointMake(5, 0);
+    [titleStr drawAtPoint:drawTitlePoint withAttributes:@{NSFontAttributeName : [UIFont systemFontOfSize:13],NSForegroundColorAttributeName : [UIColor mainTextColor]}];
+    
     MTMALine *MALine = [[MTMALine alloc] initWithContext:context];
     MALine.techType = SJCurveTechType_Volume;
     if (self.volumePositions.count > 0) {

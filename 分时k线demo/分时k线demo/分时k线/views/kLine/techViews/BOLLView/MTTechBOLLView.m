@@ -41,6 +41,11 @@
 
 - (void)drawRect:(CGRect)rect {
     CGContextRef context = UIGraphicsGetCurrentContext();
+    
+    NSString *titleStr = [NSString stringWithFormat:@"BOLL"];
+    CGPoint drawTitlePoint = CGPointMake(5, 0);
+    [titleStr drawAtPoint:drawTitlePoint withAttributes:@{NSFontAttributeName : [UIFont systemFontOfSize:13],NSForegroundColorAttributeName : [UIColor mainTextColor]}];
+    
     MTMALine *MALine = [[MTMALine alloc] initWithContext:context];
     MALine.techType = SJCurveTechType_BOLL;
     if (self.UPPositionModels.count > 0) {

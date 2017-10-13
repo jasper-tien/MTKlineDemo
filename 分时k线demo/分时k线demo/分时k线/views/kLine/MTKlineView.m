@@ -39,9 +39,13 @@
         self.previousScrollViewOffsetX = 0;
         self.showCount = self.scrollView.frame.size.width / ([MTCurveChartGlobalVariable kLineGap] + [MTCurveChartGlobalVariable kLineWidth]);
         self.techType = SJCurveTechType_Volume;
+        
+        
         UIButton *btn = [[UIButton alloc] initWithFrame:CGRectMake(0, self.frame.size.height / 2 - 5 + 50, 100, 30)];
-        [btn setTitle:@"切换指标" forState:UIControlStateNormal];
+        [btn setTitle:@"点我点我😊" forState:UIControlStateNormal];
         [btn addTarget:self action:@selector(testAction:) forControlEvents:UIControlEventTouchUpInside];
+        btn.titleLabel.font = [UIFont systemFontOfSize:13];
+        [btn setTitleColor:[UIColor lightGrayColor] forState:UIControlStateNormal];
         NSLog(@"%@", self.scrollView);
         self.testTechArr = [NSArray arrayWithObjects:@(SJCurveTechType_Volume),@(SJCurveTechType_KDJ),@(SJCurveTechType_BOLL), nil];
         self.testIndex = 0;

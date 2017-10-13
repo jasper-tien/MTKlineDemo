@@ -34,6 +34,11 @@
 - (void)drawRect:(CGRect)rect {
     // Drawing code
     CGContextRef context = UIGraphicsGetCurrentContext();
+    
+    NSString *titleStr = [NSString stringWithFormat:@"KDJ"];
+    CGPoint drawTitlePoint = CGPointMake(5, 0);
+    [titleStr drawAtPoint:drawTitlePoint withAttributes:@{NSFontAttributeName : [UIFont systemFontOfSize:13],NSForegroundColorAttributeName : [UIColor mainTextColor]}];
+    
     MTMALine *MALine = [[MTMALine alloc] initWithContext:context];
     MALine.techType = SJCurveTechType_KDJ;
     if (self.KPositionModels.count > 0) {
