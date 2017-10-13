@@ -20,5 +20,7 @@
 - (NSArray *)getKDJDatasWithRange:(NSRange)range;
 - (NSArray *)getBOLLDatas;
 - (NSArray *)getBOLLDatasWithRange:(NSRange)range;
+- (NSArray *)getMACDDatas;
+- (NSArray *)getMACDDatasWithRange:(NSRange)range;
 - (NSArray *)getCurveDatasWithType:(SJCurveTechType)curveTechType;
 @end

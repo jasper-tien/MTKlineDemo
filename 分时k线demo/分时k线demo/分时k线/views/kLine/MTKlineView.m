@@ -38,7 +38,7 @@
         self.backgroundColor = [UIColor assistBackgroundColor];
         self.previousScrollViewOffsetX = 0;
         self.showCount = self.scrollView.frame.size.width / ([MTCurveChartGlobalVariable kLineGap] + [MTCurveChartGlobalVariable kLineWidth]);
-        self.techType = SJCurveTechType_Volume;
+        self.techType = SJCurveTechType_MACD;
         
         
         UIButton *btn = [[UIButton alloc] initWithFrame:CGRectMake(0, self.frame.size.height / 2 - 5 + 50, 100, 30)];
@@ -47,7 +47,7 @@
         btn.titleLabel.font = [UIFont systemFontOfSize:13];
         [btn setTitleColor:[UIColor lightGrayColor] forState:UIControlStateNormal];
         NSLog(@"%@", self.scrollView);
-        self.testTechArr = [NSArray arrayWithObjects:@(SJCurveTechType_Volume),@(SJCurveTechType_KDJ),@(SJCurveTechType_BOLL), nil];
+        self.testTechArr = [NSArray arrayWithObjects:@(SJCurveTechType_Volume),@(SJCurveTechType_KDJ),@(SJCurveTechType_BOLL), @(SJCurveTechType_MACD), nil];
         self.testIndex = 0;
         [self addSubview:btn];
     }
@@ -82,6 +82,9 @@
         self.techView.needDrawTechModels = [self.manager getBOLLDatasWithRange:NSMakeRange(self.showStartIndex, self.showCount)];
         self.techView.needDrawKlineModels = [self.manager getMainKLineDatasWithRange:NSMakeRange(self.showStartIndex, self.showCount)];
         [self.techView drawTechViewWithType:SJCurveTechType_BOLL];
+    } else if (self.techType == SJCurveTechType_MACD) {
+        self.techView.needDrawTechModels = [self.manager getMACDDatasWithRange:NSMakeRange(self.showStartIndex, self.showCount)];
+        [self.techView drawTechViewWithType:SJCurveTechType_MACD];
     }
 }
 
@@ -120,6 +123,9 @@
         self.techView.needDrawTechModels = [self.manager getBOLLDatasWithRange:NSMakeRange(self.showStartIndex, self.showCount)];
         self.techView.needDrawKlineModels = [self.manager getMainKLineDatasWithRange:NSMakeRange(self.showStartIndex, self.showCount)];
         [self.techView drawTechViewWithType:SJCurveTechType_BOLL];
+    }else if (self.techType == SJCurveTechType_MACD) {
+        self.techView.needDrawTechModels = [self.manager getMACDDatasWithRange:NSMakeRange(self.showStartIndex, self.showCount)];
+        [self.techView drawTechViewWithType:SJCurveTechType_MACD];
     }
     
     // 刷新主k线的位置
@@ -168,6 +174,9 @@
         self.techView.needDrawTechModels = [self.manager getBOLLDatasWithRange:NSMakeRange(self.showStartIndex, self.showCount)];
         self.techView.needDrawKlineModels = [self.manager getMainKLineDatasWithRange:NSMakeRange(self.showStartIndex, self.showCount)];
         [self.techView drawTechViewWithType:SJCurveTechType_BOLL];
+    }else if (self.techType == SJCurveTechType_MACD) {
+        self.techView.needDrawTechModels = [self.manager getMACDDatasWithRange:NSMakeRange(self.showStartIndex, self.showCount)];
+        [self.techView drawTechViewWithType:SJCurveTechType_MACD];
     }
     
 }

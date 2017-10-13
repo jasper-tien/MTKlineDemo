@@ -26,6 +26,8 @@
 		8E4F2C0E1F7D031F0082A3F5 /* MTCurveBOLL.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E4F2C0D1F7D031F0082A3F5 /* MTCurveBOLL.m */; };
 		8E5C86091F70EC8A00F5DE86 /* SJManageDataToModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E5C86081F70EC8A00F5DE86 /* SJManageDataToModel.m */; };
 		8E6D18DF1F905C4500A82C39 /* MTBOLLUSALine.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E6D18DE1F905C4500A82C39 /* MTBOLLUSALine.m */; };
+		8E6D18E31F908F5400A82C39 /* MTTechMACDView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E6D18E21F908F5400A82C39 /* MTTechMACDView.m */; };
+		8E6D18E61F9094FB00A82C39 /* MTMACDLine.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E6D18E51F9094FB00A82C39 /* MTMACDLine.m */; };
 		8E8CAAD01F57DCF1005D3B39 /* MTModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E8CAACF1F57DCF1005D3B39 /* MTModel.m */; };
 		8ED2E2431F7641A600251618 /* MTDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8ED2E2421F7641A500251618 /* MTDataManager.m */; };
 		8ED2E2461F7641D400251618 /* MTCurveProcess.m in Sources */ = {isa = PBXBuildFile; fileRef = 8ED2E2451F7641D400251618 /* MTCurveProcess.m */; };
@@ -104,6 +106,10 @@
 		8E5C86111F70F1DD00F5DE86 /* SJCurveChartConstant.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SJCurveChartConstant.h; sourceTree = "<group>"; };
 		8E6D18DD1F905C4500A82C39 /* MTBOLLUSALine.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MTBOLLUSALine.h; sourceTree = "<group>"; };
 		8E6D18DE1F905C4500A82C39 /* MTBOLLUSALine.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MTBOLLUSALine.m; sourceTree = "<group>"; };
+		8E6D18E11F908F5400A82C39 /* MTTechMACDView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MTTechMACDView.h; sourceTree = "<group>"; };
+		8E6D18E21F908F5400A82C39 /* MTTechMACDView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MTTechMACDView.m; sourceTree = "<group>"; };
+		8E6D18E41F9094FB00A82C39 /* MTMACDLine.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MTMACDLine.h; sourceTree = "<group>"; };
+		8E6D18E51F9094FB00A82C39 /* MTMACDLine.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MTMACDLine.m; sourceTree = "<group>"; };
 		8E8CAACE1F57DCF1005D3B39 /* MTModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTModel.h; sourceTree = "<group>"; };
 		8E8CAACF1F57DCF1005D3B39 /* MTModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTModel.m; sourceTree = "<group>"; };
 		8ED2E2411F7641A500251618 /* MTDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTDataManager.h; sourceTree = "<group>"; };
@@ -176,6 +182,7 @@
 			children = (
 				8E0360A41F8E193600B485A2 /* MTTechView.h */,
 				8E0360A51F8E193600B485A2 /* MTTechView.m */,
+				8E6D18E01F908F3300A82C39 /* MACDView */,
 				8EF933441F8F44D60011E352 /* TechBaseView */,
 				8EF933451F8F44D60011E352 /* BOLLView */,
 				8EF933461F8F44D60011E352 /* KDJView */,
@@ -361,6 +368,17 @@
 				8E5C86111F70F1DD00F5DE86 /* SJCurveChartConstant.h */,
 			);
 			path = constant;
+			sourceTree = "<group>";
+		};
+		8E6D18E01F908F3300A82C39 /* MACDView */ = {
+			isa = PBXGroup;
+			children = (
+				8E6D18E11F908F5400A82C39 /* MTTechMACDView.h */,
+				8E6D18E21F908F5400A82C39 /* MTTechMACDView.m */,
+				8E6D18E41F9094FB00A82C39 /* MTMACDLine.h */,
+				8E6D18E51F9094FB00A82C39 /* MTMACDLine.m */,
+			);
+			path = MACDView;
 			sourceTree = "<group>";
 		};
 		8ED2E2401F76414800251618 /* techs */ = {
@@ -568,6 +586,7 @@
 			files = (
 				8E6D18DF1F905C4500A82C39 /* MTBOLLUSALine.m in Sources */,
 				8ED2E2431F7641A600251618 /* MTDataManager.m in Sources */,
+				8E6D18E61F9094FB00A82C39 /* MTMACDLine.m in Sources */,
 				8E21E76F1F564DB700CD55E0 /* ViewController.m in Sources */,
 				8EFF5AC21F6FB0F600CD94F1 /* BaseTest.m in Sources */,
 				8ED2E24F1F76423A00251618 /* MTCurveMACD.m in Sources */,
@@ -586,6 +605,7 @@
 				8E0360A61F8E193600B485A2 /* MTTechView.m in Sources */,
 				8EF933551F8F473D0011E352 /* MTTechKDJView.m in Sources */,
 				8E02447A1F8CA2FB004AA725 /* MTKlineView.m in Sources */,
+				8E6D18E31F908F5400A82C39 /* MTTechMACDView.m in Sources */,
 				8E5C86091F70EC8A00F5DE86 /* SJManageDataToModel.m in Sources */,
 				8EF933581F8F7A930011E352 /* MTTechBOLLView.m in Sources */,
 				8EFF5ABF1F6F736900CD94F1 /* SJKlineModel.m in Sources */,

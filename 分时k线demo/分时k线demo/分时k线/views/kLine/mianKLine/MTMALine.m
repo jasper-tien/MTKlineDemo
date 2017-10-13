@@ -31,15 +31,14 @@
     UIColor *lineColor = [UIColor whiteColor];
     if (self.techType == SJCurveTechType_KLine) {
         lineColor = self.MAType == MT_MA7Type ? [UIColor MTOrangeColor] : (self.MAType == MT_MA30Type ? [UIColor MTBlueColor] : [UIColor MTYellowColor]);
-    }
-    if (self.techType ==  SJCurveTechType_Volume) {
+    } else if (self.techType ==  SJCurveTechType_Volume) {
         lineColor = self.MAType == MT_MA5Type ? [UIColor MTvioletColor] : (self.MAType == MT_MA10Type ? [UIColor MTYellowColor] : [UIColor MTBlueColor]);
-    }
-    if (self.techType == SJCurveTechType_KDJ) {
+    } else if (self.techType == SJCurveTechType_KDJ) {
         lineColor = self.MAType == MT_KDJ_K ? [UIColor whiteColor] : (self.MAType == MT_KDJ_D ? [UIColor MTYellowColor] : [UIColor MTvioletColor]);
-    }
-    if (self.techType == SJCurveTechType_BOLL) {
+    } else if (self.techType == SJCurveTechType_BOLL) {
         lineColor = self.MAType == MT_BOLL_UP ? [UIColor MTYellowColor] : (self.MAType == MT_BOLL_MB ? [UIColor whiteColor] : [UIColor MTvioletColor]);
+    } else if (self.techType == SJCurveTechType_MACD) {
+        lineColor = self.MAType == MT_MACD_DIF ? [UIColor whiteColor] : [UIColor MTYellowColor];
     }
     
     CGContextSetStrokeColorWithColor(self.context, lineColor.CGColor);

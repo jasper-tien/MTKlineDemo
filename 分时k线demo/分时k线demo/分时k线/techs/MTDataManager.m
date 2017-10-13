@@ -104,6 +104,22 @@
     return [NSArray arrayWithArray:[BOLLDatas subarrayWithRange:range]];
 }
 
+- (NSArray *)getMACDDatas {
+    return self.dataModelDictionary[@"MTCurveMACDKey"];
+}
+- (NSArray *)getMACDDatasWithRange:(NSRange)range {
+    NSArray *MACDDatas = self.dataModelDictionary[@"MTCurveMACDKey"];
+    if (range.location >= MACDDatas.count) {
+        return nil;
+    }
+    
+    if ((range.location + range.length) > MACDDatas.count) {
+        range.length = MACDDatas.count - range.location;
+    }
+    
+    return [NSArray arrayWithArray:[MACDDatas subarrayWithRange:range]];
+}
+
 - (NSArray *)getCurveDatasWithType:(SJCurveTechType)curveTechType {
     return nil;
 }

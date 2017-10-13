@@ -12,6 +12,7 @@
 #import "MTTechVolumeView.h"
 #import "MTTechKDJView.h"
 #import "MTTechBOLLView.h"
+#import "MTTechMACDView.h"
 
 @interface MTTechView ()
 @property (nonatomic, assign) SJCurveTechType techType;
@@ -47,7 +48,10 @@
         }
             break;
         case SJCurveTechType_MACD: {
-            
+            MTTechMACDView *techVolumeView = (MTTechMACDView *)self.showTechView;
+            techVolumeView.needDrawMACDModels = self.needDrawTechModels;
+            //刷新指标
+            [techVolumeView drawTechView];
         }
             break;
         case SJCurveTechType_KDJ: {
@@ -88,7 +92,8 @@
         }
             break;
         case SJCurveTechType_MACD: {
-            
+            self.showTechView = [[MTTechMACDView alloc] initWithFrame:self.bounds];
+            [self addSubview:self.showTechView];
         }
             break;
         case SJCurveTechType_KDJ: {
