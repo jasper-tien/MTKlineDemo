@@ -11,9 +11,9 @@
 
 @implementation MTCurveChartGlobalVariable
 /**
- *  K线图的宽度，默认20
+ *  K线图的宽度，默认5
  */
-static CGFloat mtCurveChartKlineWith = 8;
+static CGFloat mtCurveChartKlineWith = 5;
 /**
  *  K线图的间隔，默认1
  */

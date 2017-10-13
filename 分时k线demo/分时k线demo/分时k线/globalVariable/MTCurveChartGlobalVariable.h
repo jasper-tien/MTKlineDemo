@@ -11,7 +11,7 @@
 
 @interface MTCurveChartGlobalVariable : NSObject
 /**
- *  K线图的宽度，默认8
+ *  K线图的宽度，默认5
  */
 +(CGFloat)kLineWidth;
 +(void)setkLineWith:(CGFloat)kLineWidth;

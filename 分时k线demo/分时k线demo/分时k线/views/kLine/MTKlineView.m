@@ -38,8 +38,8 @@
         self.backgroundColor = [UIColor assistBackgroundColor];
         self.previousScrollViewOffsetX = 0;
         self.showCount = self.scrollView.frame.size.width / ([MTCurveChartGlobalVariable kLineGap] + [MTCurveChartGlobalVariable kLineWidth]);
-        self.techType = SJCurveTechType_BOLL;
-        UIButton *btn = [[UIButton alloc] initWithFrame:CGRectMake(0, self.frame.size.height / 2 - 5, 100, 30)];
+        self.techType = SJCurveTechType_Volume;
+        UIButton *btn = [[UIButton alloc] initWithFrame:CGRectMake(0, self.frame.size.height / 2 - 5 + 50, 100, 30)];
         [btn setTitle:@"切换指标" forState:UIControlStateNormal];
         [btn addTarget:self action:@selector(testAction:) forControlEvents:UIControlEventTouchUpInside];
         NSLog(@"%@", self.scrollView);
@@ -171,7 +171,7 @@
 - (UIView *)mainKlineView {
     if (!_mainKlineView) {
         _mainKlineView = [[MTMianKLineView alloc] initWithDelegate:self];
-        CGFloat mainKlineViewHeight = self.frame.size.height / 2;
+        CGFloat mainKlineViewHeight = self.frame.size.height / 2 + 50;
         CGFloat mainKlineViewWidth = self.scrollView.frame.size.width;
         _mainKlineView.frame = CGRectMake(0, 0, mainKlineViewWidth, mainKlineViewHeight);
         
@@ -184,8 +184,8 @@
 - (MTTechView *)techView {
     if (!_techView) {
         CGFloat techViewWidth = self.scrollView.frame.size.width;
-        CGFloat techViewHeight = self.frame.size.height / 2 - 20;
-        _techView = [[MTTechView alloc] initWithFrame:CGRectMake(0, self.frame.size.height / 2 + 20, techViewWidth, techViewHeight)];
+        CGFloat techViewHeight = self.frame.size.height / 2 - 20 - 50;
+        _techView = [[MTTechView alloc] initWithFrame:CGRectMake(0, self.frame.size.height / 2 + 20 + 50, techViewWidth, techViewHeight)];
         [self.scrollView addSubview:_techView];
     }
     
