@@ -95,7 +95,11 @@
     //================================================================================
     CGPoint scrollViewOffset = scrollView.contentOffset;
     CGFloat difValue = scrollViewOffset.x - self.previousScrollViewOffsetX;
-    if (ABS(difValue) < ([MTCurveChartGlobalVariable kLineGap] + [MTCurveChartGlobalVariable kLineWidth]) || scrollViewOffset.x < 0) {
+    
+    self.techView.frame = CGRectMake(scrollViewOffset.x, self.techView.frame.origin.y, self.techView.frame.size.width, self.techView.frame.size.height);
+    self.mainKlineView.frame = CGRectMake(scrollViewOffset.x, self.mainKlineView.frame.origin.y, self.mainKlineView.frame.size.width, self.mainKlineView.frame.size.height);
+    
+    if (ABS(difValue) < ([MTCurveChartGlobalVariable kLineGap] + [MTCurveChartGlobalVariable kLineWidth]) || scrollViewOffset.x < 0 || scrollViewOffset.x > (self.scrollView.contentSize.width - self.mainKlineView.frame.size.width)) {
         return;
     }
     int count = ABS(difValue) / ([MTCurveChartGlobalVariable kLineWidth] + [MTCurveChartGlobalVariable kLineGap]);
@@ -129,9 +133,10 @@
     }
     
     // 刷新主k线的位置
-    CGFloat mainKlineViewPointX = self.mainKlineView.frame.origin.x + difValue;
-    self.mainKlineView.frame = CGRectMake(mainKlineViewPointX, self.mainKlineView.frame.origin.y, self.mainKlineView.frame.size.width, self.mainKlineView.frame.size.height);
-    self.techView.frame = CGRectMake(mainKlineViewPointX, self.techView.frame.origin.y, self.techView.frame.size.width, self.techView.frame.size.height);
+//    CGFloat mainKlineViewPointX = self.mainKlineView.frame.origin.x + difValue;
+//    self.mainKlineView.frame = CGRectMake(mainKlineViewPointX, self.mainKlineView.frame.origin.y, self.mainKlineView.frame.size.width, self.mainKlineView.frame.size.height);
+//    self.techView.frame = CGRectMake(mainKlineViewPointX, self.techView.frame.origin.y, self.techView.frame.size.width, self.techView.frame.size.height);
+    
     self.previousScrollViewOffsetX = scrollViewOffset.x;
 }
 
