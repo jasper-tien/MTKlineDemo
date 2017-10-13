@@ -49,6 +49,10 @@
     if (self.needDrawPositionModels.count <= 0) {
         return;
     }
+    NSString *titleStr = [NSString stringWithFormat:@"MA5 --  MA10 --  MA20 --"];
+    CGPoint drawTitlePoint = CGPointMake(5, 0);
+    [titleStr drawAtPoint:drawTitlePoint withAttributes:@{NSFontAttributeName : [UIFont systemFontOfSize:13],NSForegroundColorAttributeName : [UIColor mainTextColor]}];
+    
     CGContextRef context = UIGraphicsGetCurrentContext();
     MTKLine *kLine = [[MTKLine alloc] initWithContext:context];
     [self.needDrawPositionModels enumerateObjectsUsingBlock:^(MTKLinePositionModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {

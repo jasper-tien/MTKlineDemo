@@ -35,7 +35,7 @@
     // Drawing code
     CGContextRef context = UIGraphicsGetCurrentContext();
     
-    NSString *titleStr = [NSString stringWithFormat:@"KDJ"];
+    NSString *titleStr = [NSString stringWithFormat:@"KDJ(9, 3, 3)"];
     CGPoint drawTitlePoint = CGPointMake(5, 0);
     [titleStr drawAtPoint:drawTitlePoint withAttributes:@{NSFontAttributeName : [UIFont systemFontOfSize:13],NSForegroundColorAttributeName : [UIColor mainTextColor]}];
     

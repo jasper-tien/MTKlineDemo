@@ -38,7 +38,7 @@
         self.backgroundColor = [UIColor assistBackgroundColor];
         self.previousScrollViewOffsetX = 0;
         self.showCount = self.scrollView.frame.size.width / ([MTCurveChartGlobalVariable kLineGap] + [MTCurveChartGlobalVariable kLineWidth]);
-        self.techType = SJCurveTechType_MACD;
+        self.techType = SJCurveTechType_Volume;
         
         
         UIButton *btn = [[UIButton alloc] initWithFrame:CGRectMake(0, self.frame.size.height / 2 - 5 + 50, 100, 30)];
@@ -96,6 +96,7 @@
     CGPoint scrollViewOffset = scrollView.contentOffset;
     CGFloat difValue = scrollViewOffset.x - self.previousScrollViewOffsetX;
     
+    // 刷新主k线和指标view的位置
     self.techView.frame = CGRectMake(scrollViewOffset.x, self.techView.frame.origin.y, self.techView.frame.size.width, self.techView.frame.size.height);
     self.mainKlineView.frame = CGRectMake(scrollViewOffset.x, self.mainKlineView.frame.origin.y, self.mainKlineView.frame.size.width, self.mainKlineView.frame.size.height);
     
@@ -131,11 +132,6 @@
         self.techView.needDrawTechModels = [self.manager getMACDDatasWithRange:NSMakeRange(self.showStartIndex, self.showCount)];
         [self.techView drawTechViewWithType:SJCurveTechType_MACD];
     }
-    
-    // 刷新主k线的位置
-//    CGFloat mainKlineViewPointX = self.mainKlineView.frame.origin.x + difValue;
-//    self.mainKlineView.frame = CGRectMake(mainKlineViewPointX, self.mainKlineView.frame.origin.y, self.mainKlineView.frame.size.width, self.mainKlineView.frame.size.height);
-//    self.techView.frame = CGRectMake(mainKlineViewPointX, self.techView.frame.origin.y, self.techView.frame.size.width, self.techView.frame.size.height);
     
     self.previousScrollViewOffsetX = scrollViewOffset.x;
 }

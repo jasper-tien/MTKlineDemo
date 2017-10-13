@@ -37,7 +37,7 @@
 - (void)drawRect:(CGRect)rect {
     CGContextRef context = UIGraphicsGetCurrentContext();
     
-    NSString *titleStr = [NSString stringWithFormat:@"MACD"];
+    NSString *titleStr = [NSString stringWithFormat:@"MACD(12, 26, 9)"];
     CGPoint drawTitlePoint = CGPointMake(5, 0);
     [titleStr drawAtPoint:drawTitlePoint withAttributes:@{NSFontAttributeName : [UIFont systemFontOfSize:13],NSForegroundColorAttributeName : [UIColor mainTextColor]}];
     

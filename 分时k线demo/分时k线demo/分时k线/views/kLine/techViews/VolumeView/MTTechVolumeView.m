@@ -52,7 +52,7 @@
     // Drawing code
     CGContextRef context = UIGraphicsGetCurrentContext();
     
-    NSString *titleStr = [NSString stringWithFormat:@"成交量"];
+    NSString *titleStr = [NSString stringWithFormat:@"--万手 MA5:-- MA10:-- MA20:--"];
     CGPoint drawTitlePoint = CGPointMake(5, 0);
     [titleStr drawAtPoint:drawTitlePoint withAttributes:@{NSFontAttributeName : [UIFont systemFontOfSize:13],NSForegroundColorAttributeName : [UIColor mainTextColor]}];
     

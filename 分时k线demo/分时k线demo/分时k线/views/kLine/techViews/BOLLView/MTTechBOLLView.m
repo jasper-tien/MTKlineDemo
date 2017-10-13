@@ -42,7 +42,7 @@
 - (void)drawRect:(CGRect)rect {
     CGContextRef context = UIGraphicsGetCurrentContext();
     
-    NSString *titleStr = [NSString stringWithFormat:@"BOLL"];
+    NSString *titleStr = [NSString stringWithFormat:@"BOLL(20)"];
     CGPoint drawTitlePoint = CGPointMake(5, 0);
     [titleStr drawAtPoint:drawTitlePoint withAttributes:@{NSFontAttributeName : [UIFont systemFontOfSize:13],NSForegroundColorAttributeName : [UIColor mainTextColor]}];
     
