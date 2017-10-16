@@ -59,6 +59,11 @@
     return [UIColor colorWithRGBHex:0xe1e2e6];
 }
 
+#pragma mark 网格框的颜色
++ (UIColor *)gridLineColor {
+    return [UIColor colorWithRGBHex:0x565a64];
+}
+
 #pragma mark 橙色
 +(UIColor *)MTCurveOrangeColor
 {

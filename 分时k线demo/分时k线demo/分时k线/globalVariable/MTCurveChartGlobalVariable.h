@@ -27,5 +27,10 @@
  */
 + (CGFloat)kLineShadowLineWidth;
 + (void)setKlineShadowLineWidth:(CGFloat)shadowLineWidth;
+/**
+ *  网格格线的宽度
+ */
++ (CGFloat)CurveChactGridLineWidth;
++ (void)setCurveChartGridLineWidth:(CGFloat)gridLineWith;
 
 @end

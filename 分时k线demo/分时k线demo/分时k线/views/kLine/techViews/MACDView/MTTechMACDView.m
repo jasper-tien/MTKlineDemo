@@ -37,9 +37,19 @@
 - (void)drawRect:(CGRect)rect {
     CGContextRef context = UIGraphicsGetCurrentContext();
     
+    [self drawGrid:context];
+    
     [self drawTopdeTailsView];
     
     [self drawMACD:context];
+}
+
+- (void)drawGrid:(CGContextRef)context {
+    CGContextSetStrokeColorWithColor(context, [UIColor gridLineColor].CGColor);
+    CGFloat gridLineWidth = [MTCurveChartGlobalVariable CurveChactGridLineWidth];
+    CGContextSetLineWidth(context, gridLineWidth);
+    CGContextAddRect(context, CGRectMake(gridLineWidth, gridLineWidth, self.frame.size.width - gridLineWidth, self.frame.size.height - 2 * gridLineWidth));
+    CGContextStrokePath(context);
 }
 
 - (void)drawMACD:(CGContextRef)context {

@@ -93,14 +93,6 @@
         self.techType = SJCurveTechType_MACD;
     }
     
-    CGFloat t = CGFLOAT_MAX;
-    NSLog(@"1:%f  2:%f  3:%f", t, CGFLOAT_MAX, CGFLOAT_MAX);
-    if (t == CGFLOAT_MAX) {
-        NSLog(@"xiang tong");
-    } else {
-        NSLog(@"bu tong");
-    }
-    
     [self updateKLineViewAndTechViewData];
 }
 

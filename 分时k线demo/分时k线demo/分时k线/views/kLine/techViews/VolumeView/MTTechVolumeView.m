@@ -51,12 +51,21 @@
 - (void)drawRect:(CGRect)rect {
     // Drawing code
     CGContextRef context = UIGraphicsGetCurrentContext();
+    [self drawGrid:context];
     
     [self drawTopdeTailsView];
     
     [self drawVolume:context];
     
     [self drawMA:context];
+}
+
+- (void)drawGrid:(CGContextRef)context {
+    CGContextSetStrokeColorWithColor(context, [UIColor gridLineColor].CGColor);
+    CGFloat gridLineWidth = [MTCurveChartGlobalVariable CurveChactGridLineWidth];
+    CGContextSetLineWidth(context, gridLineWidth);
+    CGContextAddRect(context, CGRectMake(gridLineWidth, gridLineWidth, self.frame.size.width - gridLineWidth, self.frame.size.height - 2 * gridLineWidth));
+    CGContextStrokePath(context);
 }
 
 - (void)drawVolume:(CGContextRef)context {

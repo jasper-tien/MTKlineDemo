@@ -22,6 +22,10 @@ static CGFloat mtCurveChartKlineGap = 1;
  *  K线图的间隔，默认1
  */
 static CGFloat mtCurveChartKlineShadowLineWith = 1;
+/**
+ *  网格格线的宽度,默认0.5
+ */
+static CGFloat mtCurveChartGridLineWidth = 0.3;
 
 #pragma mark K线图的宽度
 +(CGFloat)kLineWidth {
@@ -53,6 +57,14 @@ static CGFloat mtCurveChartKlineShadowLineWith = 1;
 
 + (void)setKlineShadowLineWidth:(CGFloat)shadowLineWidth {
     mtCurveChartKlineShadowLineWith = shadowLineWidth;
+}
+
+#pragma mark 网格格线的宽度
++ (CGFloat)CurveChactGridLineWidth {
+    return mtCurveChartGridLineWidth;
+}
++ (void)setCurveChartGridLineWidth:(CGFloat)gridLineWith {
+    mtCurveChartGridLineWidth = gridLineWith;
 }
 
 @end

@@ -50,6 +50,10 @@
  */
 + (UIColor *)longPressLineColor;
 /**
+ *  网格框的颜色
+ */
++ (UIColor *)gridLineColor;
+/**
  *  橙色
  */
 + (UIColor *)MTCurveOrangeColor;
