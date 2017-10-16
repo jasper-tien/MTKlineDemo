@@ -31,7 +31,7 @@
     
     CGContextRef context = self.context;
     //画笔的颜色
-    UIColor *lineColor = [UIColor MTBlueColor];
+    UIColor *lineColor = [UIColor MTCurveBlueColor];
     CGContextSetStrokeColorWithColor(context, lineColor.CGColor);
     //左边实线
     CGContextSetLineWidth(context, [MTCurveChartGlobalVariable kLineShadowLineWidth]);

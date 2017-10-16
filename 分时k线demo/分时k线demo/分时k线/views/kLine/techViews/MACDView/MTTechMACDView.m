@@ -37,10 +37,12 @@
 - (void)drawRect:(CGRect)rect {
     CGContextRef context = UIGraphicsGetCurrentContext();
     
-    NSString *titleStr = [NSString stringWithFormat:@"MACD(12, 26, 9)"];
-    CGPoint drawTitlePoint = CGPointMake(5, 0);
-    [titleStr drawAtPoint:drawTitlePoint withAttributes:@{NSFontAttributeName : [UIFont systemFontOfSize:13],NSForegroundColorAttributeName : [UIColor mainTextColor]}];
+    [self drawTopdeTailsView];
     
+    [self drawMACD:context];
+}
+
+- (void)drawMACD:(CGContextRef)context {
     MTMALine *MALine = [[MTMALine alloc] initWithContext:context];
     MALine.techType = SJCurveTechType_MACD;
     if (self.DIFPositionModels.count > 0) {
@@ -61,6 +63,13 @@
     }
 }
 
+- (void)drawTopdeTailsView {
+    NSString *titleStr = [NSString stringWithFormat:@"MACD(12, 26, 9)"];
+    CGPoint drawTitlePoint = CGPointMake(5, 0);
+    [titleStr drawAtPoint:drawTitlePoint withAttributes:@{NSFontAttributeName : [UIFont systemFontOfSize:13],NSForegroundColorAttributeName : [UIColor assistTextColor]}];
+}
+
+#pragma mark -
 - (void)drawTechView {
     [self convertToVolumePositionModelWithKLineModels];
     [self setNeedsDisplay];

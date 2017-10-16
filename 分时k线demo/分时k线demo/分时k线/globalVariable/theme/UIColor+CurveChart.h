@@ -52,19 +52,26 @@
 /**
  *  橙色
  */
-+ (UIColor *)MTOrangeColor;
++ (UIColor *)MTCurveOrangeColor;
 /**
  *  蓝色
  */
-+ (UIColor *)MTBlueColor;
++ (UIColor *)MTCurveBlueColor;
 /**
  *  紫色
  */
-+ (UIColor *)MTvioletColor;
-+ (UIColor *)testColor;
++ (UIColor *)MTCurveVioletColor;
 /**
  *  黄色
  */
-+ (UIColor *)MTYellowColor;
++ (UIColor *)MTCurveYellowColor;
+/**
+ *  绿色
+ */
++ (UIColor *)MTCurveGreenColor;
+/**
+ *  白色
+ */
++ (UIColor *)MTCurveWhiteColor;
 
 @end

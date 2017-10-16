@@ -52,12 +52,14 @@
     // Drawing code
     CGContextRef context = UIGraphicsGetCurrentContext();
     
-    NSString *titleStr = [NSString stringWithFormat:@"--万手 MA5:-- MA10:-- MA20:--"];
-    CGPoint drawTitlePoint = CGPointMake(5, 0);
-    [titleStr drawAtPoint:drawTitlePoint withAttributes:@{NSFontAttributeName : [UIFont systemFontOfSize:13],NSForegroundColorAttributeName : [UIColor mainTextColor]}];
+    [self drawTopdeTailsView];
     
-    MTMALine *MALine = [[MTMALine alloc] initWithContext:context];
-    MALine.techType = SJCurveTechType_Volume;
+    [self drawVolume:context];
+    
+    [self drawMA:context];
+}
+
+- (void)drawVolume:(CGContextRef)context {
     if (self.volumePositions.count > 0) {
         MTVolume *volume = [[MTVolume alloc] initWithContext:context];
         [self.volumePositions enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
@@ -66,6 +68,11 @@
             [volume draw];
         }];
     }
+}
+
+- (void)drawMA:(CGContextRef)context {
+    MTMALine *MALine = [[MTMALine alloc] initWithContext:context];
+    MALine.techType = SJCurveTechType_Volume;
     if (self.volumeMA5Positions.count > 0) {
         MALine.MAType = MT_MA5Type;
         MALine.MAPositions = self.volumeMA5Positions;
@@ -83,6 +90,14 @@
     }
 }
 
+- (void)drawTopdeTailsView {
+    SJKlineModel *lastKlineModel = self.needDrawVolumeModels.lastObject;
+    NSString *titleStr = [NSString stringWithFormat:@"  %.0f万手 MA5:%.2f MA10:%.2f MA20:%.2f", lastKlineModel.volume.floatValue, lastKlineModel.volumeMA_5.floatValue, lastKlineModel.volumeMA_10.floatValue, lastKlineModel.volumeMA_20.floatValue];
+    CGPoint drawTitlePoint = CGPointMake(5, 0);
+    [titleStr drawAtPoint:drawTitlePoint withAttributes:@{NSFontAttributeName : [UIFont systemFontOfSize:13],NSForegroundColorAttributeName : [UIColor assistTextColor]}];
+}
+
+#pragma mark -
 - (void)drawTechView {
     [super drawTechView];
     //重新绘制成交量的视图

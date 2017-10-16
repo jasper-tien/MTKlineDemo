@@ -35,10 +35,12 @@
     // Drawing code
     CGContextRef context = UIGraphicsGetCurrentContext();
     
-    NSString *titleStr = [NSString stringWithFormat:@"KDJ(9, 3, 3)"];
-    CGPoint drawTitlePoint = CGPointMake(5, 0);
-    [titleStr drawAtPoint:drawTitlePoint withAttributes:@{NSFontAttributeName : [UIFont systemFontOfSize:13],NSForegroundColorAttributeName : [UIColor mainTextColor]}];
+    [self drawTopdeTailsView];
     
+    [self drawKDJ:context];
+}
+
+- (void)drawKDJ:(CGContextRef)context {
     MTMALine *MALine = [[MTMALine alloc] initWithContext:context];
     MALine.techType = SJCurveTechType_KDJ;
     if (self.KPositionModels.count > 0) {
@@ -60,6 +62,13 @@
     }
 }
 
+- (void)drawTopdeTailsView {
+    NSString *titleStr = [NSString stringWithFormat:@"KDJ(9, 3, 3)"];
+    CGPoint drawTitlePoint = CGPointMake(5, 0);
+    [titleStr drawAtPoint:drawTitlePoint withAttributes:@{NSFontAttributeName : [UIFont systemFontOfSize:13],NSForegroundColorAttributeName : [UIColor assistTextColor]}];
+}
+
+#pragma mark -
 - (void)drawTechView {
     [super drawTechView];
     //重新绘制成交量的视图

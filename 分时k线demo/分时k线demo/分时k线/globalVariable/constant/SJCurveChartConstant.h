@@ -69,14 +69,18 @@ typedef NS_ENUM(NSInteger, SJCurveShowType) {
  */
 #define MTCurveChartKLineAccessoryViewMaxY (self.frame.size.height)
 
+//float最大值
+#define MTCurveChartFloatMax CGFLOAT_MAX
+//float最小值
+#define MTCurveChartFloatMin CGFLOAT_MIN
+
 #pragma mark 曲线颜色
-#define Curve_Color_None 000000000 //
-#define Curve_Color_Yellow 255255000        //黄色RGB值
-#define Curve_Color_White 255255255         //白色RGB值
-#define Curve_Color_Blue 000000255          //蓝色RGB值
-#define Curve_Color_Purple 128000128        //紫色RGB值
-#define Curve_Color_Orange 255165000        //橘黄色RGB值
-#define Curve_Color_Green 000128000         //绿色RGB值
+#define Curve_Color_Yellow 0xffff00        //黄色RGB值
+#define Curve_Color_White 0xffffff         //白色RGB值
+#define Curve_Color_Blue 0x49a5ff          //蓝色RGB值
+#define Curve_Color_Violet 0x8b008b        //紫色RGB值
+#define Curve_Color_Orange 0xff783c        //橘色RGB值
+#define Curve_Color_Green 0x32cd32         //绿色RGB值
 
 
 

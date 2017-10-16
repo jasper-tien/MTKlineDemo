@@ -29,16 +29,14 @@
     }
     
     UIColor *lineColor = [UIColor whiteColor];
-    if (self.techType == SJCurveTechType_KLine) {
-        lineColor = self.MAType == MT_MA7Type ? [UIColor MTOrangeColor] : (self.MAType == MT_MA30Type ? [UIColor MTBlueColor] : [UIColor MTYellowColor]);
-    } else if (self.techType ==  SJCurveTechType_Volume) {
-        lineColor = self.MAType == MT_MA5Type ? [UIColor MTvioletColor] : (self.MAType == MT_MA10Type ? [UIColor MTYellowColor] : [UIColor MTBlueColor]);
+    if (self.techType ==  SJCurveTechType_Volume || self.techType == SJCurveTechType_KLine) {
+        lineColor = self.MAType == MT_MA5Type ? [UIColor MTCurveVioletColor] : (self.MAType == MT_MA10Type ? [UIColor MTCurveYellowColor] : [UIColor MTCurveBlueColor]);
     } else if (self.techType == SJCurveTechType_KDJ) {
-        lineColor = self.MAType == MT_KDJ_K ? [UIColor whiteColor] : (self.MAType == MT_KDJ_D ? [UIColor MTYellowColor] : [UIColor MTvioletColor]);
+        lineColor = self.MAType == MT_KDJ_K ? [UIColor whiteColor] : (self.MAType == MT_KDJ_D ? [UIColor MTCurveYellowColor] : [UIColor MTCurveVioletColor]);
     } else if (self.techType == SJCurveTechType_BOLL) {
-        lineColor = self.MAType == MT_BOLL_UP ? [UIColor MTYellowColor] : (self.MAType == MT_BOLL_MB ? [UIColor whiteColor] : [UIColor MTvioletColor]);
+        lineColor = self.MAType == MT_BOLL_UP ? [UIColor MTCurveYellowColor] : (self.MAType == MT_BOLL_MB ? [UIColor whiteColor] : [UIColor MTCurveVioletColor]);
     } else if (self.techType == SJCurveTechType_MACD) {
-        lineColor = self.MAType == MT_MACD_DIF ? [UIColor whiteColor] : [UIColor MTYellowColor];
+        lineColor = self.MAType == MT_MACD_DIF ? [UIColor whiteColor] : [UIColor MTCurveYellowColor];
     }
     
     CGContextSetStrokeColorWithColor(self.context, lineColor.CGColor);

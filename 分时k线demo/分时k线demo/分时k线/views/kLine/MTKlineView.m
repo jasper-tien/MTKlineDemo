@@ -32,7 +32,7 @@
 @end
 
 @implementation MTKlineView
-
+#pragma mark - init 
 - (instancetype)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
         self.backgroundColor = [UIColor assistBackgroundColor];
@@ -56,21 +56,8 @@
     return self;
 }
 
-- (void)testAction:(UIButton *)sender {
-    self.testIndex++;
-    if (self.testIndex > (self.testTechArr.count - 1)) {
-        self.testIndex = 0;
-    }
-    NSNumber *num = self.testTechArr[self.testIndex];
-    NSInteger index = [num integerValue];
-    if (index == SJCurveTechType_Volume) {
-        self.techType = SJCurveTechType_Volume;
-    } else if (index == SJCurveTechType_KDJ) {
-        self.techType = SJCurveTechType_KDJ;
-    } else if (index == SJCurveTechType_BOLL) {
-        self.techType = SJCurveTechType_BOLL;
-    }
-    
+#pragma mark - private methods
+- (void)updateKLineViewAndTechViewData {
     //刷新
     if (self.techType == SJCurveTechType_Volume) {
         self.techView.needDrawTechModels = [self.manager getMainKLineDatasWithRange:NSMakeRange(self.showStartIndex, self.showCount)];
@@ -86,6 +73,35 @@
         self.techView.needDrawTechModels = [self.manager getMACDDatasWithRange:NSMakeRange(self.showStartIndex, self.showCount)];
         [self.techView drawTechViewWithType:SJCurveTechType_MACD];
     }
+}
+
+#pragma mark - event response
+- (void)testAction:(UIButton *)sender {
+    self.testIndex++;
+    if (self.testIndex > (self.testTechArr.count - 1)) {
+        self.testIndex = 0;
+    }
+    NSNumber *num = self.testTechArr[self.testIndex];
+    NSInteger index = [num integerValue];
+    if (index == SJCurveTechType_Volume) {
+        self.techType = SJCurveTechType_Volume;
+    } else if (index == SJCurveTechType_KDJ) {
+        self.techType = SJCurveTechType_KDJ;
+    } else if (index == SJCurveTechType_BOLL) {
+        self.techType = SJCurveTechType_BOLL;
+    } else if (index == SJCurveTechType_MACD){
+        self.techType = SJCurveTechType_MACD;
+    }
+    
+    CGFloat t = CGFLOAT_MAX;
+    NSLog(@"1:%f  2:%f  3:%f", t, CGFLOAT_MAX, CGFLOAT_MAX);
+    if (t == CGFLOAT_MAX) {
+        NSLog(@"xiang tong");
+    } else {
+        NSLog(@"bu tong");
+    }
+    
+    [self updateKLineViewAndTechViewData];
 }
 
 #pragma mark - UIScrollView delegate
@@ -118,20 +134,7 @@
     [self.mainKlineView drawMainView];
     
     //绘制指标
-    if (self.techType == SJCurveTechType_Volume) {
-        self.techView.needDrawTechModels = [self.manager getMainKLineDatasWithRange:NSMakeRange(self.showStartIndex, self.showCount)];
-        [self.techView drawTechViewWithType:SJCurveTechType_Volume];
-    } else if (self.techType == SJCurveTechType_KDJ) {
-        self.techView.needDrawTechModels = [self.manager getKDJDatasWithRange:NSMakeRange(self.showStartIndex, self.showCount)];
-        [self.techView drawTechViewWithType:SJCurveTechType_KDJ];
-    }else if (self.techType == SJCurveTechType_BOLL) {
-        self.techView.needDrawTechModels = [self.manager getBOLLDatasWithRange:NSMakeRange(self.showStartIndex, self.showCount)];
-        self.techView.needDrawKlineModels = [self.manager getMainKLineDatasWithRange:NSMakeRange(self.showStartIndex, self.showCount)];
-        [self.techView drawTechViewWithType:SJCurveTechType_BOLL];
-    }else if (self.techType == SJCurveTechType_MACD) {
-        self.techView.needDrawTechModels = [self.manager getMACDDatasWithRange:NSMakeRange(self.showStartIndex, self.showCount)];
-        [self.techView drawTechViewWithType:SJCurveTechType_MACD];
-    }
+    [self updateKLineViewAndTechViewData];
     
     self.previousScrollViewOffsetX = scrollViewOffset.x;
 }
@@ -165,20 +168,7 @@
     [self.mainKlineView drawMainView];
     
     //绘制指标
-    if (self.techType == SJCurveTechType_Volume) {
-        self.techView.needDrawTechModels = [self.manager getMainKLineDatasWithRange:NSMakeRange(self.showStartIndex, self.showCount)];
-        [self.techView drawTechViewWithType:SJCurveTechType_Volume];
-    } else if (self.techType == SJCurveTechType_KDJ) {
-        self.techView.needDrawTechModels = [self.manager getKDJDatasWithRange:NSMakeRange(self.showStartIndex, self.showCount)];
-        [self.techView drawTechViewWithType:SJCurveTechType_KDJ];
-    }else if (self.techType == SJCurveTechType_BOLL) {
-        self.techView.needDrawTechModels = [self.manager getBOLLDatasWithRange:NSMakeRange(self.showStartIndex, self.showCount)];
-        self.techView.needDrawKlineModels = [self.manager getMainKLineDatasWithRange:NSMakeRange(self.showStartIndex, self.showCount)];
-        [self.techView drawTechViewWithType:SJCurveTechType_BOLL];
-    }else if (self.techType == SJCurveTechType_MACD) {
-        self.techView.needDrawTechModels = [self.manager getMACDDatasWithRange:NSMakeRange(self.showStartIndex, self.showCount)];
-        [self.techView drawTechViewWithType:SJCurveTechType_MACD];
-    }
+    [self updateKLineViewAndTechViewData];
     
 }
 

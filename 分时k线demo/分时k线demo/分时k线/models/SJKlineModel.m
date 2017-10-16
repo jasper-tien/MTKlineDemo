@@ -13,9 +13,9 @@
 - (void)initData {
     [self sumOfLastClose];
     [self sumOfLastVolume];
-    [self MA_7];
-    [self MA_12];
-    [self MA_26];
+    [self MA_5];
+    [self MA_10];
+    [self MA_20];
     [self MA_30];
     [self volumeMA_5];
     [self volumeMA_10];
@@ -39,54 +39,54 @@
     return _sumOfLastVolume;
 }
 
-- (NSNumber *)MA_7 {
-    if (!_MA_7) {
+- (NSNumber *)MA_5 {
+    if (!_MA_5) {
         NSInteger index = [self.mainKLineModels indexOfObject:self];
-        if (index >= 6) {
-            if (index > 6 && index < self.mainKLineModels.count) {
-                SJKlineModel *tempModel = self.mainKLineModels[index - 7];
-                _MA_7 = @((self.sumOfLastClose.floatValue - tempModel.sumOfLastClose.floatValue) / 7);
+        if (index >= 4) {
+            if (index > 4 && index < self.mainKLineModels.count) {
+                SJKlineModel *tempModel = self.mainKLineModels[index - 5];
+                _MA_5 = @((self.sumOfLastClose.floatValue - tempModel.sumOfLastClose.floatValue) / 5);
             } else {
-                _MA_7 = @(self.sumOfLastClose.floatValue / 7);
+                _MA_5 = @(self.sumOfLastClose.floatValue / 5);
             }
         }
     }
     
-    return _MA_7;
+    return _MA_5;
 }
 
-- (NSNumber *)MA_12
+- (NSNumber *)MA_10
 {
-    if (!_MA_12) {
+    if (!_MA_10) {
         NSInteger index = [self.mainKLineModels indexOfObject:self];
-        if (index >= 11) {
-            if (index > 11 && index < self.mainKLineModels.count) {
-                SJKlineModel *tempModel = self.mainKLineModels[index - 12];
-                _MA_12 = @((self.sumOfLastClose.floatValue - tempModel.sumOfLastClose.floatValue) / 12);
+        if (index >= 9) {
+            if (index > 9 && index < self.mainKLineModels.count) {
+                SJKlineModel *tempModel = self.mainKLineModels[index - 10];
+                _MA_10 = @((self.sumOfLastClose.floatValue - tempModel.sumOfLastClose.floatValue) / 10);
             } else {
-                _MA_12 = @(self.sumOfLastClose.floatValue / 12);
+                _MA_10 = @(self.sumOfLastClose.floatValue / 10);
             }
         }
     }
     
-    return _MA_12;
+    return _MA_10;
 }
 
-- (NSNumber *)MA_26
+- (NSNumber *)MA_20
 {
-    if (!_MA_26) {
+    if (!_MA_20) {
         NSInteger index = [self.mainKLineModels indexOfObject:self];
-        if (index >= 25) {
-            if (index > 25 && index < self.mainKLineModels.count) {
-                SJKlineModel *tempModel = self.mainKLineModels[index - 26];
-                _MA_26 = @((self.sumOfLastClose.floatValue - tempModel.sumOfLastClose.floatValue) / 26);
+        if (index >= 19) {
+            if (index > 19 && index < self.mainKLineModels.count) {
+                SJKlineModel *tempModel = self.mainKLineModels[index - 20];
+                _MA_20 = @((self.sumOfLastClose.floatValue - tempModel.sumOfLastClose.floatValue) / 20);
             } else {
-                _MA_26 = @(self.sumOfLastClose.floatValue / 26);
+                _MA_20 = @(self.sumOfLastClose.floatValue / 20);
             }
         }
     }
     
-    return _MA_26;
+    return _MA_20;
 }
 
 - (NSNumber *)MA_30

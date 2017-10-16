@@ -19,15 +19,18 @@
 //
 @property (nonatomic, strong) NSMutableArray<MTKLinePositionModel *> *needDrawPositionModels;
 /**
- *  MA7位置数组
+ *  MA5位置数组
  */
-@property (nonatomic, strong) NSMutableArray *MA7Positions;
-
+@property (nonatomic, strong) NSMutableArray *MA5Positions;
+/**
+ *  MA10位置数组
+ */
+@property (nonatomic, strong) NSMutableArray *MA10Positions;
 
 /**
- *  MA30位置数组
+ *  MA20位置数组
  */
-@property (nonatomic, strong) NSMutableArray *MA30Positions;
+@property (nonatomic, strong) NSMutableArray *MA20Positions;
 
 @end
 
@@ -36,8 +39,9 @@
     if (self = [super init]) {
         self.delegate = delegate;
         self.needDrawPositionModels = @[].mutableCopy;
-        self.MA7Positions = @[].mutableCopy;
-        self.MA30Positions = @[].mutableCopy;
+        self.MA5Positions = @[].mutableCopy;
+        self.MA10Positions = @[].mutableCopy;
+        self.MA20Positions = @[].mutableCopy;
         self.backgroundColor = [UIColor backgroundColor];
     }
     
@@ -49,26 +53,45 @@
     if (self.needDrawPositionModels.count <= 0) {
         return;
     }
-    NSString *titleStr = [NSString stringWithFormat:@"MA5 --  MA10 --  MA20 --"];
-    CGPoint drawTitlePoint = CGPointMake(5, 0);
-    [titleStr drawAtPoint:drawTitlePoint withAttributes:@{NSFontAttributeName : [UIFont systemFontOfSize:13],NSForegroundColorAttributeName : [UIColor mainTextColor]}];
     
     CGContextRef context = UIGraphicsGetCurrentContext();
+    
+    [self drawTopdeTailsView];
+    
+    [self drawCandle:context];
+    
+    [self drawMA:context];
+}
+
+- (void)drawTopdeTailsView {
+    SJKlineModel *lastModel = self.needDrawKlneModels.lastObject;
+    NSString *titleStr = [NSString stringWithFormat:@"MA5 %.2f  MA10 %.2f  MA20 %.2f", lastModel.MA_5.floatValue, lastModel.MA_10.floatValue, lastModel.MA_20.floatValue];
+    CGPoint drawTitlePoint = CGPointMake(5, 0);
+    [titleStr drawAtPoint:drawTitlePoint withAttributes:@{NSFontAttributeName : [UIFont systemFontOfSize:13],NSForegroundColorAttributeName : [UIColor assistTextColor]}];
+}
+
+- (void)drawCandle:(CGContextRef)context {
     MTKLine *kLine = [[MTKLine alloc] initWithContext:context];
     [self.needDrawPositionModels enumerateObjectsUsingBlock:^(MTKLinePositionModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         MTKLinePositionModel *positionModel = obj;
         kLine.positionModel = positionModel;
         [kLine draw];
     }];
-    
+}
+
+- (void)drawMA:(CGContextRef)context {
     MTMALine *MALine = [[MTMALine alloc] initWithContext:context];
     MALine.techType = SJCurveTechType_KLine;
-    MALine.MAType = MT_MA7Type;
-    MALine.MAPositions = self.MA7Positions;
+    MALine.MAType = MT_MA5Type;
+    MALine.MAPositions = self.MA5Positions;
     [MALine draw];
     
-    MALine.MAType = MT_MA30Type;
-    MALine.MAPositions = self.MA30Positions;
+    MALine.MAType = MT_MA10Type;
+    MALine.MAPositions = self.MA10Positions;
+    [MALine draw];
+    
+    MALine.MAType = MT_MA20Type;
+    MALine.MAPositions = self.MA20Positions;
     [MALine draw];
 }
 
@@ -96,22 +119,31 @@
             assertMin = obj.low.floatValue;
         }
         
-        if(obj.MA_7)
+        if(obj.MA_5)
         {
-            if (obj.MA_7.floatValue > assertMax) {
-                assertMax = obj.MA_7.floatValue;
+            if (obj.MA_5.floatValue > assertMax) {
+                assertMax = obj.MA_5.floatValue;
             }
-            if (obj.MA_7.floatValue < assertMin) {
-                assertMin = obj.MA_7.floatValue;
+            if (obj.MA_5.floatValue < assertMin) {
+                assertMin = obj.MA_5.floatValue;
             }
         }
-        if(obj.MA_30)
+        if(obj.MA_10)
         {
-            if (obj.MA_30.floatValue > assertMax) {
-                assertMax = obj.MA_30.floatValue;
+            if (obj.MA_10.floatValue > assertMax) {
+                assertMax = obj.MA_10.floatValue;
+            }
+            if (obj.MA_5.floatValue < assertMin) {
+                assertMin = obj.MA_10.floatValue;
+            }
+        }
+        if(obj.MA_20)
+        {
+            if (obj.MA_20.floatValue > assertMax) {
+                assertMax = obj.MA_20.floatValue;
             }
             if (obj.MA_30.floatValue < assertMin) {
-                assertMin = obj.MA_30.floatValue;
+                assertMin = obj.MA_20.floatValue;
             }
         }
     }];
@@ -124,8 +156,9 @@
     CGFloat unitY = (assertMax - assertMin) / (yMax - yMin);
     
     [self.needDrawPositionModels removeAllObjects];
-    [self.MA7Positions removeAllObjects];
-    [self.MA30Positions removeAllObjects];
+    [self.MA5Positions removeAllObjects];
+    [self.MA10Positions removeAllObjects];
+    [self.MA20Positions removeAllObjects];
     
     [self.needDrawKlneModels enumerateObjectsUsingBlock:^(SJKlineModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         SJKlineModel *kLineModel = obj;
@@ -143,21 +176,27 @@
         [self.needDrawPositionModels addObject:positionModel];
         
         //MA坐标转换
-        CGFloat ma7Y = yMax;
-        CGFloat ma30Y = yMin;
-        if(kLineModel.MA_7)
+        CGFloat ma5Y = yMax;
+        CGFloat ma10Y = yMax;
+        CGFloat ma20Y = yMax;
+        if(kLineModel.MA_5)
         {
-            ma7Y = yMax - (kLineModel.MA_7.floatValue - assertMin) / unitY;
+            ma5Y = yMax - (kLineModel.MA_5.floatValue - assertMin) / unitY;
         }
-        if(kLineModel.MA_30)
+        if(kLineModel.MA_20)
         {
-            ma30Y = yMax - (kLineModel.MA_30.floatValue - assertMin) / unitY;
+            ma20Y = yMax - (kLineModel.MA_20.floatValue - assertMin) / unitY;
         }
-        CGPoint ma7Point = CGPointMake(ponitX, ma7Y);
-        CGPoint ma30Point = CGPointMake(ponitX, ma30Y);
+        if (kLineModel.MA_10) {
+            ma10Y = yMax - (kLineModel.MA_10.floatValue - assertMin) / unitY;
+        }
+        CGPoint ma5Point = CGPointMake(ponitX, ma5Y);
+        CGPoint ma10Point = CGPointMake(ponitX, ma10Y);
+        CGPoint ma20Point = CGPointMake(ponitX, ma20Y);
         
-        [self.MA7Positions addObject:[NSValue valueWithCGPoint:ma7Point]];
-        [self.MA30Positions addObject:[NSValue valueWithCGPoint:ma30Point]];
+        [self.MA5Positions addObject:[NSValue valueWithCGPoint:ma5Point]];
+        [self.MA10Positions addObject:[NSValue valueWithCGPoint:ma10Point]];
+        [self.MA20Positions addObject:[NSValue valueWithCGPoint:ma20Point]];
     }];
     
     [self setNeedsDisplay];

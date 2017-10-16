@@ -7,6 +7,7 @@
 //
 
 #import "UIColor+CurveChart.h"
+#import "SJCurveChartConstant.h"
 
 @implementation UIColor (CurveChart)
 #pragma mark 十六进制rgb获取颜色
@@ -59,28 +60,35 @@
 }
 
 #pragma mark 橙色
-+(UIColor *)MTOrangeColor
++(UIColor *)MTCurveOrangeColor
 {
-    return [UIColor colorWithRGBHex:0xff783c];
+    return [UIColor colorWithRGBHex:Curve_Color_Orange];
 }
 
 #pragma mark 蓝色
-+(UIColor *)MTBlueColor
++(UIColor *)MTCurveBlueColor
 {
-    return [UIColor colorWithRGBHex:0x49a5ff];
+    return [UIColor colorWithRGBHex:Curve_Color_Blue];
 }
 
 #pragma mark 紫色
-+(UIColor *)MTvioletColor {
-    return [UIColor colorWithRGBHex:0x8b008b];
-}
-+ (UIColor *)testColor {
-    return [UIColor colorWithRGBHex:0x8b008b];
++(UIColor *)MTCurveVioletColor {
+    return [UIColor colorWithRGBHex:Curve_Color_Violet];
 }
 
 #pragma mark 黄色
-+(UIColor *)MTYellowColor {
-    return [UIColor colorWithRGBHex:0xffff00];
++(UIColor *)MTCurveYellowColor {
+    return [UIColor colorWithRGBHex:Curve_Color_Yellow];
+}
+
+#pragma mark 绿色
++ (UIColor *)MTCurveGreenColor {
+    return [UIColor colorWithRGBHex:Curve_Color_Green];
+}
+
+#pragma mark 白色
++ (UIColor *)MTCurveWhiteColor {
+    return [UIColor colorWithRGBHex:Curve_Color_White];
 }
 
 @end

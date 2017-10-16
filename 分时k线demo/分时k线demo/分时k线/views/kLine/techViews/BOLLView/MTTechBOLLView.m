@@ -42,10 +42,12 @@
 - (void)drawRect:(CGRect)rect {
     CGContextRef context = UIGraphicsGetCurrentContext();
     
-    NSString *titleStr = [NSString stringWithFormat:@"BOLL(20)"];
-    CGPoint drawTitlePoint = CGPointMake(5, 0);
-    [titleStr drawAtPoint:drawTitlePoint withAttributes:@{NSFontAttributeName : [UIFont systemFontOfSize:13],NSForegroundColorAttributeName : [UIColor mainTextColor]}];
+    [self drawTopdeTailsView];
     
+    [self drawBOLL:context];
+}
+
+- (void)drawBOLL:(CGContextRef)context {
     MTMALine *MALine = [[MTMALine alloc] initWithContext:context];
     MALine.techType = SJCurveTechType_BOLL;
     if (self.UPPositionModels.count > 0) {
@@ -75,6 +77,13 @@
     }
 }
 
+- (void)drawTopdeTailsView {
+    NSString *titleStr = [NSString stringWithFormat:@"BOLL(20)"];
+    CGPoint drawTitlePoint = CGPointMake(5, 0);
+    [titleStr drawAtPoint:drawTitlePoint withAttributes:@{NSFontAttributeName : [UIFont systemFontOfSize:13],NSForegroundColorAttributeName : [UIColor assistTextColor]}];
+}
+
+#pragma mark -
 - (void)drawTechView {
     [self convertToVolumePositionModelWithKLineModels];
     [self setNeedsDisplay];

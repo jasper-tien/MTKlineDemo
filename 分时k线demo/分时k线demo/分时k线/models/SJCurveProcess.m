@@ -144,7 +144,7 @@
             //MACD
             SJCurveData *curveData_MACD = [[SJCurveData alloc] init];
             curveData_MACD.curveShowType = SJCurveShowType_RedGreenUpOrDown;
-            curveData_MACD.color = Curve_Color_None;
+            curveData_MACD.color = Curve_Color_White;
             curveData_MACD.period = 1;
             curveData_MACD.valueArray = [NSMutableArray arrayWithCapacity:count];
         }
@@ -157,7 +157,7 @@
             //RSV
             SJCurveData *curveData_RSV = [[SJCurveData alloc] init];
             curveData_RSV.curveShowType = SJCurveShowType_PointLine;
-            curveData_RSV.color = Curve_Color_None;
+            curveData_RSV.color = Curve_Color_White;
             curveData_RSV.period = 9;
             curveData_RSV.valueArray = [NSMutableArray arrayWithCapacity:count];
             
@@ -178,7 +178,7 @@
             //J
             SJCurveData *curveData_J = [[SJCurveData alloc] init];
             curveData_J.curveShowType = SJCurveShowType_PointLine;
-            curveData_J.color = Curve_Color_Purple;
+            curveData_J.color = Curve_Color_Violet;
             curveData_J.period = 1;
             curveData_J.valueArray = [NSMutableArray arrayWithCapacity:count];
         }

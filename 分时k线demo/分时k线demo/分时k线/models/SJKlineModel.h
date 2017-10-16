@@ -19,9 +19,9 @@
 @property (nonatomic, copy) NSString *date;             //日期
 
 #pragma MA_X
-@property (nonatomic, strong) NSNumber *MA_7;           //7个单位的均值（收盘价）
-@property (nonatomic, strong) NSNumber *MA_12;          //12个单位的均值（收盘价）
-@property (nonatomic, strong) NSNumber *MA_26;          //26个单位的均值（收盘价）
+@property (nonatomic, strong) NSNumber *MA_5;           //7个单位的均值（收盘价）
+@property (nonatomic, strong) NSNumber *MA_10;          //12个单位的均值（收盘价）
+@property (nonatomic, strong) NSNumber *MA_20;          //26个单位的均值（收盘价）
 @property (nonatomic, strong) NSNumber *MA_30;          //30个单位的均值（收盘价）
 
 @property (nonatomic, strong) NSNumber *volumeMA_5;     //5个单位的均值（成交量）

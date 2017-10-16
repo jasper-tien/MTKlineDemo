@@ -10,7 +10,6 @@
 #import "SJCurveChartConstant.h"
 typedef NS_ENUM(NSInteger, MTMAType){
     MT_MA5Type = 0,
-    MT_MA7Type,
     MT_MA10Type,
     MT_MA20Type,
     MT_MA30Type,
