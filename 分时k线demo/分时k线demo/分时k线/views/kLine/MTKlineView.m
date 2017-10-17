@@ -139,10 +139,15 @@
 - (void)pinchMethod:(UIPinchGestureRecognizer *)pinch {
     static CGFloat oldScale = 1.0f;
     CGFloat difValue = pinch.scale - oldScale;
+    
+    CGFloat oldKLineWidth = [MTCurveChartGlobalVariable kLineWidth];
+    CGFloat newKlineWidth = oldKLineWidth * (difValue > 0 ? (1 + MTCurveChartKLineScaleFactor) : (1 - MTCurveChartKLineScaleFactor));
+    if (newKlineWidth >= MTCurveChartKLineMaxWidth) {
+        return;
+    }
+    
     if(ABS(difValue) > MTCurveChartKLineScaleBound) {
-        CGFloat oldKLineWidth = [MTCurveChartGlobalVariable kLineWidth];
-
-        [MTCurveChartGlobalVariable setkLineWith:oldKLineWidth * (difValue > 0 ? (1 + MTCurveChartKLineScaleFactor) : (1 - MTCurveChartKLineScaleFactor))];
+        [MTCurveChartGlobalVariable setkLineWith:newKlineWidth];
         oldScale = pinch.scale;
         //更新显示蜡烛的数量
         NSInteger oldShowCount = self.showCount;
