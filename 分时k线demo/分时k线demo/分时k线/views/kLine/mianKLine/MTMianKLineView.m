@@ -123,6 +123,8 @@
 #pragma mark -
 - (void)drawMainView {
     [self convertToKLinePositionModelWithKLineModels];
+    
+    [self setNeedsDisplay];
 }
 
 #pragma mark -
@@ -223,8 +225,6 @@
         [self.MA10Positions addObject:[NSValue valueWithCGPoint:ma10Point]];
         [self.MA20Positions addObject:[NSValue valueWithCGPoint:ma20Point]];
     }];
-    
-    [self setNeedsDisplay];
 }
 
 @end

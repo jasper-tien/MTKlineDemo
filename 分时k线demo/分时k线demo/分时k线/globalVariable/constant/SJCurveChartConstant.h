@@ -68,6 +68,14 @@ typedef NS_ENUM(NSInteger, SJCurveShowType) {
  *  K线图的副图最大的Y
  */
 #define MTCurveChartKLineAccessoryViewMaxY (self.frame.size.height)
+/**
+ *  K线图缩放界限
+ */
+#define MTCurveChartKLineScaleBound 0.03
+/**
+ *  K线的缩放因子
+ */
+#define MTCurveChartKLineScaleFactor 0.03
 
 //float最大值
 #define MTCurveChartFloatMax CGFLOAT_MAX

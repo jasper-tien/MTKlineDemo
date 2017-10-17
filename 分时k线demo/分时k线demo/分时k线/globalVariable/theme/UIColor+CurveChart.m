@@ -61,7 +61,7 @@
 
 #pragma mark 网格框的颜色
 + (UIColor *)gridLineColor {
-    return [UIColor colorWithRGBHex:0x565a64];
+    return [UIColor colorWithRGBHex:0x767a8c];
 }
 
 #pragma mark 橙色

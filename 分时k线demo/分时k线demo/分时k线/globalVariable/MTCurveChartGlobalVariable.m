@@ -63,6 +63,7 @@ static CGFloat mtCurveChartGridLineWidth = 0.3;
 + (CGFloat)CurveChactGridLineWidth {
     return mtCurveChartGridLineWidth;
 }
+
 + (void)setCurveChartGridLineWidth:(CGFloat)gridLineWith {
     mtCurveChartGridLineWidth = gridLineWith;
 }

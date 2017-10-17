@@ -111,17 +111,11 @@
     if (ABS(difValue) < ([MTCurveChartGlobalVariable kLineGap] + [MTCurveChartGlobalVariable kLineWidth]) || scrollViewOffset.x < 0 || scrollViewOffset.x > (self.scrollView.contentSize.width - self.mainKlineView.frame.size.width)) {
         return;
     }
-    int count = ABS(difValue) / ([MTCurveChartGlobalVariable kLineWidth] + [MTCurveChartGlobalVariable kLineGap]);
-    if (self.previousScrollViewOffsetX > scrollViewOffset.x) {
-        self.showStartIndex -= count;
-    } else {
-        self.showStartIndex += count;
-    }
     
-    // 重新获取需要显示在主k线上的数据
-    if (self.showStartIndex < 0) {
-        self.showStartIndex = 0;
-    }
+    //计算显示数据的起始位置,这个地方存在误差，先不处理，后面再处理
+    self.showStartIndex = scrollViewOffset.x / ([MTCurveChartGlobalVariable kLineWidth] + [MTCurveChartGlobalVariable kLineGap]);
+    
+    //刷新主k线的数据
     self.mainKlineView.needDrawKlneModels = [self.manager getMainKLineDatasWithRange:NSMakeRange(self.showStartIndex, self.showCount)];
     [self.mainKlineView drawMainView];
     
@@ -131,18 +125,44 @@
     self.previousScrollViewOffsetX = scrollViewOffset.x;
 }
 
-#pragma mark - setters and getters
-- (void)setManager:(MTDataManager *)manager {
-    //注入数据
-    _manager = manager;
+#pragma mark - event response
+- (void)pinchMethod:(UIPinchGestureRecognizer *)pinch {
+    static CGFloat oldScale = 1.0f;
+    CGFloat difValue = pinch.scale - oldScale;
+    if(ABS(difValue) > MTCurveChartKLineScaleBound) {
+        CGFloat oldKLineWidth = [MTCurveChartGlobalVariable kLineWidth];
+
+        [MTCurveChartGlobalVariable setkLineWith:oldKLineWidth * (difValue > 0 ? (1 + MTCurveChartKLineScaleFactor) : (1 - MTCurveChartKLineScaleFactor))];
+        oldScale = pinch.scale;
+        //更新显示蜡烛的数量
+        NSInteger oldShowCount = self.showCount;
+        self.showCount = self.scrollView.frame.size.width / ([MTCurveChartGlobalVariable kLineGap] + [MTCurveChartGlobalVariable kLineWidth]);
+        NSInteger changeShowCount = oldShowCount - self.showCount;
+        self.showStartIndex = self.showStartIndex + changeShowCount;
+        NSLog(@"count:%ld index:%ld", self.showCount, self.showStartIndex);
+        [self updateScrollViewContenSize];
+
+        //
+        CGFloat newScrollViewContentOffset = self.mainKlineView.frame.origin.x * (difValue > 0 ? (1 + MTCurveChartKLineScaleFactor) : (1 - MTCurveChartKLineScaleFactor));
+        self.scrollView.contentOffset = CGPointMake(newScrollViewContentOffset, 0);
+    }
+}
+
+- (void)updateScrollViewContenSize {
     CGFloat scrollViewWidth = self.scrollView.frame.size.width;
-    
-    //根据请求到的数据，确定scrollview的滑动区域
     CGFloat scrollViewContentWidth = ([MTCurveChartGlobalVariable kLineGap] + [MTCurveChartGlobalVariable kLineWidth]) * [self.manager getMainKLineDatas].count;
     if (scrollViewContentWidth < scrollViewWidth) {
         scrollViewContentWidth = scrollViewWidth + 1;
     }
     self.scrollView.contentSize = CGSizeMake(scrollViewContentWidth, self.scrollView.frame.size.height);
+}
+
+#pragma mark - setters and getters
+- (void)setManager:(MTDataManager *)manager {
+    //注入数据
+    _manager = manager;
+    
+    [self updateScrollViewContenSize];
     
     //================================================================================
     //现在暂时把该方法作为k线界面的初始化入口
@@ -193,6 +213,10 @@
         _scrollView = [[UIScrollView alloc] initWithFrame:self.bounds];
         _scrollView.delegate = self;
         [self addSubview:_scrollView];
+        
+        //缩放手势
+        UIPinchGestureRecognizer *pinchGesture = [[UIPinchGestureRecognizer alloc]initWithTarget:self action:@selector(pinchMethod:)];
+        [_scrollView addGestureRecognizer:pinchGesture];
     }
     
     return _scrollView;

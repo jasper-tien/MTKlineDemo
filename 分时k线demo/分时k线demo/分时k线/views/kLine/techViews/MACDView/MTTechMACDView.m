@@ -39,9 +39,9 @@
     
     [self drawGrid:context];
     
-    [self drawTopdeTailsView];
-    
     [self drawMACD:context];
+    
+    [self drawTopdeTailsView];
 }
 
 - (void)drawGrid:(CGContextRef)context {
