@@ -14,10 +14,12 @@
 #import "SJCurveChartConstant.h"
 #import "MTCurveChartGlobalVariable.h"
 #import "UIColor+CurveChart.h"
+#import "MTKlineShowView.h"
 
 @interface MTMianKLineView ()
 //
 @property (nonatomic, strong) NSMutableArray<MTKLinePositionModel *> *needDrawPositionModels;
+@property (nonatomic, strong) MTKlineShowView *kLineShowView;
 /**
  *  MA5位置数组
  */
@@ -89,10 +91,8 @@
 }
 
 - (void)drawTopdeTailsView {
-    SJKlineModel *lastModel = self.needDrawKlneModels.lastObject;
-    NSString *titleStr = [NSString stringWithFormat:@"MA5 %.2f  MA10 %.2f  MA20 %.2f", lastModel.MA_5.floatValue, lastModel.MA_10.floatValue, lastModel.MA_20.floatValue];
-    CGPoint drawTitlePoint = CGPointMake(5, 0);
-    [titleStr drawAtPoint:drawTitlePoint withAttributes:@{NSFontAttributeName : [UIFont systemFontOfSize:13],NSForegroundColorAttributeName : [UIColor assistTextColor]}];
+    NSString *titleStr = [NSString stringWithFormat:@"MA5 %.2f  MA10 %.2f  MA20 %.2f", self.showKlineModel.MA_5.floatValue, self.showKlineModel.MA_10.floatValue, self.showKlineModel.MA_20.floatValue];
+    [self.kLineShowView redrawWithString:titleStr];
 }
 
 - (void)drawCandle:(CGContextRef)context {
@@ -124,7 +124,47 @@
 - (void)drawMainView {
     [self convertToKLinePositionModelWithKLineModels];
     
+    self.showKlineModel = self.needDrawKlneModels.lastObject;
+    
     [self setNeedsDisplay];
+}
+
+/**
+ *  长按的时候根据原始的x位置获得精确的x的位置
+ */
+- (CGFloat)getExactXPositionWithOriginXPosition:(CGFloat)originXPosition {
+    CGFloat xPositoinInMainView = originXPosition;
+    CGFloat exactXPositionInMainView = 0.0;
+    
+    //原始的x位置获取对应在数组中的index
+    NSInteger index = xPositoinInMainView / ([MTCurveChartGlobalVariable kLineWidth] + [MTCurveChartGlobalVariable kLineGap]);
+    //对应index映射到view上的准确位置
+    CGFloat indexXPosition = index * ([MTCurveChartGlobalVariable kLineWidth] + [MTCurveChartGlobalVariable kLineGap]);
+    //最小临界值
+    CGFloat minX = indexXPosition  - ([MTCurveChartGlobalVariable kLineWidth] + [MTCurveChartGlobalVariable kLineGap]) / 2;
+    //最大临界值
+    CGFloat maxX = indexXPosition + ([MTCurveChartGlobalVariable kLineWidth] + [MTCurveChartGlobalVariable kLineGap]) / 2;
+    //对比原始x值大于最小临界值，并小于最大临界值，返回当前index的精确位置;当大于最大临界值时，返回下一个index对应的精确位置(理论上该值不可能小于最小临界值，所以不用考虑)
+    if (xPositoinInMainView < maxX && xPositoinInMainView > minX) {
+        exactXPositionInMainView = indexXPosition;
+    } else {
+        index++;
+        exactXPositionInMainView = indexXPosition + ([MTCurveChartGlobalVariable kLineWidth] + [MTCurveChartGlobalVariable kLineGap]);
+    }
+    
+    //显示长按点的k线详情信息
+    if (index < self.needDrawKlneModels.count && index > 0) {
+        self.showKlineModel = self.needDrawKlneModels[index];
+        NSString *titleStr = [NSString stringWithFormat:@"MA5 %.2f  MA10 %.2f  MA20 %.2f", self.showKlineModel.MA_5.floatValue, self.showKlineModel.MA_10.floatValue, self.showKlineModel.MA_20.floatValue];
+        [self.kLineShowView redrawWithString:titleStr];
+    }
+    
+    //调用代理，通知指标view更新详情信息
+    if (self.delegate && [self.delegate respondsToSelector:@selector(kLineMainViewLongPress:)]) {
+        [self.delegate kLineMainViewLongPress:index];
+    }
+    
+    return indexXPosition;
 }
 
 #pragma mark -
@@ -225,6 +265,16 @@
         [self.MA10Positions addObject:[NSValue valueWithCGPoint:ma10Point]];
         [self.MA20Positions addObject:[NSValue valueWithCGPoint:ma20Point]];
     }];
+}
+
+#pragma mark - 
+- (MTKlineShowView *)kLineShowView {
+    if (!_kLineShowView) {
+        _kLineShowView = [[MTKlineShowView alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, 30)];
+        [self addSubview:_kLineShowView];
+    }
+    
+    return _kLineShowView;
 }
 
 @end

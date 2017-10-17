@@ -11,6 +11,9 @@
 @implementation MTTechBaseView
 - (void)drawTechView {
 }
+- (void)redrawShowView {
+    
+}
 
 
 @end

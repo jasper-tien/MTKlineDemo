@@ -12,6 +12,9 @@
 @interface MTTechVolumeView : MTTechBaseView
 //成交量model暂时包含于k蜡烛model
 @property (nonatomic, copy) NSArray<SJKlineModel *> *needDrawVolumeModels;
+
+@property (nonatomic, strong) SJKlineModel *showKlineModel;
+
 - (instancetype)initWithFrame:(CGRect)frame;
 
 @end

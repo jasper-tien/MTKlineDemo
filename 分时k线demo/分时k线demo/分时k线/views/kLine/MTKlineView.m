@@ -11,6 +11,7 @@
 #import "MTTechView.h"
 #import "UIColor+CurveChart.h"
 #import "MTCurveChartGlobalVariable.h"
+#import "MTTrackingCrossView.h"
 
 @interface MTKlineView ()<MTMianKLineViewDelegate, UIScrollViewDelegate>
 @property (nonatomic, strong) UIScrollView *scrollView;
@@ -18,6 +19,8 @@
 @property (nonatomic, strong) MTMianKLineView *mainKlineView;
 //指标view
 @property (nonatomic, strong) MTTechView *techView;
+//
+@property (nonatomic, strong) MTTrackingCrossView *trackingCrossView;
 //当前需要实现的指标类型
 @property (nonatomic, assign) SJCurveTechType techType;
 //记录ScrollView上一次次滑动的偏移量
@@ -108,21 +111,28 @@
     self.techView.frame = CGRectMake(scrollViewOffset.x, self.techView.frame.origin.y, self.techView.frame.size.width, self.techView.frame.size.height);
     self.mainKlineView.frame = CGRectMake(scrollViewOffset.x, self.mainKlineView.frame.origin.y, self.mainKlineView.frame.size.width, self.mainKlineView.frame.size.height);
     
-    if (ABS(difValue) < ([MTCurveChartGlobalVariable kLineGap] + [MTCurveChartGlobalVariable kLineWidth]) || scrollViewOffset.x < 0 || scrollViewOffset.x > (self.scrollView.contentSize.width - self.mainKlineView.frame.size.width)) {
+    if (ABS(difValue) < ([MTCurveChartGlobalVariable kLineGap] + [MTCurveChartGlobalVariable kLineWidth])) {
         return;
     }
     
-    //计算显示数据的起始位置,这个地方存在误差，先不处理，后面再处理
-    self.showStartIndex = scrollViewOffset.x / ([MTCurveChartGlobalVariable kLineWidth] + [MTCurveChartGlobalVariable kLineGap]);
-    
-    //刷新主k线的数据
-    self.mainKlineView.needDrawKlneModels = [self.manager getMainKLineDatasWithRange:NSMakeRange(self.showStartIndex, self.showCount)];
-    [self.mainKlineView drawMainView];
-    
-    //绘制指标
-    [self updateKLineViewAndTechViewData];
-    
-    self.previousScrollViewOffsetX = scrollViewOffset.x;
+    if (scrollViewOffset.x > 0 || scrollViewOffset.x < (self.scrollView.contentSize.width - self.mainKlineView.frame.size.width)) {
+        //计算显示数据的起始位置,这个地方存在误差，先不处理，后面再处理
+        self.showStartIndex = scrollViewOffset.x / ([MTCurveChartGlobalVariable kLineWidth] + [MTCurveChartGlobalVariable kLineGap]);
+        
+        //刷新主k线的数据
+        self.mainKlineView.needDrawKlneModels = [self.manager getMainKLineDatasWithRange:NSMakeRange(self.showStartIndex, self.showCount)];
+        [self.mainKlineView drawMainView];
+        
+        //绘制指标
+        [self updateKLineViewAndTechViewData];
+        
+        self.previousScrollViewOffsetX = scrollViewOffset.x;
+    }
+}
+
+#pragma mark - KLineMainView delegate
+- (void)kLineMainViewLongPress:(NSInteger)index {
+    [self.techView redrawTechShowViewWithIndex:index];
 }
 
 #pragma mark - event response
@@ -155,6 +165,31 @@
         scrollViewContentWidth = scrollViewWidth + 1;
     }
     self.scrollView.contentSize = CGSizeMake(scrollViewContentWidth, self.scrollView.frame.size.height);
+}
+
+#pragma mark 长按手势执行方法
+- (void)longPressMethod:(UILongPressGestureRecognizer *)longPress {
+    static CGFloat oldPositionX = 0;
+    if(UIGestureRecognizerStateChanged == longPress.state || UIGestureRecognizerStateBegan == longPress.state) {
+        CGPoint location = [longPress locationInView:self];
+        if(ABS(oldPositionX - location.x) < ([MTCurveChartGlobalVariable kLineWidth] + [MTCurveChartGlobalVariable kLineGap])/2) {
+            
+        }
+        
+        //暂停滑动
+        self.scrollView.scrollEnabled = NO;
+        oldPositionX = location.x;
+        self.trackingCrossView.hidden = NO;
+        
+        CGFloat xPositionInMainKLineView = [self.mainKlineView getExactXPositionWithOriginXPosition:location.x];
+        self.trackingCrossView.crossPoint = CGPointMake(xPositionInMainKLineView, location.y);
+        [self.trackingCrossView updateTrackingCrossView];
+    }
+    
+    if(longPress.state == UIGestureRecognizerStateEnded) {
+        self.scrollView.scrollEnabled = YES;
+        self.trackingCrossView.hidden = YES;
+    }
 }
 
 #pragma mark - setters and getters
@@ -217,9 +252,25 @@
         //缩放手势
         UIPinchGestureRecognizer *pinchGesture = [[UIPinchGestureRecognizer alloc]initWithTarget:self action:@selector(pinchMethod:)];
         [_scrollView addGestureRecognizer:pinchGesture];
+        
+        //长按手势
+        UILongPressGestureRecognizer *longPressGesture = [[UILongPressGestureRecognizer alloc]initWithTarget:self action:@selector(longPressMethod:)];
+        [_scrollView addGestureRecognizer:longPressGesture];
     }
     
     return _scrollView;
+}
+
+- (MTTrackingCrossView *)trackingCrossView {
+    if (!_trackingCrossView) {
+        CGRect dateRect = CGRectMake(0, self.mainKlineView.frame.origin.y + self.mainKlineView.frame.size.height, self.mainKlineView.frame.size.width, self.techView.frame.origin.y -(self.mainKlineView.frame.origin.y + self.mainKlineView.frame.size.height));
+        _trackingCrossView = [[MTTrackingCrossView alloc] initWithFrame:self.bounds crossPoint:CGPointZero dateRect:dateRect];
+        _trackingCrossView.hidden = YES;
+        
+        [self addSubview:_trackingCrossView];
+    }
+    
+    return _trackingCrossView;
 }
 
 @end

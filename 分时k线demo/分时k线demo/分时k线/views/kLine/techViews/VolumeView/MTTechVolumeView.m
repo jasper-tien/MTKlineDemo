@@ -15,8 +15,10 @@
 #import "MTMALine.h"
 #import "MTVolume.h"
 #import "MTVolumePositionModel.h"
+#import "MTTechsShowView.h"
 
 @interface MTTechVolumeView ()
+@property (nonatomic, strong) MTTechsShowView *volumeShowView;
 /**
  *  volume位置数组
  */
@@ -100,10 +102,8 @@
 }
 
 - (void)drawTopdeTailsView {
-    SJKlineModel *lastKlineModel = self.needDrawVolumeModels.lastObject;
-    NSString *titleStr = [NSString stringWithFormat:@"  %.0f万手 MA5:%.2f MA10:%.2f MA20:%.2f", lastKlineModel.volume.floatValue, lastKlineModel.volumeMA_5.floatValue, lastKlineModel.volumeMA_10.floatValue, lastKlineModel.volumeMA_20.floatValue];
-    CGPoint drawTitlePoint = CGPointMake(5, 0);
-    [titleStr drawAtPoint:drawTitlePoint withAttributes:@{NSFontAttributeName : [UIFont systemFontOfSize:13],NSForegroundColorAttributeName : [UIColor assistTextColor]}];
+    NSString *titleStr = [NSString stringWithFormat:@"  %.0f万手 MA5:%.2f MA10:%.2f MA20:%.2f", self.showKlineModel.volume.floatValue, self.showKlineModel.volumeMA_5.floatValue, self.showKlineModel.volumeMA_10.floatValue, self.showKlineModel.volumeMA_20.floatValue];
+    [self.volumeShowView redrawWithString:titleStr];
 }
 
 #pragma mark -
@@ -111,7 +111,18 @@
     [super drawTechView];
     //重新绘制成交量的视图
     [self convertToVolumePositionModelWithKLineModels];
+    
+    self.showKlineModel = self.needDrawVolumeModels.lastObject;
+    
     [self setNeedsDisplay];
+}
+
+- (void)redrawShowViewWithIndex:(NSInteger)index {
+    if (index < self.needDrawVolumeModels.count && index > 0) {
+        self.showKlineModel = self.needDrawVolumeModels[index];
+        NSString *titleStr = [NSString stringWithFormat:@"  %.0f万手 MA5:%.2f MA10:%.2f MA20:%.2f", self.showKlineModel.volume.floatValue, self.showKlineModel.volumeMA_5.floatValue, self.showKlineModel.volumeMA_10.floatValue, self.showKlineModel.volumeMA_20.floatValue];
+        [self.volumeShowView redrawWithString:titleStr];
+    }
 }
 
 #pragma mark -
@@ -237,6 +248,16 @@
             [self.volumeMA20Positions addObject: [NSValue valueWithCGPoint: ma20Point]];
         }
     }];
+}
+
+#pragma mark -
+- (MTTechsShowView *)volumeShowView {
+    if (!_volumeShowView) {
+        _volumeShowView = [[MTTechsShowView alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, 30)];
+        [self addSubview:_volumeShowView];
+    }
+    
+    return _volumeShowView;
 }
 
 @end

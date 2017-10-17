@@ -9,6 +9,10 @@
 #import <UIKit/UIKit.h>
 #import "MTDataManager.h"
 @protocol MTMianKLineViewDelegate<NSObject>
+/**
+ *  长按
+ */
+- (void)kLineMainViewLongPress:(NSInteger)index;
 
 @end
 
@@ -18,9 +22,13 @@
 @property (nonatomic, weak) id<MTMianKLineViewDelegate> delegate;
 //
 @property (nonatomic, copy) NSArray<SJKlineModel *> *needDrawKlneModels;
+//
+@property (nonatomic, strong) SJKlineModel *showKlineModel;
 
 - (instancetype)initWithDelegate:(id<MTMianKLineViewDelegate>)delegate;
 
 - (void)drawMainView;
+
+- (CGFloat)getExactXPositionWithOriginXPosition:(CGFloat)originXPosition;
 
 @end

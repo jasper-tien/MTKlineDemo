@@ -12,4 +12,6 @@
 @interface MTTechBaseView : UIView
 @property (nonatomic, assign) SJCurveTechType techType;
 - (void)drawTechView;
+- (void)redrawShowViewWithIndex:(NSInteger)index;
+
 @end

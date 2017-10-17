@@ -13,5 +13,6 @@
 @interface MTTechBOLLView : MTTechBaseView
 @property (nonatomic, copy) NSArray<MTCurveBOLL *> *needDrawBOLLModels;
 @property (nonatomic, copy) NSArray<SJKlineModel *> *needDrawBOLLKlineModels;
+@property (nonatomic, strong) MTCurveBOLL *showBOLLModel;
 - (instancetype)initWithFrame:(CGRect)frame;
 @end

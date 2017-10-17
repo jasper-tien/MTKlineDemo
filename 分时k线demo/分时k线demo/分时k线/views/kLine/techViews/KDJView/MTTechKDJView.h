@@ -11,5 +11,7 @@
 @class MTCurveKDJ;
 @interface MTTechKDJView : MTTechBaseView
 @property (nonatomic, copy) NSArray<MTCurveKDJ *> *needDrawKDJModels;
+@property (nonatomic, strong) MTCurveKDJ *showKDJModel;
+
 - (instancetype)initWithFrame:(CGRect)frame;
 @end

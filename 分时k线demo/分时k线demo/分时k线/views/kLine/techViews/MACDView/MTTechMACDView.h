@@ -11,5 +11,6 @@
 @class MTCurveMACD;
 @interface MTTechMACDView : MTTechBaseView
 @property (nonatomic, copy) NSArray<MTCurveMACD *> *needDrawMACDModels;
+@property (nonatomic, strong) MTCurveMACD *showMACDModel;
 - (instancetype)initWithFrame:(CGRect)frame;
 @end

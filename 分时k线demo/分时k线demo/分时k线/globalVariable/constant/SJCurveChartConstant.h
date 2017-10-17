@@ -76,6 +76,10 @@ typedef NS_ENUM(NSInteger, SJCurveShowType) {
  *  K线的缩放因子
  */
 #define MTCurveChartKLineScaleFactor 0.03
+/**
+ *  十字光标线的宽度
+ */
+#define MTCurveChartTrackingCrossLineWidth 1
 
 //float最大值
 #define MTCurveChartFloatMax CGFLOAT_MAX

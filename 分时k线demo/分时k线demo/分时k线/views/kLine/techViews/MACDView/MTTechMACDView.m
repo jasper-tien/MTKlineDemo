@@ -13,8 +13,10 @@
 #import "MTCurveChartGlobalVariable.h"
 #import "MTMALine.h"
 #import "MTMACDLine.h"
+#import "MTTechsShowView.h"
 
 @interface MTTechMACDView ()
+@property (nonatomic, strong) MTTechsShowView *MACDShowView;
 @property (nonatomic, strong) NSMutableArray *DIFPositionModels;
 @property (nonatomic, strong) NSMutableArray *DEAPositionModels;
 @property (nonatomic, strong) NSMutableArray *MACDPositionModels;
@@ -75,14 +77,21 @@
 
 - (void)drawTopdeTailsView {
     NSString *titleStr = [NSString stringWithFormat:@"MACD(12, 26, 9)"];
-    CGPoint drawTitlePoint = CGPointMake(5, 0);
-    [titleStr drawAtPoint:drawTitlePoint withAttributes:@{NSFontAttributeName : [UIFont systemFontOfSize:13],NSForegroundColorAttributeName : [UIColor assistTextColor]}];
+    [self.MACDShowView redrawWithString:titleStr];
 }
 
 #pragma mark -
 - (void)drawTechView {
     [self convertToVolumePositionModelWithKLineModels];
     [self setNeedsDisplay];
+}
+
+- (void)redrawShowViewWithIndex:(NSInteger)index {
+    if (index < self.needDrawMACDModels.count && index > 0) {
+        self.showMACDModel = self.needDrawMACDModels[index];
+        NSString *titleStr = [NSString stringWithFormat:@"DIF:%.2f DEA:%.2f MACD:%.2f", self.showMACDModel.DIF.floatValue, self.showMACDModel.DEA.floatValue, self.showMACDModel.MACD.floatValue];
+        [self.MACDShowView redrawWithString:titleStr];
+    }
 }
 
 #pragma mark -
@@ -160,6 +169,16 @@
         }
     }];
     
+}
+
+#pragma mark -
+- (MTTechsShowView *)MACDShowView {
+    if (!_MACDShowView) {
+        _MACDShowView = [[MTTechsShowView alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, 30)];
+        [self addSubview:_MACDShowView];
+    }
+    
+    return _MACDShowView;
 }
 
 @end

@@ -12,8 +12,10 @@
 #import "MTCurveChartGlobalVariable.h"
 #import "MTMALine.h"
 #import "UIColor+CurveChart.h"
+#import "MTTechsShowView.h"
 
 @interface MTTechKDJView ()
+@property (nonatomic, strong) MTTechsShowView *KDJShowView;
 @property (nonatomic, strong) NSMutableArray *KPositionModels;
 @property (nonatomic, strong) NSMutableArray *DPositionModels;
 @property (nonatomic, strong) NSMutableArray *JPositionModels;
@@ -74,8 +76,7 @@
 
 - (void)drawTopdeTailsView {
     NSString *titleStr = [NSString stringWithFormat:@"KDJ(9, 3, 3)"];
-    CGPoint drawTitlePoint = CGPointMake(5, 0);
-    [titleStr drawAtPoint:drawTitlePoint withAttributes:@{NSFontAttributeName : [UIFont systemFontOfSize:13],NSForegroundColorAttributeName : [UIColor assistTextColor]}];
+    [self.KDJShowView redrawWithString:titleStr];
 }
 
 #pragma mark -
@@ -84,6 +85,14 @@
     //重新绘制成交量的视图
     [self convertToVolumePositionModelWithKLineModels];
     [self setNeedsDisplay];
+}
+
+- (void)redrawShowViewWithIndex:(NSInteger)index {
+    if (index < self.needDrawKDJModels.count && index > 0) {
+        self.showKDJModel = self.needDrawKDJModels[index];
+        NSString *titleStr = [NSString stringWithFormat:@"K:%.2f D:%.2f J:%.2f", self.showKDJModel.KDJ_K.floatValue, self.showKDJModel.KDJ_D.floatValue, self.showKDJModel.KDJ_J.floatValue];
+        [self.KDJShowView redrawWithString:titleStr];
+    }
 }
 
 #pragma mark -
@@ -181,6 +190,16 @@
             [self.JPositionModels addObject: [NSValue valueWithCGPoint: KDJ_JPoint]];
         }
     }];
+}
+
+#pragma mark -
+- (MTTechsShowView *)KDJShowView {
+    if (!_KDJShowView) {
+        _KDJShowView = [[MTTechsShowView alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, 30)];
+        [self addSubview:_KDJShowView];
+    }
+    
+    return _KDJShowView;
 }
 
 @end

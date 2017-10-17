@@ -14,8 +14,10 @@
 #import "MTMALine.h"
 #import "UIColor+CurveChart.h"
 #import "MTBOLLUSALine.h"
+#import "MTTechsShowView.h"
 
 @interface MTTechBOLLView ()
+@property (nonatomic, strong) MTTechsShowView *BOLLShowView;
 //中轨线
 @property (nonatomic, strong) NSMutableArray *MBPositionModels;
 //上轨线
@@ -89,14 +91,21 @@
 
 - (void)drawTopdeTailsView {
     NSString *titleStr = [NSString stringWithFormat:@"BOLL(20)"];
-    CGPoint drawTitlePoint = CGPointMake(5, 0);
-    [titleStr drawAtPoint:drawTitlePoint withAttributes:@{NSFontAttributeName : [UIFont systemFontOfSize:13],NSForegroundColorAttributeName : [UIColor assistTextColor]}];
+    [self.BOLLShowView redrawWithString:titleStr];
 }
 
 #pragma mark -
 - (void)drawTechView {
     [self convertToVolumePositionModelWithKLineModels];
     [self setNeedsDisplay];
+}
+
+- (void)redrawShowViewWithIndex:(NSInteger)index {
+    if (index < self.needDrawBOLLModels.count && index > 0) {
+        self.showBOLLModel = self.needDrawBOLLModels[index];
+        NSString *titleStr = [NSString stringWithFormat:@"UP:%.2f MB:%.2f DN:%.2f", self.showBOLLModel.BOLL_UP.floatValue, self.showBOLLModel.BOLL_MB.floatValue, self.showBOLLModel.BOLL_DN.floatValue];
+        [self.BOLLShowView redrawWithString:titleStr];
+    }
 }
 
 #pragma mark -
@@ -190,6 +199,16 @@
         positionModel.lowPoint = lowPoint;
         [self.USAPositionModels addObject:positionModel];
     }];
+}
+
+#pragma mark -
+- (MTTechsShowView *)BOLLShowView {
+    if (!_BOLLShowView) {
+        _BOLLShowView = [[MTTechsShowView alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, 30)];
+        [self addSubview:_BOLLShowView];
+    }
+    
+    return _BOLLShowView;
 }
 
 @end

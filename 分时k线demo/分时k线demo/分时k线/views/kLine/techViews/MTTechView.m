@@ -113,4 +113,8 @@
     self.techType = techType;
 }
 
+- (void)redrawTechShowViewWithIndex:(NSInteger)index {
+    [self.showTechView redrawShowViewWithIndex:index];
+}
+
 @end

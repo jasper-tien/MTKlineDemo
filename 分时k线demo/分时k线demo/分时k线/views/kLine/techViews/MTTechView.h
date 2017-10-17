@@ -14,4 +14,6 @@
 @property (nonatomic, copy) NSArray *needDrawKlineModels;
 - (instancetype)initWithFrame:(CGRect)frame;
 - (void)drawTechViewWithType:(SJCurveTechType)techType;
+- (void)redrawTechShowViewWithIndex:(NSInteger)index;
+
 @end
