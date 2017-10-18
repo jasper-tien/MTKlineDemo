@@ -153,8 +153,8 @@
         NSInteger oldShowCount = self.showCount;
         self.showCount = self.scrollView.frame.size.width / ([MTCurveChartGlobalVariable kLineGap] + [MTCurveChartGlobalVariable kLineWidth]);
         NSInteger changeShowCount = oldShowCount - self.showCount;
-        self.showStartIndex = self.showStartIndex + changeShowCount;
-        NSLog(@"count:%ld index:%ld", self.showCount, self.showStartIndex);
+        self.showStartIndex = self.showStartIndex + changeShowCount / 2;
+        
         [self updateScrollViewContenSize];
 
         //

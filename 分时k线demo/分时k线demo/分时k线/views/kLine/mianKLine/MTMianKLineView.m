@@ -34,6 +34,9 @@
  */
 @property (nonatomic, strong) NSMutableArray *MA20Positions;
 
+@property (nonatomic, assign) CGFloat currentPriceMax;
+@property (nonatomic, assign) CGFloat currentPriceMin;
+
 @end
 
 @implementation MTMianKLineView
@@ -45,6 +48,8 @@
         self.MA10Positions = @[].mutableCopy;
         self.MA20Positions = @[].mutableCopy;
         self.backgroundColor = [UIColor backgroundColor];
+        self.currentPriceMax = 0;
+        self.currentPriceMin = 0;
     }
     
     return self;
@@ -64,6 +69,8 @@
     [self drawCandle:context];//绘制蜡烛
     
     [self drawMA:context];//绘制均线
+    
+    [self drawPositionYRuler:context];//绘制y轴尺标
 }
 
 - (void)drawGrid:(CGContextRef)context {
@@ -88,6 +95,7 @@
     CGContextSetLineWidth(context, [MTCurveChartGlobalVariable CurveChactGridLineWidth]);
     const CGPoint gridKlinePoints4[] = {CGPointMake(self.bounds.size.width * 2 / 3, 0), CGPointMake(self.bounds.size.width * 2 / 3, self.bounds.size.height)};
     CGContextStrokeLineSegments(context, gridKlinePoints4, 2);
+    
 }
 
 - (void)drawTopdeTailsView {
@@ -118,6 +126,26 @@
     MALine.MAType = MT_MA20Type;
     MALine.MAPositions = self.MA20Positions;
     [MALine draw];
+}
+
+- (void)drawPositionYRuler:(CGContextRef)context {
+    // 同样先全部写死，看看效果，后面根据需求更改
+    CGFloat unitValueY = (self.currentPriceMax - self.currentPriceMin) / 3;
+    CGFloat rulerValueY0 = self.currentPriceMin;
+    CGFloat rulerValueY1 = self.currentPriceMin + unitValueY;
+    CGFloat rulerValueY2 = self.currentPriceMin + unitValueY * 2;
+    CGFloat rulerValueY3 = self.currentPriceMax;
+    NSArray *rulerValueYs = [NSArray arrayWithObjects:[NSString stringWithFormat:@"%.2f", rulerValueY0] ,[NSString stringWithFormat:@"%.2f", rulerValueY1], [NSString stringWithFormat:@"%.2f",rulerValueY2], [NSString stringWithFormat:@"%.2f", rulerValueY3], nil];
+    CGFloat unitPositionYRuler = self.frame.size.height / 3;
+    for (NSInteger i = 0; i < rulerValueYs.count ; i++) {
+        NSString *positionYStr = rulerValueYs[rulerValueYs.count - i - 1];
+        CGPoint drawTitlePoint = CGPointMake(0, unitPositionYRuler * i);
+        if (i == 3) {
+            drawTitlePoint = CGPointMake(0, unitPositionYRuler * i - 15);
+        }
+        
+        [positionYStr drawAtPoint:drawTitlePoint withAttributes:@{NSFontAttributeName : [UIFont systemFontOfSize:10],NSForegroundColorAttributeName : [UIColor mainTextColor]}];
+    }
 }
 
 #pragma mark -
@@ -214,6 +242,9 @@
             }
         }
     }];
+    
+    self.currentPriceMin = assertMin;
+    self.currentPriceMax = assertMax;
     
     assertMin *= 0.9991;
     assertMax *= 1.0001;

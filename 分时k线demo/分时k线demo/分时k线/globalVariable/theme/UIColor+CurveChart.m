@@ -50,7 +50,7 @@
 #pragma mark 辅助文字颜色
 +(UIColor *)assistTextColor
 {
-    return [UIColor colorWithRGBHex:0x565a64];
+    return [UIColor colorWithRGBHex:0x868a94];
 }
 
 #pragma mark 长按时线的颜色

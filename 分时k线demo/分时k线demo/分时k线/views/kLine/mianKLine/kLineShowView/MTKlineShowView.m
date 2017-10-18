@@ -20,8 +20,8 @@
 }
 
 - (void)drawRect:(CGRect)rect {
-    CGPoint drawTitlePoint = CGPointMake(5, 0);
-    [self.titleStr drawAtPoint:drawTitlePoint withAttributes:@{NSFontAttributeName : [UIFont systemFontOfSize:13],NSForegroundColorAttributeName : [UIColor assistTextColor]}];
+    CGPoint drawTitlePoint = CGPointMake(40, 0);
+    [self.titleStr drawAtPoint:drawTitlePoint withAttributes:@{NSFontAttributeName : [UIFont systemFontOfSize:12],NSForegroundColorAttributeName : [UIColor assistTextColor]}];
 }
 
 - (void)redrawWithString:(NSString *)string {
