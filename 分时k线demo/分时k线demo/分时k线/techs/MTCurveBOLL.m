@@ -8,18 +8,7 @@
 
 #import "MTCurveBOLL.h"
 #import "SJKlineModel.h"
-//计算过程：
-//
-//（1）计算MA
-//MA=N日内的收盘价之和÷N
-//（2）计算标准差MD
-//MD=平方根（N-1）日的（C－MA）的两次方之和除以N
-//（3）计算MB、UP、DN线
-//MB=（N－1）日的MA
-//UP=MB+k×MD
-//DN=MB－k×MD
-//（K为参数，可根据股票的特性来做相应的调整，一般默认为2）
-//（N一般选择20天）
+
 @implementation MTCurveBOLL
 - (instancetype)init {
     if (self = [super init]) {
@@ -33,17 +22,6 @@
     //在此方法中计算指标
     SJKlineModel *model = baseDatas[index];
     if (index >= 19) {
-//        计算过程：
-//        （1）计算MA
-//        MA=N日内的收盘价之和÷N
-//        （2）计算标准差MD
-//        MD=平方根（N-1）日的（C－MA）的两次方之和除以N
-//        （3）计算MB、UP、DN线
-//        MB=（N－1）日的MA
-//        UP=MB+k×MD
-//        DN=MB－k×MD
-//        （K为参数，可根据股票的特性来做相应的调整，一般默认为2）
-//        （N一般选择20天）
         if (index > 19) {
             self.MA20 = @((model.sumOfLastClose.floatValue - baseDatas[index - 19].sumOfLastClose.floatValue) / 19);
             

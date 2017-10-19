@@ -10,7 +10,7 @@
 
 @class SJKlineModel;
 @interface MTCurveProcess : NSObject
-
+//计算指标
 - (NSDictionary *)curvTechDatasWithArray:(NSArray<SJKlineModel *> *)baseDatas;
 
 @end

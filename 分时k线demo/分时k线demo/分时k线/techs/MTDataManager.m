@@ -154,7 +154,7 @@
     if (newTechsDataModelDic.allKeys <= 0) {
         return NO;
     }
-    
+    //
     return YES;
 }
 

@@ -10,10 +10,9 @@
 #import "SJCurveChartConstant.h"
 @class SJKlineModel;
 @interface MTCurveObject : NSObject
-/**
- *  前一个指标
- */
+//前一个指标
 @property (nonatomic, strong) MTCurveObject *previousCurveObject;
+//指标类型
 @property (nonatomic, assign) SJCurveTechType curveTechType;
 
 #pragma mark -
