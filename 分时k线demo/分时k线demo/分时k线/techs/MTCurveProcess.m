@@ -63,16 +63,16 @@
         return nil;
     }
     
-    NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
-    
     //初始化存放结果的容器
-    NSInteger count = baseDatas.count;
+    NSInteger techCount = baseDatas.count;
+    NSMutableDictionary *techsDataModelDic = [[NSMutableDictionary alloc] init];
     for (NSDictionary *registerClsDic in self.curveSubclassArray) {
-        NSMutableArray *array = [NSMutableArray arrayWithCapacity:count];
-        NSString *key = registerClsDic[RegisterClassKey];
-        [dic setValue:array forKey:key];
+        NSMutableArray *array = [NSMutableArray arrayWithCapacity:techCount];
+        NSString *techKey = registerClsDic[RegisterClassKey];
+        [techsDataModelDic setValue:array forKey:techKey];
     }
-    self.techDatasDic = dic;
+    [techsDataModelDic setObject:baseDatas forKey:@"mainKLineDatas"];
+    self.techDatasDic = techsDataModelDic;
     
     //计算指标
     __weak MTCurveProcess *weakSelf = self;
@@ -128,7 +128,7 @@
         }
     }];
     
-    return self.techDatasDic;
+    return techsDataModelDic;
 }
 
 @end

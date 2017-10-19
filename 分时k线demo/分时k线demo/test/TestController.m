@@ -28,7 +28,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    self.dataManager = [MTDataManager objectWithArray:[self getTestArray]];
+    self.dataManager = [[MTDataManager alloc] initWithArray:[self getTestArray]];
     MTKlineView *kLineView = [[MTKlineView alloc] initWithFrame:CGRectMake(0, 100, 414, 350)];
     kLineView.manager = self.dataManager;
     [self.view addSubview:kLineView];
