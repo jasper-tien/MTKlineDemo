@@ -8,17 +8,17 @@
 
 #import <UIKit/UIKit.h>
 #import "MTDataManager.h"
+@class SJKlineModel;
 @protocol MTMianKLineViewDelegate<NSObject>
 /**
  *  长按
  */
-- (void)kLineMainViewLongPress:(NSInteger)index;
+- (void)kLineMainViewLongPress:(NSInteger)index exactPosition:(CGPoint)longPressPosition longPressPrice:(CGFloat)price;
 
 @end
 
-@class SJKlineModel;
 @interface MTMianKLineView : UIView
-//
+
 @property (nonatomic, weak) id<MTMianKLineViewDelegate> delegate;
 //
 @property (nonatomic, copy) NSArray<SJKlineModel *> *needDrawKlneModels;
@@ -29,6 +29,6 @@
 
 - (void)drawMainView;
 
-- (CGFloat)getExactXPositionWithOriginXPosition:(CGFloat)originXPosition;
+- (void)getExactPositionWithOriginPosition:(CGPoint)longPressPosition;
 
 @end

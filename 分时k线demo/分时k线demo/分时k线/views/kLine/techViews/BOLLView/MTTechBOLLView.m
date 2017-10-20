@@ -138,7 +138,7 @@
         }
     }];
     
-     CGFloat unitValue = (maxValue - minValue) / (maxY - minY);
+    self.unitValue = (maxValue - minValue) / (maxY - minY);
     [self.UPPositionModels removeAllObjects];
     [self.DNPositionModels removeAllObjects];
     [self.MBPositionModels removeAllObjects];
@@ -151,19 +151,19 @@
         CGFloat BOLL_MB_Y = maxY;
         CGFloat BOLL_DN_Y = maxY;
         
-        if(unitValue > 0.0000001)
+        if(self.unitValue > 0.0000001)
         {
             if(bollModel.BOLL_UP)
             {
-                BOLL_UP_Y = maxY - (bollModel.BOLL_UP.floatValue - minValue)/unitValue;
+                BOLL_UP_Y = maxY - (bollModel.BOLL_UP.floatValue - minValue)/self.unitValue;
             }
             if(bollModel.BOLL_MB)
             {
-                BOLL_MB_Y = maxY - (bollModel.BOLL_MB.floatValue - minValue)/unitValue;
+                BOLL_MB_Y = maxY - (bollModel.BOLL_MB.floatValue - minValue)/self.unitValue;
             }
             if(bollModel.BOLL_DN)
             {
-                BOLL_DN_Y = maxY - (bollModel.BOLL_DN.floatValue - minValue)/unitValue;
+                BOLL_DN_Y = maxY - (bollModel.BOLL_DN.floatValue - minValue)/self.unitValue;
             }
             
             NSAssert(!isnan(BOLL_UP_Y) && !isnan(BOLL_MB_Y) && !isnan(BOLL_DN_Y), @"出现NAN值");
@@ -188,10 +188,10 @@
     [self.needDrawBOLLKlineModels enumerateObjectsUsingBlock:^(SJKlineModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         SJKlineModel *kLineModel = (SJKlineModel *)obj;
         CGFloat ponitX = idx * ([MTCurveChartGlobalVariable kLineWidth] + [MTCurveChartGlobalVariable kLineGap]);
-        CGPoint openPoint = CGPointMake(ponitX, ABS(maxY - (kLineModel.open.floatValue - minValue) / unitValue));
-        CGPoint closePoint = CGPointMake(ponitX, ABS(maxY - (kLineModel.close.floatValue - minValue) / unitValue));
-        CGPoint highPoint = CGPointMake(ponitX, ABS(maxY - (kLineModel.high.floatValue - minValue) / unitValue));
-        CGPoint lowPoint = CGPointMake(ponitX, ABS(maxY - (kLineModel.low.floatValue - minValue) / unitValue));
+        CGPoint openPoint = CGPointMake(ponitX, ABS(maxY - (kLineModel.open.floatValue - minValue) / self.unitValue));
+        CGPoint closePoint = CGPointMake(ponitX, ABS(maxY - (kLineModel.close.floatValue - minValue) / self.unitValue));
+        CGPoint highPoint = CGPointMake(ponitX, ABS(maxY - (kLineModel.high.floatValue - minValue) / self.unitValue));
+        CGPoint lowPoint = CGPointMake(ponitX, ABS(maxY - (kLineModel.low.floatValue - minValue) / self.unitValue));
         MTKLinePositionModel *positionModel = [[MTKLinePositionModel alloc] init];
         positionModel.openPoint = openPoint;
         positionModel.closePoint = closePoint;

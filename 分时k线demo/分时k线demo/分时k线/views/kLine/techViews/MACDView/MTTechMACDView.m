@@ -118,7 +118,7 @@
         }
     }];
     
-    CGFloat unitValue = maxValue_2 / maxY_2;
+    self.unitValue = maxValue_2 / maxY_2;
     [self.MACDPositionModels removeAllObjects];
     [self.DIFPositionModels removeAllObjects];
     [self.DEAPositionModels removeAllObjects];
@@ -132,23 +132,23 @@
         
         if (MACDModel.DIF) {
             if (MACDModel.DIF.floatValue > 0) {
-                MIF_Y = maxY_2 - MACDModel.DIF.floatValue/unitValue;
+                MIF_Y = maxY_2 - MACDModel.DIF.floatValue/self.unitValue;
             } else {
-                MIF_Y = 2 * maxY_2 - ABS(MACDModel.DIF.floatValue)/unitValue;
+                MIF_Y = 2 * maxY_2 - ABS(MACDModel.DIF.floatValue)/self.unitValue;
             }
         }
         if (MACDModel.DEA) {
             if (MACDModel.DEA.floatValue > 0) {
-                MEA_Y = maxY_2 - MACDModel.DEA.floatValue/unitValue;
+                MEA_Y = maxY_2 - MACDModel.DEA.floatValue/self.unitValue;
             } else {
-                MEA_Y = 2 * maxY_2 - ABS(MACDModel.DEA.floatValue)/unitValue;
+                MEA_Y = 2 * maxY_2 - ABS(MACDModel.DEA.floatValue)/self.unitValue;
             }
         }
         if (MACDModel.MACD) {
             if (MACDModel.MACD.floatValue > 0) {
-                MACD_Y = maxY_2 - MACDModel.MACD.floatValue/unitValue;
+                MACD_Y = maxY_2 - MACDModel.MACD.floatValue/self.unitValue;
             } else {
-                MACD_Y = 2 * maxY_2 - ABS(MACDModel.MACD.floatValue)/unitValue;
+                MACD_Y = 2 * maxY_2 - ABS(MACDModel.MACD.floatValue)/self.unitValue;
             }
         }
         

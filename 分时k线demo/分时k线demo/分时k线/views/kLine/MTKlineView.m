@@ -12,8 +12,9 @@
 #import "UIColor+CurveChart.h"
 #import "MTCurveChartGlobalVariable.h"
 #import "MTTrackingCrossView.h"
+#import "SJKlineModel.h"
 
-@interface MTKlineView ()<MTMianKLineViewDelegate, UIScrollViewDelegate>
+@interface MTKlineView ()<MTMianKLineViewDelegate, MTTechViewDelegate , UIScrollViewDelegate>
 @property (nonatomic, strong) UIScrollView *scrollView;
 //主k线
 @property (nonatomic, strong) MTMianKLineView *mainKlineView;
@@ -131,8 +132,18 @@
 }
 
 #pragma mark - KLineMainView delegate
-- (void)kLineMainViewLongPress:(NSInteger)index {
+- (void)kLineMainViewLongPress:(NSInteger)index exactPosition:(CGPoint)longPressPosition longPressPrice:(CGFloat)price {
     [self.techView redrawTechShowViewWithIndex:index];
+    self.trackingCrossView.price = price;
+    self.trackingCrossView.crossPoint = longPressPosition;
+    [self.trackingCrossView updateTrackingCrossView];
+}
+
+#pragma mark - MTTechViewDelegate
+- (void)techViewLongPressExactPosition:(CGPoint)longPressPosition UnitY:(CGFloat)unitY {
+    self.trackingCrossView.price = longPressPosition.y * unitY;
+    self.trackingCrossView.crossPoint = CGPointMake(longPressPosition.x, longPressPosition.y + self.techView.frame.origin.y);
+    [self.trackingCrossView updateTrackingCrossView];
 }
 
 #pragma mark - event response
@@ -173,22 +184,20 @@
 }
 
 #pragma mark 长按手势执行方法
-- (void)longPressMethod:(UILongPressGestureRecognizer *)longPress {
-    static CGFloat oldPositionX = 0;
+- (void)longPressMethod:(UILongPressGestureRecognizer *)longPress{
     if(UIGestureRecognizerStateChanged == longPress.state || UIGestureRecognizerStateBegan == longPress.state) {
-        CGPoint location = [longPress locationInView:self];
-        if(ABS(oldPositionX - location.x) < ([MTCurveChartGlobalVariable kLineWidth] + [MTCurveChartGlobalVariable kLineGap])/2) {
-            
-        }
-        
+        CGPoint location = [longPress locationInView:self.mainKlineView];
         //暂停滑动
         self.scrollView.scrollEnabled = NO;
-        oldPositionX = location.x;
         self.trackingCrossView.hidden = NO;
         
-        CGFloat xPositionInMainKLineView = [self.mainKlineView getExactXPositionWithOriginXPosition:location.x];
-        self.trackingCrossView.crossPoint = CGPointMake(xPositionInMainKLineView, location.y);
-        [self.trackingCrossView updateTrackingCrossView];
+        //主k线或者指标view的精确位置计算
+        if (location.y > self.techView.frame.origin.y) {
+            location = [longPress locationInView:self.techView];
+            [self.techView longPressOrMovingAtPoint:location];
+        } else {
+            [self.mainKlineView getExactPositionWithOriginPosition:location];
+        }
     }
     
     if(longPress.state == UIGestureRecognizerStateEnded) {
@@ -242,6 +251,7 @@
         CGFloat techViewWidth = self.scrollView.frame.size.width;
         CGFloat techViewHeight = self.frame.size.height / 2 - 20 - 50;
         _techView = [[MTTechView alloc] initWithFrame:CGRectMake(0, self.frame.size.height / 2 + 20 + 50, techViewWidth, techViewHeight)];
+        _techView.delegate = self;
         [self.scrollView addSubview:_techView];
     }
     

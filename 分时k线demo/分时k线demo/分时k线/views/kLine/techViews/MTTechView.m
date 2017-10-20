@@ -14,7 +14,7 @@
 #import "MTTechBOLLView.h"
 #import "MTTechMACDView.h"
 
-@interface MTTechView ()
+@interface MTTechView () <MTTechBaseViewDelegate>
 @property (nonatomic, assign) SJCurveTechType techType;
 @property (nonatomic, strong) MTTechBaseView *showTechView;
 @end
@@ -106,15 +106,29 @@
             [self addSubview:self.showTechView];
         }
             break;
-        default:
+        default: {
+            
+        }
             break;
     }
-    
+    self.showTechView.delegate = self;
     self.techType = techType;
 }
 
 - (void)redrawTechShowViewWithIndex:(NSInteger)index {
     [self.showTechView redrawShowViewWithIndex:index];
+}
+
+//长按，或者移动时调用
+- (void)longPressOrMovingAtPoint:(CGPoint)longPressPosition{
+    [self.showTechView longPressOrMovingAtPoint:longPressPosition];
+}
+
+#pragma mark - MTTechViewDelegate
+- (void)techBaseViewLongPressExactPosition:(CGPoint)longPressPosition UnitY:(CGFloat)unitY {
+    if (self.description && [self.delegate respondsToSelector:@selector(techViewLongPressExactPosition:UnitY:)]) {
+        [self.delegate techViewLongPressExactPosition:longPressPosition UnitY:unitY];
+    }
 }
 
 @end

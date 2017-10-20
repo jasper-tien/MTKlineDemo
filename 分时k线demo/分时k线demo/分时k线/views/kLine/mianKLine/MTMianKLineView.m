@@ -36,6 +36,7 @@
 
 @property (nonatomic, assign) CGFloat currentPriceMax;
 @property (nonatomic, assign) CGFloat currentPriceMin;
+@property (nonatomic, assign) CGFloat unitY;
 
 @end
 
@@ -50,6 +51,7 @@
         self.backgroundColor = [UIColor backgroundColor];
         self.currentPriceMax = 0;
         self.currentPriceMin = 0;
+        self.unitY = 0.0f;
     }
     
     return self;
@@ -160,8 +162,8 @@
 /**
  *  长按的时候根据原始的x位置获得精确的x的位置
  */
-- (CGFloat)getExactXPositionWithOriginXPosition:(CGFloat)originXPosition {
-    CGFloat xPositoinInMainView = originXPosition;
+- (void)getExactPositionWithOriginPosition:(CGPoint)longPressPosition{
+    CGFloat xPositoinInMainView = longPressPosition.x;
     CGFloat exactXPositionInMainView = 0.0;
     
     //原始的x位置获取对应在数组中的index
@@ -185,14 +187,14 @@
         self.showKlineModel = self.needDrawKlneModels[index];
         NSString *titleStr = [NSString stringWithFormat:@"MA5 %.2f  MA10 %.2f  MA20 %.2f", self.showKlineModel.MA_5.floatValue, self.showKlineModel.MA_10.floatValue, self.showKlineModel.MA_20.floatValue];
         [self.kLineShowView redrawWithString:titleStr];
+        
+        
+        //调用代理，通知指标view更新详情信息
+        if (self.delegate && [self.delegate respondsToSelector:@selector(kLineMainViewLongPress:exactPosition:longPressPrice:)]) {
+            CGFloat longPressPrece = self.currentPriceMax - (longPressPosition.y * self.unitY - self.currentPriceMin);
+            [self.delegate kLineMainViewLongPress:index exactPosition:CGPointMake(exactXPositionInMainView, longPressPosition.y) longPressPrice:longPressPrece];
+        }
     }
-    
-    //调用代理，通知指标view更新详情信息
-    if (self.delegate && [self.delegate respondsToSelector:@selector(kLineMainViewLongPress:)]) {
-        [self.delegate kLineMainViewLongPress:index];
-    }
-    
-    return indexXPosition;
 }
 
 #pragma mark -
@@ -251,7 +253,7 @@
     
     CGFloat yMin = MTCurveChartKLineMainViewMinY;
     CGFloat yMax = self.frame.size.height - 15;
-    CGFloat unitY = (assertMax - assertMin) / (yMax - yMin);
+    self.unitY = (assertMax - assertMin) / (yMax - yMin);
     
     [self.needDrawPositionModels removeAllObjects];
     [self.MA5Positions removeAllObjects];
@@ -262,10 +264,10 @@
         SJKlineModel *kLineModel = obj;
         
         CGFloat ponitX = idx * ([MTCurveChartGlobalVariable kLineWidth] + [MTCurveChartGlobalVariable kLineGap]);
-        CGPoint openPoint = CGPointMake(ponitX, ABS(yMax - (kLineModel.open.floatValue - assertMin) / unitY));
-        CGPoint closePoint = CGPointMake(ponitX, ABS(yMax - (kLineModel.close.floatValue - assertMin) / unitY));
-        CGPoint highPoint = CGPointMake(ponitX, ABS(yMax - (kLineModel.high.floatValue - assertMin) / unitY));
-        CGPoint lowPoint = CGPointMake(ponitX, ABS(yMax - (kLineModel.low.floatValue - assertMin) / unitY));
+        CGPoint openPoint = CGPointMake(ponitX, ABS(yMax - (kLineModel.open.floatValue - assertMin) / self.unitY));
+        CGPoint closePoint = CGPointMake(ponitX, ABS(yMax - (kLineModel.close.floatValue - assertMin) / self.unitY));
+        CGPoint highPoint = CGPointMake(ponitX, ABS(yMax - (kLineModel.high.floatValue - assertMin) / self.unitY));
+        CGPoint lowPoint = CGPointMake(ponitX, ABS(yMax - (kLineModel.low.floatValue - assertMin) / self.unitY));
         MTKLinePositionModel *positionModel = [[MTKLinePositionModel alloc] init];
         positionModel.openPoint = openPoint;
         positionModel.closePoint = closePoint;
@@ -279,14 +281,14 @@
         CGFloat ma20Y = yMax;
         if(kLineModel.MA_5)
         {
-            ma5Y = yMax - (kLineModel.MA_5.floatValue - assertMin) / unitY;
+            ma5Y = yMax - (kLineModel.MA_5.floatValue - assertMin) / self.unitY;
         }
         if(kLineModel.MA_20)
         {
-            ma20Y = yMax - (kLineModel.MA_20.floatValue - assertMin) / unitY;
+            ma20Y = yMax - (kLineModel.MA_20.floatValue - assertMin) / self.unitY;
         }
         if (kLineModel.MA_10) {
-            ma10Y = yMax - (kLineModel.MA_10.floatValue - assertMin) / unitY;
+            ma10Y = yMax - (kLineModel.MA_10.floatValue - assertMin) / self.unitY;
         }
         CGPoint ma5Point = CGPointMake(ponitX, ma5Y);
         CGPoint ma10Point = CGPointMake(ponitX, ma10Y);

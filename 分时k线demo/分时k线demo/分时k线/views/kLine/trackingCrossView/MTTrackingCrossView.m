@@ -21,6 +21,8 @@
         self.crossPoint = crossPoint;
         self.dateRect = dateRect;
         self.backgroundColor = [UIColor clearColor];
+        self.price = 0.0f;
+        self.dateStr = @"1970/01/01";
     }
     
     return self;
@@ -66,7 +68,6 @@
 
 - (void)drawSelectedPart:(CGContextRef)context{
     //绘制选中日期
-    self.dateStr = @"2017/10/11";
 //    CGContextSetStrokeColorWithColor(context, [UIColor mainTextColor].CGColor);
     NSDictionary *attribute = @{NSFontAttributeName:[UIFont systemFontOfSize:12],NSForegroundColorAttributeName:[UIColor mainTextColor]};
     CGRect textRect = [self rectOfNSString:self.dateStr attribute:attribute];
@@ -85,7 +86,7 @@
     
     //绘制选中价格
     if (self.crossPoint.y < self.dateRect.origin.y || self.crossPoint.y > (self.dateRect.origin.y + self.dateRect.size.height)) {
-        NSString *priceText = [NSString stringWithFormat:@"%.2f",100.99];
+        NSString *priceText = [NSString stringWithFormat:@"%.2f",self.price];
         CGRect priceRect = [self rectOfNSString:priceText attribute:attribute];
         CGFloat pricePointY = self.crossPoint.y - priceRect.size.height / 2;
         CGFloat pricePointX = 0;

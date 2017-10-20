@@ -12,6 +12,7 @@
 @property (nonatomic, assign) CGPoint crossPoint;
 @property (nonatomic, assign) CGRect dateRect;
 @property (nonatomic, copy) NSString *dateStr;
+@property (nonatomic, assign) CGFloat price;
 
 - (instancetype)initWithFrame:(CGRect)frame crossPoint:(CGPoint)crossPoint dateRect:(CGRect)dateRect;
 

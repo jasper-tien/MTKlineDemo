@@ -180,7 +180,7 @@
         }
     }];
     
-    CGFloat unitValue = (maxVolume - minVolume) / (maxY - minY);
+    self.unitValue = (maxVolume - minVolume) / (maxY - minY);
     [self.volumePositions removeAllObjects];
     [self.volumeMA5Positions removeAllObjects];
     [self.volumeMA10Positions removeAllObjects];
@@ -188,7 +188,7 @@
     
     [self.needDrawVolumeModels enumerateObjectsUsingBlock:^(SJKlineModel *  _Nonnull model, NSUInteger idx, BOOL * _Nonnull stop) {
         CGFloat xPosition = idx * ([MTCurveChartGlobalVariable kLineWidth] + [MTCurveChartGlobalVariable kLineGap]);
-        CGFloat yPosition = ABS(maxY - (model.volume.floatValue - minVolume)/unitValue);
+        CGFloat yPosition = ABS(maxY - (model.volume.floatValue - minVolume)/self.self.unitValue);
         if(MTCurveChartKLineVolumeViewMaxY - yPosition < 20)
         {
             yPosition = MTCurveChartKLineVolumeViewMaxY - 19;
@@ -207,26 +207,26 @@
         CGFloat ma5Y = maxY;
         CGFloat ma10Y = maxY;
         CGFloat ma20Y = maxY;
-        if(unitValue > 0.0000001)
+        if(self.unitValue > 0.0000001)
         {
             if(model.volumeMA_5)
             {
-                ma5Y = maxY - (model.volumeMA_5.floatValue - minVolume)/unitValue;
+                ma5Y = maxY - (model.volumeMA_5.floatValue - minVolume)/self.unitValue;
             }
             
         }
-        if(unitValue > 0.0000001)
+        if(self.unitValue > 0.0000001)
         {
             if(model.volumeMA_10)
             {
-                ma10Y = maxY - (model.volumeMA_10.floatValue - minVolume)/unitValue;
+                ma10Y = maxY - (model.volumeMA_10.floatValue - minVolume)/self.unitValue;
             }
         }
-        if(unitValue > 0.0000001)
+        if(self.unitValue > 0.0000001)
         {
             if(model.volumeMA_20)
             {
-                ma20Y = maxY - (model.volumeMA_20.floatValue - minVolume)/unitValue;
+                ma20Y = maxY - (model.volumeMA_20.floatValue - minVolume)/self.unitValue;
             }
         }
         

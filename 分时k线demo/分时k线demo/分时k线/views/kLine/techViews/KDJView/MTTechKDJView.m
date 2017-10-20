@@ -134,7 +134,7 @@
         }
     }];
     
-    CGFloat unitValue = (maxValue - minValue) / (maxY - minY);
+   self.unitValue = (maxValue - minValue) / (maxY - minY);
     
     [self.KPositionModels removeAllObjects];
     [self.DPositionModels removeAllObjects];
@@ -147,26 +147,26 @@
         CGFloat KDJ_K_Y = maxY;
         CGFloat KDJ_D_Y = maxY;
         CGFloat KDJ_J_Y = maxY;
-        if(unitValue > 0.0000001)
+        if(self.unitValue > 0.0000001)
         {
             if(model.KDJ_K)
             {
-                KDJ_K_Y = maxY - (model.KDJ_K.floatValue - minValue)/unitValue;
+                KDJ_K_Y = maxY - (model.KDJ_K.floatValue - minValue)/self.unitValue;
             }
             
         }
-        if(unitValue > 0.0000001)
+        if(self.unitValue > 0.0000001)
         {
             if(model.KDJ_D)
             {
-                KDJ_D_Y = maxY - (model.KDJ_D.floatValue - minValue)/unitValue;
+                KDJ_D_Y = maxY - (model.KDJ_D.floatValue - minValue)/self.unitValue;
             }
         }
-        if(unitValue > 0.0000001)
+        if(self.unitValue > 0.0000001)
         {
             if(model.KDJ_J)
             {
-                KDJ_J_Y = maxY - (model.KDJ_J.floatValue - minValue)/unitValue;
+                KDJ_J_Y = maxY - (model.KDJ_J.floatValue - minValue)/self.unitValue;
             }
         }
         
