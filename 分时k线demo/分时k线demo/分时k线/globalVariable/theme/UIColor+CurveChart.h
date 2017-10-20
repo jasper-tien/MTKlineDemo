@@ -50,6 +50,10 @@
  */
 + (UIColor *)longPressLineColor;
 /**
+ *  长按出现的方块背景颜色
+ */
++(UIColor *)longPressSelectedRectBgColor;
+/**
  *  网格框的颜色
  */
 + (UIColor *)gridLineColor;

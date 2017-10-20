@@ -59,6 +59,11 @@
     return [UIColor colorWithRGBHex:0xe1e2e6];
 }
 
+#pragma mark 长按出现的方块背景颜色
++(UIColor *)longPressSelectedRectBgColor {
+    return [UIColor colorWithRGBHex:0x808080];
+}
+
 #pragma mark 网格框的颜色
 + (UIColor *)gridLineColor {
     return [UIColor colorWithRGBHex:0x767a8c];

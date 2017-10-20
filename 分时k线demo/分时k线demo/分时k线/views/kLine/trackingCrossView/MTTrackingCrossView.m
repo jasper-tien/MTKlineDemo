@@ -36,6 +36,8 @@
     [self drawVerticalLine:context];
     
     [self drawHorizontalLine:context];
+    
+    [self drawSelectedPart:context];
 }
 
 //竖线
@@ -62,8 +64,63 @@
     }
 }
 
+- (void)drawSelectedPart:(CGContextRef)context{
+    //绘制选中日期
+    self.dateStr = @"2017/10/11";
+//    CGContextSetStrokeColorWithColor(context, [UIColor mainTextColor].CGColor);
+    NSDictionary *attribute = @{NSFontAttributeName:[UIFont systemFontOfSize:12],NSForegroundColorAttributeName:[UIColor mainTextColor]};
+    CGRect textRect = [self rectOfNSString:self.dateStr attribute:attribute];
+    CGFloat datePointX = self.crossPoint.x - textRect.size.width / 2;
+    //x轴临界值判断
+    if (datePointX < 0) {
+        datePointX = 0;
+    }
+    if (datePointX > (self.bounds.size.width - textRect.size.width)) {
+        datePointX = self.bounds.size.width - textRect.size.width;
+    }
+    CGRect dateDrawRect= CGRectMake(datePointX, self.dateRect.origin.y, textRect.size.width, textRect.size.height);
+    CGContextSetFillColorWithColor(context, [UIColor longPressSelectedRectBgColor].CGColor);
+    CGContextFillRect(context, dateDrawRect);
+    [self.dateStr drawInRect:dateDrawRect withAttributes:attribute];
+    
+    //绘制选中价格
+    if (self.crossPoint.y < self.dateRect.origin.y || self.crossPoint.y > (self.dateRect.origin.y + self.dateRect.size.height)) {
+        NSString *priceText = [NSString stringWithFormat:@"%.2f",100.99];
+        CGRect priceRect = [self rectOfNSString:priceText attribute:attribute];
+        CGFloat pricePointY = self.crossPoint.y - priceRect.size.height / 2;
+        CGFloat pricePointX = 0;
+        //y轴临界值判断
+        if (pricePointY < priceRect.size.height / 2) {
+            pricePointY = priceRect.size.height / 2;
+        }
+        if (pricePointY > (self.bounds.size.height - priceRect.size.height)) {
+            pricePointY = self.bounds.size.height - priceRect.size.height;
+        }
+        //x轴临界值判断
+        if (self.crossPoint.x < priceRect.size.width + 10) {
+            pricePointX = self.bounds.size.width - priceRect.size.width;
+        }
+        if (self.crossPoint.x > (self.bounds.size.width - priceRect.size.width - 10)) {
+            pricePointX = 0;
+        }
+        CGRect priceDrawRect= CGRectMake(pricePointX, pricePointY, priceRect.size.width, priceRect.size.height);
+        CGContextSetFillColorWithColor(context, [UIColor longPressSelectedRectBgColor].CGColor);
+        CGContextFillRect(context, priceDrawRect);
+        [priceText drawInRect:priceDrawRect withAttributes:attribute];
+    }
+}
+
 - (void)updateTrackingCrossView {
     [self setNeedsDisplay];
+}
+
+- (CGRect)rectOfNSString:(NSString *)string attribute:(NSDictionary *)attribute {
+    CGRect rect = [string boundingRectWithSize:CGSizeMake(MAXFLOAT, 0)
+                                       options:NSStringDrawingTruncatesLastVisibleLine |NSStringDrawingUsesLineFragmentOrigin |
+                   NSStringDrawingUsesFontLeading
+                                    attributes:attribute
+                                       context:nil];
+    return rect;
 }
 
 @end
