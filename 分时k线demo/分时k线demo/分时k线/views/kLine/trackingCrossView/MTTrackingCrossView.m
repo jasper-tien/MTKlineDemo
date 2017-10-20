@@ -103,6 +103,7 @@
         if (self.crossPoint.x > (self.bounds.size.width - priceRect.size.width - 10)) {
             pricePointX = 0;
         }
+        
         CGRect priceDrawRect= CGRectMake(pricePointX, pricePointY, priceRect.size.width, priceRect.size.height);
         CGContextSetFillColorWithColor(context, [UIColor longPressSelectedRectBgColor].CGColor);
         CGContextFillRect(context, priceDrawRect);
