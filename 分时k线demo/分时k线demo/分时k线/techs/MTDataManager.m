@@ -9,6 +9,8 @@
 #import "MTDataManager.h"
 #import "SJKlineModel.h"
 #import "MTCurveProcess.h"
+#import "SJCurveChartConstant.h"
+
 @interface MTDataManager()
 @property (nonatomic, strong) MTCurveProcess *curveProcess;
 @end

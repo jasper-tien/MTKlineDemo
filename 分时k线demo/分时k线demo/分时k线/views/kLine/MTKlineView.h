@@ -8,10 +8,12 @@
 
 #import <UIKit/UIKit.h>
 #import "MTDataManager.h"
+#import "SJCurveChartConstant.h"
 
 @interface MTKlineView : UIView
 
 @property (nonatomic, strong) MTDataManager *manager;
+@property (nonatomic, assign) SJKlineType kLineType;
 
 - (instancetype)initWithFrame:(CGRect)frame;
 @end

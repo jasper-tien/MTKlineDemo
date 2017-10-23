@@ -21,6 +21,19 @@ typedef NS_ENUM(NSInteger, SJCurveTechType) {
     SJCurveTechType_BOLL,           //BOLL线（布林线）
 };
 
+//k线类型
+typedef NS_ENUM(NSInteger, SJKlineType) {
+    SJKlineType_1min = 0,       //一分钟
+    SJKlineType_5min,           //5分钟
+    SJKlineType_15min,          //15分钟
+    SJKlineType_30min,          //30分钟
+    SJKlineType_60min,          //60分钟
+    SJKlineType_Day,            //日线
+    SJKlineType_Week,           //周线
+    SJKlineType_Month,          //月线
+    SJKlineType_Year            //年线
+};
+
 //曲线绘制的种类
 typedef NS_ENUM(NSInteger, SJCurveShowType) {
     SJCurveShowType_None = 0,
