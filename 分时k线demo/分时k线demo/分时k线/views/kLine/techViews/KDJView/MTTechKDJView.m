@@ -97,8 +97,72 @@
 
 #pragma mark -
 - (void)convertToVolumePositionModelWithKLineModels {
-    CGFloat minY = MTCurveChartKLineAccessoryViewMinY;
-    CGFloat maxY = MTCurveChartKLineAccessoryViewMaxY;
+    if (![self lookupValueMaxAndValueMin]) {
+        return;
+    }
+    
+   self.unitValue = (self.currentValueMax - self.currentValueMin) / (self.currentValueMaxToViewY - self.currentValueMinToViewY);
+    
+    [self.KPositionModels removeAllObjects];
+    [self.DPositionModels removeAllObjects];
+    [self.JPositionModels removeAllObjects];
+    
+    [self.needDrawKDJModels enumerateObjectsUsingBlock:^(MTCurveKDJ * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        CGFloat ponitScreenX = idx * ([MTCurveChartGlobalVariable kLineWidth] + [MTCurveChartGlobalVariable kLineGap]);
+        MTCurveKDJ *model = (MTCurveKDJ *)obj;
+        //MA坐标转换
+        CGFloat KDJ_K_ScreenY = self.currentValueMaxToViewY;
+        CGFloat KDJ_D_ScreenY = self.currentValueMaxToViewY;
+        CGFloat KDJ_J_ScreenY = self.currentValueMaxToViewY;
+        if(self.unitValue > 0.0000001)
+        {
+            if(model.KDJ_K)
+            {
+                KDJ_K_ScreenY = self.currentValueMaxToViewY - (model.KDJ_K.floatValue - self.currentValueMin)/self.unitValue;
+            }
+            
+        }
+        if(self.unitValue > 0.0000001)
+        {
+            if(model.KDJ_D)
+            {
+                KDJ_D_ScreenY = self.currentValueMaxToViewY - (model.KDJ_D.floatValue - self.currentValueMin)/self.unitValue;
+            }
+        }
+        if(self.unitValue > 0.0000001)
+        {
+            if(model.KDJ_J)
+            {
+                KDJ_J_ScreenY = self.currentValueMaxToViewY - (model.KDJ_J.floatValue - self.currentValueMin)/self.unitValue;
+            }
+        }
+        
+        NSAssert(!isnan(KDJ_K_ScreenY) && !isnan(KDJ_D_ScreenY) && !isnan(KDJ_J_ScreenY), @"出现NAN值");
+        
+        CGPoint KDJ_KScreenPoint = CGPointMake(ponitScreenX, KDJ_K_ScreenY);
+        CGPoint KDJ_DScreenPoint = CGPointMake(ponitScreenX, KDJ_D_ScreenY);
+        CGPoint KDJ_JScreenPoint = CGPointMake(ponitScreenX, KDJ_J_ScreenY);
+        
+        
+        if(model.KDJ_K)
+        {
+            [self.KPositionModels addObject: [NSValue valueWithCGPoint: KDJ_KScreenPoint]];
+        }
+        if(model.KDJ_D)
+        {
+            [self.DPositionModels addObject: [NSValue valueWithCGPoint: KDJ_DScreenPoint]];
+        }
+        if(model.KDJ_J)
+        {
+            [self.JPositionModels addObject: [NSValue valueWithCGPoint: KDJ_JScreenPoint]];
+        }
+    }];
+}
+
+- (BOOL)lookupValueMaxAndValueMin {
+    if (self.needDrawKDJModels.count <= 0) {
+        return NO;
+    }
     
     __block CGFloat minValue = CGFLOAT_MAX;
     __block CGFloat maxValue = CGFLOAT_MIN;
@@ -133,63 +197,10 @@
             }
         }
     }];
+    self.currentValueMax = maxValue;
+    self.currentValueMin = minValue;
     
-   self.unitValue = (maxValue - minValue) / (maxY - minY);
-    
-    [self.KPositionModels removeAllObjects];
-    [self.DPositionModels removeAllObjects];
-    [self.JPositionModels removeAllObjects];
-    
-    [self.needDrawKDJModels enumerateObjectsUsingBlock:^(MTCurveKDJ * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        CGFloat xPosition = idx * ([MTCurveChartGlobalVariable kLineWidth] + [MTCurveChartGlobalVariable kLineGap]);
-        MTCurveKDJ *model = (MTCurveKDJ *)obj;
-        //MA坐标转换
-        CGFloat KDJ_K_Y = maxY;
-        CGFloat KDJ_D_Y = maxY;
-        CGFloat KDJ_J_Y = maxY;
-        if(self.unitValue > 0.0000001)
-        {
-            if(model.KDJ_K)
-            {
-                KDJ_K_Y = maxY - (model.KDJ_K.floatValue - minValue)/self.unitValue;
-            }
-            
-        }
-        if(self.unitValue > 0.0000001)
-        {
-            if(model.KDJ_D)
-            {
-                KDJ_D_Y = maxY - (model.KDJ_D.floatValue - minValue)/self.unitValue;
-            }
-        }
-        if(self.unitValue > 0.0000001)
-        {
-            if(model.KDJ_J)
-            {
-                KDJ_J_Y = maxY - (model.KDJ_J.floatValue - minValue)/self.unitValue;
-            }
-        }
-        
-        NSAssert(!isnan(KDJ_K_Y) && !isnan(KDJ_D_Y) && !isnan(KDJ_J_Y), @"出现NAN值");
-        
-        CGPoint KDJ_KPoint = CGPointMake(xPosition, KDJ_K_Y);
-        CGPoint KDJ_DPoint = CGPointMake(xPosition, KDJ_D_Y);
-        CGPoint KDJ_JPoint = CGPointMake(xPosition, KDJ_J_Y);
-        
-        
-        if(model.KDJ_K)
-        {
-            [self.KPositionModels addObject: [NSValue valueWithCGPoint: KDJ_KPoint]];
-        }
-        if(model.KDJ_D)
-        {
-            [self.DPositionModels addObject: [NSValue valueWithCGPoint: KDJ_DPoint]];
-        }
-        if(model.KDJ_J)
-        {
-            [self.JPositionModels addObject: [NSValue valueWithCGPoint: KDJ_JPoint]];
-        }
-    }];
+    return YES;
 }
 
 #pragma mark -

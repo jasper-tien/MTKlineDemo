@@ -110,8 +110,78 @@
 
 #pragma mark -
 - (void)convertToVolumePositionModelWithKLineModels {
-    CGFloat minY = MTCurveChartKLineAccessoryViewMinY;
-    CGFloat maxY = MTCurveChartKLineAccessoryViewMaxY;
+    if (![self lookupValueMaxAndValueMin]) {
+        return;
+    }
+    
+    self.unitValue = (self.currentValueMax - self.currentValueMin) / (self.currentValueMaxToViewY - self.currentValueMinToViewY);
+    
+    [self.UPPositionModels removeAllObjects];
+    [self.DNPositionModels removeAllObjects];
+    [self.MBPositionModels removeAllObjects];
+    [self.USAPositionModels removeAllObjects];
+    
+    [self.needDrawBOLLModels enumerateObjectsUsingBlock:^(MTCurveBOLL * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        CGFloat ponitScreenX = idx * ([MTCurveChartGlobalVariable kLineWidth] + [MTCurveChartGlobalVariable kLineGap]);
+        MTCurveBOLL *bollModel = (MTCurveBOLL *)obj;
+        CGFloat BOLL_UP_ScreenY = self.currentValueMaxToViewY;
+        CGFloat BOLL_MB_ScreenY = self.currentValueMaxToViewY;
+        CGFloat BOLL_DN_ScreenY = self.currentValueMaxToViewY;
+        
+        if(self.unitValue > 0.0000001)
+        {
+            if(bollModel.BOLL_UP)
+            {
+                BOLL_UP_ScreenY = self.currentValueMaxToViewY - (bollModel.BOLL_UP.floatValue - self.currentValueMin)/self.unitValue;
+            }
+            if(bollModel.BOLL_MB)
+            {
+                BOLL_MB_ScreenY = self.currentValueMaxToViewY - (bollModel.BOLL_MB.floatValue - self.currentValueMin)/self.unitValue;
+            }
+            if(bollModel.BOLL_DN)
+            {
+                BOLL_DN_ScreenY = self.currentValueMaxToViewY - (bollModel.BOLL_DN.floatValue - self.currentValueMin)/self.unitValue;
+            }
+            
+            NSAssert(!isnan(BOLL_UP_ScreenY) && !isnan(BOLL_MB_ScreenY) && !isnan(BOLL_DN_ScreenY), @"出现NAN值");
+            CGPoint BOLL_UPScreenPoint = CGPointMake(ponitScreenX, BOLL_UP_ScreenY);
+            CGPoint BOLL_MBScreenPoint = CGPointMake(ponitScreenX, BOLL_MB_ScreenY);
+            CGPoint BOLL_DNScreenPoint = CGPointMake(ponitScreenX, BOLL_DN_ScreenY);
+            if(bollModel.BOLL_UP)
+            {
+                [self.UPPositionModels addObject: [NSValue valueWithCGPoint: BOLL_UPScreenPoint]];
+            }
+            if(bollModel.BOLL_MB)
+            {
+                [self.MBPositionModels addObject: [NSValue valueWithCGPoint: BOLL_MBScreenPoint]];
+            }
+            if(bollModel.BOLL_DN)
+            {
+                [self.DNPositionModels addObject: [NSValue valueWithCGPoint: BOLL_DNScreenPoint]];
+            }
+        }
+    }];
+    
+    [self.needDrawBOLLKlineModels enumerateObjectsUsingBlock:^(SJKlineModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        SJKlineModel *kLineModel = (SJKlineModel *)obj;
+        CGFloat ponitScreenX = idx * ([MTCurveChartGlobalVariable kLineWidth] + [MTCurveChartGlobalVariable kLineGap]);
+        CGPoint openScreenPoint = CGPointMake(ponitScreenX, ABS(self.currentValueMaxToViewY - (kLineModel.open.floatValue - self.currentValueMin) / self.unitValue));
+        CGPoint closeScreenPoint = CGPointMake(ponitScreenX, ABS(self.currentValueMaxToViewY - (kLineModel.close.floatValue - self.currentValueMin) / self.unitValue));
+        CGPoint highScreenPoint = CGPointMake(ponitScreenX, ABS(self.currentValueMaxToViewY - (kLineModel.high.floatValue - self.currentValueMin) / self.unitValue));
+        CGPoint lowScreenPoint = CGPointMake(ponitScreenX, ABS(self.currentValueMaxToViewY - (kLineModel.low.floatValue - self.currentValueMin) / self.unitValue));
+        MTKLinePositionModel *positionModel = [[MTKLinePositionModel alloc] init];
+        positionModel.openPoint = openScreenPoint;
+        positionModel.closePoint = closeScreenPoint;
+        positionModel.highPoint = highScreenPoint;
+        positionModel.lowPoint = lowScreenPoint;
+        [self.USAPositionModels addObject:positionModel];
+    }];
+}
+
+- (BOOL)lookupValueMaxAndValueMin {
+    if (self.needDrawBOLLModels.count <= 0) {
+        return NO;
+    }
     
     __block CGFloat minValue = CGFLOAT_MAX;
     __block CGFloat maxValue = CGFLOAT_MIN;
@@ -138,69 +208,11 @@
         }
     }];
     
-    self.unitValue = (maxValue - minValue) / (maxY - minY);
-    [self.UPPositionModels removeAllObjects];
-    [self.DNPositionModels removeAllObjects];
-    [self.MBPositionModels removeAllObjects];
-    [self.USAPositionModels removeAllObjects];
+    self.currentValueMin = minValue;
+    self.currentValueMax = maxValue;
     
-    [self.needDrawBOLLModels enumerateObjectsUsingBlock:^(MTCurveBOLL * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        CGFloat xPosition = idx * ([MTCurveChartGlobalVariable kLineWidth] + [MTCurveChartGlobalVariable kLineGap]);
-        MTCurveBOLL *bollModel = (MTCurveBOLL *)obj;
-        CGFloat BOLL_UP_Y = maxY;
-        CGFloat BOLL_MB_Y = maxY;
-        CGFloat BOLL_DN_Y = maxY;
-        
-        if(self.unitValue > 0.0000001)
-        {
-            if(bollModel.BOLL_UP)
-            {
-                BOLL_UP_Y = maxY - (bollModel.BOLL_UP.floatValue - minValue)/self.unitValue;
-            }
-            if(bollModel.BOLL_MB)
-            {
-                BOLL_MB_Y = maxY - (bollModel.BOLL_MB.floatValue - minValue)/self.unitValue;
-            }
-            if(bollModel.BOLL_DN)
-            {
-                BOLL_DN_Y = maxY - (bollModel.BOLL_DN.floatValue - minValue)/self.unitValue;
-            }
-            
-            NSAssert(!isnan(BOLL_UP_Y) && !isnan(BOLL_MB_Y) && !isnan(BOLL_DN_Y), @"出现NAN值");
-            CGPoint BOLL_UPPoint = CGPointMake(xPosition, BOLL_UP_Y);
-            CGPoint BOLL_MBPoint = CGPointMake(xPosition, BOLL_MB_Y);
-            CGPoint BOLL_DNPoint = CGPointMake(xPosition, BOLL_DN_Y);
-            if(bollModel.BOLL_UP)
-            {
-                [self.UPPositionModels addObject: [NSValue valueWithCGPoint: BOLL_UPPoint]];
-            }
-            if(bollModel.BOLL_MB)
-            {
-                [self.MBPositionModels addObject: [NSValue valueWithCGPoint: BOLL_MBPoint]];
-            }
-            if(bollModel.BOLL_DN)
-            {
-                [self.DNPositionModels addObject: [NSValue valueWithCGPoint: BOLL_DNPoint]];
-            }
-        }
-    }];
-    
-    [self.needDrawBOLLKlineModels enumerateObjectsUsingBlock:^(SJKlineModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        SJKlineModel *kLineModel = (SJKlineModel *)obj;
-        CGFloat ponitX = idx * ([MTCurveChartGlobalVariable kLineWidth] + [MTCurveChartGlobalVariable kLineGap]);
-        CGPoint openPoint = CGPointMake(ponitX, ABS(maxY - (kLineModel.open.floatValue - minValue) / self.unitValue));
-        CGPoint closePoint = CGPointMake(ponitX, ABS(maxY - (kLineModel.close.floatValue - minValue) / self.unitValue));
-        CGPoint highPoint = CGPointMake(ponitX, ABS(maxY - (kLineModel.high.floatValue - minValue) / self.unitValue));
-        CGPoint lowPoint = CGPointMake(ponitX, ABS(maxY - (kLineModel.low.floatValue - minValue) / self.unitValue));
-        MTKLinePositionModel *positionModel = [[MTKLinePositionModel alloc] init];
-        positionModel.openPoint = openPoint;
-        positionModel.closePoint = closePoint;
-        positionModel.highPoint = highPoint;
-        positionModel.lowPoint = lowPoint;
-        [self.USAPositionModels addObject:positionModel];
-    }];
+    return YES;
 }
-
 #pragma mark -
 - (MTTechsShowView *)BOLLShowView {
     if (!_BOLLShowView) {

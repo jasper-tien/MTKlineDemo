@@ -39,9 +39,9 @@
 // 当前价格最小值
 @property (nonatomic, assign) CGFloat currentPriceMin;
 // 当前价格最大值对应到视图上的纵坐标
-@property (nonatomic, assign) CGFloat currentPriceMaxViewY;
+@property (nonatomic, assign) CGFloat currentPriceMaxToViewY;
 // 当前价格最小值对应到视图上的纵坐标
-@property (nonatomic, assign) CGFloat currentPriceMinViewY;
+@property (nonatomic, assign) CGFloat currentPriceMinToViewY;
 //视图上单位坐标表示的价格值
 @property (nonatomic, assign) CGFloat unitViewY;
 
@@ -58,8 +58,8 @@
         self.backgroundColor = [UIColor backgroundColor];
         self.currentPriceMax = 0;
         self.currentPriceMin = 0;
-        self.currentPriceMinViewY = 0;
-        self.currentPriceMaxViewY = self.frame.size.height;
+        self.currentPriceMinToViewY = 0;
+        self.currentPriceMaxToViewY = self.frame.size.height;
         self.unitViewY = 0.0f;
     }
     
@@ -107,9 +107,9 @@
     const CGPoint gridKlinePoints4[] = {CGPointMake(self.bounds.size.width * 2 / 3, 0), CGPointMake(self.bounds.size.width * 2 / 3, self.bounds.size.height)};
     CGContextStrokeLineSegments(context, gridKlinePoints4, 2);
     
-    const CGPoint gridKlinePoints5[] = {CGPointMake(0, self.currentPriceMaxViewY), CGPointMake(self.bounds.size.width, self.currentPriceMaxViewY)};
+    const CGPoint gridKlinePoints5[] = {CGPointMake(0, self.currentPriceMaxToViewY), CGPointMake(self.bounds.size.width, self.currentPriceMaxToViewY)};
     CGContextStrokeLineSegments(context, gridKlinePoints5, 2);
-    const CGPoint gridKlinePoints6[] = {CGPointMake(0, self.currentPriceMinViewY), CGPointMake(self.bounds.size.width, self.currentPriceMinViewY)};
+    const CGPoint gridKlinePoints6[] = {CGPointMake(0, self.currentPriceMinToViewY), CGPointMake(self.bounds.size.width, self.currentPriceMinToViewY)};
     CGContextStrokeLineSegments(context, gridKlinePoints6, 2);
     
 }
@@ -225,11 +225,11 @@
     self.currentPriceMin *= 0.9991;
     self.currentPriceMax *= 1.0001;
     
-    self.currentPriceMinViewY = MTCurveChartKLineMainViewMinY;
-    self.currentPriceMaxViewY = self.frame.size.height - MTCurveChartKLineMainViewMinY;
+    self.currentPriceMinToViewY = MTCurveChartKLineMainViewMinY;
+    self.currentPriceMaxToViewY = self.frame.size.height - MTCurveChartKLineMainViewMinY;
     
     //计算view上单位距离对应的数据值
-    self.unitViewY = (self.currentPriceMax - self.currentPriceMin) / (self.currentPriceMaxViewY - self.currentPriceMinViewY);
+    self.unitViewY = (self.currentPriceMax - self.currentPriceMin) / (self.currentPriceMaxToViewY - self.currentPriceMinToViewY);
     
     //移除旧的值
     [self.needDrawPositionModels removeAllObjects];
@@ -242,10 +242,10 @@
         SJKlineModel *kLineModel = obj;
         CGFloat ponitScreenX = idx * ([MTCurveChartGlobalVariable kLineWidth] + [MTCurveChartGlobalVariable kLineGap]);
         
-        CGPoint openPoint = CGPointMake(ponitScreenX, ABS(self.currentPriceMaxViewY - (kLineModel.open.floatValue - self.currentPriceMin) / self.unitViewY));
-        CGPoint closePoint = CGPointMake(ponitScreenX, ABS(self.currentPriceMaxViewY - (kLineModel.close.floatValue - self.currentPriceMin) / self.unitViewY));
-        CGPoint highPoint = CGPointMake(ponitScreenX, ABS(self.currentPriceMaxViewY - (kLineModel.high.floatValue - self.currentPriceMin) / self.unitViewY));
-        CGPoint lowPoint = CGPointMake(ponitScreenX, ABS(self.currentPriceMaxViewY - (kLineModel.low.floatValue - self.currentPriceMin) / self.unitViewY));
+        CGPoint openPoint = CGPointMake(ponitScreenX, ABS(self.currentPriceMaxToViewY - (kLineModel.open.floatValue - self.currentPriceMin) / self.unitViewY));
+        CGPoint closePoint = CGPointMake(ponitScreenX, ABS(self.currentPriceMaxToViewY - (kLineModel.close.floatValue - self.currentPriceMin) / self.unitViewY));
+        CGPoint highPoint = CGPointMake(ponitScreenX, ABS(self.currentPriceMaxToViewY - (kLineModel.high.floatValue - self.currentPriceMin) / self.unitViewY));
+        CGPoint lowPoint = CGPointMake(ponitScreenX, ABS(self.currentPriceMaxToViewY - (kLineModel.low.floatValue - self.currentPriceMin) / self.unitViewY));
         MTKLinePositionModel *positionModel = [[MTKLinePositionModel alloc] init];
         positionModel.openPoint = openPoint;
         positionModel.closePoint = closePoint;
@@ -254,19 +254,19 @@
         [self.needDrawPositionModels addObject:positionModel];
         
         //MA坐标转换
-        CGFloat ma5ScreenY = self.currentPriceMaxViewY;
-        CGFloat ma10ScreenY = self.currentPriceMaxViewY;
-        CGFloat ma20ScreenY = self.currentPriceMaxViewY;
+        CGFloat ma5ScreenY = self.currentPriceMaxToViewY;
+        CGFloat ma10ScreenY = self.currentPriceMaxToViewY;
+        CGFloat ma20ScreenY = self.currentPriceMaxToViewY;
         if(kLineModel.MA_5)
         {
-            ma5ScreenY = self.currentPriceMaxViewY - (kLineModel.MA_5.floatValue - self.currentPriceMin) / self.unitViewY;
+            ma5ScreenY = self.currentPriceMaxToViewY - (kLineModel.MA_5.floatValue - self.currentPriceMin) / self.unitViewY;
         }
         if(kLineModel.MA_20)
         {
-            ma20ScreenY = self.currentPriceMaxViewY - (kLineModel.MA_20.floatValue - self.currentPriceMin) / self.unitViewY;
+            ma20ScreenY = self.currentPriceMaxToViewY - (kLineModel.MA_20.floatValue - self.currentPriceMin) / self.unitViewY;
         }
         if (kLineModel.MA_10) {
-            ma10ScreenY = self.currentPriceMaxViewY - (kLineModel.MA_10.floatValue - self.currentPriceMin) / self.unitViewY;
+            ma10ScreenY = self.currentPriceMaxToViewY - (kLineModel.MA_10.floatValue - self.currentPriceMin) / self.unitViewY;
         }
         CGPoint ma5ScreenPoint = CGPointMake(ponitScreenX, ma5ScreenY);
         CGPoint ma10ScreenPoint = CGPointMake(ponitScreenX, ma10ScreenY);

@@ -96,79 +96,91 @@
 
 #pragma mark -
 - (void)convertToVolumePositionModelWithKLineModels {
-    CGFloat maxY_2 = MTCurveChartKLineAccessoryViewMaxY / 2;
+    if (![self lookupValueMaxAndValueMin]) {
+        return;
+    }
     
-    __block CGFloat maxValue_2 = CGFLOAT_MIN;
-    [self.needDrawMACDModels enumerateObjectsUsingBlock:^(MTCurveMACD * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        MTCurveMACD *MACDModel = (MTCurveMACD *)obj;
-        if (MACDModel.DIF) {
-            if (MACDModel.DIF.floatValue > maxValue_2) {
-                maxValue_2 = MACDModel.DIF.floatValue;
-            }
-        }
-        if (MACDModel.DEA) {
-            if (MACDModel.DEA.floatValue > maxValue_2) {
-                maxValue_2 = MACDModel.DEA.floatValue;
-            }
-        }
-        if (MACDModel.MACD) {
-            if (MACDModel.MACD.floatValue > maxValue_2) {
-                maxValue_2 = MACDModel.MACD.floatValue;
-            }
-        }
-    }];
+    self.unitValue = (self.currentValueMax - self.currentValueMin) / (self.currentValueMaxToViewY - self.currentValueMinToViewY);
     
-    self.unitValue = maxValue_2 / maxY_2;
     [self.MACDPositionModels removeAllObjects];
     [self.DIFPositionModels removeAllObjects];
     [self.DEAPositionModels removeAllObjects];
-    self.zeroPointY = maxY_2;
+    
+    self.zeroPointY = (self.currentValueMaxToViewY - self.currentValueMinToViewY) / 2;
     [self.needDrawMACDModels enumerateObjectsUsingBlock:^(MTCurveMACD * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         MTCurveMACD *MACDModel = (MTCurveMACD *)obj;
-        CGFloat xPosition = idx * ([MTCurveChartGlobalVariable kLineWidth] + [MTCurveChartGlobalVariable kLineGap]);
-        CGFloat MIF_Y = maxY_2;
-        CGFloat MEA_Y = maxY_2;
-        CGFloat MACD_Y = maxY_2;
+        CGFloat ponitScreenX = idx * ([MTCurveChartGlobalVariable kLineWidth] + [MTCurveChartGlobalVariable kLineGap]);
+        CGFloat MIF_ScreenY = self.currentValueMaxToViewY;
+        CGFloat MEA_ScreenY = self.currentValueMaxToViewY;
+        CGFloat MACD_ScreenY = self.currentValueMaxToViewY;
         
         if (MACDModel.DIF) {
-            if (MACDModel.DIF.floatValue > 0) {
-                MIF_Y = maxY_2 - MACDModel.DIF.floatValue/self.unitValue;
-            } else {
-                MIF_Y = 2 * maxY_2 - ABS(MACDModel.DIF.floatValue)/self.unitValue;
-            }
+            MIF_ScreenY = self.currentValueMaxToViewY - (MACDModel.DIF.floatValue - self.currentValueMin)/self.unitValue;
         }
         if (MACDModel.DEA) {
-            if (MACDModel.DEA.floatValue > 0) {
-                MEA_Y = maxY_2 - MACDModel.DEA.floatValue/self.unitValue;
-            } else {
-                MEA_Y = 2 * maxY_2 - ABS(MACDModel.DEA.floatValue)/self.unitValue;
-            }
+            MEA_ScreenY = self.currentValueMaxToViewY - (MACDModel.DEA.floatValue - self.currentValueMin)/self.unitValue;
         }
         if (MACDModel.MACD) {
-            if (MACDModel.MACD.floatValue > 0) {
-                MACD_Y = maxY_2 - MACDModel.MACD.floatValue/self.unitValue;
-            } else {
-                MACD_Y = 2 * maxY_2 - ABS(MACDModel.MACD.floatValue)/self.unitValue;
-            }
+            MACD_ScreenY = self.currentValueMaxToViewY - (MACDModel.MACD.floatValue - self.currentValueMin)/self.unitValue;
         }
         
-        NSAssert(!isnan(MIF_Y) && !isnan(MEA_Y) && !isnan(MACD_Y), @"出现NAN值");
-        CGPoint MACD_DIFPoint = CGPointMake(xPosition, MIF_Y);
-        CGPoint MACD_DEAPoint = CGPointMake(xPosition, MEA_Y);
-        CGPoint MACDPoint = CGPointMake(xPosition, MACD_Y);
+        NSAssert(!isnan(MIF_ScreenY) && !isnan(MEA_ScreenY) && !isnan(MACD_ScreenY), @"出现NAN值");
+        CGPoint MACD_DIFScreenPoint = CGPointMake(ponitScreenX, MIF_ScreenY);
+        CGPoint MACD_DEAScreenPoint = CGPointMake(ponitScreenX, MEA_ScreenY);
+        CGPoint MACDScreenPoint = CGPointMake(ponitScreenX, MACD_ScreenY);
         if(MACDModel.DIF)
         {
-            [self.DIFPositionModels addObject: [NSValue valueWithCGPoint: MACD_DIFPoint]];
+            [self.DIFPositionModels addObject: [NSValue valueWithCGPoint: MACD_DIFScreenPoint]];
         }
         if(MACDModel.DEA)
         {
-            [self.DEAPositionModels addObject: [NSValue valueWithCGPoint: MACD_DEAPoint]];
+            [self.DEAPositionModels addObject: [NSValue valueWithCGPoint: MACD_DEAScreenPoint]];
         }
         if (MACDModel.MACD) {
-            [self.MACDPositionModels addObject: [NSValue valueWithCGPoint: MACDPoint]];
+            [self.MACDPositionModels addObject: [NSValue valueWithCGPoint: MACDScreenPoint]];
         }
     }];
     
+}
+
+- (BOOL)lookupValueMaxAndValueMin {
+    __block CGFloat maxValue = CGFLOAT_MIN;
+    __block CGFloat minValue = CGFLOAT_MAX;
+    [self.needDrawMACDModels enumerateObjectsUsingBlock:^(MTCurveMACD * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        MTCurveMACD *MACDModel = (MTCurveMACD *)obj;
+        if (MACDModel.DIF) {
+            if (MACDModel.DIF.floatValue > maxValue) {
+                maxValue = MACDModel.DIF.floatValue;
+            }
+            if (MACDModel.DIF.floatValue < minValue) {
+                minValue = MACDModel.DIF.floatValue;
+            }
+        }
+        if (MACDModel.DEA) {
+            if (MACDModel.DEA.floatValue > maxValue) {
+                maxValue = MACDModel.DEA.floatValue;
+            }
+            if (MACDModel.DEA.floatValue < minValue) {
+                minValue = MACDModel.DEA.floatValue;
+            }
+        }
+        if (MACDModel.MACD) {
+            if (MACDModel.MACD.floatValue > maxValue) {
+                maxValue = MACDModel.MACD.floatValue;
+            }
+            if (MACDModel.MACD.floatValue < minValue) {
+                minValue = MACDModel.MACD.floatValue;
+            }
+        }
+    }];
+    if (ABS(maxValue) > ABS(minValue)) {
+        self.currentValueMax = ABS(maxValue);
+        self.currentValueMin = -ABS(maxValue);
+    } else {
+        self.currentValueMax = ABS(minValue);
+        self.currentValueMin = -ABS(minValue);
+    }
+    return YES;
 }
 
 #pragma mark -

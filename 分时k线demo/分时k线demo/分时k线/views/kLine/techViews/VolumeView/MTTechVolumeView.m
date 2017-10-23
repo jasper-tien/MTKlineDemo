@@ -132,14 +132,85 @@
         return;
     }
     
-    CGFloat minY = MTCurveChartKLineVolumeViewMinY;
-    CGFloat maxY = MTCurveChartKLineVolumeViewMaxY;
+    if (![self lookupKlineDataMaxAndMin]) {
+        return;
+    }
+    
+    //计算视图上单位距离对应的成交量数值
+    self.unitValue = (self.currentValueMax - self.currentValueMin) / (self.currentValueMaxToViewY - self.currentValueMinToViewY);
+    
+    //移除旧的值
+    [self.volumePositions removeAllObjects];
+    [self.volumeMA5Positions removeAllObjects];
+    [self.volumeMA10Positions removeAllObjects];
+    [self.volumeMA20Positions removeAllObjects];
+    
+    [self.needDrawVolumeModels enumerateObjectsUsingBlock:^(SJKlineModel *  _Nonnull model, NSUInteger idx, BOOL * _Nonnull stop) {
+        CGFloat ponitScreenX = idx * ([MTCurveChartGlobalVariable kLineWidth] + [MTCurveChartGlobalVariable kLineGap]);
+        CGFloat yPosition = ABS(self.currentValueMaxToViewY - (model.volume.floatValue - self.currentValueMin)/self.self.unitValue);
+        
+        CGPoint volumePoint = CGPointMake(ponitScreenX, yPosition);
+        
+        CGPoint startPoint = CGPointMake(ponitScreenX, MTCurveChartKLineVolumeViewMaxY);
+        MTVolumePositionModel *volumePositionModel = [[MTVolumePositionModel alloc] init];
+        volumePositionModel.volumePoint = volumePoint;
+        volumePositionModel.startPoint = startPoint;
+        volumePositionModel.color = model.open.floatValue < model.close.floatValue ? [UIColor increaseColor] : [UIColor decreaseColor];
+        [self.volumePositions addObject:volumePositionModel];
+        
+        //MA坐标转换
+        CGFloat ma5ScreenY = self.currentValueMaxToViewY;
+        CGFloat ma10ScreenY = self.currentValueMaxToViewY;
+        CGFloat ma20ScreenY = self.currentValueMaxToViewY;
+        if(self.unitValue > 0.0000001)
+        {
+            if(model.volumeMA_5)
+            {
+                ma5ScreenY = self.currentValueMaxToViewY - (model.volumeMA_5.floatValue - self.currentValueMin)/self.unitValue;
+            }
+        }
+        if(self.unitValue > 0.0000001)
+        {
+            if(model.volumeMA_10)
+            {
+                ma10ScreenY = self.currentValueMaxToViewY - (model.volumeMA_10.floatValue - self.currentValueMin)/self.unitValue;
+            }
+        }
+        if(self.unitValue > 0.0000001)
+        {
+            if(model.volumeMA_20)
+            {
+                ma20ScreenY = self.currentValueMaxToViewY - (model.volumeMA_20.floatValue - self.currentValueMin)/self.unitValue;
+            }
+        }
+        
+        NSAssert(!isnan(ma5ScreenY) && !isnan(ma10ScreenY) && !isnan(ma20ScreenY), @"出现NAN值");
+        
+        CGPoint ma5ScreenPoint = CGPointMake(ponitScreenX, ma5ScreenY);
+        CGPoint ma10ScreenPoint = CGPointMake(ponitScreenX, ma10ScreenY);
+        CGPoint ma20ScreenPoint = CGPointMake(ponitScreenX, ma20ScreenY);
+        if(model.volumeMA_5)
+        {
+            [self.volumeMA5Positions addObject: [NSValue valueWithCGPoint: ma5ScreenPoint]];
+        }
+        if(model.volumeMA_10)
+        {
+            [self.volumeMA10Positions addObject: [NSValue valueWithCGPoint: ma10ScreenPoint]];
+        }
+        if(model.volumeMA_20)
+        {
+            [self.volumeMA20Positions addObject: [NSValue valueWithCGPoint: ma20ScreenPoint]];
+        }
+    }];
+}
+- (BOOL)lookupKlineDataMaxAndMin {
+    if (self.needDrawVolumeModels.count <= 0) {
+        return NO;
+    }
     
     SJKlineModel *firstModel = self.needDrawVolumeModels.firstObject;
-    
     __block CGFloat minVolume = firstModel.volume.floatValue;
     __block CGFloat maxVolume = firstModel.volume.floatValue;
-    
     [self.needDrawVolumeModels enumerateObjectsUsingBlock:^(SJKlineModel *  _Nonnull model, NSUInteger idx, BOOL * _Nonnull stop) {
         
         if(model.volume.floatValue < minVolume)
@@ -180,74 +251,10 @@
         }
     }];
     
-    self.unitValue = (maxVolume - minVolume) / (maxY - minY);
-    [self.volumePositions removeAllObjects];
-    [self.volumeMA5Positions removeAllObjects];
-    [self.volumeMA10Positions removeAllObjects];
-    [self.volumeMA20Positions removeAllObjects];
+    self.currentValueMin = minVolume;
+    self.currentValueMax = maxVolume;
     
-    [self.needDrawVolumeModels enumerateObjectsUsingBlock:^(SJKlineModel *  _Nonnull model, NSUInteger idx, BOOL * _Nonnull stop) {
-        CGFloat xPosition = idx * ([MTCurveChartGlobalVariable kLineWidth] + [MTCurveChartGlobalVariable kLineGap]);
-        CGFloat yPosition = ABS(maxY - (model.volume.floatValue - minVolume)/self.self.unitValue);
-        if(MTCurveChartKLineVolumeViewMaxY - yPosition < 20)
-        {
-            yPosition = MTCurveChartKLineVolumeViewMaxY - 19;
-        }
-        
-        CGPoint volumePoint = CGPointMake(xPosition, yPosition);
-        
-        CGPoint startPoint = CGPointMake(xPosition, MTCurveChartKLineVolumeViewMaxY - 20);
-        MTVolumePositionModel *volumePositionModel = [[MTVolumePositionModel alloc] init];
-        volumePositionModel.volumePoint = volumePoint;
-        volumePositionModel.startPoint = startPoint;
-        volumePositionModel.color = model.open.floatValue < model.close.floatValue ? [UIColor increaseColor] : [UIColor decreaseColor];
-        [self.volumePositions addObject:volumePositionModel];
-        
-        //MA坐标转换
-        CGFloat ma5Y = maxY;
-        CGFloat ma10Y = maxY;
-        CGFloat ma20Y = maxY;
-        if(self.unitValue > 0.0000001)
-        {
-            if(model.volumeMA_5)
-            {
-                ma5Y = maxY - (model.volumeMA_5.floatValue - minVolume)/self.unitValue;
-            }
-            
-        }
-        if(self.unitValue > 0.0000001)
-        {
-            if(model.volumeMA_10)
-            {
-                ma10Y = maxY - (model.volumeMA_10.floatValue - minVolume)/self.unitValue;
-            }
-        }
-        if(self.unitValue > 0.0000001)
-        {
-            if(model.volumeMA_20)
-            {
-                ma20Y = maxY - (model.volumeMA_20.floatValue - minVolume)/self.unitValue;
-            }
-        }
-        
-        NSAssert(!isnan(ma5Y) && !isnan(ma10Y) && !isnan(ma20Y), @"出现NAN值");
-        
-        CGPoint ma5Point = CGPointMake(xPosition, ma5Y);
-        CGPoint ma10Point = CGPointMake(xPosition, ma10Y);
-        CGPoint ma20Point = CGPointMake(xPosition, ma20Y);
-        if(model.volumeMA_5)
-        {
-            [self.volumeMA5Positions addObject: [NSValue valueWithCGPoint: ma5Point]];
-        }
-        if(model.volumeMA_10)
-        {
-            [self.volumeMA10Positions addObject: [NSValue valueWithCGPoint: ma10Point]];
-        }
-        if(model.volumeMA_20)
-        {
-            [self.volumeMA20Positions addObject: [NSValue valueWithCGPoint: ma20Point]];
-        }
-    }];
+    return YES;
 }
 
 #pragma mark -

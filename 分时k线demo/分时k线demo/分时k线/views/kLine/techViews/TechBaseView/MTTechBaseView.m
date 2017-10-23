@@ -10,6 +10,17 @@
 #import "MTCurveChartGlobalVariable.h"
 
 @implementation MTTechBaseView
+- (instancetype)initWithFrame:(CGRect)frame {
+    if (self = [super initWithFrame:frame]) {
+        self.currentValueMin = 0;
+        self.currentValueMax = 0;
+        self.currentValueMinToViewY = 0;
+        self.currentValueMaxToViewY = self.frame.size.height;
+    }
+    
+    return self;
+}
+
 - (void)drawTechView {}
 - (void)redrawShowView {}
 - (void)redrawShowViewWithIndex:(NSInteger)index{}
