@@ -23,6 +23,7 @@
         self.backgroundColor = [UIColor clearColor];
         self.showValue = 0.0f;
         self.dateStr = @"1970/01/01";
+        self.userInteractionEnabled = NO;
     }
     
     return self;

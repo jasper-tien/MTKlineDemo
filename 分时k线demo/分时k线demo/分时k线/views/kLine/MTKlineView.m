@@ -20,7 +20,7 @@
 @property (nonatomic, strong) MTMianKLineView *mainKlineView;
 //指标view
 @property (nonatomic, strong) MTTechView *techView;
-//
+//十字光标
 @property (nonatomic, strong) MTTrackingCrossView *trackingCrossView;
 //当前需要实现的指标类型
 @property (nonatomic, assign) SJCurveTechType techType;
@@ -30,13 +30,17 @@
 @property (nonatomic, assign) NSInteger showStartIndex;
 //数据的长度
 @property (nonatomic, assign) NSInteger showCount;
-
+//长按手势计时器
+@property (nonatomic, strong) NSTimer *longPressTimer;
 @property (nonatomic, copy) NSArray *testTechArr;
 @property (nonatomic, assign) NSInteger testIndex;
 @end
 
 @implementation MTKlineView
-#pragma mark - init 
+#pragma mark - init
+- (void)dealloc {
+    
+}
 - (instancetype)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
         self.backgroundColor = [UIColor assistBackgroundColor];
@@ -194,6 +198,11 @@
         //暂停滑动
         self.scrollView.scrollEnabled = NO;
         self.trackingCrossView.hidden = NO;
+        if (self.longPressTimer) {
+            //上一次计时操作无效，先移除掉
+            [self.longPressTimer invalidate];
+            self.longPressTimer = nil;
+        }
         
         //主k线或者指标view的精确位置计算
         if (location.y > self.techView.frame.origin.y) {
@@ -206,8 +215,14 @@
     
     if(longPress.state == UIGestureRecognizerStateEnded) {
         self.scrollView.scrollEnabled = YES;
-        self.trackingCrossView.hidden = YES;
+        self.longPressTimer = [NSTimer scheduledTimerWithTimeInterval:1.5 target:self selector:@selector(hiddenTrackingCrossView:) userInfo:nil repeats:NO];
     }
+}
+
+- (void)hiddenTrackingCrossView:(NSTimer *)timer {
+    [self.longPressTimer invalidate];
+    self.longPressTimer = nil;
+    self.trackingCrossView.hidden = YES;
 }
 
 #pragma mark - setters and getters
