@@ -23,7 +23,7 @@
 
 - (void)drawTechView {}
 - (void)redrawShowView {}
-- (void)redrawShowViewWithIndex:(NSInteger)index{}
+- (void)reDrawShowViewWithIndex:(NSInteger)index{}
 
 /**
  *  长按的时候根据原始的x位置获得精确的x的位置
@@ -47,8 +47,9 @@
         index++;
         exactXPositionInMainView = indexXPosition + ([MTCurveChartGlobalVariable kLineWidth] + [MTCurveChartGlobalVariable kLineGap]);
     }
-    if (self.delegate && [self.delegate respondsToSelector:@selector(techBaseViewLongPressExactPosition:UnitY:)]) {
-        [self.delegate techBaseViewLongPressExactPosition:CGPointMake(exactXPositionInMainView, longPressPosition.y) UnitY:self.unitValue];
+    if (self.delegate && [self.delegate respondsToSelector:@selector(techBaseViewLongPressExactPosition:selectedIndex:longPressValue:)]) {
+        CGFloat longPressValue = self.unitValue * (self.currentValueMaxToViewY - longPressPosition.y) - self.currentValueMin;
+        [self.delegate techBaseViewLongPressExactPosition:CGPointMake(exactXPositionInMainView, longPressPosition.y) selectedIndex:index longPressValue:longPressValue];
     }
 }
 

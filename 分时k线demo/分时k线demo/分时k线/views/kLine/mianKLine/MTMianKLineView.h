@@ -13,7 +13,7 @@
 /**
  *  长按
  */
-- (void)kLineMainViewLongPress:(NSInteger)index exactPosition:(CGPoint)longPressPosition longPressPrice:(CGFloat)price;
+- (void)kLineMainViewLongPressExactPosition:(CGPoint)longPressPosition selectedIndex:(NSInteger)index longPressPrice:(CGFloat)price;
 
 @end
 
@@ -22,7 +22,7 @@
 @property (nonatomic, weak) id<MTMianKLineViewDelegate> delegate;
 //
 @property (nonatomic, copy) NSArray<SJKlineModel *> *needDrawKlneModels;
-//
+//需要显示在顶部的model
 @property (nonatomic, strong) SJKlineModel *showKlineModel;
 
 - (instancetype)initWithDelegate:(id<MTMianKLineViewDelegate>)delegate;
@@ -30,5 +30,8 @@
 - (void)drawMainView;
 
 - (void)getExactPositionWithOriginPosition:(CGPoint)longPressPosition;
+
+//重绘最新的数据或者选定的数据
+- (void)reDrawShowViewWithIndex:(NSInteger)index;
 
 @end

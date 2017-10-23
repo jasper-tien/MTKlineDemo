@@ -87,7 +87,7 @@
     [self setNeedsDisplay];
 }
 
-- (void)redrawShowViewWithIndex:(NSInteger)index {
+- (void)reDrawShowViewWithIndex:(NSInteger)index {
     if (index < self.needDrawKDJModels.count && index > 0) {
         self.showKDJModel = self.needDrawKDJModels[index];
         NSString *titleStr = [NSString stringWithFormat:@"K:%.2f D:%.2f J:%.2f", self.showKDJModel.KDJ_K.floatValue, self.showKDJModel.KDJ_D.floatValue, self.showKDJModel.KDJ_J.floatValue];

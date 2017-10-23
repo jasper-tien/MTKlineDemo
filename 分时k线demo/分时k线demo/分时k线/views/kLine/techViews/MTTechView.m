@@ -115,8 +115,8 @@
     self.techType = techType;
 }
 
-- (void)redrawTechShowViewWithIndex:(NSInteger)index {
-    [self.showTechView redrawShowViewWithIndex:index];
+- (void)reDrawTechShowViewWithIndex:(NSInteger)index {
+    [self.showTechView reDrawShowViewWithIndex:index];
 }
 
 //长按，或者移动时调用
@@ -125,9 +125,9 @@
 }
 
 #pragma mark - MTTechViewDelegate
-- (void)techBaseViewLongPressExactPosition:(CGPoint)longPressPosition UnitY:(CGFloat)unitY {
-    if (self.description && [self.delegate respondsToSelector:@selector(techViewLongPressExactPosition:UnitY:)]) {
-        [self.delegate techViewLongPressExactPosition:longPressPosition UnitY:unitY];
+- (void)techBaseViewLongPressExactPosition:(CGPoint)longPressPosition selectedIndex:(NSInteger)index longPressValue:(CGFloat)longPressValue {
+    if (self.description && [self.delegate respondsToSelector:@selector(techViewLongPressExactPosition:selectedIndex:longPressValue:)]) {
+        [self.delegate techViewLongPressExactPosition:longPressPosition selectedIndex:index longPressValue:longPressValue];
     }
 }
 

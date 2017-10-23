@@ -10,7 +10,7 @@
 #import "SJCurveChartConstant.h"
 
 @protocol MTTechViewDelegate<NSObject>
-- (void)techViewLongPressExactPosition:(CGPoint)longPressPosition UnitY:(CGFloat)unitY;
+- (void)techViewLongPressExactPosition:(CGPoint)longPressPosition selectedIndex:(NSInteger)index longPressValue:(CGFloat)longPressValue;
 @end
 
 @interface MTTechView : UIView
@@ -19,7 +19,9 @@
 @property (nonatomic, weak) id<MTTechViewDelegate> delegate;
 - (instancetype)initWithFrame:(CGRect)frame;
 - (void)drawTechViewWithType:(SJCurveTechType)techType;
-- (void)redrawTechShowViewWithIndex:(NSInteger)index;
+//重绘最新或者长按选定的数据
+- (void)reDrawTechShowViewWithIndex:(NSInteger)index;
+//长按，或者移动时调用
 - (void)longPressOrMovingAtPoint:(CGPoint)longPressPosition;
 
 @end

@@ -100,7 +100,7 @@
     [self setNeedsDisplay];
 }
 
-- (void)redrawShowViewWithIndex:(NSInteger)index {
+- (void)reDrawShowViewWithIndex:(NSInteger)index {
     if (index < self.needDrawBOLLModels.count && index > 0) {
         self.showBOLLModel = self.needDrawBOLLModels[index];
         NSString *titleStr = [NSString stringWithFormat:@"UP:%.2f MB:%.2f DN:%.2f", self.showBOLLModel.BOLL_UP.floatValue, self.showBOLLModel.BOLL_MB.floatValue, self.showBOLLModel.BOLL_DN.floatValue];

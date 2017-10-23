@@ -86,7 +86,7 @@
     [self setNeedsDisplay];
 }
 
-- (void)redrawShowViewWithIndex:(NSInteger)index {
+- (void)reDrawShowViewWithIndex:(NSInteger)index {
     if (index < self.needDrawMACDModels.count && index > 0) {
         self.showMACDModel = self.needDrawMACDModels[index];
         NSString *titleStr = [NSString stringWithFormat:@"DIF:%.2f DEA:%.2f MACD:%.2f", self.showMACDModel.DIF.floatValue, self.showMACDModel.DEA.floatValue, self.showMACDModel.MACD.floatValue];

@@ -164,6 +164,13 @@
     }
 }
 
+- (void)reDrawShowViewWithIndex:(NSInteger)index {
+    if (index < self.needDrawKlneModels.count && index > 0) {
+        self.showKlineModel = self.needDrawKlneModels[index];
+        [self drawTopdeTailsView];
+    }
+}
+
 #pragma mark -
 - (void)drawMainView {
     [self convertToKLinePositionModelWithKLineModels];
@@ -204,9 +211,9 @@
         
         
         //调用代理，通知指标view更新详情信息
-        if (self.delegate && [self.delegate respondsToSelector:@selector(kLineMainViewLongPress:exactPosition:longPressPrice:)]) {
-            CGFloat longPressPrece = self.currentPriceMax - (longPressPosition.y * self.unitViewY - self.currentPriceMin);
-            [self.delegate kLineMainViewLongPress:index exactPosition:CGPointMake(exactXPositionInMainView, longPressPosition.y) longPressPrice:longPressPrece];
+        if (self.delegate && [self.delegate respondsToSelector:@selector(kLineMainViewLongPressExactPosition:selectedIndex:longPressPrice:)]) {
+            CGFloat longPressPrece = self.unitViewY * (self.currentPriceMaxToViewY - longPressPosition.y) - self.currentPriceMin;
+            [self.delegate kLineMainViewLongPressExactPosition:CGPointMake(exactXPositionInMainView, longPressPosition.y) selectedIndex:index longPressPrice:longPressPrece];
         }
     }
 }

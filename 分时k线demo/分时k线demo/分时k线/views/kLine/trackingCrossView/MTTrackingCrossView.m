@@ -21,7 +21,7 @@
         self.crossPoint = crossPoint;
         self.dateRect = dateRect;
         self.backgroundColor = [UIColor clearColor];
-        self.price = 0.0f;
+        self.showValue = 0.0f;
         self.dateStr = @"1970/01/01";
     }
     
@@ -86,7 +86,7 @@
     
     //绘制选中价格
     if (self.crossPoint.y < self.dateRect.origin.y || self.crossPoint.y > (self.dateRect.origin.y + self.dateRect.size.height)) {
-        NSString *priceText = [NSString stringWithFormat:@"%.2f",self.price];
+        NSString *priceText = [NSString stringWithFormat:@"%.2f",self.showValue];
         CGRect priceRect = [self rectOfNSString:priceText attribute:attribute];
         CGFloat pricePointY = self.crossPoint.y - priceRect.size.height / 2;
         CGFloat pricePointX = 0;

@@ -117,7 +117,7 @@
     [self setNeedsDisplay];
 }
 
-- (void)redrawShowViewWithIndex:(NSInteger)index {
+- (void)reDrawShowViewWithIndex:(NSInteger)index {
     if (index < self.needDrawVolumeModels.count && index > 0) {
         self.showKlineModel = self.needDrawVolumeModels[index];
         NSString *titleStr = [NSString stringWithFormat:@"  %.0f万手 MA5:%.2f MA10:%.2f MA20:%.2f", self.showKlineModel.volume.floatValue, self.showKlineModel.volumeMA_5.floatValue, self.showKlineModel.volumeMA_10.floatValue, self.showKlineModel.volumeMA_20.floatValue];

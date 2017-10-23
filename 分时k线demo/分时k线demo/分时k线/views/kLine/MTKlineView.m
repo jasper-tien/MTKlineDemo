@@ -135,16 +135,17 @@
 }
 
 #pragma mark - KLineMainView delegate
-- (void)kLineMainViewLongPress:(NSInteger)index exactPosition:(CGPoint)longPressPosition longPressPrice:(CGFloat)price {
-    [self.techView redrawTechShowViewWithIndex:index];
-    self.trackingCrossView.price = price;
+- (void)kLineMainViewLongPressExactPosition:(CGPoint)longPressPosition selectedIndex:(NSInteger)index longPressPrice:(CGFloat)price {
+    [self.techView reDrawTechShowViewWithIndex:index];
+    self.trackingCrossView.showValue = price;
     self.trackingCrossView.crossPoint = longPressPosition;
     [self.trackingCrossView updateTrackingCrossView];
 }
 
 #pragma mark - MTTechViewDelegate
-- (void)techViewLongPressExactPosition:(CGPoint)longPressPosition UnitY:(CGFloat)unitY {
-    self.trackingCrossView.price = longPressPosition.y * unitY;
+- (void)techViewLongPressExactPosition:(CGPoint)longPressPosition selectedIndex:(NSInteger)index longPressValue:(CGFloat)longPressValue {
+    [self.mainKlineView reDrawShowViewWithIndex:index];
+    self.trackingCrossView.showValue = longPressValue;
     self.trackingCrossView.crossPoint = CGPointMake(longPressPosition.x, longPressPosition.y + self.techView.frame.origin.y);
     [self.trackingCrossView updateTrackingCrossView];
 }
@@ -264,6 +265,8 @@
 - (UIScrollView *)scrollView {
     if (!_scrollView) {
         _scrollView = [[UIScrollView alloc] initWithFrame:self.bounds];
+        _scrollView.showsVerticalScrollIndicator = NO;
+        _scrollView.showsHorizontalScrollIndicator = NO;
         _scrollView.delegate = self;
         [self addSubview:_scrollView];
         
