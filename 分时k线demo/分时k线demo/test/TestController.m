@@ -13,6 +13,9 @@
 #import "Test2.h"
 #import "MTDataManager.h"
 #import "MTKlineView.h"
+#import "MTFenShiView.h"
+
+#import "MTTimeLineModel.h"
 
 @interface TestController () {
     NSArray *gArr;
@@ -20,6 +23,8 @@
 }
 @property (nonatomic, copy) NSMutableArray *datas;
 @property (nonatomic, strong) MTDataManager *dataManager;
+@property (nonatomic, strong) MTKlineView *kLineView;
+@property (nonatomic, strong) MTFenShiView *fenShiView;
 
 @end
 
@@ -29,9 +34,24 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     self.dataManager = [[MTDataManager alloc] initWithArray:[self getTestArray]];
-    MTKlineView *kLineView = [[MTKlineView alloc] initWithFrame:CGRectMake(0, 100, [UIScreen mainScreen].bounds.size.width, 350)];
-    kLineView.manager = self.dataManager;
-    [self.view addSubview:kLineView];
+    [self.view addSubview:self.fenShiView];
+}
+
+- (NSArray *)getTimeLineArray {
+    NSMutableArray *timeLineModels = [[NSMutableArray alloc] init];
+    for (int i = 0; i < 300; i++) {
+        NSNumber *price = [NSNumber numberWithInt:(arc4random() % 100) + 1];
+        CGFloat volume = (arc4random() % 100) + 1;
+        NSString *date = @"10:30";
+        MTTimeLineModel *model = [[MTTimeLineModel alloc] init];
+        model.Price = price;
+        model.AvgPrice = 80;
+        model.Volume = volume;
+        model.TimeDesc = date;
+        [timeLineModels addObject:model];
+    }
+    
+    return timeLineModels;
 }
 
 - (NSArray *)getTestArray {
@@ -97,10 +117,76 @@
     return test;
 }
 
+#pragma mark -
 - (IBAction)back:(id)sender {
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
+- (IBAction)fenshi:(id)sender {
+    if (self.kLineView.superview) {
+        [self.kLineView removeFromSuperview];
+    }
+    if (!self.fenShiView.superview) {
+        [self.view addSubview:self.fenShiView];
+    }
+    
+    [self.fenShiView updateDrawTimeLine];
+}
+
+- (IBAction)dayKline:(id)sender {
+    if (self.fenShiView.superview) {
+        [self.fenShiView removeFromSuperview];
+    }
+    if (!self.kLineView.superview) {
+        [self.view addSubview:self.kLineView];
+    }
+}
+
+- (IBAction)weekKline:(id)sender {
+    if (self.fenShiView.superview) {
+        [self.fenShiView removeFromSuperview];
+    }
+    if (!self.kLineView.superview) {
+        [self.view addSubview:self.kLineView];
+    }
+}
+- (IBAction)monthKline:(id)sender {
+    if (self.fenShiView.superview) {
+        [self.fenShiView removeFromSuperview];
+    }
+    if (!self.kLineView.superview) {
+        [self.view addSubview:self.kLineView];
+    }
+}
+
+- (IBAction)yearKline:(id)sender {
+    if (self.fenShiView.superview) {
+        [self.fenShiView removeFromSuperview];
+    }
+    if (!self.kLineView.superview) {
+        [self.view addSubview:self.kLineView];
+    }
+}
+
+#pragma mark -
+- (MTKlineView *)kLineView {
+    if (!_kLineView) {
+        _kLineView = [[MTKlineView alloc] initWithFrame:CGRectMake(0, 100, [UIScreen mainScreen].bounds.size.width, 350)];
+        _kLineView.manager = self.dataManager;
+    }
+    
+    return _kLineView;
+}
+
+- (MTFenShiView *)fenShiView {
+    if (!_fenShiView) {
+        _fenShiView = [[MTFenShiView alloc] initWithFrame:CGRectMake(0, 100, [UIScreen mainScreen].bounds.size.width, 350)];
+        _fenShiView.timeLineModels = [self getTimeLineArray];
+        [_fenShiView updateDrawTimeLine];
+    }
+    
+    return _fenShiView;
+}
 
 
 /*

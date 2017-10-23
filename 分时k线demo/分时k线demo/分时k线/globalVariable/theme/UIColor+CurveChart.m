@@ -22,6 +22,17 @@
                            alpha:1.0f];
 }
 
++ (UIColor *)colorWithHex:(UInt32)hex alpha:(CGFloat)alpha {
+    int r = (hex >> 16) & 0xFF;
+    int g = (hex >> 8) & 0xFF;
+    int b = (hex) & 0xFF;
+    
+    return [UIColor colorWithRed:r / 255.0f
+                           green:g / 255.0f
+                            blue:b / 255.0f
+                           alpha:alpha];
+}
+
 #pragma mark 涨的颜色
 +(UIColor *)increaseColor {
     return [UIColor colorWithRGBHex:0xDC143C];
@@ -67,6 +78,16 @@
 #pragma mark 网格框的颜色
 + (UIColor *)gridLineColor {
     return [UIColor colorWithRGBHex:0x767a8c];
+}
+
+#pragma mark 分时线的颜色
++ (UIColor *)MTTimeLineColor {
+    return [UIColor colorWithRGBHex:0x60CFFF];
+}
+
+#pragma mark 分时线下方背景色
++(UIColor *)MTTimeLineBgColor {
+    return [UIColor colorWithHex:0x60CFFF alpha:0.1f];
 }
 
 #pragma mark 橙色

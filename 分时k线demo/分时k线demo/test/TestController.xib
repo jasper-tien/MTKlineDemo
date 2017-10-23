@@ -8,11 +8,6 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
-    <customFonts key="customFonts">
-        <array key="PingFang.ttc">
-            <string>PingFangSC-Semibold</string>
-        </array>
-    </customFonts>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="TestController">
             <connections>
@@ -35,23 +30,78 @@
                         <action selector="back:" destination="-1" eventType="touchUpInside" id="Me2-NL-Qok"/>
                     </connections>
                 </button>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="分时k线小demo" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sqt-fz-mKI">
-                    <rect key="frame" x="37.5" y="38" width="300" height="50"/>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mym-OB-Nrd">
+                    <rect key="frame" x="0.0" y="50" width="375" height="50"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="acx-Im-l1h">
+                            <rect key="frame" x="25" y="25" width="31" height="30"/>
+                            <state key="normal" title="分时">
+                                <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            </state>
+                            <connections>
+                                <action selector="fenshi:" destination="-1" eventType="touchUpInside" id="CD9-by-VX2"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cZz-zc-5LI">
+                            <rect key="frame" x="89" y="25" width="30" height="30"/>
+                            <state key="normal" title="日k">
+                                <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            </state>
+                            <connections>
+                                <action selector="dayKline:" destination="-1" eventType="touchUpInside" id="8En-QC-yyU"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2gs-F6-jqn">
+                            <rect key="frame" x="143" y="25" width="30" height="30"/>
+                            <state key="normal" title="周k">
+                                <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            </state>
+                            <connections>
+                                <action selector="weekKline:" destination="-1" eventType="touchUpInside" id="dB8-rM-F3O"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7Zq-s4-dqQ">
+                            <rect key="frame" x="276" y="25" width="30" height="30"/>
+                            <state key="normal" title="年k">
+                                <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            </state>
+                            <connections>
+                                <action selector="yearKline:" destination="-1" eventType="touchUpInside" id="44H-2x-Cvb"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RJt-BN-esB">
+                            <rect key="frame" x="197" y="25" width="30" height="30"/>
+                            <state key="normal" title="月k">
+                                <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            </state>
+                            <connections>
+                                <action selector="monthKline:" destination="-1" eventType="touchUpInside" id="GFh-bZ-DDT"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" red="0.094117647058823528" green="0.10980392156862745" blue="0.12549019607843137" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="50" id="1wf-u7-UeO"/>
-                        <constraint firstAttribute="width" constant="300" id="Ppn-Me-ui1"/>
+                        <constraint firstItem="acx-Im-l1h" firstAttribute="top" secondItem="mym-OB-Nrd" secondAttribute="top" constant="25" id="JLD-mH-5yO"/>
+                        <constraint firstItem="7Zq-s4-dqQ" firstAttribute="leading" secondItem="RJt-BN-esB" secondAttribute="trailing" constant="49" id="K3k-EC-lw4"/>
+                        <constraint firstItem="cZz-zc-5LI" firstAttribute="centerY" secondItem="acx-Im-l1h" secondAttribute="centerY" id="KMM-GG-Iy3"/>
+                        <constraint firstItem="acx-Im-l1h" firstAttribute="leading" secondItem="mym-OB-Nrd" secondAttribute="leading" constant="25" id="T7R-bv-lTt"/>
+                        <constraint firstItem="RJt-BN-esB" firstAttribute="leading" secondItem="2gs-F6-jqn" secondAttribute="trailing" constant="24" id="XGN-YI-lVd"/>
+                        <constraint firstItem="7Zq-s4-dqQ" firstAttribute="centerY" secondItem="RJt-BN-esB" secondAttribute="centerY" id="dtY-c9-uLF"/>
+                        <constraint firstItem="2gs-F6-jqn" firstAttribute="leading" secondItem="cZz-zc-5LI" secondAttribute="trailing" constant="24" id="gpc-S3-nro"/>
+                        <constraint firstItem="RJt-BN-esB" firstAttribute="centerY" secondItem="2gs-F6-jqn" secondAttribute="centerY" id="kRM-yD-XZW"/>
+                        <constraint firstAttribute="height" constant="50" id="ouY-Vm-zb9"/>
+                        <constraint firstItem="2gs-F6-jqn" firstAttribute="centerY" secondItem="cZz-zc-5LI" secondAttribute="centerY" id="pO5-MK-23V"/>
+                        <constraint firstItem="cZz-zc-5LI" firstAttribute="leading" secondItem="acx-Im-l1h" secondAttribute="trailing" constant="33" id="so3-D3-2uH"/>
                     </constraints>
-                    <fontDescription key="fontDescription" name="PingFangSC-Semibold" family="PingFang SC" pointSize="19"/>
-                    <color key="textColor" red="0.20000000300000001" green="0.20000000300000001" blue="0.20000000300000001" alpha="1" colorSpace="calibratedRGB"/>
-                    <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                </label>
+                </view>
             </subviews>
             <color key="backgroundColor" red="0.32689926219999998" green="0.59533014989999999" blue="0.77653077410000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstItem="sqt-fz-mKI" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="1Ki-nG-zl6"/>
                 <constraint firstItem="fTx-Me-XvT" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="C4s-L3-v4s"/>
+                <constraint firstItem="mym-OB-Nrd" firstAttribute="top" secondItem="fTx-Me-XvT" secondAttribute="bottom" constant="20" id="S7S-Co-jee"/>
                 <constraint firstItem="fTx-Me-XvT" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="YHf-T7-IXk"/>
-                <constraint firstItem="sqt-fz-mKI" firstAttribute="top" secondItem="fTx-Me-XvT" secondAttribute="bottom" constant="8" id="j2Q-WH-XkQ"/>
+                <constraint firstItem="mym-OB-Nrd" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="YKd-bz-ebM"/>
+                <constraint firstAttribute="trailing" secondItem="mym-OB-Nrd" secondAttribute="trailing" id="r86-Aq-Fid"/>
                 <constraint firstAttribute="trailing" secondItem="fTx-Me-XvT" secondAttribute="trailing" id="u8p-Bo-LUZ"/>
             </constraints>
             <point key="canvasLocation" x="234.5" y="205.5"/>

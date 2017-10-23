@@ -99,6 +99,10 @@ typedef NS_ENUM(NSInteger, SJCurveShowType) {
 //float最小值
 #define MTCurveChartFloatMin CGFLOAT_MIN
 
+#pragma mark -
+//分时线的宽度
+#define MTCurveChartTimeLineWidth 1
+
 #pragma mark 曲线颜色
 #define Curve_Color_Yellow 0xffff00        //黄色RGB值
 #define Curve_Color_White 0xffffff         //白色RGB值

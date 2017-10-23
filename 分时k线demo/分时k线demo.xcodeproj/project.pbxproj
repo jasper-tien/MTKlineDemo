@@ -33,6 +33,10 @@
 		8ED2E2461F7641D400251618 /* MTCurveProcess.m in Sources */ = {isa = PBXBuildFile; fileRef = 8ED2E2451F7641D400251618 /* MTCurveProcess.m */; };
 		8ED2E2491F76420400251618 /* MTCurveObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 8ED2E2481F76420400251618 /* MTCurveObject.m */; };
 		8ED2E24F1F76423A00251618 /* MTCurveMACD.m in Sources */ = {isa = PBXBuildFile; fileRef = 8ED2E24E1F76423A00251618 /* MTCurveMACD.m */; };
+		8EE7992E1F9DCAFC005F518C /* MTFenShiView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EE7992D1F9DCAFC005F518C /* MTFenShiView.m */; };
+		8EE799361F9DD000005F518C /* MTTimeLineView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EE799351F9DD000005F518C /* MTTimeLineView.m */; };
+		8EE799391F9DD3AF005F518C /* MTTimeLineModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EE799381F9DD3AF005F518C /* MTTimeLineModel.m */; };
+		8EE7993C1F9E01BD005F518C /* MTTimeLineVolumeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EE7993B1F9E01BD005F518C /* MTTimeLineVolumeView.m */; };
 		8EEF248E1F8B0BDE00C35E1C /* MTKLinePositionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EEF248D1F8B0BDE00C35E1C /* MTKLinePositionModel.m */; };
 		8EEF24921F8B0E0600C35E1C /* UIColor+CurveChart.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EEF24911F8B0E0600C35E1C /* UIColor+CurveChart.m */; };
 		8EEF24951F8B159100C35E1C /* MTCurveChartGlobalVariable.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EEF24941F8B159100C35E1C /* MTCurveChartGlobalVariable.m */; };
@@ -123,6 +127,14 @@
 		8ED2E2481F76420400251618 /* MTCurveObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTCurveObject.m; sourceTree = "<group>"; };
 		8ED2E24D1F76423A00251618 /* MTCurveMACD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTCurveMACD.h; sourceTree = "<group>"; };
 		8ED2E24E1F76423A00251618 /* MTCurveMACD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTCurveMACD.m; sourceTree = "<group>"; };
+		8EE7992C1F9DCAFC005F518C /* MTFenShiView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MTFenShiView.h; sourceTree = "<group>"; };
+		8EE7992D1F9DCAFC005F518C /* MTFenShiView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MTFenShiView.m; sourceTree = "<group>"; };
+		8EE799341F9DD000005F518C /* MTTimeLineView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MTTimeLineView.h; sourceTree = "<group>"; };
+		8EE799351F9DD000005F518C /* MTTimeLineView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MTTimeLineView.m; sourceTree = "<group>"; };
+		8EE799371F9DD3AF005F518C /* MTTimeLineModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MTTimeLineModel.h; sourceTree = "<group>"; };
+		8EE799381F9DD3AF005F518C /* MTTimeLineModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MTTimeLineModel.m; sourceTree = "<group>"; };
+		8EE7993A1F9E01BD005F518C /* MTTimeLineVolumeView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MTTimeLineVolumeView.h; sourceTree = "<group>"; };
+		8EE7993B1F9E01BD005F518C /* MTTimeLineVolumeView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MTTimeLineVolumeView.m; sourceTree = "<group>"; };
 		8EEF248C1F8B0BDE00C35E1C /* MTKLinePositionModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MTKLinePositionModel.h; sourceTree = "<group>"; };
 		8EEF248D1F8B0BDE00C35E1C /* MTKLinePositionModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MTKLinePositionModel.m; sourceTree = "<group>"; };
 		8EEF24901F8B0E0600C35E1C /* UIColor+CurveChart.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIColor+CurveChart.h"; sourceTree = "<group>"; };
@@ -335,6 +347,8 @@
 				8EEF248D1F8B0BDE00C35E1C /* MTKLinePositionModel.m */,
 				8EF9332D1F8F05960011E352 /* MTVolumePositionModel.h */,
 				8EF9332E1F8F05960011E352 /* MTVolumePositionModel.m */,
+				8EE799371F9DD3AF005F518C /* MTTimeLineModel.h */,
+				8EE799381F9DD3AF005F518C /* MTTimeLineModel.m */,
 			);
 			path = models;
 			sourceTree = "<group>";
@@ -370,6 +384,10 @@
 		8E5595B51F6BAD2C004976B7 /* shareTime */ = {
 			isa = PBXGroup;
 			children = (
+				8EE7992C1F9DCAFC005F518C /* MTFenShiView.h */,
+				8EE7992D1F9DCAFC005F518C /* MTFenShiView.m */,
+				8EE799301F9DCF68005F518C /* 成交量 */,
+				8EE7992F1F9DCF5E005F518C /* 分时图 */,
 			);
 			path = shareTime;
 			sourceTree = "<group>";
@@ -410,6 +428,24 @@
 				8E4F2C0D1F7D031F0082A3F5 /* MTCurveBOLL.m */,
 			);
 			path = techs;
+			sourceTree = "<group>";
+		};
+		8EE7992F1F9DCF5E005F518C /* 分时图 */ = {
+			isa = PBXGroup;
+			children = (
+				8EE799341F9DD000005F518C /* MTTimeLineView.h */,
+				8EE799351F9DD000005F518C /* MTTimeLineView.m */,
+			);
+			path = "分时图";
+			sourceTree = "<group>";
+		};
+		8EE799301F9DCF68005F518C /* 成交量 */ = {
+			isa = PBXGroup;
+			children = (
+				8EE7993A1F9E01BD005F518C /* MTTimeLineVolumeView.h */,
+				8EE7993B1F9E01BD005F518C /* MTTimeLineVolumeView.m */,
+			);
+			path = "成交量";
 			sourceTree = "<group>";
 		};
 		8EEF248F1F8B0D9B00C35E1C /* theme */ = {
@@ -645,6 +681,7 @@
 				8E0360A61F8E193600B485A2 /* MTTechView.m in Sources */,
 				8EF933551F8F473D0011E352 /* MTTechKDJView.m in Sources */,
 				8E02447A1F8CA2FB004AA725 /* MTKlineView.m in Sources */,
+				8EE799391F9DD3AF005F518C /* MTTimeLineModel.m in Sources */,
 				8E6D18E31F908F5400A82C39 /* MTTechMACDView.m in Sources */,
 				8E5C86091F70EC8A00F5DE86 /* SJManageDataToModel.m in Sources */,
 				8EF4B3091F95DF640090FEB7 /* MTKlineShowView.m in Sources */,
@@ -653,13 +690,16 @@
 				8E21E7691F564DB700CD55E0 /* main.m in Sources */,
 				8EFF5AC81F6FB13200CD94F1 /* Test2.m in Sources */,
 				8EF933491F8F45130011E352 /* MTTechBaseView.m in Sources */,
+				8EE799361F9DD000005F518C /* MTTimeLineView.m in Sources */,
 				8E21E7A01F565C7A00CD55E0 /* TestController.m in Sources */,
 				8EF4B3051F95A86B0090FEB7 /* MTTrackingCrossView.m in Sources */,
 				8EF933521F8F45DA0011E352 /* MTVolume.m in Sources */,
 				8EF9334F1F8F45A50011E352 /* MTTechVolumeView.m in Sources */,
 				8E0244771F8C68C1004AA725 /* MTMALine.m in Sources */,
 				8EFBDE171F735E7C00F8554E /* SJCurveObject.m in Sources */,
+				8EE7993C1F9E01BD005F518C /* MTTimeLineVolumeView.m in Sources */,
 				8EFBDE1A1F736B4500F8554E /* SJCurveProcess.m in Sources */,
+				8EE7992E1F9DCAFC005F518C /* MTFenShiView.m in Sources */,
 				8E8CAAD01F57DCF1005D3B39 /* MTModel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

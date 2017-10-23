@@ -58,6 +58,14 @@
  */
 + (UIColor *)gridLineColor;
 /**
+ *  分时线的颜色
+ */
++ (UIColor *)MTTimeLineColor;
+/**
+ *  分时线下方背景色
+ */
++(UIColor *)MTTimeLineBgColor;
+/**
  *  橙色
  */
 + (UIColor *)MTCurveOrangeColor;

@@ -27,6 +27,11 @@ static CGFloat mtCurveChartKlineShadowLineWith = 1;
  */
 static CGFloat mtCurveChartGridLineWidth = 0.3;
 
+//分时 成交量柱状图的宽度 默认时5
+static CGFloat mtCurveChartTimeLineWidth = 2;
+//分时 成交量柱状图的间隙 默认时1
+static CGFloat mtCurveChartTimeLineGapWidth = 0.3;
+
 #pragma mark K线图的宽度
 +(CGFloat)kLineWidth {
     return mtCurveChartKlineWith;
@@ -66,6 +71,23 @@ static CGFloat mtCurveChartGridLineWidth = 0.3;
 
 + (void)setCurveChartGridLineWidth:(CGFloat)gridLineWith {
     mtCurveChartGridLineWidth = gridLineWith;
+}
+
+#pragma mark 分时柱状图的宽度
++ (CGFloat)timeLineVolumeWidth {
+    return mtCurveChartTimeLineWidth;
+}
+
++ (void)setTimeLineVolumeWidth:(CGFloat)volumeWidth {
+    mtCurveChartTimeLineWidth = volumeWidth;
+}
+
+#pragma mark 分时柱状图的间隙
++ (CGFloat)timeLineVolumeGapWidth {
+    return mtCurveChartTimeLineGapWidth;
+}
++ (void)setTimeLineVolumeGapWidth:(CGFloat)volumeGapWidth {
+    mtCurveChartTimeLineGapWidth = volumeGapWidth;
 }
 
 @end

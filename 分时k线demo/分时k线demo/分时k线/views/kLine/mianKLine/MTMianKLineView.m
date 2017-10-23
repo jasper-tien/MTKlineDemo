@@ -50,12 +50,12 @@
 @implementation MTMianKLineView
 - (instancetype)initWithDelegate:(id<MTMianKLineViewDelegate>)delegate {
     if (self = [super init]) {
+        self.backgroundColor = [UIColor backgroundColor];
         self.delegate = delegate;
         self.needDrawPositionModels = @[].mutableCopy;
         self.MA5Positions = @[].mutableCopy;
         self.MA10Positions = @[].mutableCopy;
         self.MA20Positions = @[].mutableCopy;
-        self.backgroundColor = [UIColor backgroundColor];
         self.currentPriceMax = 0;
         self.currentPriceMin = 0;
         self.currentPriceMinToViewY = 0;

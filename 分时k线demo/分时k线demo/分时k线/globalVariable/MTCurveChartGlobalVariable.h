@@ -33,4 +33,15 @@
 + (CGFloat)CurveChactGridLineWidth;
 + (void)setCurveChartGridLineWidth:(CGFloat)gridLineWith;
 
+
+
+#pragma mark -
+//分时 成交量柱状图的宽度
++ (CGFloat)timeLineVolumeWidth;
++ (void)setTimeLineVolumeWidth:(CGFloat)volumeWidth;
+
+//分时 成交量柱状图的间隙
++ (CGFloat)timeLineVolumeGapWidth;
++ (void)setTimeLineVolumeGapWidth:(CGFloat)volumeGapWidth;
+
 @end
