@@ -84,11 +84,11 @@ typedef NS_ENUM(NSInteger, SJCurveShowType) {
 /**
  *  K线图缩放界限
  */
-#define MTCurveChartKLineScaleBound 0.03
+#define MTCurveChartKLineScaleBound 0.05
 /**
  *  K线的缩放因子
  */
-#define MTCurveChartKLineScaleFactor 0.03
+#define MTCurveChartKLineScaleFactor 0.08
 /**
  *  十字光标线的宽度
  */
