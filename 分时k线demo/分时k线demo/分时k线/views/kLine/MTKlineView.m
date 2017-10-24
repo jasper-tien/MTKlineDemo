@@ -212,6 +212,10 @@
     }
 }
 
+- (void)tapMethod:(UITapGestureRecognizer *)tapGesture {
+    self.trackingCrossView.hidden = YES;
+}
+
 - (void)updateScrollViewContenSize {
     CGFloat scrollViewWidth = self.scrollView.frame.size.width;
     CGFloat scrollViewContentWidth = ([MTCurveChartGlobalVariable kLineGap] + [MTCurveChartGlobalVariable kLineWidth]) * [self.manager getMainKLineDatas].count;
@@ -297,6 +301,11 @@
         //长按手势
         UILongPressGestureRecognizer *longPressGesture = [[UILongPressGestureRecognizer alloc]initWithTarget:self action:@selector(longPressMethod:)];
         [_scrollView addGestureRecognizer:longPressGesture];
+        
+        //点击手势
+        UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapMethod:)];
+        tapGesture.numberOfTapsRequired = 1;
+        [_scrollView addGestureRecognizer:tapGesture];
     }
     
     return _scrollView;
