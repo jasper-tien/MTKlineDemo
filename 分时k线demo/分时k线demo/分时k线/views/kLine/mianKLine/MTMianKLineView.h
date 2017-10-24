@@ -29,7 +29,7 @@
 
 - (void)drawMainView;
 
-- (void)getExactPositionWithOriginPosition:(CGPoint)longPressPosition;
+- (void)longPressOrMovingAtPoint:(CGPoint)longPressPosition;
 
 //重绘最新的数据或者选定的数据
 - (void)reDrawShowViewWithIndex:(NSInteger)index;

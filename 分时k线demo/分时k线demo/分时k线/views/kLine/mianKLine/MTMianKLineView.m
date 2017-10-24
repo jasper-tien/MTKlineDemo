@@ -183,7 +183,7 @@
 /**
  *  长按的时候根据原始的x位置获得精确的x的位置
  */
-- (void)getExactPositionWithOriginPosition:(CGPoint)longPressPosition{
+- (void)longPressOrMovingAtPoint:(CGPoint)longPressPosition{
     CGFloat xPositoinInMainView = longPressPosition.x;
     CGFloat exactXPositionInMainView = 0.0;
     

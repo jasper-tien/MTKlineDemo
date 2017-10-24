@@ -49,6 +49,9 @@
     }
     if (self.delegate && [self.delegate respondsToSelector:@selector(techBaseViewLongPressExactPosition:selectedIndex:longPressValue:)]) {
         CGFloat longPressValue = self.unitValue * (self.currentValueMaxToViewY - longPressPosition.y) + self.currentValueMin;
+        if (longPressValue < self.currentValueMin) {
+            longPressValue = self.currentValueMin;
+        }
         [self.delegate techBaseViewLongPressExactPosition:CGPointMake(exactXPositionInMainView, longPressPosition.y) selectedIndex:index longPressValue:longPressValue];
     }
 }

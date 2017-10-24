@@ -118,4 +118,34 @@
     return YES;
 }
 
+- (void)longPressOrMovingAtPoint:(CGPoint)longPressPosition {
+    CGFloat xPositoinInMainView = longPressPosition.x;
+    CGFloat exactXPositionInMainView = 0.0;
+    
+    //原始的x位置获取对应在数组中的index
+    NSInteger index = xPositoinInMainView / ([MTCurveChartGlobalVariable timeLineVolumeWidth] + [MTCurveChartGlobalVariable timeLineVolumeGapWidth]);
+    //对应index映射到view上的准确位置
+    CGFloat indexXPosition = index * ([MTCurveChartGlobalVariable timeLineVolumeWidth] + [MTCurveChartGlobalVariable timeLineVolumeGapWidth]);
+    //最小临界值
+    CGFloat minX = indexXPosition  - ([MTCurveChartGlobalVariable timeLineVolumeWidth] + [MTCurveChartGlobalVariable timeLineVolumeGapWidth]) / 2;
+    //最大临界值
+    CGFloat maxX = indexXPosition + ([MTCurveChartGlobalVariable timeLineVolumeWidth] + [MTCurveChartGlobalVariable timeLineVolumeGapWidth]) / 2;
+    //对比原始x值大于最小临界值，并小于最大临界值，返回当前index的精确位置;当大于最大临界值时，返回下一个index对应的精确位置(理论上该值不可能小于最小临界值，所以不用考虑)
+    if (xPositoinInMainView < maxX && xPositoinInMainView > minX) {
+        exactXPositionInMainView = indexXPosition;
+    } else {
+        index++;
+        exactXPositionInMainView = indexXPosition + ([MTCurveChartGlobalVariable timeLineVolumeWidth] + [MTCurveChartGlobalVariable timeLineVolumeGapWidth]);
+    }
+    
+    //调用代理，通知指标view更新详情信息
+    if (self.delegate && [self.delegate respondsToSelector:@selector(timeLineVolumeViewLongPressExactPosition:selectedIndex:longPressVolume:)]) {
+        CGFloat longPressPrece = self.unitValue * (self.currentValueMaxToViewY - longPressPosition.y) + self.currentValueMin;
+        if (longPressPrece < self.currentValueMin) {
+            longPressPrece = self.currentValueMin;
+        }
+        [self.delegate timeLineVolumeViewLongPressExactPosition:CGPointMake(exactXPositionInMainView, longPressPosition.y) selectedIndex:index longPressVolume:longPressPrece];
+    }
+}
+
 @end

@@ -17,6 +17,8 @@
         self.crossPoint = crossPoint;
         self.backgroundColor = [UIColor clearColor];
         self.userInteractionEnabled = NO;
+        self.showValue = 0.0;
+        self.crossPoint = CGPointZero;
     }
     
     return self;

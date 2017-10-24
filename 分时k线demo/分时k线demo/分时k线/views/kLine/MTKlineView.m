@@ -172,7 +172,18 @@
 - (void)kLineMainViewLongPressExactPosition:(CGPoint)longPressPosition selectedIndex:(NSInteger)index longPressPrice:(CGFloat)price {
     [self.techView reDrawTechShowViewWithIndex:index];
     self.trackingCrossView.showValue = price;
-    self.trackingCrossView.crossPoint = longPressPosition;
+    CGFloat trackingCrossViewPointX = longPressPosition.x;
+    if (trackingCrossViewPointX < 0) {
+        trackingCrossViewPointX = 0;
+    }
+    if (trackingCrossViewPointX > self.mainKlineView.frame.size.width) {
+        trackingCrossViewPointX = self.mainKlineView.frame.size.width;
+    }
+    CGFloat trackingCrossViewPointY = longPressPosition.y;
+    if (trackingCrossViewPointY < 0) {
+        trackingCrossViewPointY = 0;
+    }
+    self.trackingCrossView.crossPoint = CGPointMake(trackingCrossViewPointX, trackingCrossViewPointY);
     [self.trackingCrossView updateTrackingCrossView];
 }
 
@@ -180,7 +191,18 @@
 - (void)techViewLongPressExactPosition:(CGPoint)longPressPosition selectedIndex:(NSInteger)index longPressValue:(CGFloat)longPressValue {
     [self.mainKlineView reDrawShowViewWithIndex:index];
     self.trackingCrossView.showValue = longPressValue;
-    self.trackingCrossView.crossPoint = CGPointMake(longPressPosition.x, longPressPosition.y + self.techView.frame.origin.y);
+    CGFloat trackingCrossViewPointX = longPressPosition.x;
+    if (trackingCrossViewPointX < 0) {
+        trackingCrossViewPointX = 0;
+    }
+    if (trackingCrossViewPointX > self.techView.frame.size.width) {
+        trackingCrossViewPointX = self.techView.frame.size.width;
+    }
+    CGFloat trackingCrossViewPointY = longPressPosition.y+ self.techView.frame.origin.y;
+    if (trackingCrossViewPointY > (self.techView.frame.size.height + self.techView.frame.origin.y) ) {
+        trackingCrossViewPointY = self.techView.frame.size.height + self.techView.frame.origin.y;
+    }
+    self.trackingCrossView.crossPoint = CGPointMake(trackingCrossViewPointX, trackingCrossViewPointY);
     [self.trackingCrossView updateTrackingCrossView];
 }
 
@@ -243,7 +265,7 @@
             location = [longPress locationInView:self.techView];
             [self.techView longPressOrMovingAtPoint:location];
         } else {
-            [self.mainKlineView getExactPositionWithOriginPosition:location];
+            [self.mainKlineView longPressOrMovingAtPoint:location];
         }
     }
     

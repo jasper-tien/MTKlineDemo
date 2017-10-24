@@ -7,9 +7,20 @@
 //
 
 #import <UIKit/UIKit.h>
+@protocol MTTimeLineVolumeViewDelegate<NSObject>
+/**
+ *  长按
+ */
+- (void)timeLineVolumeViewLongPressExactPosition:(CGPoint)longPressPosition selectedIndex:(NSInteger)index longPressVolume:(CGFloat)volume;
+@end
 
 @class MTTimeLineModel;
+
 @interface MTTimeLineVolumeView : UIView
 @property (nonatomic, copy) NSArray<MTTimeLineModel *> *needDrawVolumeModels;
+@property (nonatomic, weak) id<MTTimeLineVolumeViewDelegate> delegate;
+
 - (void)updateDrawModels;
+
+- (void)longPressOrMovingAtPoint:(CGPoint)longPressPosition;
 @end
