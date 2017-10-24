@@ -63,7 +63,7 @@
 #pragma mark -
 - (MTTimeLineView *)timeLineView {
     if (!_timeLineView) {
-        _timeLineView = [[MTTimeLineView alloc] initWithFrame:CGRectMake(0, 0, 300, self.frame.size.height * 3 /4)];
+        _timeLineView = [[MTTimeLineView alloc] initWithFrame:CGRectMake(0, 0, 250, self.frame.size.height * 3 /4)];
         [self addSubview:_timeLineView];
         _timeLineView.timeLineModels = self.timeLineModels;
         [_timeLineView updateDrawModels];
@@ -74,7 +74,7 @@
 
 - (MTTimeLineVolumeView *)timeLineVolumeView {
     if (!_timeLineVolumeView) {
-        _timeLineVolumeView = [[MTTimeLineVolumeView alloc] initWithFrame:CGRectMake(0, self.frame.size.height * 3 /4, 300, self.frame.size.height /4)];
+        _timeLineVolumeView = [[MTTimeLineVolumeView alloc] initWithFrame:CGRectMake(0, self.frame.size.height * 3 /4, 250, self.frame.size.height /4)];
         [self addSubview:_timeLineVolumeView];
     }
     
@@ -83,7 +83,7 @@
 
 - (MTTimeLineTrackingCrossView *)trackingCrossView {
     if (!_trackingCrossView) {
-        _trackingCrossView = [[MTTimeLineTrackingCrossView alloc] initWithFrame:CGRectMake(0, 0, 300, self.frame.size.height) crossPoint:CGPointZero];
+        _trackingCrossView = [[MTTimeLineTrackingCrossView alloc] initWithFrame:CGRectMake(0, 0, 250, self.frame.size.height) crossPoint:CGPointZero];
         [self addSubview:_trackingCrossView];
     }
     
@@ -92,7 +92,7 @@
 
 - (MTTimeLineTableView *)timeLineTableView {
     if (!_timeLineTableView) {
-        _timeLineTableView = [[MTTimeLineTableView alloc] initWithFrame:CGRectMake(300, 0, self.frame.size.width - 300, self.frame.size.height)];
+        _timeLineTableView = [[MTTimeLineTableView alloc] initWithFrame:CGRectMake(250, 0, self.frame.size.width - 250, self.frame.size.height)];
         [self addSubview:_timeLineTableView];
     }
     
