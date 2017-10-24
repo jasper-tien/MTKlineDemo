@@ -9,10 +9,15 @@
 #import <UIKit/UIKit.h>
 #import "MTDataManager.h"
 #import "SJCurveChartConstant.h"
+@protocol MTKlineViewDataSource<NSObject>
+- (MTDataManager *)kLineViewDataManager;
+@end
 
 @interface MTKlineView : UIView
-
 @property (nonatomic, strong) MTDataManager *manager;
 @property (nonatomic, assign) SJKlineType kLineType;
+@property (nonatomic, weak) id<MTKlineViewDataSource> dataSource;
+
+- (void)updateDataWithKlineType:(SJKlineType)kLineType;
 
 @end

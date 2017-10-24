@@ -8,6 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol MTFenShiViewDataSource<NSObject>
+
+@end
+
 @class MTTimeLineModel;
 @interface MTFenShiView : UIView
 @property (nonatomic, copy) NSArray<MTTimeLineModel *> *timeLineModels;

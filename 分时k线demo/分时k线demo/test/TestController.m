@@ -17,7 +17,7 @@
 
 #import "MTTimeLineModel.h"
 
-@interface TestController () {
+@interface TestController ()<MTKlineViewDataSource> {
     NSArray *gArr;
     NSMutableArray *gMArr;
 }
@@ -33,8 +33,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    self.dataManager = [[MTDataManager alloc] initWithArray:[self getTestArray]];
     [self.view addSubview:self.fenShiView];
+    [self.kLineView updateDataWithKlineType:SJKlineType_Day];
 }
 
 - (NSArray *)getTimeLineArray {
@@ -150,6 +150,7 @@
     if (!self.kLineView.superview) {
         [self.view addSubview:self.kLineView];
     }
+    [self.kLineView updateDataWithKlineType:SJKlineType_Day];
 }
 
 - (IBAction)weekKline:(id)sender {
@@ -159,6 +160,7 @@
     if (!self.kLineView.superview) {
         [self.view addSubview:self.kLineView];
     }
+    [self.kLineView updateDataWithKlineType:SJKlineType_Day];
 }
 - (IBAction)monthKline:(id)sender {
     if (self.fenShiView.superview) {
@@ -167,6 +169,7 @@
     if (!self.kLineView.superview) {
         [self.view addSubview:self.kLineView];
     }
+    [self.kLineView updateDataWithKlineType:SJKlineType_Day];
 }
 
 - (IBAction)yearKline:(id)sender {
@@ -176,13 +179,19 @@
     if (!self.kLineView.superview) {
         [self.view addSubview:self.kLineView];
     }
+    [self.kLineView updateDataWithKlineType:SJKlineType_Day];
+}
+
+#pragma mark - MTKlineViewDataSource
+- (MTDataManager *)kLineViewDataManager {
+    return [[MTDataManager alloc] initWithArray:[self getTestArray]];
 }
 
 #pragma mark -
 - (MTKlineView *)kLineView {
     if (!_kLineView) {
         _kLineView = [[MTKlineView alloc] initWithFrame:CGRectMake(0, 100, [UIScreen mainScreen].bounds.size.width, 350)];
-        _kLineView.manager = self.dataManager;
+        _kLineView.dataSource = self;
     }
     
     return _kLineView;

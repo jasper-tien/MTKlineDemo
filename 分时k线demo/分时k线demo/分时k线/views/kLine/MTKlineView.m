@@ -67,6 +67,36 @@
     return self;
 }
 
+#pragma mark - public methods
+- (void)updateDataWithKlineType:(SJKlineType)kLineType {
+    //================================================================================
+    //该方法作为刷新k线视图时调用
+    //
+    //================================================================================
+    if (self.dataSource && [self.dataSource respondsToSelector:@selector(kLineViewDataManager)]) {
+        MTDataManager *newManager = [self.dataSource kLineViewDataManager];
+        if (self.manager != newManager) {
+            self.manager = newManager;
+            
+            [self updateScrollViewContenSize];
+            
+            //初始化状态显示最新的k线数据
+            CGFloat mainKlineViewWidth = self.mainKlineView.frame.size.width;
+            CGFloat scrollViewFirstOffsetX = self.scrollView.contentSize.width - mainKlineViewWidth;
+            self.scrollView.contentOffset = CGPointMake(scrollViewFirstOffsetX, 0);
+
+            //绘制主k线
+            NSArray *mainKlineModels = [self.manager getMainKLineDatas];
+            self.showStartIndex = mainKlineModels.count - self.showCount;
+            self.mainKlineView.needDrawKlneModels = [self.manager getMainKLineDatasWithRange:NSMakeRange(self.showStartIndex, self.showCount)];
+            [self.mainKlineView drawMainView];
+            
+            //绘制指标
+            [self updateKLineViewAndTechViewData];
+        }
+    }
+}
+
 #pragma mark - private methods
 - (void)updateKLineViewAndTechViewData {
     //刷新
@@ -226,31 +256,6 @@
 }
 
 #pragma mark - setters and getters
-- (void)setManager:(MTDataManager *)manager {
-    //注入数据
-    _manager = manager;
-    
-    [self updateScrollViewContenSize];
-    
-    //================================================================================
-    //现在暂时把该方法作为k线界面的初始化入口
-    //
-    //================================================================================
-    //初始化状态显示最新的k线数据
-    CGFloat mainKlineViewWidth = self.mainKlineView.frame.size.width;
-    CGFloat scrollViewFirstOffsetX = self.scrollView.contentSize.width - mainKlineViewWidth;
-    self.scrollView.contentOffset = CGPointMake(scrollViewFirstOffsetX, 0);
-    self.previousScrollViewOffsetX = scrollViewFirstOffsetX;
-    //绘制主k线
-    NSArray *mainKlineModels = [self.manager getMainKLineDatas];
-    self.showStartIndex = mainKlineModels.count - self.showCount;
-    self.mainKlineView.needDrawKlneModels = [self.manager getMainKLineDatasWithRange:NSMakeRange(self.showStartIndex, self.showCount)];
-    [self.mainKlineView drawMainView];
-    
-    //绘制指标
-    [self updateKLineViewAndTechViewData];
-    
-}
 
 - (UIView *)mainKlineView {
     if (!_mainKlineView) {
