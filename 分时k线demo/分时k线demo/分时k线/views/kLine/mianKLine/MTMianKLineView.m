@@ -212,7 +212,7 @@
         
         //调用代理，通知指标view更新详情信息
         if (self.delegate && [self.delegate respondsToSelector:@selector(kLineMainViewLongPressExactPosition:selectedIndex:longPressPrice:)]) {
-            CGFloat longPressPrece = self.unitViewY * (self.currentPriceMaxToViewY - longPressPosition.y) - self.currentPriceMin;
+            CGFloat longPressPrece = self.unitViewY * (self.currentPriceMaxToViewY - longPressPosition.y) + self.currentPriceMin;
             [self.delegate kLineMainViewLongPressExactPosition:CGPointMake(exactXPositionInMainView, longPressPosition.y) selectedIndex:index longPressPrice:longPressPrece];
         }
     }

@@ -70,37 +70,40 @@
     for (int i = 0; i < 300; i++) {
         int op = (arc4random() % 1000) + 1;
         int cl = (arc4random() % 1000) + 1;
+        NSNumber *high;
+        NSNumber *low;
+        if (ABS(cl - op) > 300) {
+            if (cl > op) {
+                cl = op + arc4random() % 300;
+                
+                int hi = cl + arc4random() % 50;
+                high = [NSNumber numberWithInt:hi];
+                
+                int lo = op - arc4random() % 50;
+                if (lo <= 0) {
+                    lo = 0;
+                }
+                low = [NSNumber numberWithInt:lo];
+                
+            }else {
+                op = cl + arc4random() % 300;
+                
+                int hi = op + arc4random() % 50;
+                high = [NSNumber numberWithInt:hi];
+                
+                int lo = cl - arc4random() % 50;
+                if (lo <= 0) {
+                    lo = 0;
+                }
+                low = [NSNumber numberWithInt:lo];
+            }
+        }
+        
         NSNumber *open = [NSNumber numberWithInt:op];
         NSNumber *close = [NSNumber numberWithInt:cl];
         
-        NSNumber *high;
-        if (op > cl) {
-            int hi = op + arc4random() % 50;
-            high = [NSNumber numberWithInt:hi];
-            
-        } else {
-            int hi = cl + arc4random() % 50;
-            high = [NSNumber numberWithInt:hi];
-            
-        }
         
-        NSNumber *low;
-        if (op > cl) {
-            int lo = cl - arc4random() % 50;
-            if (lo <= 0) {
-                lo = 0;
-            }
-            
-            low = [NSNumber numberWithInt:lo];
-        } else {
-            int lo = op - arc4random() % 50;
-            if (lo <= 0) {
-                lo = 0;
-            }
-            
-            low = [NSNumber numberWithInt:lo];
-        }
-        NSNumber *volume = [NSNumber numberWithFloat:(arc4random() % 1000) + 1];
+        NSNumber *volume = [NSNumber numberWithFloat:(arc4random() % 100) + 500];
         
         NSString *time = [NSString stringWithFormat:@"%d", (arc4random() % 1000) + 1];
         NSArray *arr = [NSArray arrayWithObjects:time, open,high,low, close, volume, nil];
