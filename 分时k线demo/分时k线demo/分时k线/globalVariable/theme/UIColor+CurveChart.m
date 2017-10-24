@@ -90,6 +90,11 @@
     return [UIColor colorWithHex:0x60CFFF alpha:0.1f];
 }
 
+#pragma mark 分时 昨收价线的颜色
++ (UIColor *)MTTimeLinePreviousClosePriceLineColor {
+    return [UIColor colorWithRGBHex:0xF5FFFA];
+}
+
 #pragma mark 橙色
 +(UIColor *)MTCurveOrangeColor
 {

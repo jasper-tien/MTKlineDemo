@@ -10,17 +10,25 @@
 #import "UIColor+CurveChart.h"
 #import "MTTimeLineView.h"
 #import "MTTimeLineVolumeView.h"
+#import "MTTimeLineTrackingCrossView.h"
+#import "MTTimeLineTableView.h"
 
 @interface MTFenShiView ()
 @property (nonatomic, strong) MTTimeLineView *timeLineView;
 @property (nonatomic, strong) MTTimeLineVolumeView *timeLineVolumeView;
+@property (nonatomic, strong) MTTimeLineTrackingCrossView *trackingCrossView;
+@property (nonatomic, strong) MTTimeLineTableView *timeLineTableView;
 @end
 
 @implementation MTFenShiView
 - (instancetype)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
         self.backgroundColor = [UIColor assistBackgroundColor];
-        NSLog(@"%@ %@", self.timeLineView, self.timeLineVolumeView);
+        NSLog(@"%@ %@ %@", self.timeLineView, self.timeLineVolumeView, self.timeLineTableView);
+        
+        //长按手势
+        UILongPressGestureRecognizer *longPressGesture = [[UILongPressGestureRecognizer alloc]initWithTarget:self action:@selector(longPressMethod:)];
+        [self addGestureRecognizer:longPressGesture];
     }
     
     return self;
@@ -32,6 +40,24 @@
     
     _timeLineVolumeView.needDrawVolumeModels = self.timeLineModels;
     [_timeLineVolumeView updateDrawModels];
+}
+
+#pragma mark 长按手势执行方法
+- (void)longPressMethod:(UILongPressGestureRecognizer *)longPress {
+    if(UIGestureRecognizerStateChanged == longPress.state || UIGestureRecognizerStateBegan == longPress.state) {
+        CGPoint location = [longPress locationInView:self];
+        //暂停滑动
+        self.trackingCrossView.hidden = NO;
+        
+        //主k线或者指标view的精确位置计算
+        self.trackingCrossView.crossPoint = location;
+        self.trackingCrossView.showValue = 50.00;
+        [self.trackingCrossView updateTrackingCrossView];
+    }
+    
+    if(longPress.state == UIGestureRecognizerStateEnded) {
+        self.trackingCrossView.hidden = YES;
+    }
 }
 
 #pragma mark -
@@ -53,6 +79,24 @@
     }
     
     return _timeLineVolumeView;
+}
+
+- (MTTimeLineTrackingCrossView *)trackingCrossView {
+    if (!_trackingCrossView) {
+        _trackingCrossView = [[MTTimeLineTrackingCrossView alloc] initWithFrame:CGRectMake(0, 0, 300, self.frame.size.height) crossPoint:CGPointZero];
+        [self addSubview:_trackingCrossView];
+    }
+    
+    return _trackingCrossView;
+}
+
+- (MTTimeLineTableView *)timeLineTableView {
+    if (!_timeLineTableView) {
+        _timeLineTableView = [[MTTimeLineTableView alloc] initWithFrame:CGRectMake(300, 0, self.frame.size.width - 300, self.frame.size.height)];
+        [self addSubview:_timeLineTableView];
+    }
+    
+    return _timeLineTableView;
 }
 
 @end

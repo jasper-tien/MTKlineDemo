@@ -40,12 +40,22 @@
 - (NSArray *)getTimeLineArray {
     NSMutableArray *timeLineModels = [[NSMutableArray alloc] init];
     for (int i = 0; i < 300; i++) {
-        NSNumber *price = [NSNumber numberWithInt:(arc4random() % 100) + 1];
-        CGFloat volume = (arc4random() % 100) + 1;
+        NSNumber *price;
+        CGFloat volume = 0;
+        if (i < 20) {
+            price = [NSNumber numberWithInt:(arc4random() % 10) + 60];
+            volume = (arc4random() % 60) + 10;
+        } else if (i > 20 && i < 60) {
+            price = [NSNumber numberWithInt:(arc4random() % 10) + 20];
+            volume = arc4random() % 10 + 20;
+        }else {
+            price = [NSNumber numberWithInt:(arc4random() % 10) +10];
+            volume = (arc4random() % 10) +10;
+        }
         NSString *date = @"10:30";
         MTTimeLineModel *model = [[MTTimeLineModel alloc] init];
         model.Price = price;
-        model.AvgPrice = 80;
+        model.previousClosePrice = 50;
         model.Volume = volume;
         model.TimeDesc = date;
         [timeLineModels addObject:model];

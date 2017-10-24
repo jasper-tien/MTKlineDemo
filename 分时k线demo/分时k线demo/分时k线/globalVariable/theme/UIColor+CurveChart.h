@@ -66,6 +66,10 @@
  */
 +(UIColor *)MTTimeLineBgColor;
 /**
+ *  分时 昨收价线的颜色
+ */
++ (UIColor *)MTTimeLinePreviousClosePriceLineColor;
+/**
  *  橙色
  */
 + (UIColor *)MTCurveOrangeColor;

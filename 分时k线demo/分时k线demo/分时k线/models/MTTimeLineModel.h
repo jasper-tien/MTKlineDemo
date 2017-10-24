@@ -18,7 +18,7 @@
 /**
  *  前一天的收盘价
  */
-@property (nonatomic, assign) CGFloat AvgPrice;
+@property (nonatomic, assign) CGFloat previousClosePrice;
 
 /**
  *  成交量
