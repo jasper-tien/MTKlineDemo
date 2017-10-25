@@ -39,7 +39,7 @@
 
 - (NSArray *)getTimeLineArray {
     NSMutableArray *timeLineModels = [[NSMutableArray alloc] init];
-    for (int i = 0; i < 300; i++) {
+    for (int i = 0; i < 120; i++) {
         NSNumber *price;
         CGFloat volume = 0;
         if (i < 20) {

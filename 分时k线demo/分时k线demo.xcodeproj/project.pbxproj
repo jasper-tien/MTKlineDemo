@@ -29,6 +29,8 @@
 		8E21E7A01F565C7A00CD55E0 /* TestController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E21E79E1F565C7A00CD55E0 /* TestController.m */; };
 		8E21E7A11F565C7A00CD55E0 /* TestController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8E21E79F1F565C7A00CD55E0 /* TestController.xib */; };
 		8E2299431FA031C8008BC129 /* MTShowDetailsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E2299421FA031C8008BC129 /* MTShowDetailsView.m */; };
+		8E2299471FA06B9C008BC129 /* MTTimeLineDetailedCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E2299451FA06B9C008BC129 /* MTTimeLineDetailedCell.m */; };
+		8E2299481FA06B9C008BC129 /* MTTimeLineDetailedCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8E2299461FA06B9C008BC129 /* MTTimeLineDetailedCell.xib */; };
 		8E3896441F7F6E72006AEC92 /* MTMianKLineView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E3896431F7F6E72006AEC92 /* MTMianKLineView.m */; };
 		8E3896471F7F6F08006AEC92 /* MTKLine.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E3896461F7F6F08006AEC92 /* MTKLine.m */; };
 		8E4F2C0B1F7CFB990082A3F5 /* MTCurveKDJ.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E4F2C0A1F7CFB990082A3F5 /* MTCurveKDJ.m */; };
@@ -124,6 +126,9 @@
 		8E21E79F1F565C7A00CD55E0 /* TestController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TestController.xib; sourceTree = "<group>"; };
 		8E2299411FA031C8008BC129 /* MTShowDetailsView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MTShowDetailsView.h; sourceTree = "<group>"; };
 		8E2299421FA031C8008BC129 /* MTShowDetailsView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MTShowDetailsView.m; sourceTree = "<group>"; };
+		8E2299441FA06B9C008BC129 /* MTTimeLineDetailedCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MTTimeLineDetailedCell.h; sourceTree = "<group>"; };
+		8E2299451FA06B9C008BC129 /* MTTimeLineDetailedCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MTTimeLineDetailedCell.m; sourceTree = "<group>"; };
+		8E2299461FA06B9C008BC129 /* MTTimeLineDetailedCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MTTimeLineDetailedCell.xib; sourceTree = "<group>"; };
 		8E3896421F7F6E72006AEC92 /* MTMianKLineView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MTMianKLineView.h; sourceTree = "<group>"; };
 		8E3896431F7F6E72006AEC92 /* MTMianKLineView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MTMianKLineView.m; sourceTree = "<group>"; };
 		8E3896451F7F6F08006AEC92 /* MTKLine.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MTKLine.h; sourceTree = "<group>"; };
@@ -267,6 +272,9 @@
 			children = (
 				8E18DCCA1F9F254D003C47C0 /* MTTimeLineDetailedView.h */,
 				8E18DCCB1F9F254D003C47C0 /* MTTimeLineDetailedView.m */,
+				8E2299441FA06B9C008BC129 /* MTTimeLineDetailedCell.h */,
+				8E2299451FA06B9C008BC129 /* MTTimeLineDetailedCell.m */,
+				8E2299461FA06B9C008BC129 /* MTTimeLineDetailedCell.xib */,
 			);
 			path = "明细";
 			sourceTree = "<group>";
@@ -697,6 +705,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8E18DCC31F9F0A50003C47C0 /* MTFiveRecordCell.xib in Resources */,
+				8E2299481FA06B9C008BC129 /* MTTimeLineDetailedCell.xib in Resources */,
 				8E21E7771F564DB700CD55E0 /* LaunchScreen.storyboard in Resources */,
 				8E21E7741F564DB700CD55E0 /* Assets.xcassets in Resources */,
 				8E21E7721F564DB700CD55E0 /* Main.storyboard in Resources */,
@@ -768,6 +777,7 @@
 				8EF933521F8F45DA0011E352 /* MTVolume.m in Sources */,
 				8EF9334F1F8F45A50011E352 /* MTTechVolumeView.m in Sources */,
 				8E0244771F8C68C1004AA725 /* MTMALine.m in Sources */,
+				8E2299471FA06B9C008BC129 /* MTTimeLineDetailedCell.m in Sources */,
 				8EFBDE171F735E7C00F8554E /* SJCurveObject.m in Sources */,
 				8EE7993C1F9E01BD005F518C /* MTTimeLineVolumeView.m in Sources */,
 				8EFBDE1A1F736B4500F8554E /* SJCurveProcess.m in Sources */,

@@ -107,6 +107,34 @@
     [self switchSubViewWithIndex:self.selectedIndex];
 }
 
+- (NSArray *)getDetailedData {
+    NSInteger minute = 12;
+    NSInteger second = 0;
+    NSMutableArray *datas = [[NSMutableArray alloc] init];
+    for (int i = 0; i < 100; i++) {
+        NSString *price = [NSString stringWithFormat:@"%u", (arc4random() % 50) + 100];
+        NSString *volume = [NSString stringWithFormat:@"%u", (arc4random() % 50) + 10];
+        
+        second++;
+        if (second > 60) {
+            second = 0;
+            minute++;
+            if (minute > 24) {
+                minute = 0;
+            }
+        }
+        NSString *time = [NSString stringWithFormat:@"%02lu:%02lu", minute, second];
+        NSDictionary *dic = @{
+                              @"time"  : time,
+                              @"price" : price,
+                              @"volume" : volume
+                              };
+        [datas addObject:dic];
+    }
+    
+    return datas;
+}
+
 #pragma mark -
 - (MTFiveRecordTableView *)fiveRecordTableView {
     if (!_fiveRecordTableView) {
@@ -130,6 +158,9 @@
 - (MTTimeLineDetailedView *)detailedView {
     if (!_detailedView) {
         _detailedView = [[MTTimeLineDetailedView alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height - 21)];
+        _detailedView.tag = CurrentContentViewTag;
+        _detailedView.tableViewDatas = [self getDetailedData];
+        [_detailedView reloadTableView];
     }
     
     return _detailedView;
@@ -138,6 +169,7 @@
 - (MTDaDanView *)daDanView {
     if (!_daDanView) {
         _daDanView = [[MTDaDanView alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height - 21)];
+        _detailedView.tag = CurrentContentViewTag;
     }
     
     return _daDanView;

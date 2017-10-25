@@ -9,5 +9,8 @@
 #import <UIKit/UIKit.h>
 
 @interface MTTimeLineDetailedView : UIView
+@property (nonatomic, copy) NSArray *tableViewDatas;
+
+- (void)reloadTableView;
 
 @end

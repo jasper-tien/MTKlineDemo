@@ -161,21 +161,18 @@
 
 - (void)drawPositionYRuler:(CGContextRef)context {
     // 同样先全部写死，看看效果，后面根据需求更改
-    CGFloat unitValueY = (self.currentPriceMax - self.currentPriceMin) / 3;
     CGFloat rulerValueY0 = self.currentPriceMin;
-    CGFloat rulerValueY1 = self.currentPriceMin + unitValueY;
-    CGFloat rulerValueY2 = self.currentPriceMin + unitValueY * 2;
+    CGFloat rulerValueY1 = self.currentPriceMin + self.unitViewY * (self.currentPriceMaxToViewY - self.bounds.size.height * 2 / 3);
+    CGFloat rulerValueY2 = self.currentPriceMin + self.unitViewY * (self.currentPriceMaxToViewY - self.bounds.size.height * 1 / 3);
     CGFloat rulerValueY3 = self.currentPriceMax;
     NSArray *rulerValueYs = [NSArray arrayWithObjects:[NSString stringWithFormat:@"%.2f", rulerValueY0] ,[NSString stringWithFormat:@"%.2f", rulerValueY1], [NSString stringWithFormat:@"%.2f",rulerValueY2], [NSString stringWithFormat:@"%.2f", rulerValueY3], nil];
-    CGFloat unitPositionYRuler = self.frame.size.height / 3;
-    for (NSInteger i = 0; i < rulerValueYs.count ; i++) {
-        NSString *positionYStr = rulerValueYs[rulerValueYs.count - i - 1];
-        CGPoint drawTitlePoint = CGPointMake(0, unitPositionYRuler * i);
-        if (i == 3) {
-            drawTitlePoint = CGPointMake(0, unitPositionYRuler * i - 15);
+    NSArray *rulerPointYs = [NSArray arrayWithObjects:@(self.currentPriceMaxToViewY - 6.5) , @(self.bounds.size.height * 2 / 3 - 6.5), @(self.bounds.size.height * 1 / 3 - 6.5), @(self.currentPriceMinToViewY - 6.5), nil];
+    if (rulerPointYs.count == rulerValueYs.count) {
+        for (NSInteger i = 0; i < rulerValueYs.count ; i++) {
+            NSString *positionYStr = rulerValueYs[i];
+            CGPoint drawTitlePoint = CGPointMake(0, [rulerPointYs[i] floatValue]);
+            [positionYStr drawAtPoint:drawTitlePoint withAttributes:@{NSFontAttributeName : [UIFont systemFontOfSize:10],NSForegroundColorAttributeName : [UIColor mainTextColor]}];
         }
-        
-        [positionYStr drawAtPoint:drawTitlePoint withAttributes:@{NSFontAttributeName : [UIFont systemFontOfSize:10],NSForegroundColorAttributeName : [UIColor mainTextColor]}];
     }
 }
 

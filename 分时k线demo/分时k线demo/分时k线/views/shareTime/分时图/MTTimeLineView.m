@@ -95,11 +95,11 @@
 
 - (void)drawPositionYRuler {
     NSString *priceMaxStr = [NSString stringWithFormat:@"%.2f", self.priceMax];
-    CGPoint priceMaxPoint = CGPointMake(0, self.priceMinToViewY - 10);
+    CGPoint priceMaxPoint = CGPointMake(0, self.priceMinToViewY - 6.5);
     [priceMaxStr drawAtPoint:priceMaxPoint withAttributes:@{NSFontAttributeName : [UIFont systemFontOfSize:10],NSForegroundColorAttributeName : [UIColor mainTextColor]}];
     
     NSString *priceMinStr = [NSString stringWithFormat:@"%.2f", self.priceMin];
-    CGPoint priceMinPoint = CGPointMake(0, self.priceMaxToViewY + 10);
+    CGPoint priceMinPoint = CGPointMake(0, self.priceMaxToViewY - 6.5);
     [priceMinStr drawAtPoint:priceMinPoint withAttributes:@{NSFontAttributeName : [UIFont systemFontOfSize:10],NSForegroundColorAttributeName : [UIColor mainTextColor]}];
 }
 
