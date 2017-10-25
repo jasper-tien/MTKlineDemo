@@ -10,6 +10,10 @@
 #import "UIColor+CurveChart.h"
 #import "SJCurveChartConstant.h"
 
+@interface MTTimeLineTrackingCrossView()
+@property (nonatomic, assign) CGRect showValueRect;
+@end
+
 @implementation MTTimeLineTrackingCrossView
 
 - (instancetype)initWithFrame:(CGRect)frame crossPoint:(CGPoint)crossPoint {
@@ -27,11 +31,11 @@
 - (void)drawRect:(CGRect)rect {
     [super drawRect:rect];
     CGContextRef context = UIGraphicsGetCurrentContext();
+    [self drawSelectedPart:context];
+    
     [self drawVerticalLine:context];
     
     [self drawHorizontalLine:context];
-    
-    [self drawSelectedPart:context];
 }
 
 //竖线
@@ -46,9 +50,18 @@
 
 //横线
 - (void)drawHorizontalLine:(CGContextRef)context {
+    CGPoint startPoint = CGPointZero;
+    CGPoint endPoint = CGPointZero;
+    if (self.showValueRect.origin.x > 0) {
+        startPoint = CGPointMake(0, self.crossPoint.y);
+        endPoint = CGPointMake(self.frame.size.width - self.showValueRect.size.width, self.crossPoint.y);
+    } else {
+        startPoint = CGPointMake(self.showValueRect.size.width, self.crossPoint.y);
+        endPoint = CGPointMake(self.frame.size.width, self.crossPoint.y);
+    }
     CGContextSetStrokeColorWithColor(context, [UIColor longPressLineColor].CGColor);
     CGContextSetLineWidth(context, MTCurveChartTrackingCrossLineWidth);
-    const CGPoint horizontalLinePoints[] = {CGPointMake(0, self.crossPoint.y), CGPointMake(self.frame.size.width, self.crossPoint.y)};
+    const CGPoint horizontalLinePoints[] = {startPoint, endPoint};
     CGContextStrokeLineSegments(context, horizontalLinePoints, 2);
 }
 
@@ -74,10 +87,10 @@
         pricePointX = 0;
     }
     
-    CGRect priceDrawRect= CGRectMake(pricePointX, pricePointY, priceRect.size.width, priceRect.size.height);
+    self.showValueRect = CGRectMake(pricePointX, pricePointY, priceRect.size.width, priceRect.size.height);
     CGContextSetFillColorWithColor(context, [UIColor longPressSelectedRectBgColor].CGColor);
-    CGContextFillRect(context, priceDrawRect);
-    [priceText drawInRect:priceDrawRect withAttributes:attribute];
+    CGContextFillRect(context, self.showValueRect);
+    [priceText drawInRect:self.showValueRect withAttributes:attribute];
 }
 
 - (CGRect)rectOfNSString:(NSString *)string attribute:(NSDictionary *)attribute {

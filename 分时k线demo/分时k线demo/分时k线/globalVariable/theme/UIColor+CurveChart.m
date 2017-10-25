@@ -72,7 +72,7 @@
 
 #pragma mark 长按出现的方块背景颜色
 +(UIColor *)longPressSelectedRectBgColor {
-    return [UIColor colorWithRGBHex:0x808080];
+    return [UIColor colorWithHex:0x4682B4 alpha:0.7f];
 }
 
 #pragma mark 网格框的颜色
