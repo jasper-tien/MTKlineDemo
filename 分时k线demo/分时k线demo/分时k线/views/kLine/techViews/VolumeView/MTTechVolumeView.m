@@ -15,10 +15,10 @@
 #import "MTMALine.h"
 #import "MTVolume.h"
 #import "MTVolumePositionModel.h"
-#import "MTTechsShowView.h"
+#import "MTShowDetailsView.h"
 
 @interface MTTechVolumeView ()
-@property (nonatomic, strong) MTTechsShowView *volumeShowView;
+@property (nonatomic, strong) MTShowDetailsView *showDetailsView;
 /**
  *  volume位置数组
  */
@@ -102,8 +102,28 @@
 }
 
 - (void)drawTopdeTailsView {
-    NSString *titleStr = [NSString stringWithFormat:@"  %.0f万手 MA5:%.2f MA10:%.2f MA20:%.2f", self.showKlineModel.volume.floatValue, self.showKlineModel.volumeMA_5.floatValue, self.showKlineModel.volumeMA_10.floatValue, self.showKlineModel.volumeMA_20.floatValue];
-    [self.volumeShowView redrawWithString:titleStr];
+    NSDictionary *volumeDic = @{
+                                @"content" : [NSString stringWithFormat:@"%.2f", self.showKlineModel.volume.floatValue],
+                                @"color":[UIColor assistTextColor],
+                                @"type":@"2"
+                                };
+    NSDictionary *MA5Dic = @{
+                             @"content" : [NSString stringWithFormat:@"MA5:%.2f", self.showKlineModel.volumeMA_5.floatValue],
+                             @"color":[UIColor MTCurveVioletColor],
+                             @"type":@"1"
+                             };
+    NSDictionary *MA10Dic = @{
+                              @"content" : [NSString stringWithFormat:@"MA10:%.2f", self.showKlineModel.volumeMA_10.floatValue],
+                              @"color":[UIColor MTCurveYellowColor],
+                              @"type":@"1"
+                              };
+    NSDictionary *MA20Dic = @{
+                              @"content" : [NSString stringWithFormat:@"MA20:%.2f", self.showKlineModel.volumeMA_20.floatValue],
+                              @"color":[UIColor MTCurveBlueColor],
+                              @"type":@"1"
+                              };
+    NSArray *contentAarray = [NSArray arrayWithObjects:volumeDic, MA5Dic, MA10Dic,MA20Dic, nil];
+    [self.showDetailsView redrawWithArray:contentAarray];
 }
 
 #pragma mark -
@@ -118,10 +138,12 @@
 }
 
 - (void)reDrawShowViewWithIndex:(NSInteger)index {
-    if (index < self.needDrawVolumeModels.count && index > 0) {
+    if (index == -1) {
+        self.showKlineModel = self.needDrawVolumeModels.lastObject;
+        [self drawTopdeTailsView];
+    } else if (index < self.needDrawVolumeModels.count && index > 0) {
         self.showKlineModel = self.needDrawVolumeModels[index];
-        NSString *titleStr = [NSString stringWithFormat:@"  %.0f万手 MA5:%.2f MA10:%.2f MA20:%.2f", self.showKlineModel.volume.floatValue, self.showKlineModel.volumeMA_5.floatValue, self.showKlineModel.volumeMA_10.floatValue, self.showKlineModel.volumeMA_20.floatValue];
-        [self.volumeShowView redrawWithString:titleStr];
+        [self drawTopdeTailsView];
     }
 }
 
@@ -258,13 +280,13 @@
 }
 
 #pragma mark -
-- (MTTechsShowView *)volumeShowView {
-    if (!_volumeShowView) {
-        _volumeShowView = [[MTTechsShowView alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, 30)];
-        [self addSubview:_volumeShowView];
+- (MTShowDetailsView *)showDetailsView {
+    if (!_showDetailsView) {
+        _showDetailsView = [[MTShowDetailsView alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, 20)];
+        [self addSubview:_showDetailsView];
     }
     
-    return _volumeShowView;
+    return _showDetailsView;
 }
 
 @end

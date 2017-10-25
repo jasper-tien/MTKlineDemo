@@ -12,10 +12,10 @@
 #import "MTCurveChartGlobalVariable.h"
 #import "MTMALine.h"
 #import "UIColor+CurveChart.h"
-#import "MTTechsShowView.h"
+#import "MTShowDetailsView.h"
 
 @interface MTTechKDJView ()
-@property (nonatomic, strong) MTTechsShowView *KDJShowView;
+@property (nonatomic, strong) MTShowDetailsView *showDetailsView;
 @property (nonatomic, strong) NSMutableArray *KPositionModels;
 @property (nonatomic, strong) NSMutableArray *DPositionModels;
 @property (nonatomic, strong) NSMutableArray *JPositionModels;
@@ -76,7 +76,13 @@
 
 - (void)drawTopdeTailsView {
     NSString *titleStr = [NSString stringWithFormat:@"KDJ(9, 3, 3)"];
-    [self.KDJShowView redrawWithString:titleStr];
+    NSDictionary *KDJDic = @{
+                              @"content" : titleStr,
+                              @"color":[UIColor assistTextColor],
+                              @"type":@"2"
+                              };
+    NSArray *contentAarray = [NSArray arrayWithObjects:KDJDic, nil];
+    [self.showDetailsView redrawWithArray:contentAarray];
 }
 
 #pragma mark -
@@ -88,10 +94,27 @@
 }
 
 - (void)reDrawShowViewWithIndex:(NSInteger)index {
-    if (index < self.needDrawKDJModels.count && index > 0) {
+    if (index == -1) {
+        [self drawTopdeTailsView];
+    } else if (index < self.needDrawKDJModels.count && index > 0) {
         self.showKDJModel = self.needDrawKDJModels[index];
-        NSString *titleStr = [NSString stringWithFormat:@"K:%.2f D:%.2f J:%.2f", self.showKDJModel.KDJ_K.floatValue, self.showKDJModel.KDJ_D.floatValue, self.showKDJModel.KDJ_J.floatValue];
-        [self.KDJShowView redrawWithString:titleStr];
+        NSDictionary *KDic = @{
+                                @"content" : [NSString stringWithFormat:@"K:%.2f", self.showKDJModel.KDJ_K.floatValue],
+                                @"color":[UIColor mainTextColor],
+                                @"type":@"2"
+                                };
+        NSDictionary *DDic = @{
+                                @"content" : [NSString stringWithFormat:@"D:%.2f", self.showKDJModel.KDJ_D.floatValue],
+                                @"color":[UIColor MTCurveYellowColor],
+                                @"type":@"2"
+                                };
+        NSDictionary *JDic = @{
+                                @"content" : [NSString stringWithFormat:@"J:%.2f", self.showKDJModel.KDJ_J.floatValue],
+                                @"color":[UIColor MTCurveVioletColor],
+                                @"type":@"2"
+                                };
+        NSArray *contentAarray = [NSArray arrayWithObjects:KDic, DDic, JDic, nil];
+        [self.showDetailsView redrawWithArray:contentAarray];
     }
 }
 
@@ -204,13 +227,13 @@
 }
 
 #pragma mark -
-- (MTTechsShowView *)KDJShowView {
-    if (!_KDJShowView) {
-        _KDJShowView = [[MTTechsShowView alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, 30)];
-        [self addSubview:_KDJShowView];
+- (MTShowDetailsView *)showDetailsView {
+    if (!_showDetailsView) {
+        _showDetailsView = [[MTShowDetailsView alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, 20)];
+        [self addSubview:_showDetailsView];
     }
     
-    return _KDJShowView;
+    return _showDetailsView;
 }
 
 @end

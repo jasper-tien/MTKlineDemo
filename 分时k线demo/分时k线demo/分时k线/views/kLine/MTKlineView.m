@@ -234,10 +234,6 @@
     }
 }
 
-- (void)tapMethod:(UITapGestureRecognizer *)tapGesture {
-    self.trackingCrossView.hidden = YES;
-}
-
 - (void)updateScrollViewContenSize {
     CGFloat scrollViewWidth = self.scrollView.frame.size.width;
     CGFloat scrollViewContentWidth = ([MTCurveChartGlobalVariable kLineGap] + [MTCurveChartGlobalVariable kLineWidth]) * [self.manager getMainKLineDatas].count;
@@ -270,7 +266,9 @@
     }
     
     if(longPress.state == UIGestureRecognizerStateEnded) {
+        //隐藏十字光标
         self.scrollView.scrollEnabled = YES;
+        
         self.longPressTimer = [NSTimer scheduledTimerWithTimeInterval:1.5 target:self selector:@selector(hiddenTrackingCrossView:) userInfo:nil repeats:NO];
     }
 }
@@ -279,6 +277,22 @@
     [self.longPressTimer invalidate];
     self.longPressTimer = nil;
     self.trackingCrossView.hidden = YES;
+    
+    //恢复主k线和指标的详情数据（显示原始详情数据）
+    [self.mainKlineView reDrawShowViewWithIndex:-1];
+    [self.techView reDrawTechShowViewWithIndex:-1];
+}
+
+#pragma mark - 单击打手势
+- (void)tapMethod:(UITapGestureRecognizer *)tapGesture {
+    if (self.longPressTimer) {
+        [self.longPressTimer invalidate];
+        self.longPressTimer = nil;
+    }
+    self.trackingCrossView.hidden = YES;
+    //恢复主k线和指标的详情数据（显示原始详情数据）
+    [self.mainKlineView reDrawShowViewWithIndex:-1];
+    [self.techView reDrawTechShowViewWithIndex:-1];
 }
 
 #pragma mark - setters and getters

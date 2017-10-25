@@ -14,12 +14,12 @@
 #import "SJCurveChartConstant.h"
 #import "MTCurveChartGlobalVariable.h"
 #import "UIColor+CurveChart.h"
-#import "MTKlineShowView.h"
+#import "MTShowDetailsView.h"
 
 @interface MTMianKLineView ()
 //
 @property (nonatomic, strong) NSMutableArray<MTKLinePositionModel *> *needDrawPositionModels;
-@property (nonatomic, strong) MTKlineShowView *kLineShowView;
+@property (nonatomic, strong) MTShowDetailsView *showDetailsView;
 /**
  *  MA5位置数组
  */
@@ -115,8 +115,23 @@
 }
 
 - (void)drawTopdeTailsView {
-    NSString *titleStr = [NSString stringWithFormat:@"MA5 %.2f  MA10 %.2f  MA20 %.2f", self.showKlineModel.MA_5.floatValue, self.showKlineModel.MA_10.floatValue, self.showKlineModel.MA_20.floatValue];
-    [self.kLineShowView redrawWithString:titleStr];
+    NSDictionary *MA5Dic = @{
+                           @"content" : [NSString stringWithFormat:@"MA5:%.2f", self.showKlineModel.MA_5.floatValue],
+                           @"color":[UIColor MTCurveVioletColor],
+                           @"type":@"1"
+                           };
+    NSDictionary *MA10Dic = @{
+                           @"content" : [NSString stringWithFormat:@"MA10:%.2f", self.showKlineModel.MA_10.floatValue],
+                           @"color":[UIColor MTCurveYellowColor],
+                           @"type":@"1"
+                           };
+    NSDictionary *MA20Dic = @{
+                           @"content" : [NSString stringWithFormat:@"MA20:%.2f", self.showKlineModel.MA_20.floatValue],
+                           @"color":[UIColor MTCurveBlueColor],
+                           @"type":@"1"
+                           };
+    NSArray *contentAarray = [NSArray arrayWithObjects:MA5Dic, MA10Dic, MA20Dic, nil];
+    [self.showDetailsView redrawWithArray:contentAarray];
 }
 
 - (void)drawCandle:(CGContextRef)context {
@@ -165,7 +180,10 @@
 }
 
 - (void)reDrawShowViewWithIndex:(NSInteger)index {
-    if (index < self.needDrawKlneModels.count && index > 0) {
+    if (index == -1) {
+        self.showKlineModel = self.needDrawKlneModels.lastObject;
+        [self drawTopdeTailsView];
+    } else if (index < self.needDrawKlneModels.count && index > 0) {
         self.showKlineModel = self.needDrawKlneModels[index];
         [self drawTopdeTailsView];
     }
@@ -206,9 +224,7 @@
     //显示长按点的k线详情信息
     if (index < self.needDrawKlneModels.count && index > 0) {
         self.showKlineModel = self.needDrawKlneModels[index];
-        NSString *titleStr = [NSString stringWithFormat:@"MA5 %.2f  MA10 %.2f  MA20 %.2f", self.showKlineModel.MA_5.floatValue, self.showKlineModel.MA_10.floatValue, self.showKlineModel.MA_20.floatValue];
-        [self.kLineShowView redrawWithString:titleStr];
-        
+        [self drawTopdeTailsView];
         
         //调用代理，通知指标view更新详情信息
         if (self.delegate && [self.delegate respondsToSelector:@selector(kLineMainViewLongPressExactPosition:selectedIndex:longPressPrice:)]) {
@@ -337,13 +353,14 @@
 }
 
 #pragma mark - 
-- (MTKlineShowView *)kLineShowView {
-    if (!_kLineShowView) {
-        _kLineShowView = [[MTKlineShowView alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, 30)];
-        [self addSubview:_kLineShowView];
+- (MTShowDetailsView *)showDetailsView {
+    if (!_showDetailsView) {
+        _showDetailsView = [[MTShowDetailsView alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, 20)];
+        _showDetailsView.startPointX = 40;
+        [self addSubview:_showDetailsView];
     }
     
-    return _kLineShowView;
+    return _showDetailsView;
 }
 
 @end

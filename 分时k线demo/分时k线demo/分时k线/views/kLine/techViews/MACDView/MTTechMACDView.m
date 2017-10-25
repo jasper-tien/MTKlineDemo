@@ -13,10 +13,10 @@
 #import "MTCurveChartGlobalVariable.h"
 #import "MTMALine.h"
 #import "MTMACDLine.h"
-#import "MTTechsShowView.h"
+#import "MTShowDetailsView.h"
 
 @interface MTTechMACDView ()
-@property (nonatomic, strong) MTTechsShowView *MACDShowView;
+@property (nonatomic, strong) MTShowDetailsView *showDetailsView;
 @property (nonatomic, strong) NSMutableArray *DIFPositionModels;
 @property (nonatomic, strong) NSMutableArray *DEAPositionModels;
 @property (nonatomic, strong) NSMutableArray *MACDPositionModels;
@@ -77,7 +77,13 @@
 
 - (void)drawTopdeTailsView {
     NSString *titleStr = [NSString stringWithFormat:@"MACD(12, 26, 9)"];
-    [self.MACDShowView redrawWithString:titleStr];
+    NSDictionary *MACDDic = @{
+                              @"content" : titleStr,
+                              @"color":[UIColor assistTextColor],
+                              @"type":@"2"
+                              };
+    NSArray *contentAarray = [NSArray arrayWithObjects:MACDDic, nil];
+    [self.showDetailsView redrawWithArray:contentAarray];
 }
 
 #pragma mark -
@@ -87,10 +93,27 @@
 }
 
 - (void)reDrawShowViewWithIndex:(NSInteger)index {
-    if (index < self.needDrawMACDModels.count && index > 0) {
+    if (index == -1) {
+        [self drawTopdeTailsView];
+    } else if (index < self.needDrawMACDModels.count && index > 0) {
         self.showMACDModel = self.needDrawMACDModels[index];
-        NSString *titleStr = [NSString stringWithFormat:@"DIF:%.2f DEA:%.2f MACD:%.2f", self.showMACDModel.DIF.floatValue, self.showMACDModel.DEA.floatValue, self.showMACDModel.MACD.floatValue];
-        [self.MACDShowView redrawWithString:titleStr];
+        NSDictionary *DIFDic = @{
+                                @"content" : [NSString stringWithFormat:@"DIF:%.2f", self.showMACDModel.DIF.floatValue],
+                                @"color":[UIColor MTCurveYellowColor],
+                                @"type":@"2"
+                                };
+        NSDictionary *DEADic = @{
+                                @"content" : [NSString stringWithFormat:@"DEA:%.2f", self.showMACDModel.DEA.floatValue],
+                                @"color":[UIColor MTCurveOrangeColor],
+                                @"type":@"2"
+                                };
+        NSDictionary *MACDDic = @{
+                                @"content" : [NSString stringWithFormat:@"MACD:%.2f", self.showMACDModel.MACD.floatValue],
+                                @"color":[UIColor MTCurveWhiteColor],
+                                @"type":@"2"
+                                };
+        NSArray *contentAarray = [NSArray arrayWithObjects:DIFDic, DEADic, MACDDic, nil];
+        [self.showDetailsView redrawWithArray:contentAarray];
     }
 }
 
@@ -184,13 +207,13 @@
 }
 
 #pragma mark -
-- (MTTechsShowView *)MACDShowView {
-    if (!_MACDShowView) {
-        _MACDShowView = [[MTTechsShowView alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, 30)];
-        [self addSubview:_MACDShowView];
+- (MTShowDetailsView *)showDetailsView {
+    if (!_showDetailsView) {
+        _showDetailsView = [[MTShowDetailsView alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, 20)];
+        [self addSubview:_showDetailsView];
     }
     
-    return _MACDShowView;
+    return _showDetailsView;
 }
 
 @end

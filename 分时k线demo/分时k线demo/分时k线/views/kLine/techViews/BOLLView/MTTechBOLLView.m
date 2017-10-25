@@ -14,10 +14,10 @@
 #import "MTMALine.h"
 #import "UIColor+CurveChart.h"
 #import "MTBOLLUSALine.h"
-#import "MTTechsShowView.h"
+#import "MTShowDetailsView.h"
 
 @interface MTTechBOLLView ()
-@property (nonatomic, strong) MTTechsShowView *BOLLShowView;
+@property (nonatomic, strong) MTShowDetailsView *showDetailsView;
 //中轨线
 @property (nonatomic, strong) NSMutableArray *MBPositionModels;
 //上轨线
@@ -91,7 +91,13 @@
 
 - (void)drawTopdeTailsView {
     NSString *titleStr = [NSString stringWithFormat:@"BOLL(20)"];
-    [self.BOLLShowView redrawWithString:titleStr];
+    NSDictionary *BOLLDic = @{
+                          @"content" : titleStr,
+                          @"color":[UIColor assistTextColor],
+                          @"type":@"2"
+                          };
+    NSArray *contentAarray = [NSArray arrayWithObjects:BOLLDic, nil];
+    [self.showDetailsView redrawWithArray:contentAarray];
 }
 
 #pragma mark -
@@ -101,10 +107,27 @@
 }
 
 - (void)reDrawShowViewWithIndex:(NSInteger)index {
-    if (index < self.needDrawBOLLModels.count && index > 0) {
+    if (index == -1) {
+        [self drawTopdeTailsView];
+    } else if (index < self.needDrawBOLLModels.count && index > 0) {
         self.showBOLLModel = self.needDrawBOLLModels[index];
-        NSString *titleStr = [NSString stringWithFormat:@"UP:%.2f MB:%.2f DN:%.2f", self.showBOLLModel.BOLL_UP.floatValue, self.showBOLLModel.BOLL_MB.floatValue, self.showBOLLModel.BOLL_DN.floatValue];
-        [self.BOLLShowView redrawWithString:titleStr];
+        NSDictionary *UPDic = @{
+                              @"content" : [NSString stringWithFormat:@"UP:%.2f", self.showBOLLModel.BOLL_UP.floatValue],
+                              @"color":[UIColor MTCurveYellowColor],
+                              @"type":@"2"
+                              };
+        NSDictionary *DNDic = @{
+                                @"content" : [NSString stringWithFormat:@"DN:%.2f", self.showBOLLModel.BOLL_DN.floatValue],
+                                @"color":[UIColor MTCurveOrangeColor],
+                                @"type":@"2"
+                                };
+        NSDictionary *MBDic = @{
+                                @"content" : [NSString stringWithFormat:@"MB:%.2f", self.showBOLLModel.BOLL_MB.floatValue],
+                                @"color":[UIColor MTCurveWhiteColor],
+                                @"type":@"2"
+                                };
+        NSArray *contentAarray = [NSArray arrayWithObjects:UPDic, DNDic, MBDic, nil];
+        [self.showDetailsView redrawWithArray:contentAarray];
     }
 }
 
@@ -214,13 +237,13 @@
     return YES;
 }
 #pragma mark -
-- (MTTechsShowView *)BOLLShowView {
-    if (!_BOLLShowView) {
-        _BOLLShowView = [[MTTechsShowView alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, 30)];
-        [self addSubview:_BOLLShowView];
+- (MTShowDetailsView *)showDetailsView {
+    if (!_showDetailsView) {
+        _showDetailsView = [[MTShowDetailsView alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, 20)];
+        [self addSubview:_showDetailsView];
     }
     
-    return _BOLLShowView;
+    return _showDetailsView;
 }
 
 @end

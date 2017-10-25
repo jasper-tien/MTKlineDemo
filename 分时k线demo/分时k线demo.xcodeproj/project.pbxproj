@@ -28,6 +28,7 @@
 		8E21E78D1F564DB700CD55E0 /* __k_demoUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E21E78C1F564DB700CD55E0 /* __k_demoUITests.m */; };
 		8E21E7A01F565C7A00CD55E0 /* TestController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E21E79E1F565C7A00CD55E0 /* TestController.m */; };
 		8E21E7A11F565C7A00CD55E0 /* TestController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8E21E79F1F565C7A00CD55E0 /* TestController.xib */; };
+		8E2299431FA031C8008BC129 /* MTShowDetailsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E2299421FA031C8008BC129 /* MTShowDetailsView.m */; };
 		8E3896441F7F6E72006AEC92 /* MTMianKLineView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E3896431F7F6E72006AEC92 /* MTMianKLineView.m */; };
 		8E3896471F7F6F08006AEC92 /* MTKLine.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E3896461F7F6F08006AEC92 /* MTKLine.m */; };
 		8E4F2C0B1F7CFB990082A3F5 /* MTCurveKDJ.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E4F2C0A1F7CFB990082A3F5 /* MTCurveKDJ.m */; };
@@ -49,8 +50,6 @@
 		8EEF24921F8B0E0600C35E1C /* UIColor+CurveChart.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EEF24911F8B0E0600C35E1C /* UIColor+CurveChart.m */; };
 		8EEF24951F8B159100C35E1C /* MTCurveChartGlobalVariable.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EEF24941F8B159100C35E1C /* MTCurveChartGlobalVariable.m */; };
 		8EF4B3051F95A86B0090FEB7 /* MTTrackingCrossView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EF4B3041F95A86B0090FEB7 /* MTTrackingCrossView.m */; };
-		8EF4B3091F95DF640090FEB7 /* MTKlineShowView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EF4B3081F95DF640090FEB7 /* MTKlineShowView.m */; };
-		8EF4B30D1F95E35D0090FEB7 /* MTTechsShowView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EF4B30C1F95E35D0090FEB7 /* MTTechsShowView.m */; };
 		8EF9332F1F8F05960011E352 /* MTVolumePositionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EF9332E1F8F05960011E352 /* MTVolumePositionModel.m */; };
 		8EF933491F8F45130011E352 /* MTTechBaseView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EF933481F8F45130011E352 /* MTTechBaseView.m */; };
 		8EF9334F1F8F45A50011E352 /* MTTechVolumeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EF9334E1F8F45A50011E352 /* MTTechVolumeView.m */; };
@@ -123,6 +122,8 @@
 		8E21E79D1F565C7A00CD55E0 /* TestController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestController.h; sourceTree = "<group>"; };
 		8E21E79E1F565C7A00CD55E0 /* TestController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestController.m; sourceTree = "<group>"; };
 		8E21E79F1F565C7A00CD55E0 /* TestController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TestController.xib; sourceTree = "<group>"; };
+		8E2299411FA031C8008BC129 /* MTShowDetailsView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MTShowDetailsView.h; sourceTree = "<group>"; };
+		8E2299421FA031C8008BC129 /* MTShowDetailsView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MTShowDetailsView.m; sourceTree = "<group>"; };
 		8E3896421F7F6E72006AEC92 /* MTMianKLineView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MTMianKLineView.h; sourceTree = "<group>"; };
 		8E3896431F7F6E72006AEC92 /* MTMianKLineView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MTMianKLineView.m; sourceTree = "<group>"; };
 		8E3896451F7F6F08006AEC92 /* MTKLine.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MTKLine.h; sourceTree = "<group>"; };
@@ -166,10 +167,6 @@
 		8EEF24941F8B159100C35E1C /* MTCurveChartGlobalVariable.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MTCurveChartGlobalVariable.m; sourceTree = "<group>"; };
 		8EF4B3031F95A86B0090FEB7 /* MTTrackingCrossView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MTTrackingCrossView.h; sourceTree = "<group>"; };
 		8EF4B3041F95A86B0090FEB7 /* MTTrackingCrossView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MTTrackingCrossView.m; sourceTree = "<group>"; };
-		8EF4B3071F95DF640090FEB7 /* MTKlineShowView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MTKlineShowView.h; sourceTree = "<group>"; };
-		8EF4B3081F95DF640090FEB7 /* MTKlineShowView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MTKlineShowView.m; sourceTree = "<group>"; };
-		8EF4B30B1F95E35D0090FEB7 /* MTTechsShowView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MTTechsShowView.h; sourceTree = "<group>"; };
-		8EF4B30C1F95E35D0090FEB7 /* MTTechsShowView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MTTechsShowView.m; sourceTree = "<group>"; };
 		8EF9332D1F8F05960011E352 /* MTVolumePositionModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MTVolumePositionModel.h; sourceTree = "<group>"; };
 		8EF9332E1F8F05960011E352 /* MTVolumePositionModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MTVolumePositionModel.m; sourceTree = "<group>"; };
 		8EF933471F8F45130011E352 /* MTTechBaseView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MTTechBaseView.h; sourceTree = "<group>"; };
@@ -226,7 +223,6 @@
 			children = (
 				8E0360A41F8E193600B485A2 /* MTTechView.h */,
 				8E0360A51F8E193600B485A2 /* MTTechView.m */,
-				8EF4B30A1F95E34D0090FEB7 /* techsShowView */,
 				8EF933441F8F44D60011E352 /* TechBaseView */,
 				8E6D18E01F908F3300A82C39 /* MACDView */,
 				8EF933451F8F44D60011E352 /* BOLLView */,
@@ -547,19 +543,10 @@
 		8EF4B3061F95DF460090FEB7 /* kLineShowView */ = {
 			isa = PBXGroup;
 			children = (
-				8EF4B3071F95DF640090FEB7 /* MTKlineShowView.h */,
-				8EF4B3081F95DF640090FEB7 /* MTKlineShowView.m */,
+				8E2299411FA031C8008BC129 /* MTShowDetailsView.h */,
+				8E2299421FA031C8008BC129 /* MTShowDetailsView.m */,
 			);
 			path = kLineShowView;
-			sourceTree = "<group>";
-		};
-		8EF4B30A1F95E34D0090FEB7 /* techsShowView */ = {
-			isa = PBXGroup;
-			children = (
-				8EF4B30B1F95E35D0090FEB7 /* MTTechsShowView.h */,
-				8EF4B30C1F95E35D0090FEB7 /* MTTechsShowView.m */,
-			);
-			path = techsShowView;
 			sourceTree = "<group>";
 		};
 		8EF933431F8F44D60011E352 /* VolumeView */ = {
@@ -757,7 +744,6 @@
 				8EFF5AC51F6FB12800CD94F1 /* Test1.m in Sources */,
 				8E3896441F7F6E72006AEC92 /* MTMianKLineView.m in Sources */,
 				8E18DCCC1F9F254D003C47C0 /* MTTimeLineDetailedView.m in Sources */,
-				8EF4B30D1F95E35D0090FEB7 /* MTTechsShowView.m in Sources */,
 				8E18DCC61F9F0CB5003C47C0 /* MTFiveRecordTableView.m in Sources */,
 				8E0360A61F8E193600B485A2 /* MTTechView.m in Sources */,
 				8E18DCB31F9EE371003C47C0 /* MTTimeLineTrackingCrossView.m in Sources */,
@@ -767,7 +753,6 @@
 				8EE799391F9DD3AF005F518C /* MTTimeLineModel.m in Sources */,
 				8E6D18E31F908F5400A82C39 /* MTTechMACDView.m in Sources */,
 				8E5C86091F70EC8A00F5DE86 /* SJManageDataToModel.m in Sources */,
-				8EF4B3091F95DF640090FEB7 /* MTKlineShowView.m in Sources */,
 				8EF933581F8F7A930011E352 /* MTTechBOLLView.m in Sources */,
 				8EFF5ABF1F6F736900CD94F1 /* SJKlineModel.m in Sources */,
 				8E21E7691F564DB700CD55E0 /* main.m in Sources */,
@@ -775,6 +760,7 @@
 				8E18DCB81F9EEBAF003C47C0 /* MTTimeLineTableView.m in Sources */,
 				8E18DCCF1F9F257D003C47C0 /* MTDaDanView.m in Sources */,
 				8EF933491F8F45130011E352 /* MTTechBaseView.m in Sources */,
+				8E2299431FA031C8008BC129 /* MTShowDetailsView.m in Sources */,
 				8EE799361F9DD000005F518C /* MTTimeLineView.m in Sources */,
 				8E18DCC91F9F0DD1003C47C0 /* MTFiveRecordModel.m in Sources */,
 				8E21E7A01F565C7A00CD55E0 /* TestController.m in Sources */,
