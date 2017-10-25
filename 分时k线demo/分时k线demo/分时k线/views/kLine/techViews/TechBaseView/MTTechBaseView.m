@@ -47,6 +47,9 @@
         index++;
         exactXPositionInMainView = indexXPosition + ([MTCurveChartGlobalVariable kLineWidth] + [MTCurveChartGlobalVariable kLineGap]);
     }
+    
+    [self reDrawShowViewWithIndex:index];
+    
     if (self.delegate && [self.delegate respondsToSelector:@selector(techBaseViewLongPressExactPosition:selectedIndex:longPressValue:)]) {
         CGFloat longPressValue = self.unitValue * (self.currentValueMaxToViewY - longPressPosition.y) + self.currentValueMin;
         if (longPressValue < self.currentValueMin) {
