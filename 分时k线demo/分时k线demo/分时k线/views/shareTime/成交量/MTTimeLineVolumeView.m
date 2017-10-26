@@ -48,6 +48,8 @@
 - (void)drawRect:(CGRect)rect {
     [super drawRect:rect];
     CGContextRef context = UIGraphicsGetCurrentContext();
+    [self drawGrid:context];
+    
     [self.volumePositions enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         MTVolumePositionModel *positionModel = obj;
         CGContextSetStrokeColorWithColor(context, [UIColor MTTimeLineColor].CGColor);
@@ -56,6 +58,21 @@
         const CGPoint solidPoints[] = {positionModel.volumePoint, positionModel.startPoint};
         CGContextStrokeLineSegments(context, solidPoints, 2);
     }];
+}
+
+- (void)drawGrid:(CGContextRef)context {
+    CGContextSetStrokeColorWithColor(context, [UIColor gridLineColor].CGColor);
+    CGFloat gridLineWidth = [MTCurveChartGlobalVariable CurveChactGridLineWidth];
+    CGContextSetLineWidth(context, gridLineWidth);
+    CGContextAddRect(context, CGRectMake(gridLineWidth, gridLineWidth, self.frame.size.width - gridLineWidth, self.frame.size.height - 2*gridLineWidth));
+    CGContextStrokePath(context);
+    //先写死两条竖线位置看看效果
+    CGContextSetLineWidth(context, [MTCurveChartGlobalVariable CurveChactGridLineWidth]);
+    const CGPoint gridKlinePoints3[] = {CGPointMake(self.bounds.size.width * 1 / 3, 0), CGPointMake(self.bounds.size.width * 1 / 3, self.bounds.size.height)};
+    CGContextStrokeLineSegments(context, gridKlinePoints3, 2);
+    CGContextSetLineWidth(context, [MTCurveChartGlobalVariable CurveChactGridLineWidth]);
+    const CGPoint gridKlinePoints4[] = {CGPointMake(self.bounds.size.width * 2 / 3, 0), CGPointMake(self.bounds.size.width * 2 / 3, self.bounds.size.height)};
+    CGContextStrokeLineSegments(context, gridKlinePoints4, 2);
 }
 
 - (void)updateDrawModels {

@@ -10,6 +10,7 @@
 		8E0244771F8C68C1004AA725 /* MTMALine.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E0244761F8C68C1004AA725 /* MTMALine.m */; };
 		8E02447A1F8CA2FB004AA725 /* MTKlineView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E0244791F8CA2FA004AA725 /* MTKlineView.m */; };
 		8E0360A61F8E193600B485A2 /* MTTechView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E0360A51F8E193600B485A2 /* MTTechView.m */; };
+		8E03CC7B1FA1925900581D5B /* MTDaDanPieView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E03CC7A1FA1925900581D5B /* MTDaDanPieView.m */; };
 		8E18DCB31F9EE371003C47C0 /* MTTimeLineTrackingCrossView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E18DCB21F9EE371003C47C0 /* MTTimeLineTrackingCrossView.m */; };
 		8E18DCB81F9EEBAF003C47C0 /* MTTimeLineTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E18DCB71F9EEBAF003C47C0 /* MTTimeLineTableView.m */; };
 		8E18DCC21F9F0A50003C47C0 /* MTFiveRecordCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E18DCC01F9F0A50003C47C0 /* MTFiveRecordCell.m */; };
@@ -90,6 +91,8 @@
 		8E0244791F8CA2FA004AA725 /* MTKlineView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MTKlineView.m; sourceTree = "<group>"; };
 		8E0360A41F8E193600B485A2 /* MTTechView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MTTechView.h; sourceTree = "<group>"; };
 		8E0360A51F8E193600B485A2 /* MTTechView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MTTechView.m; sourceTree = "<group>"; };
+		8E03CC791FA1925900581D5B /* MTDaDanPieView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MTDaDanPieView.h; sourceTree = "<group>"; };
+		8E03CC7A1FA1925900581D5B /* MTDaDanPieView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MTDaDanPieView.m; sourceTree = "<group>"; };
 		8E18DCB11F9EE371003C47C0 /* MTTimeLineTrackingCrossView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MTTimeLineTrackingCrossView.h; sourceTree = "<group>"; };
 		8E18DCB21F9EE371003C47C0 /* MTTimeLineTrackingCrossView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MTTimeLineTrackingCrossView.m; sourceTree = "<group>"; };
 		8E18DCB61F9EEBAF003C47C0 /* MTTimeLineTableView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MTTimeLineTableView.h; sourceTree = "<group>"; };
@@ -263,6 +266,8 @@
 			children = (
 				8E18DCCD1F9F257D003C47C0 /* MTDaDanView.h */,
 				8E18DCCE1F9F257D003C47C0 /* MTDaDanView.m */,
+				8E03CC791FA1925900581D5B /* MTDaDanPieView.h */,
+				8E03CC7A1FA1925900581D5B /* MTDaDanPieView.m */,
 			);
 			path = "大单";
 			sourceTree = "<group>";
@@ -759,6 +764,7 @@
 				8E18DCC21F9F0A50003C47C0 /* MTFiveRecordCell.m in Sources */,
 				8EF933551F8F473D0011E352 /* MTTechKDJView.m in Sources */,
 				8E02447A1F8CA2FB004AA725 /* MTKlineView.m in Sources */,
+				8E03CC7B1FA1925900581D5B /* MTDaDanPieView.m in Sources */,
 				8EE799391F9DD3AF005F518C /* MTTimeLineModel.m in Sources */,
 				8E6D18E31F908F5400A82C39 /* MTTechMACDView.m in Sources */,
 				8E5C86091F70EC8A00F5DE86 /* SJManageDataToModel.m in Sources */,

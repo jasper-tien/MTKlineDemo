@@ -11,6 +11,7 @@
 @interface MTTimeLineDetailedView : UIView
 @property (nonatomic, copy) NSArray *tableViewDatas;
 
+//重新刷新tableview
 - (void)reloadTableView;
 
 @end

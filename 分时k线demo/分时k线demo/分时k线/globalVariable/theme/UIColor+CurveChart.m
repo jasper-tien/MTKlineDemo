@@ -77,7 +77,7 @@
 
 #pragma mark 网格框的颜色
 + (UIColor *)gridLineColor {
-    return [UIColor colorWithRGBHex:0x767a8c];
+    return [UIColor colorWithHex:0x767a8c alpha:0.6f];
 }
 
 #pragma mark 分时线的颜色

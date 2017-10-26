@@ -47,6 +47,8 @@
         return;
     }
     
+    [self drawGrid:ctx];
+    
     CGContextSetLineWidth(ctx, MTCurveChartTimeLineWidth);
     CGPoint firstPoint = [self.drawPositionModels.firstObject CGPointValue];
     
@@ -101,6 +103,36 @@
     NSString *priceMinStr = [NSString stringWithFormat:@"%.2f", self.priceMin];
     CGPoint priceMinPoint = CGPointMake(0, self.priceMaxToViewY - 6.5);
     [priceMinStr drawAtPoint:priceMinPoint withAttributes:@{NSFontAttributeName : [UIFont systemFontOfSize:10],NSForegroundColorAttributeName : [UIColor mainTextColor]}];
+}
+
+- (void)drawGrid:(CGContextRef)context {
+    CGContextSetStrokeColorWithColor(context, [UIColor gridLineColor].CGColor);
+    CGFloat gridLineWidth = [MTCurveChartGlobalVariable CurveChactGridLineWidth];
+    CGContextSetLineWidth(context, gridLineWidth);
+    CGContextAddRect(context, CGRectMake(gridLineWidth, gridLineWidth, self.frame.size.width - gridLineWidth, self.frame.size.height - 2*gridLineWidth));
+    CGContextStrokePath(context);
+    
+    //先写死两条横线位置看看效果
+    CGContextSetLineWidth(context, [MTCurveChartGlobalVariable CurveChactGridLineWidth]);
+    const CGPoint gridKlinePoints1[] = {CGPointMake(0, self.bounds.size.height * 1 / 3), CGPointMake(self.bounds.size.width, self.bounds.size.height * 1 / 3)};
+    CGContextStrokeLineSegments(context, gridKlinePoints1, 2);
+    CGContextSetLineWidth(context, [MTCurveChartGlobalVariable CurveChactGridLineWidth]);
+    const CGPoint gridKlinePoints2[] = {CGPointMake(0, self.bounds.size.height * 2 / 3), CGPointMake(self.bounds.size.width, self.bounds.size.height * 2 / 3)};
+    CGContextStrokeLineSegments(context, gridKlinePoints2, 2);
+    
+    //先写死两条竖线位置看看效果
+    CGContextSetLineWidth(context, [MTCurveChartGlobalVariable CurveChactGridLineWidth]);
+    const CGPoint gridKlinePoints3[] = {CGPointMake(self.bounds.size.width * 1 / 3, 0), CGPointMake(self.bounds.size.width * 1 / 3, self.bounds.size.height)};
+    CGContextStrokeLineSegments(context, gridKlinePoints3, 2);
+    CGContextSetLineWidth(context, [MTCurveChartGlobalVariable CurveChactGridLineWidth]);
+    const CGPoint gridKlinePoints4[] = {CGPointMake(self.bounds.size.width * 2 / 3, 0), CGPointMake(self.bounds.size.width * 2 / 3, self.bounds.size.height)};
+    CGContextStrokeLineSegments(context, gridKlinePoints4, 2);
+    
+    const CGPoint gridKlinePoints5[] = {CGPointMake(0, self.priceMaxToViewY), CGPointMake(self.bounds.size.width, self.priceMaxToViewY)};
+    CGContextStrokeLineSegments(context, gridKlinePoints5, 2);
+    const CGPoint gridKlinePoints6[] = {CGPointMake(0, self.priceMinToViewY), CGPointMake(self.bounds.size.width, self.priceMinToViewY)};
+    CGContextStrokeLineSegments(context, gridKlinePoints6, 2);
+    
 }
 
 /**
