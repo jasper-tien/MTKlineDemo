@@ -21,7 +21,7 @@
 @implementation MTDaDanView
 - (instancetype)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
-        [self.pieView updatePieWithDatas:[NSArray arrayWithObjects:@(20), @(50), nil] colors:[NSArray arrayWithObjects:[UIColor purpleColor],[UIColor orangeColor], nil]];
+        [self.pieView updatePieWithDatas:[NSArray arrayWithObjects:@(20), @(50), @(7), @(90), nil] colors:[NSArray arrayWithObjects:[UIColor purpleColor],[UIColor orangeColor], [UIColor greenColor],[UIColor redColor], nil]];
     }
     
     return self;
@@ -38,7 +38,6 @@
 
 #pragma mark - tableView dataSource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    //    [self.tableView setContentOffset:CGPointMake(0, self.tableView.contentSize.height) animated:NO];
     return self.tableViewDatas.count;
 }
 
@@ -74,13 +73,14 @@
 - (MTDaDanPieView *)pieView {
     if (!_pieView) {
         _pieView = [[MTDaDanPieView alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, self.frame.size.width)];
+        _pieView.isClick = NO;
         _pieView.radius = self.frame.size.width / 2 - 10;
-        
-        UIView *segmentationView = [[UIView alloc] initWithFrame:CGRectMake(5, _pieView.frame.size.height - 5, _pieView.frame.size.width, 0.7)];
+
+        UIView *segmentationView = [[UIView alloc] initWithFrame:CGRectMake(10, _pieView.frame.size.width, _pieView.frame.size.width -20, 0.7)];
         segmentationView.backgroundColor = [UIColor gridLineColor];
         [_pieView addSubview:segmentationView];
     }
-    
+
     return _pieView;
 }
 

@@ -9,6 +9,7 @@
 #import "MTFiveRecordTableView.h"
 #import "MTFiveRecordCell.h"
 #import "MTFiveRecordModel.h"
+#import "UIColor+CurveChart.h"
 
 #define FiveRecordCellIdentifier @"FiveRecordCellIdentifier"
 
@@ -21,7 +22,6 @@
         self.bounces = NO;
         self.showsVerticalScrollIndicator = NO;
         self.backgroundColor = [UIColor clearColor];
-        
         self.estimatedSectionHeaderHeight = 0;
         self.estimatedSectionFooterHeight = 0;
     }
@@ -58,6 +58,15 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return 5;
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+    if (section == 1) {
+        UIView *segmentationView = [[UIView alloc] init];
+        segmentationView.backgroundColor = [UIColor gridLineColor];
+        return segmentationView;
+    }
+    return nil;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {

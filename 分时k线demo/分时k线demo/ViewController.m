@@ -8,6 +8,7 @@
 
 #import "ViewController.h"
 #import "TestController.h"
+#import "MTDaDanPieView.h"
 
 @interface ViewController ()
 @property (nonatomic, strong) UILabel *label;
@@ -20,6 +21,12 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
+//    UIView *testV = [[UIView alloc] initWithFrame:CGRectMake(0, 500, 100, 200)];
+//    [self.view addSubview:testV];
+//
+//    MTDaDanPieView *pieView1 = [[MTDaDanPieView alloc] initWithFrame:CGRectMake(0, 0, 100, 100)];
+//    [testV addSubview:pieView1];
+//    [pieView1 updatePieWithDatas:[NSArray arrayWithObjects:@(20), @(50), nil] colors:[NSArray arrayWithObjects:[UIColor purpleColor],[UIColor orangeColor], nil]];
 }
 
 
