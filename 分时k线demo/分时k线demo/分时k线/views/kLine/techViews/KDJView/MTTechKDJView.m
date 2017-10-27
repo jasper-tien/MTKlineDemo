@@ -131,33 +131,28 @@
     [self.JPositionModels removeAllObjects];
     
     [self.needDrawKDJModels enumerateObjectsUsingBlock:^(MTCurveKDJ * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        if (self.unitValue <= 0.0000001) {
+            *stop = YES;
+        }
+        
         CGFloat ponitScreenX = idx * ([MTCurveChartGlobalVariable kLineWidth] + [MTCurveChartGlobalVariable kLineGap]);
         MTCurveKDJ *model = (MTCurveKDJ *)obj;
         //MA坐标转换
         CGFloat KDJ_K_ScreenY = self.currentValueMaxToViewY;
         CGFloat KDJ_D_ScreenY = self.currentValueMaxToViewY;
         CGFloat KDJ_J_ScreenY = self.currentValueMaxToViewY;
-        if(self.unitValue > 0.0000001)
+        
+        if(model.KDJ_K.floatValue != MTCurveChartFloatMax)
         {
-            if(model.KDJ_K)
-            {
-                KDJ_K_ScreenY = self.currentValueMaxToViewY - (model.KDJ_K.floatValue - self.currentValueMin)/self.unitValue;
-            }
-            
+            KDJ_K_ScreenY = self.currentValueMaxToViewY - (model.KDJ_K.floatValue - self.currentValueMin)/self.unitValue;
         }
-        if(self.unitValue > 0.0000001)
+        if(model.KDJ_D.floatValue != MTCurveChartFloatMax)
         {
-            if(model.KDJ_D)
-            {
-                KDJ_D_ScreenY = self.currentValueMaxToViewY - (model.KDJ_D.floatValue - self.currentValueMin)/self.unitValue;
-            }
+            KDJ_D_ScreenY = self.currentValueMaxToViewY - (model.KDJ_D.floatValue - self.currentValueMin)/self.unitValue;
         }
-        if(self.unitValue > 0.0000001)
+        if(model.KDJ_J.floatValue != MTCurveChartFloatMax)
         {
-            if(model.KDJ_J)
-            {
-                KDJ_J_ScreenY = self.currentValueMaxToViewY - (model.KDJ_J.floatValue - self.currentValueMin)/self.unitValue;
-            }
+            KDJ_J_ScreenY = self.currentValueMaxToViewY - (model.KDJ_J.floatValue - self.currentValueMin)/self.unitValue;
         }
         
         NSAssert(!isnan(KDJ_K_ScreenY) && !isnan(KDJ_D_ScreenY) && !isnan(KDJ_J_ScreenY), @"出现NAN值");
@@ -166,19 +161,9 @@
         CGPoint KDJ_DScreenPoint = CGPointMake(ponitScreenX, KDJ_D_ScreenY);
         CGPoint KDJ_JScreenPoint = CGPointMake(ponitScreenX, KDJ_J_ScreenY);
         
-        
-        if(model.KDJ_K)
-        {
-            [self.KPositionModels addObject: [NSValue valueWithCGPoint: KDJ_KScreenPoint]];
-        }
-        if(model.KDJ_D)
-        {
-            [self.DPositionModels addObject: [NSValue valueWithCGPoint: KDJ_DScreenPoint]];
-        }
-        if(model.KDJ_J)
-        {
-            [self.JPositionModels addObject: [NSValue valueWithCGPoint: KDJ_JScreenPoint]];
-        }
+        [self.KPositionModels addObject: [NSValue valueWithCGPoint: KDJ_KScreenPoint]];
+        [self.DPositionModels addObject: [NSValue valueWithCGPoint: KDJ_DScreenPoint]];
+        [self.JPositionModels addObject: [NSValue valueWithCGPoint: KDJ_JScreenPoint]];
     }];
 }
 
@@ -191,7 +176,7 @@
     __block CGFloat maxValue = CGFLOAT_MIN;
     [self.needDrawKDJModels enumerateObjectsUsingBlock:^(MTCurveKDJ * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         MTCurveKDJ *KDJModel = (MTCurveKDJ *)obj;
-        if(KDJModel.KDJ_K)
+        if(KDJModel.KDJ_K.floatValue != MTCurveChartFloatMax)
         {
             if (minValue > KDJModel.KDJ_K.floatValue) {
                 minValue = KDJModel.KDJ_K.floatValue;
@@ -201,7 +186,7 @@
             }
         }
         
-        if(KDJModel.KDJ_D)
+        if(KDJModel.KDJ_D.floatValue != MTCurveChartFloatMax)
         {
             if (minValue > KDJModel.KDJ_D.floatValue) {
                 minValue = KDJModel.KDJ_D.floatValue;
@@ -210,7 +195,7 @@
                 maxValue = KDJModel.KDJ_D.floatValue;
             }
         }
-        if(KDJModel.KDJ_J)
+        if(KDJModel.KDJ_J.floatValue != MTCurveChartFloatMax)
         {
             if (minValue > KDJModel.KDJ_J.floatValue) {
                 minValue = KDJModel.KDJ_J.floatValue;

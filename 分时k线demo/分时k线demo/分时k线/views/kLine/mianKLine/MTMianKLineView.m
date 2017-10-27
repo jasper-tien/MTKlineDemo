@@ -259,6 +259,10 @@
     
     //计算需要实现的数据对应到屏幕上的坐标
     [self.needDrawKlneModels enumerateObjectsUsingBlock:^(SJKlineModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        if (self.unitViewY <= 0.0000001) {
+            *stop = YES;
+        }
+        
         SJKlineModel *kLineModel = obj;
         CGFloat ponitScreenX = idx * ([MTCurveChartGlobalVariable kLineWidth] + [MTCurveChartGlobalVariable kLineGap]);
         
@@ -277,15 +281,15 @@
         CGFloat ma5ScreenY = self.currentPriceMaxToViewY;
         CGFloat ma10ScreenY = self.currentPriceMaxToViewY;
         CGFloat ma20ScreenY = self.currentPriceMaxToViewY;
-        if(kLineModel.MA_5)
+        if(kLineModel.MA_5.floatValue != MTCurveChartFloatMax)
         {
             ma5ScreenY = self.currentPriceMaxToViewY - (kLineModel.MA_5.floatValue - self.currentPriceMin) / self.unitViewY;
         }
-        if(kLineModel.MA_20)
+        if(kLineModel.MA_20.floatValue != MTCurveChartFloatMax)
         {
             ma20ScreenY = self.currentPriceMaxToViewY - (kLineModel.MA_20.floatValue - self.currentPriceMin) / self.unitViewY;
         }
-        if (kLineModel.MA_10) {
+        if (kLineModel.MA_10.floatValue != MTCurveChartFloatMax) {
             ma10ScreenY = self.currentPriceMaxToViewY - (kLineModel.MA_10.floatValue - self.currentPriceMin) / self.unitViewY;
         }
         CGPoint ma5ScreenPoint = CGPointMake(ponitScreenX, ma5ScreenY);
@@ -307,14 +311,17 @@
     __block CGFloat assertMax = firstModel.high.floatValue;
     __block CGFloat assertMin = firstModel.low.floatValue;
     [self.needDrawKlneModels enumerateObjectsUsingBlock:^(SJKlineModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        if (obj.high.floatValue > assertMax) {
-            assertMax = obj.high.floatValue;
+        if (obj.high.floatValue != MTCurveChartFloatMax) {
+            if (obj.high.floatValue > assertMax) {
+                assertMax = obj.high.floatValue;
+            }
         }
-        if (obj.low.floatValue < assertMin) {
-            assertMin = obj.low.floatValue;
+        if (obj.low.floatValue != MTCurveChartFloatMax) {
+            if (obj.low.floatValue < assertMin) {
+                assertMin = obj.low.floatValue;
+            }
         }
-        
-        if(obj.MA_5)
+        if(obj.MA_5.floatValue != MTCurveChartFloatMax)
         {
             if (obj.MA_5.floatValue > assertMax) {
                 assertMax = obj.MA_5.floatValue;
@@ -323,7 +330,7 @@
                 assertMin = obj.MA_5.floatValue;
             }
         }
-        if(obj.MA_10)
+        if(obj.MA_10.floatValue != MTCurveChartFloatMax)
         {
             if (obj.MA_10.floatValue > assertMax) {
                 assertMax = obj.MA_10.floatValue;
@@ -332,7 +339,7 @@
                 assertMin = obj.MA_10.floatValue;
             }
         }
-        if(obj.MA_20)
+        if(obj.MA_20.floatValue != MTCurveChartFloatMax)
         {
             if (obj.MA_20.floatValue > assertMax) {
                 assertMax = obj.MA_20.floatValue;

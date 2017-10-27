@@ -39,6 +39,10 @@
             self.BOLL_UP = @(self.BOLL_MB.floatValue + 2 * self.BOLL_MD.floatValue);
             self.BOLL_DN = @(self.BOLL_MB.floatValue - 2 * self.BOLL_MD.floatValue);
         }
+    } else {
+        self.BOLL_MB = @(MTCurveChartFloatMax);
+        self.BOLL_UP = @(MTCurveChartFloatMax);
+        self.BOLL_DN = @(MTCurveChartFloatMax);
     }
 }
 

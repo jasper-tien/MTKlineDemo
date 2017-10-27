@@ -7,6 +7,7 @@
 //
 
 #import "SJKlineModel.h"
+#import "SJCurveChartConstant.h"
 
 @implementation SJKlineModel
 
@@ -49,6 +50,8 @@
             } else {
                 _MA_5 = @(self.sumOfLastClose.floatValue / 5);
             }
+        } else {
+            _MA_5 = @(MTCurveChartFloatMax);
         }
     }
     
@@ -66,6 +69,8 @@
             } else {
                 _MA_10 = @(self.sumOfLastClose.floatValue / 10);
             }
+        } else {
+            _MA_10 = @(MTCurveChartFloatMax);
         }
     }
     
@@ -83,6 +88,8 @@
             } else {
                 _MA_20 = @(self.sumOfLastClose.floatValue / 20);
             }
+        } else {
+            _MA_20 = @(MTCurveChartFloatMax);
         }
     }
     
@@ -100,6 +107,8 @@
             } else {
                 _MA_30 = @(self.sumOfLastClose.floatValue / 30);
             }
+        } else {
+            _MA_30 = @(MTCurveChartFloatMax);
         }
     }
     
@@ -117,9 +126,11 @@
             } else {
                 _volumeMA_5 = @(self.sumOfLastVolume.floatValue / 5);
             }
+        } else {
+            _volumeMA_5 = @(MTCurveChartFloatMax);
         }
     }
-    
+
     return _volumeMA_5;
 }
 
@@ -134,6 +145,8 @@
             } else {
                 _volumeMA_10 = @(self.sumOfLastVolume.floatValue / 10);
             }
+        } else {
+            _volumeMA_10 = @(MTCurveChartFloatMax);
         }
     }
     
@@ -151,9 +164,10 @@
             } else {
                 _volumeMA_20 = @(self.sumOfLastVolume.floatValue / 20);
             }
+        } else {
+            _volumeMA_20 = @(MTCurveChartFloatMax);
         }
     }
-    
     return _volumeMA_20;
 }
 

@@ -168,6 +168,10 @@
     [self.volumeMA20Positions removeAllObjects];
     
     [self.needDrawVolumeModels enumerateObjectsUsingBlock:^(SJKlineModel *  _Nonnull model, NSUInteger idx, BOOL * _Nonnull stop) {
+        if (self.unitValue <= 0.0000001) {
+            *stop = YES;
+        }
+        
         CGFloat ponitScreenX = idx * ([MTCurveChartGlobalVariable kLineWidth] + [MTCurveChartGlobalVariable kLineGap]);
         CGFloat yPosition = ABS(self.currentValueMaxToViewY - (model.volume.floatValue - self.currentValueMin)/self.self.unitValue);
         
@@ -184,26 +188,18 @@
         CGFloat ma5ScreenY = self.currentValueMaxToViewY;
         CGFloat ma10ScreenY = self.currentValueMaxToViewY;
         CGFloat ma20ScreenY = self.currentValueMaxToViewY;
-        if(self.unitValue > 0.0000001)
+        
+        if(model.volumeMA_5.floatValue != MTCurveChartFloatMax)
         {
-            if(model.volumeMA_5)
-            {
-                ma5ScreenY = self.currentValueMaxToViewY - (model.volumeMA_5.floatValue - self.currentValueMin)/self.unitValue;
-            }
+            ma5ScreenY = self.currentValueMaxToViewY - (model.volumeMA_5.floatValue - self.currentValueMin)/self.unitValue;
         }
-        if(self.unitValue > 0.0000001)
+        if(model.volumeMA_10.floatValue != MTCurveChartFloatMax)
         {
-            if(model.volumeMA_10)
-            {
-                ma10ScreenY = self.currentValueMaxToViewY - (model.volumeMA_10.floatValue - self.currentValueMin)/self.unitValue;
-            }
+            ma10ScreenY = self.currentValueMaxToViewY - (model.volumeMA_10.floatValue - self.currentValueMin)/self.unitValue;
         }
-        if(self.unitValue > 0.0000001)
+        if(model.volumeMA_20.floatValue != MTCurveChartFloatMax)
         {
-            if(model.volumeMA_20)
-            {
-                ma20ScreenY = self.currentValueMaxToViewY - (model.volumeMA_20.floatValue - self.currentValueMin)/self.unitValue;
-            }
+            ma20ScreenY = self.currentValueMaxToViewY - (model.volumeMA_20.floatValue - self.currentValueMin)/self.unitValue;
         }
         
         NSAssert(!isnan(ma5ScreenY) && !isnan(ma10ScreenY) && !isnan(ma20ScreenY), @"出现NAN值");
@@ -211,18 +207,10 @@
         CGPoint ma5ScreenPoint = CGPointMake(ponitScreenX, ma5ScreenY);
         CGPoint ma10ScreenPoint = CGPointMake(ponitScreenX, ma10ScreenY);
         CGPoint ma20ScreenPoint = CGPointMake(ponitScreenX, ma20ScreenY);
-        if(model.volumeMA_5)
-        {
-            [self.volumeMA5Positions addObject: [NSValue valueWithCGPoint: ma5ScreenPoint]];
-        }
-        if(model.volumeMA_10)
-        {
-            [self.volumeMA10Positions addObject: [NSValue valueWithCGPoint: ma10ScreenPoint]];
-        }
-        if(model.volumeMA_20)
-        {
-            [self.volumeMA20Positions addObject: [NSValue valueWithCGPoint: ma20ScreenPoint]];
-        }
+        
+        [self.volumeMA5Positions addObject: [NSValue valueWithCGPoint: ma5ScreenPoint]];
+        [self.volumeMA10Positions addObject: [NSValue valueWithCGPoint: ma10ScreenPoint]];
+        [self.volumeMA20Positions addObject: [NSValue valueWithCGPoint: ma20ScreenPoint]];
     }];
 }
 - (BOOL)lookupKlineDataMaxAndMin {
@@ -230,9 +218,8 @@
         return NO;
     }
     
-    SJKlineModel *firstModel = self.needDrawVolumeModels.firstObject;
-    __block CGFloat minVolume = firstModel.volume.floatValue;
-    __block CGFloat maxVolume = firstModel.volume.floatValue;
+    __block CGFloat minVolume = MTCurveChartFloatMax;
+    __block CGFloat maxVolume = MTCurveChartFloatMin;
     [self.needDrawVolumeModels enumerateObjectsUsingBlock:^(SJKlineModel *  _Nonnull model, NSUInteger idx, BOOL * _Nonnull stop) {
         
         if(model.volume.floatValue < minVolume)
@@ -244,7 +231,7 @@
         {
             maxVolume = model.volume.floatValue;
         }
-        if(model.volumeMA_5)
+        if(model.volumeMA_5.floatValue != MTCurveChartFloatMax)
         {
             if (minVolume > model.volumeMA_5.floatValue) {
                 minVolume = model.volumeMA_5.floatValue;
@@ -253,7 +240,7 @@
                 maxVolume = model.volumeMA_5.floatValue;
             }
         }
-        if(model.volumeMA_10)
+        if(model.volumeMA_10.floatValue != MTCurveChartFloatMax)
         {
             if (minVolume > model.volumeMA_10.floatValue) {
                 minVolume = model.volumeMA_10.floatValue;
@@ -262,7 +249,7 @@
                 maxVolume = model.volumeMA_10.floatValue;
             }
         }
-        if(model.volumeMA_20)
+        if(model.volumeMA_20.floatValue != MTCurveChartFloatMax)
         {
             if (minVolume > model.volumeMA_20.floatValue) {
                 minVolume = model.volumeMA_20.floatValue;

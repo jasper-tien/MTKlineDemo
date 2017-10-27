@@ -95,9 +95,9 @@ typedef NS_ENUM(NSInteger, SJCurveShowType) {
 #define MTCurveChartTrackingCrossLineWidth 1
 
 //float最大值
-#define MTCurveChartFloatMax CGFLOAT_MAX
+#define MTCurveChartFloatMax MAXFLOAT
 //float最小值
-#define MTCurveChartFloatMin CGFLOAT_MIN
+#define MTCurveChartFloatMin -MAXFLOAT
 
 #pragma mark -
 //分时线的宽度

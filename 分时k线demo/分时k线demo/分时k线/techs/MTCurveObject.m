@@ -10,14 +10,12 @@
 
 @implementation MTCurveObject
 - (instancetype)init {
-    if (self = [super init]) {
-        
-    }
-    
+    if (self = [super init]) {}
     return self;
 }
 
 - (void)reckonTechWithArray:(NSArray<SJKlineModel *> *)baseDatas container:(NSArray<MTCurveObject *> *)supArray index:(NSInteger)index {
     //默认处理操作
+    
 }
 @end

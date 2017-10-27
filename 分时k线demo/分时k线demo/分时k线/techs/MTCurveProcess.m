@@ -7,8 +7,9 @@
 //
 
 #import "MTCurveProcess.h"
-#import "MTCurveMACD.h"
+#import "MTCurveObject.h"
 #import <objc/runtime.h>
+#import "SJCurveChartConstant.h"
 
 #define RegisterClassName @"registerClassName"
 #define RegisterClassKey @"registerClassKey"
@@ -43,16 +44,16 @@
     self.curveSubclassArray = curveSubclassArray;
 }
 
-//创建指标实例
-- (MTCurveObject *)createWithClassName:(NSString *)clsName {
-    if (!clsName || ![clsName isKindOfClass:[NSString class]]) {
-        return nil;
-    }
-    Class cls = NSClassFromString(clsName);
-    return (MTCurveObject *)[[cls alloc] init];
-}
-
-//计算指标
+//===================================================================================================================
+// 计算指标
+// 在此地方遍历原始数据，计算需要计算的指标。
+// 计算指标的具体做法：
+//  为了减少计算指标时相互间的影响，采取分布式计算方式，即：把计算指标的逻辑下方到具体的某个指标类中，具体的指标计算逻辑由各自来完成，本类是完全不知道各自指标的计算业务。这样做的目的还可以清晰代码，方便bug的查找和更迭。
+// 新增指标步骤：
+// 1、新增指标类必须继承 MTCurveObject 并实现相应的方法。
+// 2、在- (void)registerCurveSubclass{}方法中，按照现在的注册规则，注册新增的指标。
+// 3、在- (NSDictionary *)curvTechDatasWithArray:(NSArray<SJKlineModel *> *)baseDatas 实现新增指标的计算代码。
+//===================================================================================================================
 - (NSDictionary *)curvTechDatasWithArray:(NSArray<SJKlineModel *> *)baseDatas {
     if (baseDatas.count <= 0) {
         return nil;
@@ -74,7 +75,6 @@
     [techsDataModelDic setObject:baseDatas forKey:@"mainKLineDatas"];
     self.techDatasDic = techsDataModelDic;
     
-    //计算指标
     __weak MTCurveProcess *weakSelf = self;
     [baseDatas enumerateObjectsUsingBlock:^(SJKlineModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         for (NSDictionary *registerClsDic in weakSelf.curveSubclassArray) {
@@ -94,31 +94,31 @@
                     break;
                 case SJCurveTechType_MACD: {
                     //  MACD
-                    NSMutableArray *array = (NSMutableArray *)self.techDatasDic[@"MTCurveMACDKey"];
+                    NSMutableArray *MACDDatas = (NSMutableArray *)self.techDatasDic[@"MTCurveMACDKey"];
                     //计算指标
-                    [curveObject reckonTechWithArray:baseDatas container:array index:idx];
-                    if (array) {
-                        [array addObject:curveObject];
+                    [curveObject reckonTechWithArray:baseDatas container:MACDDatas index:idx];
+                    if (MACDDatas) {
+                        [MACDDatas addObject:curveObject];
                     }
                     break;
                 }
                 case SJCurveTechType_KDJ: {
                     //  KDJ
-                    NSMutableArray *array = (NSMutableArray *)self.techDatasDic[@"MTCurveKDJKey"];
+                    NSMutableArray *KDJDatas = (NSMutableArray *)self.techDatasDic[@"MTCurveKDJKey"];
                     //计算指标
-                    [curveObject reckonTechWithArray:baseDatas container:array index:idx];
-                    if (array) {
-                        [array addObject:curveObject];
+                    [curveObject reckonTechWithArray:baseDatas container:KDJDatas index:idx];
+                    if (KDJDatas) {
+                        [KDJDatas addObject:curveObject];
                     }
                     break;
                 }
                 case SJCurveTechType_BOLL: {
                     //  布林线
-                    NSMutableArray *array = (NSMutableArray *)self.techDatasDic[@"MTCurveBOLLKey"];
+                    NSMutableArray *BOLLDatas = (NSMutableArray *)self.techDatasDic[@"MTCurveBOLLKey"];
                     //计算指标
-                    [curveObject reckonTechWithArray:baseDatas container:array index:idx];
-                    if (array) {
-                        [array addObject:curveObject];
+                    [curveObject reckonTechWithArray:baseDatas container:BOLLDatas index:idx];
+                    if (BOLLDatas) {
+                        [BOLLDatas addObject:curveObject];
                     }
                     break;
                 }
@@ -129,6 +129,15 @@
     }];
     
     return techsDataModelDic;
+}
+
+//创建指标实例
+- (MTCurveObject *)createWithClassName:(NSString *)clsName {
+    if (!clsName || ![clsName isKindOfClass:[NSString class]]) {
+        return nil;
+    }
+    Class cls = NSClassFromString(clsName);
+    return (MTCurveObject *)[[cls alloc] init];
 }
 
 @end

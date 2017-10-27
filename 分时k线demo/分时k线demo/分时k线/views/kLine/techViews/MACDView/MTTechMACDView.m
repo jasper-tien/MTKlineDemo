@@ -119,6 +119,10 @@
 
 #pragma mark -
 - (void)convertToVolumePositionModelWithKLineModels {
+    if (!self.needDrawMACDModels) {
+        return;
+    }
+    
     if (![self lookupValueMaxAndValueMin]) {
         return;
     }
@@ -131,19 +135,23 @@
     
     self.zeroPointY = (self.currentValueMaxToViewY - self.currentValueMinToViewY) / 2;
     [self.needDrawMACDModels enumerateObjectsUsingBlock:^(MTCurveMACD * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        if (self.unitValue <= 0.0000001) {
+            *stop = YES;
+        }
+        
         MTCurveMACD *MACDModel = (MTCurveMACD *)obj;
         CGFloat ponitScreenX = idx * ([MTCurveChartGlobalVariable kLineWidth] + [MTCurveChartGlobalVariable kLineGap]);
         CGFloat MIF_ScreenY = self.currentValueMaxToViewY;
         CGFloat MEA_ScreenY = self.currentValueMaxToViewY;
         CGFloat MACD_ScreenY = self.currentValueMaxToViewY;
         
-        if (MACDModel.DIF) {
+        if (MACDModel.DIF.floatValue != MTCurveChartFloatMax) {
             MIF_ScreenY = self.currentValueMaxToViewY - (MACDModel.DIF.floatValue - self.currentValueMin)/self.unitValue;
         }
-        if (MACDModel.DEA) {
+        if (MACDModel.DEA.floatValue != MTCurveChartFloatMax) {
             MEA_ScreenY = self.currentValueMaxToViewY - (MACDModel.DEA.floatValue - self.currentValueMin)/self.unitValue;
         }
-        if (MACDModel.MACD) {
+        if (MACDModel.MACD.floatValue != MTCurveChartFloatMax) {
             MACD_ScreenY = self.currentValueMaxToViewY - (MACDModel.MACD.floatValue - self.currentValueMin)/self.unitValue;
         }
         
@@ -151,27 +159,24 @@
         CGPoint MACD_DIFScreenPoint = CGPointMake(ponitScreenX, MIF_ScreenY);
         CGPoint MACD_DEAScreenPoint = CGPointMake(ponitScreenX, MEA_ScreenY);
         CGPoint MACDScreenPoint = CGPointMake(ponitScreenX, MACD_ScreenY);
-        if(MACDModel.DIF)
-        {
-            [self.DIFPositionModels addObject: [NSValue valueWithCGPoint: MACD_DIFScreenPoint]];
-        }
-        if(MACDModel.DEA)
-        {
-            [self.DEAPositionModels addObject: [NSValue valueWithCGPoint: MACD_DEAScreenPoint]];
-        }
-        if (MACDModel.MACD) {
-            [self.MACDPositionModels addObject: [NSValue valueWithCGPoint: MACDScreenPoint]];
-        }
+        
+        [self.DIFPositionModels addObject: [NSValue valueWithCGPoint: MACD_DIFScreenPoint]];
+        [self.DEAPositionModels addObject: [NSValue valueWithCGPoint: MACD_DEAScreenPoint]];
+        [self.MACDPositionModels addObject: [NSValue valueWithCGPoint: MACDScreenPoint]];
     }];
     
 }
 
 - (BOOL)lookupValueMaxAndValueMin {
-    __block CGFloat maxValue = CGFLOAT_MIN;
-    __block CGFloat minValue = CGFLOAT_MAX;
+    if (self.needDrawMACDModels.count <= 0) {
+        return NO;
+    }
+    
+    __block CGFloat maxValue = MTCurveChartFloatMin;
+    __block CGFloat minValue = MTCurveChartFloatMax;
     [self.needDrawMACDModels enumerateObjectsUsingBlock:^(MTCurveMACD * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         MTCurveMACD *MACDModel = (MTCurveMACD *)obj;
-        if (MACDModel.DIF) {
+        if (MACDModel.DIF.floatValue != MTCurveChartFloatMax) {
             if (MACDModel.DIF.floatValue > maxValue) {
                 maxValue = MACDModel.DIF.floatValue;
             }
@@ -179,7 +184,7 @@
                 minValue = MACDModel.DIF.floatValue;
             }
         }
-        if (MACDModel.DEA) {
+        if (MACDModel.DEA.floatValue != MTCurveChartFloatMax) {
             if (MACDModel.DEA.floatValue > maxValue) {
                 maxValue = MACDModel.DEA.floatValue;
             }
@@ -187,7 +192,7 @@
                 minValue = MACDModel.DEA.floatValue;
             }
         }
-        if (MACDModel.MACD) {
+        if (MACDModel.MACD.floatValue != MTCurveChartFloatMax) {
             if (MACDModel.MACD.floatValue > maxValue) {
                 maxValue = MACDModel.MACD.floatValue;
             }

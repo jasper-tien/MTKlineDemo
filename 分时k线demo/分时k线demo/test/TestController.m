@@ -67,9 +67,9 @@
 - (NSArray *)getTestArray {
     NSMutableArray *array = [NSMutableArray array];
     //伪造数据
-    for (int i = 0; i < 300; i++) {
-        int op = (arc4random() % 1000) + 1;
-        int cl = (arc4random() % 1000) + 1;
+    for (int i = 0; i < 400; i++) {
+        int op = (arc4random() % 1000) + 50;
+        int cl = (arc4random() % 1000) + 50;
         NSNumber *high;
         NSNumber *low;
         if (ABS(cl - op) > 300) {

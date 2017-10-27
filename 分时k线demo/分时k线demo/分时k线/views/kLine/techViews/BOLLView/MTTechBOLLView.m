@@ -145,44 +145,39 @@
     [self.USAPositionModels removeAllObjects];
     
     [self.needDrawBOLLModels enumerateObjectsUsingBlock:^(MTCurveBOLL * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        if (self.unitValue <= 0.0000001) {
+            *stop = YES;
+        }
+        
         CGFloat ponitScreenX = idx * ([MTCurveChartGlobalVariable kLineWidth] + [MTCurveChartGlobalVariable kLineGap]);
         MTCurveBOLL *bollModel = (MTCurveBOLL *)obj;
         CGFloat BOLL_UP_ScreenY = self.currentValueMaxToViewY;
         CGFloat BOLL_MB_ScreenY = self.currentValueMaxToViewY;
         CGFloat BOLL_DN_ScreenY = self.currentValueMaxToViewY;
         
-        if(self.unitValue > 0.0000001)
+        if(bollModel.BOLL_UP.floatValue != MTCurveChartFloatMax)
         {
-            if(bollModel.BOLL_UP)
-            {
-                BOLL_UP_ScreenY = self.currentValueMaxToViewY - (bollModel.BOLL_UP.floatValue - self.currentValueMin)/self.unitValue;
-            }
-            if(bollModel.BOLL_MB)
-            {
-                BOLL_MB_ScreenY = self.currentValueMaxToViewY - (bollModel.BOLL_MB.floatValue - self.currentValueMin)/self.unitValue;
-            }
-            if(bollModel.BOLL_DN)
-            {
-                BOLL_DN_ScreenY = self.currentValueMaxToViewY - (bollModel.BOLL_DN.floatValue - self.currentValueMin)/self.unitValue;
-            }
-            
-            NSAssert(!isnan(BOLL_UP_ScreenY) && !isnan(BOLL_MB_ScreenY) && !isnan(BOLL_DN_ScreenY), @"出现NAN值");
-            CGPoint BOLL_UPScreenPoint = CGPointMake(ponitScreenX, BOLL_UP_ScreenY);
-            CGPoint BOLL_MBScreenPoint = CGPointMake(ponitScreenX, BOLL_MB_ScreenY);
-            CGPoint BOLL_DNScreenPoint = CGPointMake(ponitScreenX, BOLL_DN_ScreenY);
-            if(bollModel.BOLL_UP)
-            {
-                [self.UPPositionModels addObject: [NSValue valueWithCGPoint: BOLL_UPScreenPoint]];
-            }
-            if(bollModel.BOLL_MB)
-            {
-                [self.MBPositionModels addObject: [NSValue valueWithCGPoint: BOLL_MBScreenPoint]];
-            }
-            if(bollModel.BOLL_DN)
-            {
-                [self.DNPositionModels addObject: [NSValue valueWithCGPoint: BOLL_DNScreenPoint]];
-            }
+            BOLL_UP_ScreenY = self.currentValueMaxToViewY - (bollModel.BOLL_UP.floatValue - self.currentValueMin)/self.unitValue;
         }
+        
+        if(bollModel.BOLL_MB.floatValue != MTCurveChartFloatMax)
+        {
+            BOLL_MB_ScreenY = self.currentValueMaxToViewY - (bollModel.BOLL_MB.floatValue - self.currentValueMin)/self.unitValue;
+        }
+        
+        if(bollModel.BOLL_DN.floatValue != MTCurveChartFloatMax)
+        {
+            BOLL_DN_ScreenY = self.currentValueMaxToViewY - (bollModel.BOLL_DN.floatValue - self.currentValueMin)/self.unitValue;
+        }
+        
+        NSAssert(!isnan(BOLL_UP_ScreenY) && !isnan(BOLL_MB_ScreenY) && !isnan(BOLL_DN_ScreenY), @"出现NAN值");
+        CGPoint BOLL_UPScreenPoint = CGPointMake(ponitScreenX, BOLL_UP_ScreenY);
+        CGPoint BOLL_MBScreenPoint = CGPointMake(ponitScreenX, BOLL_MB_ScreenY);
+        CGPoint BOLL_DNScreenPoint = CGPointMake(ponitScreenX, BOLL_DN_ScreenY);
+        
+        [self.UPPositionModels addObject: [NSValue valueWithCGPoint: BOLL_UPScreenPoint]];
+        [self.MBPositionModels addObject: [NSValue valueWithCGPoint: BOLL_MBScreenPoint]];
+        [self.DNPositionModels addObject: [NSValue valueWithCGPoint: BOLL_DNScreenPoint]];
     }];
     
     [self.needDrawBOLLKlineModels enumerateObjectsUsingBlock:^(SJKlineModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
@@ -210,12 +205,12 @@
     __block CGFloat maxValue = CGFLOAT_MIN;
     [self.needDrawBOLLModels enumerateObjectsUsingBlock:^(MTCurveBOLL * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         MTCurveBOLL *bollModel = (MTCurveBOLL *)obj;
-        if (bollModel.BOLL_UP) {
+        if (bollModel.BOLL_UP.floatValue != MTCurveChartFloatMax) {
             if (bollModel.BOLL_UP.floatValue > maxValue) {
                 maxValue = bollModel.BOLL_UP.floatValue;
             }
         }
-        if (bollModel.BOLL_DN) {
+        if (bollModel.BOLL_DN.floatValue != MTCurveChartFloatMax) {
             if (bollModel.BOLL_DN.floatValue < minValue) {
                 minValue = bollModel.BOLL_DN.floatValue;
             }

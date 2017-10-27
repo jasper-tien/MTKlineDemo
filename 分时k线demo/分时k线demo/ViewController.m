@@ -47,11 +47,15 @@
 - (IBAction)testAction:(id)sender {
 //    TestController *vc = [[TestController alloc] init];
 //    [self presentViewController:vc animated:YES completion:nil];
-    NSLog(@"%f", DBL_MAX);
-    NSLog(@"%d", INT32_MIN);
-     NSLog(@"%f", MAXFLOAT);
-
-    
+    CGFloat t = MAXFLOAT;
+    if (t == MAXFLOAT) {
+        NSLog(@"%F", t);
+        NSLog(@"%f", MAXFLOAT);
+        NSLog(@"%f", CGFLOAT_MIN);
+        NSLog(@"%f", CGFLOAT_MAX);
+        NSLog(@"%f", DBL_MAX);
+        
+    }
 }
 
 - (void)event_pichMethod:(UIPinchGestureRecognizer *)pinch {

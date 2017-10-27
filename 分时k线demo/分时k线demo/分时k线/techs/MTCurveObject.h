@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "SJCurveChartConstant.h"
+
 @class SJKlineModel;
 @interface MTCurveObject : NSObject
 //前一个指标
@@ -19,7 +20,7 @@
 /*
  *  func 子类在此方法中完成指标的计算工作
  *  @baseDatas 请求得到的基础数据
- *  @isFirstTech 是否是第一个数据
+ *  @index 该指标的下标
  */
 - (void)reckonTechWithArray:(NSArray<SJKlineModel *> *)baseDatas container:(NSArray<MTCurveObject *> *)supArray index:(NSInteger)index NS_REQUIRES_SUPER;
 
