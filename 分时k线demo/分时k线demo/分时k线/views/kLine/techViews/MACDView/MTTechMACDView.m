@@ -97,18 +97,30 @@
         [self drawTopdeTailsView];
     } else if (index < self.needDrawMACDModels.count && index > 0) {
         self.showMACDModel = self.needDrawMACDModels[index];
+        CGFloat DIFValue = self.showMACDModel.DIF.floatValue;
+        if (DIFValue == MTCurveChartFloatMax) {
+            DIFValue = 0.0f;
+        }
+        CGFloat DEAValue = self.showMACDModel.DEA.floatValue;
+        if (DEAValue == MTCurveChartFloatMax) {
+            DEAValue = 0.0f;
+        }
+        CGFloat MACDValue = self.showMACDModel.MACD.floatValue;
+        if (MACDValue == MTCurveChartFloatMax) {
+            MACDValue = 0.0f;
+        }
         NSDictionary *DIFDic = @{
-                                @"content" : [NSString stringWithFormat:@"DIF:%.2f", self.showMACDModel.DIF.floatValue],
+                                @"content" : [NSString stringWithFormat:@"DIF:%.2f", DIFValue],
                                 @"color":[UIColor MTCurveYellowColor],
                                 @"type":@"2"
                                 };
         NSDictionary *DEADic = @{
-                                @"content" : [NSString stringWithFormat:@"DEA:%.2f", self.showMACDModel.DEA.floatValue],
+                                @"content" : [NSString stringWithFormat:@"DEA:%.2f", DEAValue],
                                 @"color":[UIColor MTCurveOrangeColor],
                                 @"type":@"2"
                                 };
         NSDictionary *MACDDic = @{
-                                @"content" : [NSString stringWithFormat:@"MACD:%.2f", self.showMACDModel.MACD.floatValue],
+                                @"content" : [NSString stringWithFormat:@"MACD:%.2f", MACDValue],
                                 @"color":[UIColor MTCurveWhiteColor],
                                 @"type":@"2"
                                 };

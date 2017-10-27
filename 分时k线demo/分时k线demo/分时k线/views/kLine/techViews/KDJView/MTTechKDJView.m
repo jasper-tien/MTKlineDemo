@@ -98,18 +98,30 @@
         [self drawTopdeTailsView];
     } else if (index < self.needDrawKDJModels.count && index > 0) {
         self.showKDJModel = self.needDrawKDJModels[index];
+        CGFloat KValue = self.showKDJModel.KDJ_K.floatValue;
+        if (KValue == MTCurveChartFloatMax) {
+            KValue = 0.0f;
+        }
+        CGFloat DValue = self.showKDJModel.KDJ_D.floatValue;
+        if (DValue == MTCurveChartFloatMax) {
+            DValue = 0.0f;
+        }
+        CGFloat JValue = self.showKDJModel.KDJ_J.floatValue;
+        if (JValue == MTCurveChartFloatMax) {
+            JValue = 0.0f;
+        }
         NSDictionary *KDic = @{
-                                @"content" : [NSString stringWithFormat:@"K:%.2f", self.showKDJModel.KDJ_K.floatValue],
+                                @"content" : [NSString stringWithFormat:@"K:%.2f", KValue],
                                 @"color":[UIColor mainTextColor],
                                 @"type":@"2"
                                 };
         NSDictionary *DDic = @{
-                                @"content" : [NSString stringWithFormat:@"D:%.2f", self.showKDJModel.KDJ_D.floatValue],
+                                @"content" : [NSString stringWithFormat:@"D:%.2f", DValue],
                                 @"color":[UIColor MTCurveYellowColor],
                                 @"type":@"2"
                                 };
         NSDictionary *JDic = @{
-                                @"content" : [NSString stringWithFormat:@"J:%.2f", self.showKDJModel.KDJ_J.floatValue],
+                                @"content" : [NSString stringWithFormat:@"J:%.2f", JValue],
                                 @"color":[UIColor MTCurveVioletColor],
                                 @"type":@"2"
                                 };

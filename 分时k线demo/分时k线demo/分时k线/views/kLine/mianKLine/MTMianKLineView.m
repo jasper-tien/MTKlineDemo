@@ -115,18 +115,30 @@
 }
 
 - (void)drawTopdeTailsView {
+    CGFloat ma5 = self.showKlineModel.MA_5.floatValue;
+    if (ma5 == MTCurveChartFloatMax) {
+        ma5 = 0.0f;
+    }
+    CGFloat ma10 = self.showKlineModel.MA_10.floatValue;
+    if (ma10 == MTCurveChartFloatMax) {
+        ma10 = 0.0f;
+    }
+    CGFloat ma20 = self.showKlineModel.MA_20.floatValue;
+    if (ma20 == MTCurveChartFloatMax) {
+        ma20 = 0.0f;
+    }
     NSDictionary *MA5Dic = @{
-                           @"content" : [NSString stringWithFormat:@"MA5:%.2f", self.showKlineModel.MA_5.floatValue],
+                           @"content" : [NSString stringWithFormat:@"MA5:%.2f", ma5],
                            @"color":[UIColor MTCurveVioletColor],
                            @"type":@"1"
                            };
     NSDictionary *MA10Dic = @{
-                           @"content" : [NSString stringWithFormat:@"MA10:%.2f", self.showKlineModel.MA_10.floatValue],
+                           @"content" : [NSString stringWithFormat:@"MA10:%.2f", ma10],
                            @"color":[UIColor MTCurveYellowColor],
                            @"type":@"1"
                            };
     NSDictionary *MA20Dic = @{
-                           @"content" : [NSString stringWithFormat:@"MA20:%.2f", self.showKlineModel.MA_20.floatValue],
+                           @"content" : [NSString stringWithFormat:@"MA20:%.2f", ma20],
                            @"color":[UIColor MTCurveBlueColor],
                            @"type":@"1"
                            };

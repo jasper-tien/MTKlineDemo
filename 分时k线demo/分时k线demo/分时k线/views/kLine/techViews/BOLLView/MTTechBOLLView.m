@@ -111,18 +111,30 @@
         [self drawTopdeTailsView];
     } else if (index < self.needDrawBOLLModels.count && index > 0) {
         self.showBOLLModel = self.needDrawBOLLModels[index];
+        CGFloat UPValue = self.showBOLLModel.BOLL_UP.floatValue;
+        if (UPValue == MTCurveChartFloatMax) {
+            UPValue = 0.0f;
+        }
+        CGFloat DNValue = self.showBOLLModel.BOLL_DN.floatValue;
+        if (DNValue == MTCurveChartFloatMax) {
+            DNValue = 0.0f;
+        }
+        CGFloat MBValue = self.showBOLLModel.BOLL_MB.floatValue;
+        if (MBValue == MTCurveChartFloatMax) {
+            MBValue = 0.0f;
+        }
         NSDictionary *UPDic = @{
-                              @"content" : [NSString stringWithFormat:@"UP:%.2f", self.showBOLLModel.BOLL_UP.floatValue],
+                              @"content" : [NSString stringWithFormat:@"UP:%.2f", UPValue],
                               @"color":[UIColor MTCurveYellowColor],
                               @"type":@"2"
                               };
         NSDictionary *DNDic = @{
-                                @"content" : [NSString stringWithFormat:@"DN:%.2f", self.showBOLLModel.BOLL_DN.floatValue],
+                                @"content" : [NSString stringWithFormat:@"DN:%.2f", DNValue],
                                 @"color":[UIColor MTCurveOrangeColor],
                                 @"type":@"2"
                                 };
         NSDictionary *MBDic = @{
-                                @"content" : [NSString stringWithFormat:@"MB:%.2f", self.showBOLLModel.BOLL_MB.floatValue],
+                                @"content" : [NSString stringWithFormat:@"MB:%.2f", MBValue],
                                 @"color":[UIColor MTCurveWhiteColor],
                                 @"type":@"2"
                                 };
