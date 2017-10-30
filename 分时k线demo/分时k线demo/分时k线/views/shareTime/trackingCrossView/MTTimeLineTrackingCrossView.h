@@ -11,6 +11,9 @@
 @interface MTTimeLineTrackingCrossView : UIView
 @property (nonatomic, assign) CGPoint crossPoint;
 @property (nonatomic, assign) CGFloat showValue;
+@property (nonatomic, assign) CGFloat maxPointX;
+@property (nonatomic, assign) CGFloat minPointX;
+
 - (instancetype)initWithFrame:(CGRect)frame crossPoint:(CGPoint)crossPoint;
 
 - (void)updateTrackingCrossView;

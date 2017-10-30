@@ -16,4 +16,6 @@
 @interface MTFenShiView : UIView
 @property (nonatomic, copy) NSArray<MTTimeLineModel *> *timeLineModels;
 - (void)updateDrawTimeLine;
+
+- (void)updateDrawTimeLineWithNewTimeLineModel:(MTTimeLineModel *)newTimeLineModel isSameTime:(BOOL)isSameTime;
 @end

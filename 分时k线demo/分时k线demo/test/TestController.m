@@ -20,11 +20,13 @@
 @interface TestController ()<MTKlineViewDataSource> {
     NSArray *gArr;
     NSMutableArray *gMArr;
+    NSInteger timerCount;
 }
 @property (nonatomic, copy) NSMutableArray *datas;
 @property (nonatomic, strong) MTDataManager *dataManager;
 @property (nonatomic, strong) MTKlineView *kLineView;
 @property (nonatomic, strong) MTFenShiView *fenShiView;
+@property (nonatomic, strong) NSTimer *fenshiTimer;
 
 @end
 
@@ -33,13 +35,14 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    timerCount = 0;
     [self.view addSubview:self.fenShiView];
     [self.kLineView updateDataWithKlineType:SJKlineType_Day];
 }
 
 - (NSArray *)getTimeLineArray {
     NSMutableArray *timeLineModels = [[NSMutableArray alloc] init];
-    for (int i = 0; i < 150; i++) {
+    for (int i = 0; i < 5; i++) {
         NSNumber *price;
         CGFloat volume = 0;
         if (i < 20) {
@@ -205,11 +208,29 @@
         _fenShiView = [[MTFenShiView alloc] initWithFrame:CGRectMake(0, 100, [UIScreen mainScreen].bounds.size.width, 350)];
         _fenShiView.timeLineModels = [self getTimeLineArray];
         [_fenShiView updateDrawTimeLine];
+        self.fenshiTimer = [NSTimer scheduledTimerWithTimeInterval:5 target:self selector:@selector(timerAction) userInfo:nil repeats:YES];
     }
     
     return _fenShiView;
 }
 
+- (void)timerAction {
+    timerCount++;
+    if (timerCount >= 135) {
+        [self.fenshiTimer invalidate];
+        self.fenshiTimer = nil;
+    }
+    
+    NSNumber *price = [NSNumber numberWithInt:(arc4random() % 10) +10];
+    CGFloat volume = (arc4random() % 10) +10;
+    NSString *date = @"10:30";
+    MTTimeLineModel *model = [[MTTimeLineModel alloc] init];
+    model.Price = price;
+    model.previousClosePrice = 50;
+    model.Volume = volume;
+    model.TimeDesc = date;
+    [_fenShiView updateDrawTimeLineWithNewTimeLineModel:model isSameTime:NO];
+}
 
 /*
 #pragma mark - Navigation

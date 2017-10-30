@@ -23,6 +23,8 @@
         self.userInteractionEnabled = NO;
         self.showValue = 0.0;
         self.crossPoint = CGPointZero;
+        self.maxPointX = self.frame.size.width;
+        self.minPointX = 0;
     }
     
     return self;
@@ -43,21 +45,36 @@
     
     CGContextSetStrokeColorWithColor(context, [UIColor longPressLineColor].CGColor);
     CGContextSetLineWidth(context, MTCurveChartTrackingCrossLineWidth);
-    
-    const CGPoint verticalLinePoints[] = {CGPointMake(self.crossPoint.x, 0), CGPointMake(self.crossPoint.x, self.frame.size.height)};
+    CGFloat pointX =  self.crossPoint.x;
+    if (pointX >= self.maxPointX) {
+        pointX = self.maxPointX;
+    }
+    if (pointX <= self.minPointX) {
+        pointX = self.minPointX;
+    }
+    const CGPoint verticalLinePoints[] = {CGPointMake(pointX, 0), CGPointMake(pointX, self.frame.size.height)};
     CGContextStrokeLineSegments(context, verticalLinePoints, 2);
 }
 
 //横线
 - (void)drawHorizontalLine:(CGContextRef)context {
+    
+    CGFloat horizontalLinePointY = self.crossPoint.y;
+    if (horizontalLinePointY <= 0) {
+        horizontalLinePointY = 0;
+    }
+    if (horizontalLinePointY >= self.bounds.size.height) {
+        horizontalLinePointY = self.bounds.size.height;
+    }
+    
     CGPoint startPoint = CGPointZero;
     CGPoint endPoint = CGPointZero;
     if (self.showValueRect.origin.x > 0) {
-        startPoint = CGPointMake(0, self.crossPoint.y);
-        endPoint = CGPointMake(self.frame.size.width - self.showValueRect.size.width, self.crossPoint.y);
+        startPoint = CGPointMake(0, horizontalLinePointY);
+        endPoint = CGPointMake(self.frame.size.width - self.showValueRect.size.width, horizontalLinePointY);
     } else {
-        startPoint = CGPointMake(self.showValueRect.size.width, self.crossPoint.y);
-        endPoint = CGPointMake(self.frame.size.width, self.crossPoint.y);
+        startPoint = CGPointMake(self.showValueRect.size.width, horizontalLinePointY);
+        endPoint = CGPointMake(self.frame.size.width, horizontalLinePointY);
     }
     CGContextSetStrokeColorWithColor(context, [UIColor longPressLineColor].CGColor);
     CGContextSetLineWidth(context, MTCurveChartTrackingCrossLineWidth);
@@ -73,8 +90,8 @@
     CGFloat pricePointY = self.crossPoint.y - priceRect.size.height / 2;
     CGFloat pricePointX = 0;
     //y轴临界值判断
-    if (pricePointY < priceRect.size.height / 2) {
-        pricePointY = priceRect.size.height / 2;
+    if (pricePointY < 0) {
+        pricePointY = 0;
     }
     if (pricePointY > (self.bounds.size.height - priceRect.size.height)) {
         pricePointY = self.bounds.size.height - priceRect.size.height;
