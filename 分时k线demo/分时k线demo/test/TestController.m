@@ -208,7 +208,7 @@
         _fenShiView = [[MTFenShiView alloc] initWithFrame:CGRectMake(0, 100, [UIScreen mainScreen].bounds.size.width, 350)];
         _fenShiView.timeLineModels = [self getTimeLineArray];
         [_fenShiView updateDrawTimeLine];
-        self.fenshiTimer = [NSTimer scheduledTimerWithTimeInterval:5 target:self selector:@selector(timerAction) userInfo:nil repeats:YES];
+        self.fenshiTimer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(timerAction) userInfo:nil repeats:YES];
     }
     
     return _fenShiView;
@@ -220,6 +220,11 @@
         [self.fenshiTimer invalidate];
         self.fenshiTimer = nil;
     }
+    BOOL isSameTime = NO;
+    NSInteger test = (arc4random() % 10) +10;
+    if (test > 16) {
+        isSameTime = YES;
+    }
     
     NSNumber *price = [NSNumber numberWithInt:(arc4random() % 10) +10];
     CGFloat volume = (arc4random() % 10) +10;
@@ -229,7 +234,7 @@
     model.previousClosePrice = 50;
     model.Volume = volume;
     model.TimeDesc = date;
-    [_fenShiView updateDrawTimeLineWithNewTimeLineModel:model isSameTime:NO];
+    [_fenShiView updateDrawTimeLineWithNewTimeLineModel:model isSameTime:isSameTime];
 }
 
 /*

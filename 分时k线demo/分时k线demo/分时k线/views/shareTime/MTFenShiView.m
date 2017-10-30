@@ -68,7 +68,7 @@
         //暂停滑动
         self.trackingCrossView.hidden = NO;
         //主k线或者指标view的精确位置计算
-        self.trackingCrossView.maxPointX = self.timeLineModels.count * ([MTCurveChartGlobalVariable timeLineVolumeWidth] + [MTCurveChartGlobalVariable timeLineVolumeGapWidth]);
+        self.trackingCrossView.maxPointX = self.sourceTimeLineModels.count * ([MTCurveChartGlobalVariable timeLineVolumeWidth] + [MTCurveChartGlobalVariable timeLineVolumeGapWidth]);
         if (location.y > self.timeLineVolumeView.frame.origin.y) {
             location = [longPress locationInView:self.timeLineVolumeView];
             [self.timeLineVolumeView longPressOrMovingAtPoint:location];
