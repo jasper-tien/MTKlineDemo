@@ -1,0 +1,35 @@
+//
+//  QSCurveMACD.h
+//  分时k线demo
+//
+//  Created by tianmaotao on 2020/1/1.
+//  Copyright © 2020 tianmaotao. All rights reserved.
+//
+
+//关键的一点是：新股上市首日，其DIFF,DEA以及MACD都为0，因为当日不存在前一日，无法做迭代。而计算新股上市第二日的EMA时，前一日的EMA需要用收盘价（而非0）来计算。另外，需要注意，计算过程小数点后四舍五入保留4位小数，最后显示的时候四舍五入保留3位小数。
+//具体计算公式及例子如下：
+//EMA（12）= 前一日EMA（12）×11/13＋今日收盘价×2/13
+//EMA（26）= 前一日EMA（26）×25/27＋今日收盘价×2/27
+//DIFF=今日EMA（12）- 今日EMA（26）
+//DEA（MACD）= 前一日DEA×8/10＋今日DIF×2/10
+//BAR=2×(DIFF－DEA)
+
+#import "QSCurveModel.h"
+
+NS_ASSUME_NONNULL_BEGIN
+
+@interface QSCurveMACD : QSCurveModel
+
+@property (nonatomic, assign) CGFloat EMA12;
+
+@property (nonatomic, assign) CGFloat EMA26;
+
+@property (nonatomic, assign) CGFloat DIF;
+
+@property (nonatomic, assign) CGFloat DEA;
+
+@property (nonatomic, assign) CGFloat MACD;
+
+@end
+
+NS_ASSUME_NONNULL_END

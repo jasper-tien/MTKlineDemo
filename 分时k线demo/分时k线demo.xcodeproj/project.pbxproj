@@ -34,6 +34,24 @@
 		8E4F2C0B1F7CFB990082A3F5 /* MTCurveKDJ.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E4F2C0A1F7CFB990082A3F5 /* MTCurveKDJ.m */; };
 		8E4F2C0E1F7D031F0082A3F5 /* MTCurveBOLL.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E4F2C0D1F7D031F0082A3F5 /* MTCurveBOLL.m */; };
 		8E5C86091F70EC8A00F5DE86 /* SJManageDataToModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E5C86081F70EC8A00F5DE86 /* SJManageDataToModel.m */; };
+		8E6669D523BC8882000CE08E /* QSBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E6669D423BC8882000CE08E /* QSBaseViewController.m */; };
+		8E6669DD23BC8965000CE08E /* QSTrendMainVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E6669DC23BC8965000CE08E /* QSTrendMainVC.m */; };
+		8E6669E123BC89F7000CE08E /* QSBaseViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E6669E023BC89F7000CE08E /* QSBaseViewModel.m */; };
+		8E6669E423BC8A16000CE08E /* QSTrendViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E6669E323BC8A16000CE08E /* QSTrendViewModel.m */; };
+		8E6669E823BC8B2F000CE08E /* QSBaseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E6669E723BC8B2F000CE08E /* QSBaseModel.m */; };
+		8E6669F123BC8DB5000CE08E /* QSPointKLineModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E6669F023BC8DB5000CE08E /* QSPointKLineModel.m */; };
+		8E6669F423BC8E38000CE08E /* QSPointShareTimeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E6669F323BC8E38000CE08E /* QSPointShareTimeModel.m */; };
+		8E6669F723BC9252000CE08E /* QSTrendShareTimeVM.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E6669F623BC9252000CE08E /* QSTrendShareTimeVM.m */; };
+		8E6669FA23BC9262000CE08E /* QSTrendKLineVM.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E6669F923BC9262000CE08E /* QSTrendKLineVM.m */; };
+		8E6669FD23BC9D27000CE08E /* QSMainShareTimeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E6669FC23BC9D27000CE08E /* QSMainShareTimeView.m */; };
+		8E666A0023BC9D3C000CE08E /* QSMainKLineView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E6669FF23BC9D3C000CE08E /* QSMainKLineView.m */; };
+		8E666A0323BCA024000CE08E /* QSPointPositionKLineModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E666A0223BCA024000CE08E /* QSPointPositionKLineModel.m */; };
+		8E666A0623BCA1E0000CE08E /* QSKlineModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E666A0523BCA1E0000CE08E /* QSKlineModel.m */; };
+		8E666A0923BCB08B000CE08E /* QSCurveModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E666A0823BCB08B000CE08E /* QSCurveModel.m */; };
+		8E666A0C23BCB0A6000CE08E /* QSCurveMACD.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E666A0B23BCB0A6000CE08E /* QSCurveMACD.m */; };
+		8E666A0F23BCB0BF000CE08E /* QSCurveKDJ.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E666A0E23BCB0BF000CE08E /* QSCurveKDJ.m */; };
+		8E666A1223BCB0D8000CE08E /* QSCurveBOLL.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E666A1123BCB0D8000CE08E /* QSCurveBOLL.m */; };
+		8E666A1923BCB35C000CE08E /* QSCurveProcess.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E666A1823BCB35C000CE08E /* QSCurveProcess.m */; };
 		8E6D18DF1F905C4500A82C39 /* MTBOLLUSALine.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E6D18DE1F905C4500A82C39 /* MTBOLLUSALine.m */; };
 		8E6D18E31F908F5400A82C39 /* MTTechMACDView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E6D18E21F908F5400A82C39 /* MTTechMACDView.m */; };
 		8E6D18E61F9094FB00A82C39 /* MTMACDLine.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E6D18E51F9094FB00A82C39 /* MTMACDLine.m */; };
@@ -135,6 +153,43 @@
 		8E5C86071F70EC8A00F5DE86 /* SJManageDataToModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SJManageDataToModel.h; sourceTree = "<group>"; };
 		8E5C86081F70EC8A00F5DE86 /* SJManageDataToModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SJManageDataToModel.m; sourceTree = "<group>"; };
 		8E5C86111F70F1DD00F5DE86 /* SJCurveChartConstant.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SJCurveChartConstant.h; sourceTree = "<group>"; };
+		8E6669D323BC8882000CE08E /* QSBaseViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QSBaseViewController.h; sourceTree = "<group>"; };
+		8E6669D423BC8882000CE08E /* QSBaseViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QSBaseViewController.m; sourceTree = "<group>"; };
+		8E6669DB23BC8965000CE08E /* QSTrendMainVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QSTrendMainVC.h; sourceTree = "<group>"; };
+		8E6669DC23BC8965000CE08E /* QSTrendMainVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QSTrendMainVC.m; sourceTree = "<group>"; };
+		8E6669DF23BC89F7000CE08E /* QSBaseViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QSBaseViewModel.h; sourceTree = "<group>"; };
+		8E6669E023BC89F7000CE08E /* QSBaseViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QSBaseViewModel.m; sourceTree = "<group>"; };
+		8E6669E223BC8A16000CE08E /* QSTrendViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QSTrendViewModel.h; sourceTree = "<group>"; };
+		8E6669E323BC8A16000CE08E /* QSTrendViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QSTrendViewModel.m; sourceTree = "<group>"; };
+		8E6669E623BC8B2F000CE08E /* QSBaseModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QSBaseModel.h; sourceTree = "<group>"; };
+		8E6669E723BC8B2F000CE08E /* QSBaseModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QSBaseModel.m; sourceTree = "<group>"; };
+		8E6669EF23BC8DB5000CE08E /* QSPointKLineModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QSPointKLineModel.h; sourceTree = "<group>"; };
+		8E6669F023BC8DB5000CE08E /* QSPointKLineModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QSPointKLineModel.m; sourceTree = "<group>"; };
+		8E6669F223BC8E38000CE08E /* QSPointShareTimeModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QSPointShareTimeModel.h; sourceTree = "<group>"; };
+		8E6669F323BC8E38000CE08E /* QSPointShareTimeModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QSPointShareTimeModel.m; sourceTree = "<group>"; };
+		8E6669F523BC9252000CE08E /* QSTrendShareTimeVM.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QSTrendShareTimeVM.h; sourceTree = "<group>"; };
+		8E6669F623BC9252000CE08E /* QSTrendShareTimeVM.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QSTrendShareTimeVM.m; sourceTree = "<group>"; };
+		8E6669F823BC9262000CE08E /* QSTrendKLineVM.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QSTrendKLineVM.h; sourceTree = "<group>"; };
+		8E6669F923BC9262000CE08E /* QSTrendKLineVM.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QSTrendKLineVM.m; sourceTree = "<group>"; };
+		8E6669FB23BC9D27000CE08E /* QSMainShareTimeView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QSMainShareTimeView.h; sourceTree = "<group>"; };
+		8E6669FC23BC9D27000CE08E /* QSMainShareTimeView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QSMainShareTimeView.m; sourceTree = "<group>"; };
+		8E6669FE23BC9D3C000CE08E /* QSMainKLineView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QSMainKLineView.h; sourceTree = "<group>"; };
+		8E6669FF23BC9D3C000CE08E /* QSMainKLineView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QSMainKLineView.m; sourceTree = "<group>"; };
+		8E666A0123BCA024000CE08E /* QSPointPositionKLineModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QSPointPositionKLineModel.h; sourceTree = "<group>"; };
+		8E666A0223BCA024000CE08E /* QSPointPositionKLineModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QSPointPositionKLineModel.m; sourceTree = "<group>"; };
+		8E666A0423BCA1E0000CE08E /* QSKlineModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QSKlineModel.h; sourceTree = "<group>"; };
+		8E666A0523BCA1E0000CE08E /* QSKlineModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QSKlineModel.m; sourceTree = "<group>"; };
+		8E666A0723BCB08B000CE08E /* QSCurveModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QSCurveModel.h; sourceTree = "<group>"; };
+		8E666A0823BCB08B000CE08E /* QSCurveModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QSCurveModel.m; sourceTree = "<group>"; };
+		8E666A0A23BCB0A6000CE08E /* QSCurveMACD.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QSCurveMACD.h; sourceTree = "<group>"; };
+		8E666A0B23BCB0A6000CE08E /* QSCurveMACD.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QSCurveMACD.m; sourceTree = "<group>"; };
+		8E666A0D23BCB0BF000CE08E /* QSCurveKDJ.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QSCurveKDJ.h; sourceTree = "<group>"; };
+		8E666A0E23BCB0BF000CE08E /* QSCurveKDJ.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QSCurveKDJ.m; sourceTree = "<group>"; };
+		8E666A1023BCB0D8000CE08E /* QSCurveBOLL.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QSCurveBOLL.h; sourceTree = "<group>"; };
+		8E666A1123BCB0D8000CE08E /* QSCurveBOLL.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QSCurveBOLL.m; sourceTree = "<group>"; };
+		8E666A1623BCB1A9000CE08E /* QSConstant.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QSConstant.h; sourceTree = "<group>"; };
+		8E666A1723BCB35C000CE08E /* QSCurveProcess.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QSCurveProcess.h; sourceTree = "<group>"; };
+		8E666A1823BCB35C000CE08E /* QSCurveProcess.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QSCurveProcess.m; sourceTree = "<group>"; };
 		8E6D18DD1F905C4500A82C39 /* MTBOLLUSALine.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MTBOLLUSALine.h; sourceTree = "<group>"; };
 		8E6D18DE1F905C4500A82C39 /* MTBOLLUSALine.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MTBOLLUSALine.m; sourceTree = "<group>"; };
 		8E6D18E11F908F5400A82C39 /* MTTechMACDView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MTTechMACDView.h; sourceTree = "<group>"; };
@@ -312,6 +367,8 @@
 				8E21E76B1F564DB700CD55E0 /* AppDelegate.m */,
 				8E21E76D1F564DB700CD55E0 /* ViewController.h */,
 				8E21E76E1F564DB700CD55E0 /* ViewController.m */,
+				8E6669D623BC889C000CE08E /* Base */,
+				8E6669BF23BC8856000CE08E /* kLineAndShareTime */,
 				8E21E7701F564DB700CD55E0 /* Main.storyboard */,
 				8E21E79B1F565C5900CD55E0 /* 分时k线 */,
 				8E21E79C1F565C5900CD55E0 /* test */,
@@ -472,6 +529,233 @@
 				8E5C86111F70F1DD00F5DE86 /* SJCurveChartConstant.h */,
 			);
 			path = constant;
+			sourceTree = "<group>";
+		};
+		8E6669BF23BC8856000CE08E /* kLineAndShareTime */ = {
+			isa = PBXGroup;
+			children = (
+				8E6669C023BC8856000CE08E /* ShareTime */,
+				8E6669C623BC8856000CE08E /* Utils */,
+				8E6669C723BC8856000CE08E /* VM */,
+				8E6669C823BC8856000CE08E /* VC */,
+				8E6669C923BC8856000CE08E /* Model */,
+				8E6669CA23BC8856000CE08E /* View */,
+				8E6669CD23BC8856000CE08E /* kLine */,
+			);
+			path = kLineAndShareTime;
+			sourceTree = "<group>";
+		};
+		8E6669C023BC8856000CE08E /* ShareTime */ = {
+			isa = PBXGroup;
+			children = (
+				8E6669C123BC8856000CE08E /* VM */,
+				8E6669C223BC8856000CE08E /* Model */,
+				8E6669C323BC8856000CE08E /* View */,
+			);
+			path = ShareTime;
+			sourceTree = "<group>";
+		};
+		8E6669C123BC8856000CE08E /* VM */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = VM;
+			sourceTree = "<group>";
+		};
+		8E6669C223BC8856000CE08E /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		8E6669C323BC8856000CE08E /* View */ = {
+			isa = PBXGroup;
+			children = (
+				8E6669C423BC8856000CE08E /* ShareTime */,
+				8E6669C523BC8856000CE08E /* kLine */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		8E6669C423BC8856000CE08E /* ShareTime */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ShareTime;
+			sourceTree = "<group>";
+		};
+		8E6669C523BC8856000CE08E /* kLine */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = kLine;
+			sourceTree = "<group>";
+		};
+		8E6669C623BC8856000CE08E /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				8E666A1623BCB1A9000CE08E /* QSConstant.h */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		8E6669C723BC8856000CE08E /* VM */ = {
+			isa = PBXGroup;
+			children = (
+				8E6669E223BC8A16000CE08E /* QSTrendViewModel.h */,
+				8E6669E323BC8A16000CE08E /* QSTrendViewModel.m */,
+				8E6669F523BC9252000CE08E /* QSTrendShareTimeVM.h */,
+				8E6669F623BC9252000CE08E /* QSTrendShareTimeVM.m */,
+				8E6669F823BC9262000CE08E /* QSTrendKLineVM.h */,
+				8E6669F923BC9262000CE08E /* QSTrendKLineVM.m */,
+				8E666A1723BCB35C000CE08E /* QSCurveProcess.h */,
+				8E666A1823BCB35C000CE08E /* QSCurveProcess.m */,
+			);
+			path = VM;
+			sourceTree = "<group>";
+		};
+		8E6669C823BC8856000CE08E /* VC */ = {
+			isa = PBXGroup;
+			children = (
+				8E6669DB23BC8965000CE08E /* QSTrendMainVC.h */,
+				8E6669DC23BC8965000CE08E /* QSTrendMainVC.m */,
+			);
+			path = VC;
+			sourceTree = "<group>";
+		};
+		8E6669C923BC8856000CE08E /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				8E6669EF23BC8DB5000CE08E /* QSPointKLineModel.h */,
+				8E6669F023BC8DB5000CE08E /* QSPointKLineModel.m */,
+				8E666A0123BCA024000CE08E /* QSPointPositionKLineModel.h */,
+				8E666A0223BCA024000CE08E /* QSPointPositionKLineModel.m */,
+				8E666A0A23BCB0A6000CE08E /* QSCurveMACD.h */,
+				8E666A0B23BCB0A6000CE08E /* QSCurveMACD.m */,
+				8E666A0D23BCB0BF000CE08E /* QSCurveKDJ.h */,
+				8E666A0E23BCB0BF000CE08E /* QSCurveKDJ.m */,
+				8E666A1023BCB0D8000CE08E /* QSCurveBOLL.h */,
+				8E666A1123BCB0D8000CE08E /* QSCurveBOLL.m */,
+				8E666A0423BCA1E0000CE08E /* QSKlineModel.h */,
+				8E666A0523BCA1E0000CE08E /* QSKlineModel.m */,
+				8E6669F223BC8E38000CE08E /* QSPointShareTimeModel.h */,
+				8E6669F323BC8E38000CE08E /* QSPointShareTimeModel.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		8E6669CA23BC8856000CE08E /* View */ = {
+			isa = PBXGroup;
+			children = (
+				8E6669CB23BC8856000CE08E /* ShareTime */,
+				8E6669CC23BC8856000CE08E /* kLine */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		8E6669CB23BC8856000CE08E /* ShareTime */ = {
+			isa = PBXGroup;
+			children = (
+				8E6669FB23BC9D27000CE08E /* QSMainShareTimeView.h */,
+				8E6669FC23BC9D27000CE08E /* QSMainShareTimeView.m */,
+			);
+			path = ShareTime;
+			sourceTree = "<group>";
+		};
+		8E6669CC23BC8856000CE08E /* kLine */ = {
+			isa = PBXGroup;
+			children = (
+				8E6669FE23BC9D3C000CE08E /* QSMainKLineView.h */,
+				8E6669FF23BC9D3C000CE08E /* QSMainKLineView.m */,
+			);
+			path = kLine;
+			sourceTree = "<group>";
+		};
+		8E6669CD23BC8856000CE08E /* kLine */ = {
+			isa = PBXGroup;
+			children = (
+				8E6669CE23BC8856000CE08E /* VM */,
+				8E6669CF23BC8856000CE08E /* Model */,
+				8E6669D023BC8856000CE08E /* View */,
+			);
+			path = kLine;
+			sourceTree = "<group>";
+		};
+		8E6669CE23BC8856000CE08E /* VM */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = VM;
+			sourceTree = "<group>";
+		};
+		8E6669CF23BC8856000CE08E /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		8E6669D023BC8856000CE08E /* View */ = {
+			isa = PBXGroup;
+			children = (
+				8E6669D123BC8856000CE08E /* ShareTime */,
+				8E6669D223BC8856000CE08E /* kLine */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		8E6669D123BC8856000CE08E /* ShareTime */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ShareTime;
+			sourceTree = "<group>";
+		};
+		8E6669D223BC8856000CE08E /* kLine */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = kLine;
+			sourceTree = "<group>";
+		};
+		8E6669D623BC889C000CE08E /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				8E6669E523BC8B1B000CE08E /* Model */,
+				8E6669DE23BC89D7000CE08E /* VM */,
+				8E6669D723BC889C000CE08E /* VC */,
+			);
+			path = Base;
+			sourceTree = "<group>";
+		};
+		8E6669D723BC889C000CE08E /* VC */ = {
+			isa = PBXGroup;
+			children = (
+				8E6669D323BC8882000CE08E /* QSBaseViewController.h */,
+				8E6669D423BC8882000CE08E /* QSBaseViewController.m */,
+			);
+			path = VC;
+			sourceTree = "<group>";
+		};
+		8E6669DE23BC89D7000CE08E /* VM */ = {
+			isa = PBXGroup;
+			children = (
+				8E6669DF23BC89F7000CE08E /* QSBaseViewModel.h */,
+				8E6669E023BC89F7000CE08E /* QSBaseViewModel.m */,
+			);
+			path = VM;
+			sourceTree = "<group>";
+		};
+		8E6669E523BC8B1B000CE08E /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				8E6669E623BC8B2F000CE08E /* QSBaseModel.h */,
+				8E6669E723BC8B2F000CE08E /* QSBaseModel.m */,
+				8E666A0723BCB08B000CE08E /* QSCurveModel.h */,
+				8E666A0823BCB08B000CE08E /* QSCurveModel.m */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		8E6D18E01F908F3300A82C39 /* MACDView */ = {
@@ -676,6 +960,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 				Base,
 			);
@@ -727,12 +1012,15 @@
 			files = (
 				8E6D18DF1F905C4500A82C39 /* MTBOLLUSALine.m in Sources */,
 				8ED2E2431F7641A600251618 /* MTDataManager.m in Sources */,
+				8E6669FD23BC9D27000CE08E /* QSMainShareTimeView.m in Sources */,
 				8E6D18E61F9094FB00A82C39 /* MTMACDLine.m in Sources */,
 				8E21E76F1F564DB700CD55E0 /* ViewController.m in Sources */,
 				8EFF5AC21F6FB0F600CD94F1 /* BaseTest.m in Sources */,
 				8ED2E24F1F76423A00251618 /* MTCurveMACD.m in Sources */,
 				8E3896471F7F6F08006AEC92 /* MTKLine.m in Sources */,
+				8E6669DD23BC8965000CE08E /* QSTrendMainVC.m in Sources */,
 				8ED2E2491F76420400251618 /* MTCurveObject.m in Sources */,
+				8E6669E123BC89F7000CE08E /* QSBaseViewModel.m in Sources */,
 				8EEF24951F8B159100C35E1C /* MTCurveChartGlobalVariable.m in Sources */,
 				8EEF24921F8B0E0600C35E1C /* UIColor+CurveChart.m in Sources */,
 				8E4F2C0E1F7D031F0082A3F5 /* MTCurveBOLL.m in Sources */,
@@ -742,6 +1030,7 @@
 				8EF9332F1F8F05960011E352 /* MTVolumePositionModel.m in Sources */,
 				8ED2E2461F7641D400251618 /* MTCurveProcess.m in Sources */,
 				8EFF5AC51F6FB12800CD94F1 /* Test1.m in Sources */,
+				8E666A0023BC9D3C000CE08E /* QSMainKLineView.m in Sources */,
 				8E3896441F7F6E72006AEC92 /* MTMianKLineView.m in Sources */,
 				8E18DCCC1F9F254D003C47C0 /* MTTimeLineDetailedView.m in Sources */,
 				8E18DCC61F9F0CB5003C47C0 /* MTFiveRecordTableView.m in Sources */,
@@ -758,15 +1047,29 @@
 				8E21E7691F564DB700CD55E0 /* main.m in Sources */,
 				8EFF5AC81F6FB13200CD94F1 /* Test2.m in Sources */,
 				8E18DCB81F9EEBAF003C47C0 /* MTTimeLineTableView.m in Sources */,
+				8E666A1223BCB0D8000CE08E /* QSCurveBOLL.m in Sources */,
+				8E666A0323BCA024000CE08E /* QSPointPositionKLineModel.m in Sources */,
+				8E6669F123BC8DB5000CE08E /* QSPointKLineModel.m in Sources */,
 				8E18DCCF1F9F257D003C47C0 /* MTDaDanView.m in Sources */,
 				8EF933491F8F45130011E352 /* MTTechBaseView.m in Sources */,
+				8E666A0F23BCB0BF000CE08E /* QSCurveKDJ.m in Sources */,
+				8E6669E823BC8B2F000CE08E /* QSBaseModel.m in Sources */,
+				8E666A0623BCA1E0000CE08E /* QSKlineModel.m in Sources */,
+				8E666A1923BCB35C000CE08E /* QSCurveProcess.m in Sources */,
+				8E666A0923BCB08B000CE08E /* QSCurveModel.m in Sources */,
 				8E2299431FA031C8008BC129 /* MTShowDetailsView.m in Sources */,
+				8E6669E423BC8A16000CE08E /* QSTrendViewModel.m in Sources */,
 				8EE799361F9DD000005F518C /* MTTimeLineView.m in Sources */,
 				8E18DCC91F9F0DD1003C47C0 /* MTFiveRecordModel.m in Sources */,
+				8E6669F423BC8E38000CE08E /* QSPointShareTimeModel.m in Sources */,
 				8E21E7A01F565C7A00CD55E0 /* TestController.m in Sources */,
+				8E6669F723BC9252000CE08E /* QSTrendShareTimeVM.m in Sources */,
+				8E666A0C23BCB0A6000CE08E /* QSCurveMACD.m in Sources */,
 				8EF4B3051F95A86B0090FEB7 /* MTTrackingCrossView.m in Sources */,
 				8EF933521F8F45DA0011E352 /* MTVolume.m in Sources */,
+				8E6669FA23BC9262000CE08E /* QSTrendKLineVM.m in Sources */,
 				8EF9334F1F8F45A50011E352 /* MTTechVolumeView.m in Sources */,
+				8E6669D523BC8882000CE08E /* QSBaseViewController.m in Sources */,
 				8E0244771F8C68C1004AA725 /* MTMALine.m in Sources */,
 				8EFBDE171F735E7C00F8554E /* SJCurveObject.m in Sources */,
 				8EE7993C1F9E01BD005F518C /* MTTimeLineVolumeView.m in Sources */,
