@@ -1,0 +1,93 @@
+//
+//  QSCurveChartGlobalVariable.m
+//  分时k线demo
+//
+//  Created by tianmaotao on 2020/1/4.
+//  Copyright © 2020 tianmaotao. All rights reserved.
+//
+
+#import "QSCurveChartGlobalVariable.h"
+#import "QSConstant.h"
+
+@implementation QSCurveChartGlobalVariable
+/**
+ *  K线图的宽度，默认5
+ */
+static CGFloat mtCurveChartKlineWith = 5;
+/**
+ *  K线图的间隔，默认1
+ */
+static CGFloat mtCurveChartKlineGap = 1;
+/**
+ *  K线图的间隔，默认1
+ */
+static CGFloat mtCurveChartKlineShadowLineWith = 1;
+/**
+ *  网格格线的宽度,默认0.5
+ */
+static CGFloat mtCurveChartGridLineWidth = 0.3;
+
+//分时 成交量柱状图的宽度 默认时5
+static CGFloat mtCurveChartTimeLineWidth = 2;
+//分时 成交量柱状图的间隙 默认时1
+static CGFloat mtCurveChartTimeLineGapWidth = 0.3;
+
+#pragma mark K线图的宽度
++(CGFloat)kLineWidth {
+    return mtCurveChartKlineWith;
+}
+
++ (void)setkLineWith:(CGFloat)kLineWidth {
+    if (kLineWidth > QSCurveChartKLineMaxWidth) {
+        kLineWidth = QSCurveChartKLineMaxWidth;
+    } else if (kLineWidth < QSCurveChartKLineMinWidth) {
+        kLineWidth = QSCurveChartKLineMinWidth;
+    }
+    mtCurveChartKlineWith = kLineWidth;
+}
+
+#pragma mark K线图的间隔
++(CGFloat)kLineGap {
+    return mtCurveChartKlineGap;
+}
+
++ (void)setkLineGap:(CGFloat)kLineGap {
+    mtCurveChartKlineGap = kLineGap;
+}
+
+#pragma mark K线图上下影线的宽度
++ (CGFloat)kLineShadowLineWidth {
+    return mtCurveChartKlineShadowLineWith;
+}
+
++ (void)setKlineShadowLineWidth:(CGFloat)shadowLineWidth {
+    mtCurveChartKlineShadowLineWith = shadowLineWidth;
+}
+
+#pragma mark 网格格线的宽度
++ (CGFloat)CurveChactGridLineWidth {
+    return mtCurveChartGridLineWidth;
+}
+
++ (void)setCurveChartGridLineWidth:(CGFloat)gridLineWith {
+    mtCurveChartGridLineWidth = gridLineWith;
+}
+
+#pragma mark 分时柱状图的宽度
++ (CGFloat)timeLineVolumeWidth {
+    return mtCurveChartTimeLineWidth;
+}
+
++ (void)setTimeLineVolumeWidth:(CGFloat)volumeWidth {
+    mtCurveChartTimeLineWidth = volumeWidth;
+}
+
+#pragma mark 分时柱状图的间隙
++ (CGFloat)timeLineVolumeGapWidth {
+    return mtCurveChartTimeLineGapWidth;
+}
++ (void)setTimeLineVolumeGapWidth:(CGFloat)volumeGapWidth {
+    mtCurveChartTimeLineGapWidth = volumeGapWidth;
+}
+
+@end

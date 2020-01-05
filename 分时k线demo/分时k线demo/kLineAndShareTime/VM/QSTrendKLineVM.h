@@ -10,19 +10,22 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@class QSTrendKLineVM;
+@class QSTrendKLineVM, QSKlineModel;
 @protocol QSTrendKLineVMDelegate <NSObject>
 
 @optional
 
-- (void)kLineVM:(QSTrendKLineVM *)vm willUpdate:(BOOL)isUpdate;
-- (void)kLineVM:(QSTrendKLineVM *)vm didUpdate:(BOOL)isUpdate;
+- (void)kLineVM:(QSTrendKLineVM *)vm willUpdateView:(BOOL)isUpdate;
+- (void)kLineVM:(QSTrendKLineVM *)vm didUpdateView:(BOOL)isUpdate;
+- (void)kLineVM:(QSTrendKLineVM *)vm drawTopDetailsView:(QSKlineModel *)model;
 
 @end
 
-@class QSPointKLineModel;
 @class QSPointPositionKLineModel;
+@class QSKlineModel;
 @interface QSTrendKLineVM : QSBaseViewModel
+
+@property (nonatomic, weak) id<QSTrendKLineVMDelegate> delegate;
 
 @property (nonatomic, strong, readonly) NSMutableArray<QSPointPositionKLineModel *> *needDrawPositionModels;
 @property (nonatomic, strong, readonly) NSMutableArray *MA5Positions; /// MA5位置数组
@@ -33,10 +36,13 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, assign, readonly) CGFloat currentPriceMaxToViewY; /// 当前价格最大值对应到视图上的纵坐标
 @property (nonatomic, assign, readonly) CGFloat currentPriceMinToViewY; /// 当前价格最小值对应到视图上的纵坐标
 @property (nonatomic, assign, readonly) CGFloat unitViewY; ///视图上单位坐标表示的价格值
+@property (nonatomic, strong, readonly) QSKlineModel *showKlineModel; ///需要显示在顶部的model
 
-- (void)updateData:(NSArray<QSPointKLineModel *> *)datas;
-- (void)updateDataWithNextData:(NSArray<QSPointKLineModel *> *)datas;
-- (void)updateDataWithLastData:(NSArray<QSPointKLineModel *> *)datas;
+#warning todo
+@property (nonatomic, assign) CGRect frame;
+
+- (void)reDrawShowViewWithIndex:(NSInteger)index;
+- (void)drawView:(NSArray<QSKlineModel *>*)needDrawKlneModels;
 
 @end
 

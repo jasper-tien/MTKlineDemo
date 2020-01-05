@@ -13,11 +13,15 @@ NS_ASSUME_NONNULL_BEGIN
 @class QSTrendViewModel;
 @protocol QSTrendViewModelDelegate <NSObject>
 
-@optional
+@optional 
 
 @end
 
+@class QSTrendShareTimeVM;
+@class QSTrendKLineVM;
 @interface QSTrendViewModel : QSBaseViewModel
+@property (nonatomic, strong, readonly) QSTrendShareTimeVM *shareTimeVM;
+@property (nonatomic, strong, readonly) QSTrendKLineVM *kLineVM;
 
 - (void)loadShareTimeData;
 - (void)loadKLineData;

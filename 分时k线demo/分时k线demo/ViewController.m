@@ -8,6 +8,7 @@
 
 #import "ViewController.h"
 #import "TestController.h"
+#import "QSTrendMainVC.h"
 
 @interface ViewController ()
 @property (nonatomic, strong) UILabel *label;
@@ -40,11 +41,9 @@
 - (IBAction)testAction:(id)sender {
 //    TestController *vc = [[TestController alloc] init];
 //    [self presentViewController:vc animated:YES completion:nil];
-    NSLog(@"%f", DBL_MAX);
-    NSLog(@"%d", INT32_MIN);
-     NSLog(@"%f", MAXFLOAT);
 
-    
+    QSTrendMainVC *vc = [[QSTrendMainVC alloc] init];
+    [self presentViewController:vc animated:YES completion:nil];
 }
 
 - (void)event_pichMethod:(UIPinchGestureRecognizer *)pinch {

@@ -56,6 +56,11 @@
 		8E6D18E31F908F5400A82C39 /* MTTechMACDView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E6D18E21F908F5400A82C39 /* MTTechMACDView.m */; };
 		8E6D18E61F9094FB00A82C39 /* MTMACDLine.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E6D18E51F9094FB00A82C39 /* MTMACDLine.m */; };
 		8E8CAAD01F57DCF1005D3B39 /* MTModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E8CAACF1F57DCF1005D3B39 /* MTModel.m */; };
+		8EA639E123C0892F002E8A81 /* QSCurveChartGlobalVariable.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EA639E023C0892F002E8A81 /* QSCurveChartGlobalVariable.m */; };
+		8EA639E423C08F73002E8A81 /* UIColor+CurveColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EA639E323C08F73002E8A81 /* UIColor+CurveColor.m */; };
+		8EA639E723C0918F002E8A81 /* QSShowDetailsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EA639E623C0918F002E8A81 /* QSShowDetailsView.m */; };
+		8EA639EA23C0922E002E8A81 /* QSKLine.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EA639E923C0922E002E8A81 /* QSKLine.m */; };
+		8EA639ED23C09309002E8A81 /* QSMALine.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EA639EC23C09309002E8A81 /* QSMALine.m */; };
 		8ED2E2431F7641A600251618 /* MTDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8ED2E2421F7641A500251618 /* MTDataManager.m */; };
 		8ED2E2461F7641D400251618 /* MTCurveProcess.m in Sources */ = {isa = PBXBuildFile; fileRef = 8ED2E2451F7641D400251618 /* MTCurveProcess.m */; };
 		8ED2E2491F76420400251618 /* MTCurveObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 8ED2E2481F76420400251618 /* MTCurveObject.m */; };
@@ -198,6 +203,16 @@
 		8E6D18E51F9094FB00A82C39 /* MTMACDLine.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MTMACDLine.m; sourceTree = "<group>"; };
 		8E8CAACE1F57DCF1005D3B39 /* MTModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTModel.h; sourceTree = "<group>"; };
 		8E8CAACF1F57DCF1005D3B39 /* MTModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTModel.m; sourceTree = "<group>"; };
+		8EA639DF23C0892F002E8A81 /* QSCurveChartGlobalVariable.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QSCurveChartGlobalVariable.h; sourceTree = "<group>"; };
+		8EA639E023C0892F002E8A81 /* QSCurveChartGlobalVariable.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QSCurveChartGlobalVariable.m; sourceTree = "<group>"; };
+		8EA639E223C08F73002E8A81 /* UIColor+CurveColor.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIColor+CurveColor.h"; sourceTree = "<group>"; };
+		8EA639E323C08F73002E8A81 /* UIColor+CurveColor.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIColor+CurveColor.m"; sourceTree = "<group>"; };
+		8EA639E523C0918F002E8A81 /* QSShowDetailsView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QSShowDetailsView.h; sourceTree = "<group>"; };
+		8EA639E623C0918F002E8A81 /* QSShowDetailsView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QSShowDetailsView.m; sourceTree = "<group>"; };
+		8EA639E823C0922E002E8A81 /* QSKLine.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QSKLine.h; sourceTree = "<group>"; };
+		8EA639E923C0922E002E8A81 /* QSKLine.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QSKLine.m; sourceTree = "<group>"; };
+		8EA639EB23C09309002E8A81 /* QSMALine.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QSMALine.h; sourceTree = "<group>"; };
+		8EA639EC23C09309002E8A81 /* QSMALine.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QSMALine.m; sourceTree = "<group>"; };
 		8ED2E2411F7641A500251618 /* MTDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTDataManager.h; sourceTree = "<group>"; };
 		8ED2E2421F7641A500251618 /* MTDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTDataManager.m; sourceTree = "<group>"; };
 		8ED2E2441F7641D400251618 /* MTCurveProcess.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTCurveProcess.h; sourceTree = "<group>"; };
@@ -596,6 +611,10 @@
 			isa = PBXGroup;
 			children = (
 				8E666A1623BCB1A9000CE08E /* QSConstant.h */,
+				8EA639DF23C0892F002E8A81 /* QSCurveChartGlobalVariable.h */,
+				8EA639E023C0892F002E8A81 /* QSCurveChartGlobalVariable.m */,
+				8EA639E223C08F73002E8A81 /* UIColor+CurveColor.h */,
+				8EA639E323C08F73002E8A81 /* UIColor+CurveColor.m */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -668,6 +687,12 @@
 			children = (
 				8E6669FE23BC9D3C000CE08E /* QSMainKLineView.h */,
 				8E6669FF23BC9D3C000CE08E /* QSMainKLineView.m */,
+				8EA639E523C0918F002E8A81 /* QSShowDetailsView.h */,
+				8EA639E623C0918F002E8A81 /* QSShowDetailsView.m */,
+				8EA639E823C0922E002E8A81 /* QSKLine.h */,
+				8EA639E923C0922E002E8A81 /* QSKLine.m */,
+				8EA639EB23C09309002E8A81 /* QSMALine.h */,
+				8EA639EC23C09309002E8A81 /* QSMALine.m */,
 			);
 			path = kLine;
 			sourceTree = "<group>";
@@ -1021,9 +1046,13 @@
 				8E6669DD23BC8965000CE08E /* QSTrendMainVC.m in Sources */,
 				8ED2E2491F76420400251618 /* MTCurveObject.m in Sources */,
 				8E6669E123BC89F7000CE08E /* QSBaseViewModel.m in Sources */,
+				8EA639EA23C0922E002E8A81 /* QSKLine.m in Sources */,
+				8EA639E423C08F73002E8A81 /* UIColor+CurveColor.m in Sources */,
 				8EEF24951F8B159100C35E1C /* MTCurveChartGlobalVariable.m in Sources */,
 				8EEF24921F8B0E0600C35E1C /* UIColor+CurveChart.m in Sources */,
 				8E4F2C0E1F7D031F0082A3F5 /* MTCurveBOLL.m in Sources */,
+				8EA639ED23C09309002E8A81 /* QSMALine.m in Sources */,
+				8EA639E723C0918F002E8A81 /* QSShowDetailsView.m in Sources */,
 				8E4F2C0B1F7CFB990082A3F5 /* MTCurveKDJ.m in Sources */,
 				8E21E76C1F564DB700CD55E0 /* AppDelegate.m in Sources */,
 				8EEF248E1F8B0BDE00C35E1C /* MTKLinePositionModel.m in Sources */,
@@ -1072,6 +1101,7 @@
 				8E6669D523BC8882000CE08E /* QSBaseViewController.m in Sources */,
 				8E0244771F8C68C1004AA725 /* MTMALine.m in Sources */,
 				8EFBDE171F735E7C00F8554E /* SJCurveObject.m in Sources */,
+				8EA639E123C0892F002E8A81 /* QSCurveChartGlobalVariable.m in Sources */,
 				8EE7993C1F9E01BD005F518C /* MTTimeLineVolumeView.m in Sources */,
 				8EFBDE1A1F736B4500F8554E /* SJCurveProcess.m in Sources */,
 				8EE7992E1F9DCAFC005F518C /* MTFenShiView.m in Sources */,

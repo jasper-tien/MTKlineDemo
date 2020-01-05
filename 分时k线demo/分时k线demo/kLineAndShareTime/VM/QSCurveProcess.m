@@ -32,11 +32,11 @@
 - (void)registerCurveSubclass {
     NSMutableArray *curveSubclassArray = [NSMutableArray array];
     //注册MACD指标类名
-    NSDictionary *MACDDic = [NSDictionary dictionaryWithObjectsAndKeys:@"MTCurveMACD", RegisterClassName, @"MTCurveMACDKey", RegisterClassKey, nil];
+    NSDictionary *MACDDic = [NSDictionary dictionaryWithObjectsAndKeys:@"QSCurveMACD", RegisterClassName, @"QSCurveMACDKey", RegisterClassKey, nil];
     //注册KDJ指标类名
-    NSDictionary *KDJDic = [NSDictionary dictionaryWithObjectsAndKeys:@"MTCurveKDJ", RegisterClassName, @"MTCurveKDJKey", RegisterClassKey, nil];
+    NSDictionary *KDJDic = [NSDictionary dictionaryWithObjectsAndKeys:@"QSCurveKDJ", RegisterClassName, @"QSCurveKDJKey", RegisterClassKey, nil];
     //注册BOLL指标类名
-    NSDictionary *BOLLDic = [NSDictionary dictionaryWithObjectsAndKeys:@"MTCurveBOLL", RegisterClassName, @"MTCurveBOLLKey", RegisterClassKey, nil];
+    NSDictionary *BOLLDic = [NSDictionary dictionaryWithObjectsAndKeys:@"QSCurveBOLL", RegisterClassName, @"QSCurveBOLLKey", RegisterClassKey, nil];
     
     [curveSubclassArray addObject:MACDDic];
     [curveSubclassArray addObject:KDJDic];
@@ -95,7 +95,7 @@
                     break;
                 case SJCurveTechType_MACD: {
                     //  MACD
-                    NSMutableArray *array = (NSMutableArray *)self.techDatasDic[@"MTCurveMACDKey"];
+                    NSMutableArray *array = (NSMutableArray *)self.techDatasDic[@"QSCurveMACDKey"];
                     //计算指标
                     [curveObject reckonTechWithArray:baseDatas container:array index:idx];
                     if (array) {
@@ -105,7 +105,7 @@
                 }
                 case SJCurveTechType_KDJ: {
                     //  KDJ
-                    NSMutableArray *array = (NSMutableArray *)self.techDatasDic[@"MTCurveKDJKey"];
+                    NSMutableArray *array = (NSMutableArray *)self.techDatasDic[@"QSCurveKDJKey"];
                     //计算指标
                     [curveObject reckonTechWithArray:baseDatas container:array index:idx];
                     if (array) {
@@ -115,7 +115,7 @@
                 }
                 case SJCurveTechType_BOLL: {
                     //  布林线
-                    NSMutableArray *array = (NSMutableArray *)self.techDatasDic[@"MTCurveBOLLKey"];
+                    NSMutableArray *array = (NSMutableArray *)self.techDatasDic[@"QSCurveBOLLKey"];
                     //计算指标
                     [curveObject reckonTechWithArray:baseDatas container:array index:idx];
                     if (array) {

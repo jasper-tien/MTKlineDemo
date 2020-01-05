@@ -10,12 +10,12 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@class QSPointKLineModel;
+@class QSTrendKLineVM;
 @interface QSMainKLineView : UIView
 
-- (instancetype)initWithViewModel:(QSPointKLineModel *)viewModel;
-- (instancetype)initWithFrame:(CGRect)frame viewModel:(QSPointKLineModel *)viewModel;
-- (void)bindVM:(QSPointKLineModel *)viewModel;
+- (instancetype)initWithViewModel:(QSTrendKLineVM *)viewModel;
+- (instancetype)initWithFrame:(CGRect)frame viewModel:(QSTrendKLineVM *)viewModel;
+- (void)bindVM:(QSTrendKLineVM *)viewModel;
 
 @end
 
