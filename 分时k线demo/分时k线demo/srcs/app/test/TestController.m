@@ -7,10 +7,6 @@
 //
 
 #import "TestController.h"
-#import "MTModel.h"
-#import "BaseTest.h"
-#import "Test1.h"
-#import "Test2.h"
 #import "MTDataManager.h"
 #import "MTKlineView.h"
 #import "MTFenShiView.h"
@@ -115,19 +111,6 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
-}
-
-- (BaseTest *)getTest:(NSInteger)index {
-    BaseTest *test = nil;
-    if (index == 1) {
-        test = [[Test1 alloc] init];
-    } else if (index == 2) {
-        test = [[Test2 alloc] init];
-    } else {
-        test = [[BaseTest alloc] init];
-    }
-    
-    return test;
 }
 
 #pragma mark -

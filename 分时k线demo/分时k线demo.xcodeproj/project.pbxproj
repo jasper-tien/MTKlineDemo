@@ -10,6 +10,9 @@
 		8E0244771F8C68C1004AA725 /* MTMALine.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E0244761F8C68C1004AA725 /* MTMALine.m */; };
 		8E02447A1F8CA2FB004AA725 /* MTKlineView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E0244791F8CA2FA004AA725 /* MTKlineView.m */; };
 		8E0360A61F8E193600B485A2 /* MTTechView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E0360A51F8E193600B485A2 /* MTTechView.m */; };
+		8E09F7732439ED5A00A21CAF /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E09F7712439ED5A00A21CAF /* ViewController.m */; };
+		8E09F7772439ED8500A21CAF /* TestController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E09F7742439ED8500A21CAF /* TestController.m */; };
+		8E09F7782439ED8500A21CAF /* TestController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8E09F7762439ED8500A21CAF /* TestController.xib */; };
 		8E18DCB31F9EE371003C47C0 /* MTTimeLineTrackingCrossView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E18DCB21F9EE371003C47C0 /* MTTimeLineTrackingCrossView.m */; };
 		8E18DCB81F9EEBAF003C47C0 /* MTTimeLineTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E18DCB71F9EEBAF003C47C0 /* MTTimeLineTableView.m */; };
 		8E18DCC21F9F0A50003C47C0 /* MTFiveRecordCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E18DCC01F9F0A50003C47C0 /* MTFiveRecordCell.m */; };
@@ -20,14 +23,11 @@
 		8E18DCCF1F9F257D003C47C0 /* MTDaDanView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E18DCCE1F9F257D003C47C0 /* MTDaDanView.m */; };
 		8E21E7691F564DB700CD55E0 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E21E7681F564DB700CD55E0 /* main.m */; };
 		8E21E76C1F564DB700CD55E0 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E21E76B1F564DB700CD55E0 /* AppDelegate.m */; };
-		8E21E76F1F564DB700CD55E0 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E21E76E1F564DB700CD55E0 /* ViewController.m */; };
 		8E21E7721F564DB700CD55E0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8E21E7701F564DB700CD55E0 /* Main.storyboard */; };
 		8E21E7741F564DB700CD55E0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8E21E7731F564DB700CD55E0 /* Assets.xcassets */; };
 		8E21E7771F564DB700CD55E0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8E21E7751F564DB700CD55E0 /* LaunchScreen.storyboard */; };
 		8E21E7821F564DB700CD55E0 /* __k_demoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E21E7811F564DB700CD55E0 /* __k_demoTests.m */; };
 		8E21E78D1F564DB700CD55E0 /* __k_demoUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E21E78C1F564DB700CD55E0 /* __k_demoUITests.m */; };
-		8E21E7A01F565C7A00CD55E0 /* TestController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E21E79E1F565C7A00CD55E0 /* TestController.m */; };
-		8E21E7A11F565C7A00CD55E0 /* TestController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8E21E79F1F565C7A00CD55E0 /* TestController.xib */; };
 		8E2299431FA031C8008BC129 /* MTShowDetailsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E2299421FA031C8008BC129 /* MTShowDetailsView.m */; };
 		8E3896441F7F6E72006AEC92 /* MTMianKLineView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E3896431F7F6E72006AEC92 /* MTMianKLineView.m */; };
 		8E3896471F7F6F08006AEC92 /* MTKLine.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E3896461F7F6F08006AEC92 /* MTKLine.m */; };
@@ -55,7 +55,6 @@
 		8E6D18DF1F905C4500A82C39 /* MTBOLLUSALine.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E6D18DE1F905C4500A82C39 /* MTBOLLUSALine.m */; };
 		8E6D18E31F908F5400A82C39 /* MTTechMACDView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E6D18E21F908F5400A82C39 /* MTTechMACDView.m */; };
 		8E6D18E61F9094FB00A82C39 /* MTMACDLine.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E6D18E51F9094FB00A82C39 /* MTMACDLine.m */; };
-		8E8CAAD01F57DCF1005D3B39 /* MTModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E8CAACF1F57DCF1005D3B39 /* MTModel.m */; };
 		8EA639E123C0892F002E8A81 /* QSCurveChartGlobalVariable.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EA639E023C0892F002E8A81 /* QSCurveChartGlobalVariable.m */; };
 		8EA639E423C08F73002E8A81 /* UIColor+CurveColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EA639E323C08F73002E8A81 /* UIColor+CurveColor.m */; };
 		8EA639E723C0918F002E8A81 /* QSShowDetailsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EA639E623C0918F002E8A81 /* QSShowDetailsView.m */; };
@@ -82,9 +81,6 @@
 		8EFBDE171F735E7C00F8554E /* SJCurveObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EFBDE161F735E7C00F8554E /* SJCurveObject.m */; };
 		8EFBDE1A1F736B4500F8554E /* SJCurveProcess.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EFBDE191F736B4500F8554E /* SJCurveProcess.m */; };
 		8EFF5ABF1F6F736900CD94F1 /* SJKlineModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EFF5ABE1F6F736900CD94F1 /* SJKlineModel.m */; };
-		8EFF5AC21F6FB0F600CD94F1 /* BaseTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EFF5AC11F6FB0F600CD94F1 /* BaseTest.m */; };
-		8EFF5AC51F6FB12800CD94F1 /* Test1.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EFF5AC41F6FB12800CD94F1 /* Test1.m */; };
-		8EFF5AC81F6FB13200CD94F1 /* Test2.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EFF5AC71F6FB13200CD94F1 /* Test2.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -111,6 +107,11 @@
 		8E0244791F8CA2FA004AA725 /* MTKlineView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MTKlineView.m; sourceTree = "<group>"; };
 		8E0360A41F8E193600B485A2 /* MTTechView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MTTechView.h; sourceTree = "<group>"; };
 		8E0360A51F8E193600B485A2 /* MTTechView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MTTechView.m; sourceTree = "<group>"; };
+		8E09F7712439ED5A00A21CAF /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		8E09F7722439ED5A00A21CAF /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		8E09F7742439ED8500A21CAF /* TestController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestController.m; sourceTree = "<group>"; };
+		8E09F7752439ED8500A21CAF /* TestController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestController.h; sourceTree = "<group>"; };
+		8E09F7762439ED8500A21CAF /* TestController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TestController.xib; sourceTree = "<group>"; };
 		8E18DCB11F9EE371003C47C0 /* MTTimeLineTrackingCrossView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MTTimeLineTrackingCrossView.h; sourceTree = "<group>"; };
 		8E18DCB21F9EE371003C47C0 /* MTTimeLineTrackingCrossView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MTTimeLineTrackingCrossView.m; sourceTree = "<group>"; };
 		8E18DCB61F9EEBAF003C47C0 /* MTTimeLineTableView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MTTimeLineTableView.h; sourceTree = "<group>"; };
@@ -130,8 +131,6 @@
 		8E21E7681F564DB700CD55E0 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		8E21E76A1F564DB700CD55E0 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		8E21E76B1F564DB700CD55E0 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		8E21E76D1F564DB700CD55E0 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		8E21E76E1F564DB700CD55E0 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		8E21E7711F564DB700CD55E0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		8E21E7731F564DB700CD55E0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8E21E7761F564DB700CD55E0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -142,9 +141,6 @@
 		8E21E7881F564DB700CD55E0 /* 分时k线demoUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "分时k线demoUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8E21E78C1F564DB700CD55E0 /* __k_demoUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = __k_demoUITests.m; sourceTree = "<group>"; };
 		8E21E78E1F564DB700CD55E0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		8E21E79D1F565C7A00CD55E0 /* TestController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestController.h; sourceTree = "<group>"; };
-		8E21E79E1F565C7A00CD55E0 /* TestController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestController.m; sourceTree = "<group>"; };
-		8E21E79F1F565C7A00CD55E0 /* TestController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TestController.xib; sourceTree = "<group>"; };
 		8E2299411FA031C8008BC129 /* MTShowDetailsView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MTShowDetailsView.h; sourceTree = "<group>"; };
 		8E2299421FA031C8008BC129 /* MTShowDetailsView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MTShowDetailsView.m; sourceTree = "<group>"; };
 		8E3896421F7F6E72006AEC92 /* MTMianKLineView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MTMianKLineView.h; sourceTree = "<group>"; };
@@ -201,8 +197,6 @@
 		8E6D18E21F908F5400A82C39 /* MTTechMACDView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MTTechMACDView.m; sourceTree = "<group>"; };
 		8E6D18E41F9094FB00A82C39 /* MTMACDLine.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MTMACDLine.h; sourceTree = "<group>"; };
 		8E6D18E51F9094FB00A82C39 /* MTMACDLine.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MTMACDLine.m; sourceTree = "<group>"; };
-		8E8CAACE1F57DCF1005D3B39 /* MTModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTModel.h; sourceTree = "<group>"; };
-		8E8CAACF1F57DCF1005D3B39 /* MTModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTModel.m; sourceTree = "<group>"; };
 		8EA639DF23C0892F002E8A81 /* QSCurveChartGlobalVariable.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QSCurveChartGlobalVariable.h; sourceTree = "<group>"; };
 		8EA639E023C0892F002E8A81 /* QSCurveChartGlobalVariable.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QSCurveChartGlobalVariable.m; sourceTree = "<group>"; };
 		8EA639E223C08F73002E8A81 /* UIColor+CurveColor.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIColor+CurveColor.h"; sourceTree = "<group>"; };
@@ -255,12 +249,6 @@
 		8EFBDE191F736B4500F8554E /* SJCurveProcess.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SJCurveProcess.m; sourceTree = "<group>"; };
 		8EFF5ABD1F6F736900CD94F1 /* SJKlineModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SJKlineModel.h; sourceTree = "<group>"; };
 		8EFF5ABE1F6F736900CD94F1 /* SJKlineModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SJKlineModel.m; sourceTree = "<group>"; };
-		8EFF5AC01F6FB0F600CD94F1 /* BaseTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseTest.h; sourceTree = "<group>"; };
-		8EFF5AC11F6FB0F600CD94F1 /* BaseTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseTest.m; sourceTree = "<group>"; };
-		8EFF5AC31F6FB12800CD94F1 /* Test1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Test1.h; sourceTree = "<group>"; };
-		8EFF5AC41F6FB12800CD94F1 /* Test1.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Test1.m; sourceTree = "<group>"; };
-		8EFF5AC61F6FB13200CD94F1 /* Test2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Test2.h; sourceTree = "<group>"; };
-		8EFF5AC71F6FB13200CD94F1 /* Test2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Test2.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -300,6 +288,44 @@
 				8EF933431F8F44D60011E352 /* VolumeView */,
 			);
 			path = techViews;
+			sourceTree = "<group>";
+		};
+		8E09F76E2439EBE000A21CAF /* srcs */ = {
+			isa = PBXGroup;
+			children = (
+				8E09F76F2439EBE000A21CAF /* app */,
+			);
+			path = srcs;
+			sourceTree = "<group>";
+		};
+		8E09F76F2439EBE000A21CAF /* app */ = {
+			isa = PBXGroup;
+			children = (
+				8E21E79C1F565C5900CD55E0 /* test */,
+				8E21E79B1F565C5900CD55E0 /* 分时k线 */,
+				8E09F7702439EBE000A21CAF /* QSCurveChart */,
+			);
+			path = app;
+			sourceTree = "<group>";
+		};
+		8E09F7702439EBE000A21CAF /* QSCurveChart */ = {
+			isa = PBXGroup;
+			children = (
+				8E6669D623BC889C000CE08E /* Base */,
+				8E6669BF23BC8856000CE08E /* kLineAndShareTime */,
+			);
+			path = QSCurveChart;
+			sourceTree = "<group>";
+		};
+		8E09F7792439EE9200A21CAF /* qs-universal */ = {
+			isa = PBXGroup;
+			children = (
+				8E21E76A1F564DB700CD55E0 /* AppDelegate.h */,
+				8E21E76B1F564DB700CD55E0 /* AppDelegate.m */,
+				8E09F7722439ED5A00A21CAF /* ViewController.h */,
+				8E09F7712439ED5A00A21CAF /* ViewController.m */,
+			);
+			path = "qs-universal";
 			sourceTree = "<group>";
 		};
 		8E18DCB01F9EE343003C47C0 /* trackingCrossView */ = {
@@ -378,15 +404,9 @@
 		8E21E7661F564DB700CD55E0 /* 分时k线demo */ = {
 			isa = PBXGroup;
 			children = (
-				8E21E76A1F564DB700CD55E0 /* AppDelegate.h */,
-				8E21E76B1F564DB700CD55E0 /* AppDelegate.m */,
-				8E21E76D1F564DB700CD55E0 /* ViewController.h */,
-				8E21E76E1F564DB700CD55E0 /* ViewController.m */,
-				8E6669D623BC889C000CE08E /* Base */,
-				8E6669BF23BC8856000CE08E /* kLineAndShareTime */,
+				8E09F7792439EE9200A21CAF /* qs-universal */,
+				8E09F76E2439EBE000A21CAF /* srcs */,
 				8E21E7701F564DB700CD55E0 /* Main.storyboard */,
-				8E21E79B1F565C5900CD55E0 /* 分时k线 */,
-				8E21E79C1F565C5900CD55E0 /* test */,
 				8E21E7731F564DB700CD55E0 /* Assets.xcassets */,
 				8E21E7751F564DB700CD55E0 /* LaunchScreen.storyboard */,
 				8E21E7781F564DB700CD55E0 /* Info.plist */,
@@ -436,17 +456,9 @@
 		8E21E79C1F565C5900CD55E0 /* test */ = {
 			isa = PBXGroup;
 			children = (
-				8E21E79D1F565C7A00CD55E0 /* TestController.h */,
-				8E21E79E1F565C7A00CD55E0 /* TestController.m */,
-				8E21E79F1F565C7A00CD55E0 /* TestController.xib */,
-				8E8CAACE1F57DCF1005D3B39 /* MTModel.h */,
-				8E8CAACF1F57DCF1005D3B39 /* MTModel.m */,
-				8EFF5AC01F6FB0F600CD94F1 /* BaseTest.h */,
-				8EFF5AC11F6FB0F600CD94F1 /* BaseTest.m */,
-				8EFF5AC31F6FB12800CD94F1 /* Test1.h */,
-				8EFF5AC41F6FB12800CD94F1 /* Test1.m */,
-				8EFF5AC61F6FB13200CD94F1 /* Test2.h */,
-				8EFF5AC71F6FB13200CD94F1 /* Test2.m */,
+				8E09F7752439ED8500A21CAF /* TestController.h */,
+				8E09F7742439ED8500A21CAF /* TestController.m */,
+				8E09F7762439ED8500A21CAF /* TestController.xib */,
 			);
 			path = test;
 			sourceTree = "<group>";
@@ -1007,10 +1019,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				8E18DCC31F9F0A50003C47C0 /* MTFiveRecordCell.xib in Resources */,
+				8E09F7782439ED8500A21CAF /* TestController.xib in Resources */,
 				8E21E7771F564DB700CD55E0 /* LaunchScreen.storyboard in Resources */,
 				8E21E7741F564DB700CD55E0 /* Assets.xcassets in Resources */,
 				8E21E7721F564DB700CD55E0 /* Main.storyboard in Resources */,
-				8E21E7A11F565C7A00CD55E0 /* TestController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1039,8 +1051,6 @@
 				8ED2E2431F7641A600251618 /* MTDataManager.m in Sources */,
 				8E6669FD23BC9D27000CE08E /* QSMainShareTimeView.m in Sources */,
 				8E6D18E61F9094FB00A82C39 /* MTMACDLine.m in Sources */,
-				8E21E76F1F564DB700CD55E0 /* ViewController.m in Sources */,
-				8EFF5AC21F6FB0F600CD94F1 /* BaseTest.m in Sources */,
 				8ED2E24F1F76423A00251618 /* MTCurveMACD.m in Sources */,
 				8E3896471F7F6F08006AEC92 /* MTKLine.m in Sources */,
 				8E6669DD23BC8965000CE08E /* QSTrendMainVC.m in Sources */,
@@ -1050,6 +1060,7 @@
 				8EA639E423C08F73002E8A81 /* UIColor+CurveColor.m in Sources */,
 				8EEF24951F8B159100C35E1C /* MTCurveChartGlobalVariable.m in Sources */,
 				8EEF24921F8B0E0600C35E1C /* UIColor+CurveChart.m in Sources */,
+				8E09F7732439ED5A00A21CAF /* ViewController.m in Sources */,
 				8E4F2C0E1F7D031F0082A3F5 /* MTCurveBOLL.m in Sources */,
 				8EA639ED23C09309002E8A81 /* QSMALine.m in Sources */,
 				8EA639E723C0918F002E8A81 /* QSShowDetailsView.m in Sources */,
@@ -1058,7 +1069,6 @@
 				8EEF248E1F8B0BDE00C35E1C /* MTKLinePositionModel.m in Sources */,
 				8EF9332F1F8F05960011E352 /* MTVolumePositionModel.m in Sources */,
 				8ED2E2461F7641D400251618 /* MTCurveProcess.m in Sources */,
-				8EFF5AC51F6FB12800CD94F1 /* Test1.m in Sources */,
 				8E666A0023BC9D3C000CE08E /* QSMainKLineView.m in Sources */,
 				8E3896441F7F6E72006AEC92 /* MTMianKLineView.m in Sources */,
 				8E18DCCC1F9F254D003C47C0 /* MTTimeLineDetailedView.m in Sources */,
@@ -1069,12 +1079,12 @@
 				8EF933551F8F473D0011E352 /* MTTechKDJView.m in Sources */,
 				8E02447A1F8CA2FB004AA725 /* MTKlineView.m in Sources */,
 				8EE799391F9DD3AF005F518C /* MTTimeLineModel.m in Sources */,
+				8E09F7772439ED8500A21CAF /* TestController.m in Sources */,
 				8E6D18E31F908F5400A82C39 /* MTTechMACDView.m in Sources */,
 				8E5C86091F70EC8A00F5DE86 /* SJManageDataToModel.m in Sources */,
 				8EF933581F8F7A930011E352 /* MTTechBOLLView.m in Sources */,
 				8EFF5ABF1F6F736900CD94F1 /* SJKlineModel.m in Sources */,
 				8E21E7691F564DB700CD55E0 /* main.m in Sources */,
-				8EFF5AC81F6FB13200CD94F1 /* Test2.m in Sources */,
 				8E18DCB81F9EEBAF003C47C0 /* MTTimeLineTableView.m in Sources */,
 				8E666A1223BCB0D8000CE08E /* QSCurveBOLL.m in Sources */,
 				8E666A0323BCA024000CE08E /* QSPointPositionKLineModel.m in Sources */,
@@ -1091,7 +1101,6 @@
 				8EE799361F9DD000005F518C /* MTTimeLineView.m in Sources */,
 				8E18DCC91F9F0DD1003C47C0 /* MTFiveRecordModel.m in Sources */,
 				8E6669F423BC8E38000CE08E /* QSPointShareTimeModel.m in Sources */,
-				8E21E7A01F565C7A00CD55E0 /* TestController.m in Sources */,
 				8E6669F723BC9252000CE08E /* QSTrendShareTimeVM.m in Sources */,
 				8E666A0C23BCB0A6000CE08E /* QSCurveMACD.m in Sources */,
 				8EF4B3051F95A86B0090FEB7 /* MTTrackingCrossView.m in Sources */,
@@ -1105,7 +1114,6 @@
 				8EE7993C1F9E01BD005F518C /* MTTimeLineVolumeView.m in Sources */,
 				8EFBDE1A1F736B4500F8554E /* SJCurveProcess.m in Sources */,
 				8EE7992E1F9DCAFC005F518C /* MTFenShiView.m in Sources */,
-				8E8CAAD01F57DCF1005D3B39 /* MTModel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
