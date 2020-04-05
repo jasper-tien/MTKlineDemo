@@ -8,12 +8,12 @@
 
 #import "QSTrendMainVC.h"
 #import "QSTrendViewModel.h"
-#import "QSMainKLineView.h"
+#import "QSKLineView.h"
 
 @interface QSTrendMainVC ()
 
 @property (nonatomic, strong) QSTrendViewModel *viewModel;
-@property (nonatomic, strong) QSMainKLineView *mainKLineView;
+@property (nonatomic, strong) QSKLineView *kLineView;
 
 @end
 
@@ -30,7 +30,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    [self makeMainKLineView];
+    [self makeKLineView];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -40,7 +40,6 @@
 
 - (void)viewDidLayoutSubviews {
     [super viewDidLayoutSubviews];
-    self.mainKLineView.frame = CGRectMake(0, 50, self.view.frame.size.width, 200);
 }
 
 - (void)makeViewModel {
@@ -49,10 +48,10 @@
     }
 }
 
-- (void)makeMainKLineView {
-    if (!self.mainKLineView) {
-        self.mainKLineView = [[QSMainKLineView alloc] initWithViewModel:self.viewModel.kLineVM];
-        [self.view addSubview:self.mainKLineView];
+- (void)makeKLineView {
+    if (!self.kLineView) {
+        self.kLineView = [[QSKLineView alloc] initWithFrame:CGRectMake(0, 50, self.view.frame.size.width, 400) viewModel:self.viewModel];
+        [self.view addSubview:self.kLineView];
     }
 }
 

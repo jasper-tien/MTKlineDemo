@@ -17,7 +17,7 @@
 @interface QSTrendKLineVM ()
 
 @property (nonatomic, strong, readwrite) NSMutableArray<QSPointPositionKLineModel *> *needDrawPositionModels;
-@property (nonatomic, copy) NSArray<QSKlineModel *> *needDrawKlneModels;
+@property (nonatomic, copy, readwrite) NSArray<QSKlineModel *> *needDrawKlneModels;
 @property (nonatomic, strong, readwrite) NSMutableArray *MA5Positions; /// MA5位置数组
 @property (nonatomic, strong, readwrite) NSMutableArray *MA10Positions; /// MA10位置数组
 @property (nonatomic, strong, readwrite) NSMutableArray *MA20Positions; /// MA20位置数组
@@ -26,7 +26,6 @@
 @property (nonatomic, assign, readwrite) CGFloat currentPriceMaxToViewY; /// 当前价格最大值对应到视图上的纵坐标
 @property (nonatomic, assign, readwrite) CGFloat currentPriceMinToViewY; /// 当前价格最小值对应到视图上的纵坐标
 @property (nonatomic, assign, readwrite) CGFloat unitViewY; ///视图上单位坐标表示的价格值
-@property (nonatomic, strong, readwrite) QSKlineModel *showKlineModel;
 
 @end
 
@@ -83,6 +82,7 @@
     self.unitViewY = (self.currentPriceMax - self.currentPriceMin) / (self.currentPriceMaxToViewY - self.currentPriceMinToViewY);
     
     //移除旧的值
+    [self.needDrawPositionModels removeAllObjects];
     [self.MA5Positions removeAllObjects];
     [self.MA10Positions removeAllObjects];
     [self.MA20Positions removeAllObjects];

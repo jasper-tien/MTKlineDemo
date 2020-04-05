@@ -26,6 +26,7 @@
 
 - (instancetype)initWithViewModel:(QSTrendKLineVM *)viewModel {
     if (self = [super init]) {
+        self.backgroundColor = [UIColor blackColor];
         self.viewModel = viewModel;
         self.viewModel.delegate = self;
     }
@@ -155,6 +156,52 @@
         }
         
         [positionYStr drawAtPoint:drawTitlePoint withAttributes:@{NSFontAttributeName : [UIFont systemFontOfSize:10],NSForegroundColorAttributeName : [UIColor mainTextColor]}];
+    }
+}
+
+/**
+ *  长按的时候根据原始的x位置获得精确的x的位置
+ */
+- (void)longPressOrMovingAtPoint:(CGPoint)longPressPosition{
+    CGFloat xPositoinInMainView = longPressPosition.x;
+    CGFloat exactXPositionInMainView = 0.0;
+    
+    //原始的x位置获取对应在数组中的index
+    NSInteger index = xPositoinInMainView / ([QSCurveChartGlobalVariable kLineWidth] + [QSCurveChartGlobalVariable kLineGap]);
+    //对应index映射到view上的准确位置
+    CGFloat indexXPosition = index * ([QSCurveChartGlobalVariable kLineWidth] + [QSCurveChartGlobalVariable kLineGap]);
+    //最小临界值
+    CGFloat minX = indexXPosition  - ([QSCurveChartGlobalVariable kLineWidth] + [QSCurveChartGlobalVariable kLineGap]) / 2;
+    //最大临界值
+    CGFloat maxX = indexXPosition + ([QSCurveChartGlobalVariable kLineWidth] + [QSCurveChartGlobalVariable kLineGap]) / 2;
+    //对比原始x值大于最小临界值，并小于最大临界值，返回当前index的精确位置;当大于最大临界值时，返回下一个index对应的精确位置(理论上该值不可能小于最小临界值，所以不用考虑)
+    if (xPositoinInMainView < maxX && xPositoinInMainView > minX) {
+        exactXPositionInMainView = indexXPosition;
+    } else {
+        index++;
+        exactXPositionInMainView = indexXPosition + ([QSCurveChartGlobalVariable kLineWidth] + [QSCurveChartGlobalVariable kLineGap]);
+    }
+    
+    //显示长按点的k线详情信息
+    if (index < self.viewModel.needDrawKlneModels.count && index > 0) {
+        self.viewModel.showKlineModel = self.viewModel.needDrawKlneModels[index];
+        [self drawTopdeTailsView];
+        
+        //调用代理，通知指标view更新详情信息
+        if (self.delegate && [self.delegate respondsToSelector:@selector(kLineMainViewLongPressExactPosition:selectedIndex:longPressPrice:)]) {
+            CGFloat longPressPrece = self.viewModel.unitViewY * (self.viewModel.currentPriceMaxToViewY - longPressPosition.y) + self.viewModel.currentPriceMin;
+            [self.delegate kLineMainViewLongPressExactPosition:CGPointMake(exactXPositionInMainView, longPressPosition.y) selectedIndex:index longPressPrice:longPressPrece];
+        }
+    }
+}
+
+- (void)reDrawShowViewWithIndex:(NSInteger)index {
+    if (index == -1) {
+        self.viewModel.showKlineModel = self.viewModel.needDrawKlneModels.lastObject;
+        [self drawTopdeTailsView];
+    } else if (index < self.viewModel.needDrawKlneModels.count && index > 0) {
+        self.viewModel.showKlineModel = self.viewModel.needDrawKlneModels[index];
+        [self drawTopdeTailsView];
     }
 }
 

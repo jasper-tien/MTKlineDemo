@@ -14,6 +14,8 @@
 		8E09F7772439ED8500A21CAF /* TestController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E09F7742439ED8500A21CAF /* TestController.m */; };
 		8E09F7782439ED8500A21CAF /* TestController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8E09F7762439ED8500A21CAF /* TestController.xib */; };
 		8E09F77E2439EF4300A21CAF /* GCDMulticastDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E09F77D2439EF4300A21CAF /* GCDMulticastDelegate.m */; };
+		8E09F7812439F36C00A21CAF /* QSKLineView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E09F7802439F36C00A21CAF /* QSKLineView.m */; };
+		8E09F785243A15DA00A21CAF /* QSTrackingCrossView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E09F784243A15DA00A21CAF /* QSTrackingCrossView.m */; };
 		8E18DCB31F9EE371003C47C0 /* MTTimeLineTrackingCrossView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E18DCB21F9EE371003C47C0 /* MTTimeLineTrackingCrossView.m */; };
 		8E18DCB81F9EEBAF003C47C0 /* MTTimeLineTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E18DCB71F9EEBAF003C47C0 /* MTTimeLineTableView.m */; };
 		8E18DCC21F9F0A50003C47C0 /* MTFiveRecordCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E18DCC01F9F0A50003C47C0 /* MTFiveRecordCell.m */; };
@@ -115,6 +117,10 @@
 		8E09F7762439ED8500A21CAF /* TestController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TestController.xib; sourceTree = "<group>"; };
 		8E09F77C2439EF4300A21CAF /* GCDMulticastDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCDMulticastDelegate.h; sourceTree = "<group>"; };
 		8E09F77D2439EF4300A21CAF /* GCDMulticastDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCDMulticastDelegate.m; sourceTree = "<group>"; };
+		8E09F77F2439F36C00A21CAF /* QSKLineView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QSKLineView.h; sourceTree = "<group>"; };
+		8E09F7802439F36C00A21CAF /* QSKLineView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QSKLineView.m; sourceTree = "<group>"; };
+		8E09F783243A15DA00A21CAF /* QSTrackingCrossView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QSTrackingCrossView.h; sourceTree = "<group>"; };
+		8E09F784243A15DA00A21CAF /* QSTrackingCrossView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QSTrackingCrossView.m; sourceTree = "<group>"; };
 		8E18DCB11F9EE371003C47C0 /* MTTimeLineTrackingCrossView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MTTimeLineTrackingCrossView.h; sourceTree = "<group>"; };
 		8E18DCB21F9EE371003C47C0 /* MTTimeLineTrackingCrossView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MTTimeLineTrackingCrossView.m; sourceTree = "<group>"; };
 		8E18DCB61F9EEBAF003C47C0 /* MTTimeLineTableView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MTTimeLineTableView.h; sourceTree = "<group>"; };
@@ -347,6 +353,15 @@
 				8E09F77D2439EF4300A21CAF /* GCDMulticastDelegate.m */,
 			);
 			path = GCDMulticastDelegate;
+			sourceTree = "<group>";
+		};
+		8E09F782243A15CF00A21CAF /* TrackingCrossView */ = {
+			isa = PBXGroup;
+			children = (
+				8E09F783243A15DA00A21CAF /* QSTrackingCrossView.h */,
+				8E09F784243A15DA00A21CAF /* QSTrackingCrossView.m */,
+			);
+			path = TrackingCrossView;
 			sourceTree = "<group>";
 		};
 		8E18DCB01F9EE343003C47C0 /* trackingCrossView */ = {
@@ -718,6 +733,8 @@
 		8E6669CC23BC8856000CE08E /* kLine */ = {
 			isa = PBXGroup;
 			children = (
+				8E09F77F2439F36C00A21CAF /* QSKLineView.h */,
+				8E09F7802439F36C00A21CAF /* QSKLineView.m */,
 				8E6669FE23BC9D3C000CE08E /* QSMainKLineView.h */,
 				8E6669FF23BC9D3C000CE08E /* QSMainKLineView.m */,
 				8EA639E523C0918F002E8A81 /* QSShowDetailsView.h */,
@@ -726,6 +743,7 @@
 				8EA639E923C0922E002E8A81 /* QSKLine.m */,
 				8EA639EB23C09309002E8A81 /* QSMALine.h */,
 				8EA639EC23C09309002E8A81 /* QSMALine.m */,
+				8E09F782243A15CF00A21CAF /* TrackingCrossView */,
 			);
 			path = kLine;
 			sourceTree = "<group>";
@@ -1072,6 +1090,7 @@
 				8ED2E2431F7641A600251618 /* MTDataManager.m in Sources */,
 				8E6669FD23BC9D27000CE08E /* QSMainShareTimeView.m in Sources */,
 				8E6D18E61F9094FB00A82C39 /* MTMACDLine.m in Sources */,
+				8E09F785243A15DA00A21CAF /* QSTrackingCrossView.m in Sources */,
 				8ED2E24F1F76423A00251618 /* MTCurveMACD.m in Sources */,
 				8E3896471F7F6F08006AEC92 /* MTKLine.m in Sources */,
 				8E6669DD23BC8965000CE08E /* QSTrendMainVC.m in Sources */,
@@ -1113,6 +1132,7 @@
 				8E18DCCF1F9F257D003C47C0 /* MTDaDanView.m in Sources */,
 				8EF933491F8F45130011E352 /* MTTechBaseView.m in Sources */,
 				8E666A0F23BCB0BF000CE08E /* QSCurveKDJ.m in Sources */,
+				8E09F7812439F36C00A21CAF /* QSKLineView.m in Sources */,
 				8E6669E823BC8B2F000CE08E /* QSBaseModel.m in Sources */,
 				8E666A0623BCA1E0000CE08E /* QSKlineModel.m in Sources */,
 				8E666A1923BCB35C000CE08E /* QSCurveProcess.m in Sources */,

@@ -53,6 +53,15 @@
     
 }
 
+- (void)drawKLineWithRange:(NSRange)range {
+    NSArray *needShowDatas = [self getMainKLineDatasWithRange:range];
+    if (!needShowDatas || needShowDatas.count == 0) {
+        return;
+    }
+    
+    [self.kLineVM drawView:needShowDatas];
+}
+
 #pragma mark - kLine data
 
 - (void)updateData:(NSArray<QSPointKLineModel *> *)datas {
@@ -186,7 +195,7 @@
 #pragma mark - Private Methods
 
 - (void)loadData {
-    NSArray *datas = [self createKLineDataSource:100];
+    NSArray *datas = [self createKLineDataSource:300];
     [self performSelector:@selector(successBackData:) withObject:datas afterDelay:0.25];
 }
 

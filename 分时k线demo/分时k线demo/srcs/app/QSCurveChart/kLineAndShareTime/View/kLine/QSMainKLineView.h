@@ -10,12 +10,25 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+@protocol QSMainKLineViewDelegate<NSObject>
+/**
+ *  长按
+ */
+- (void)kLineMainViewLongPressExactPosition:(CGPoint)longPressPosition selectedIndex:(NSInteger)index longPressPrice:(CGFloat)price;
+
+@end
+
 @class QSTrendKLineVM;
 @interface QSMainKLineView : UIView
+
+@property (nonatomic, weak) id<QSMainKLineViewDelegate> delegate;
 
 - (instancetype)initWithViewModel:(QSTrendKLineVM *)viewModel;
 - (instancetype)initWithFrame:(CGRect)frame viewModel:(QSTrendKLineVM *)viewModel;
 - (void)bindVM:(QSTrendKLineVM *)viewModel;
+
+- (void)longPressOrMovingAtPoint:(CGPoint)longPressPosition;
+- (void)reDrawShowViewWithIndex:(NSInteger)index;
 
 @end
 

@@ -22,11 +22,16 @@ NS_ASSUME_NONNULL_BEGIN
 @interface QSTrendViewModel : QSBaseViewModel
 @property (nonatomic, strong, readonly) QSTrendShareTimeVM *shareTimeVM;
 @property (nonatomic, strong, readonly) QSTrendKLineVM *kLineVM;
+@property (nonatomic, copy, readonly) NSDictionary *techsDataModelDic;
 
 - (void)loadShareTimeData;
 - (void)loadKLineData;
 - (void)loadKLastLineData;
 - (void)loadNextKLineData;
+
+- (NSArray *)getMainKLineDatas;
+
+- (void)drawKLineWithRange:(NSRange)range;
 
 @end
 
