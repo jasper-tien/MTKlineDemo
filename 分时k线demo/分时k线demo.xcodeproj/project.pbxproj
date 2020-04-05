@@ -13,6 +13,7 @@
 		8E09F7732439ED5A00A21CAF /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E09F7712439ED5A00A21CAF /* ViewController.m */; };
 		8E09F7772439ED8500A21CAF /* TestController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E09F7742439ED8500A21CAF /* TestController.m */; };
 		8E09F7782439ED8500A21CAF /* TestController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8E09F7762439ED8500A21CAF /* TestController.xib */; };
+		8E09F77E2439EF4300A21CAF /* GCDMulticastDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E09F77D2439EF4300A21CAF /* GCDMulticastDelegate.m */; };
 		8E18DCB31F9EE371003C47C0 /* MTTimeLineTrackingCrossView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E18DCB21F9EE371003C47C0 /* MTTimeLineTrackingCrossView.m */; };
 		8E18DCB81F9EEBAF003C47C0 /* MTTimeLineTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E18DCB71F9EEBAF003C47C0 /* MTTimeLineTableView.m */; };
 		8E18DCC21F9F0A50003C47C0 /* MTFiveRecordCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E18DCC01F9F0A50003C47C0 /* MTFiveRecordCell.m */; };
@@ -112,6 +113,8 @@
 		8E09F7742439ED8500A21CAF /* TestController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestController.m; sourceTree = "<group>"; };
 		8E09F7752439ED8500A21CAF /* TestController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestController.h; sourceTree = "<group>"; };
 		8E09F7762439ED8500A21CAF /* TestController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TestController.xib; sourceTree = "<group>"; };
+		8E09F77C2439EF4300A21CAF /* GCDMulticastDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCDMulticastDelegate.h; sourceTree = "<group>"; };
+		8E09F77D2439EF4300A21CAF /* GCDMulticastDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCDMulticastDelegate.m; sourceTree = "<group>"; };
 		8E18DCB11F9EE371003C47C0 /* MTTimeLineTrackingCrossView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MTTimeLineTrackingCrossView.h; sourceTree = "<group>"; };
 		8E18DCB21F9EE371003C47C0 /* MTTimeLineTrackingCrossView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MTTimeLineTrackingCrossView.m; sourceTree = "<group>"; };
 		8E18DCB61F9EEBAF003C47C0 /* MTTimeLineTableView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MTTimeLineTableView.h; sourceTree = "<group>"; };
@@ -293,6 +296,7 @@
 		8E09F76E2439EBE000A21CAF /* srcs */ = {
 			isa = PBXGroup;
 			children = (
+				8E09F77A2439EF0B00A21CAF /* common */,
 				8E09F76F2439EBE000A21CAF /* app */,
 			);
 			path = srcs;
@@ -326,6 +330,23 @@
 				8E09F7712439ED5A00A21CAF /* ViewController.m */,
 			);
 			path = "qs-universal";
+			sourceTree = "<group>";
+		};
+		8E09F77A2439EF0B00A21CAF /* common */ = {
+			isa = PBXGroup;
+			children = (
+				8E09F77B2439EF3400A21CAF /* GCDMulticastDelegate */,
+			);
+			path = common;
+			sourceTree = "<group>";
+		};
+		8E09F77B2439EF3400A21CAF /* GCDMulticastDelegate */ = {
+			isa = PBXGroup;
+			children = (
+				8E09F77C2439EF4300A21CAF /* GCDMulticastDelegate.h */,
+				8E09F77D2439EF4300A21CAF /* GCDMulticastDelegate.m */,
+			);
+			path = GCDMulticastDelegate;
 			sourceTree = "<group>";
 		};
 		8E18DCB01F9EE343003C47C0 /* trackingCrossView */ = {
@@ -1099,6 +1120,7 @@
 				8E2299431FA031C8008BC129 /* MTShowDetailsView.m in Sources */,
 				8E6669E423BC8A16000CE08E /* QSTrendViewModel.m in Sources */,
 				8EE799361F9DD000005F518C /* MTTimeLineView.m in Sources */,
+				8E09F77E2439EF4300A21CAF /* GCDMulticastDelegate.m in Sources */,
 				8E18DCC91F9F0DD1003C47C0 /* MTFiveRecordModel.m in Sources */,
 				8E6669F423BC8E38000CE08E /* QSPointShareTimeModel.m in Sources */,
 				8E6669F723BC9252000CE08E /* QSTrendShareTimeVM.m in Sources */,
