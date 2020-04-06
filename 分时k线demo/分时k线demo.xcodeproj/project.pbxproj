@@ -137,7 +137,7 @@
 		8E18DCCB1F9F254D003C47C0 /* MTTimeLineDetailedView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MTTimeLineDetailedView.m; sourceTree = "<group>"; };
 		8E18DCCD1F9F257D003C47C0 /* MTDaDanView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MTDaDanView.h; sourceTree = "<group>"; };
 		8E18DCCE1F9F257D003C47C0 /* MTDaDanView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MTDaDanView.m; sourceTree = "<group>"; };
-		8E21E7641F564DB700CD55E0 /* 分时k线demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "分时k线demo.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		8E21E7641F564DB700CD55E0 /* 股票趋势.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "股票趋势.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8E21E7681F564DB700CD55E0 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		8E21E76A1F564DB700CD55E0 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		8E21E76B1F564DB700CD55E0 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -433,7 +433,7 @@
 		8E21E7651F564DB700CD55E0 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				8E21E7641F564DB700CD55E0 /* 分时k线demo.app */,
+				8E21E7641F564DB700CD55E0 /* 股票趋势.app */,
 				8E21E77D1F564DB700CD55E0 /* 分时k线demoTests.xctest */,
 				8E21E7881F564DB700CD55E0 /* 分时k线demoUITests.xctest */,
 			);
@@ -971,7 +971,7 @@
 			);
 			name = "分时k线demo";
 			productName = "分时k线demo";
-			productReference = 8E21E7641F564DB700CD55E0 /* 分时k线demo.app */;
+			productReference = 8E21E7641F564DB700CD55E0 /* 股票趋势.app */;
 			productType = "com.apple.product-type.application";
 		};
 		8E21E77C1F564DB700CD55E0 /* 分时k线demoTests */ = {
@@ -1317,7 +1317,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "--tianmaotao--.--k-demo";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "股票趋势";
 			};
 			name = Debug;
 		};
@@ -1330,7 +1330,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "--tianmaotao--.--k-demo";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "股票趋势";
 			};
 			name = Release;
 		};

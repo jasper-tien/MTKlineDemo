@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "8E21E7631F564DB700CD55E0"
-               BuildableName = "&#x5206;&#x65f6;k&#x7ebf;demo.app"
+               BuildableName = "&#x80a1;&#x7968;&#x8d8b;&#x52bf;.app"
                BlueprintName = "&#x5206;&#x65f6;k&#x7ebf;demo"
                ReferencedContainer = "container:&#x5206;&#x65f6;k&#x7ebf;demo.xcodeproj">
             </BuildableReference>
@@ -27,6 +27,15 @@
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES">
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "8E21E7631F564DB700CD55E0"
+            BuildableName = "&#x80a1;&#x7968;&#x8d8b;&#x52bf;.app"
+            BlueprintName = "&#x5206;&#x65f6;k&#x7ebf;demo"
+            ReferencedContainer = "container:&#x5206;&#x65f6;k&#x7ebf;demo.xcodeproj">
+         </BuildableReference>
+      </MacroExpansion>
       <Testables>
          <TestableReference
             skipped = "NO">
@@ -49,17 +58,6 @@
             </BuildableReference>
          </TestableReference>
       </Testables>
-      <MacroExpansion>
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "8E21E7631F564DB700CD55E0"
-            BuildableName = "&#x5206;&#x65f6;k&#x7ebf;demo.app"
-            BlueprintName = "&#x5206;&#x65f6;k&#x7ebf;demo"
-            ReferencedContainer = "container:&#x5206;&#x65f6;k&#x7ebf;demo.xcodeproj">
-         </BuildableReference>
-      </MacroExpansion>
-      <AdditionalOptions>
-      </AdditionalOptions>
    </TestAction>
    <LaunchAction
       buildConfiguration = "Debug"
@@ -76,13 +74,11 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "8E21E7631F564DB700CD55E0"
-            BuildableName = "&#x5206;&#x65f6;k&#x7ebf;demo.app"
+            BuildableName = "&#x80a1;&#x7968;&#x8d8b;&#x52bf;.app"
             BlueprintName = "&#x5206;&#x65f6;k&#x7ebf;demo"
             ReferencedContainer = "container:&#x5206;&#x65f6;k&#x7ebf;demo.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
-      <AdditionalOptions>
-      </AdditionalOptions>
    </LaunchAction>
    <ProfileAction
       buildConfiguration = "Release"
@@ -95,7 +91,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "8E21E7631F564DB700CD55E0"
-            BuildableName = "&#x5206;&#x65f6;k&#x7ebf;demo.app"
+            BuildableName = "&#x80a1;&#x7968;&#x8d8b;&#x52bf;.app"
             BlueprintName = "&#x5206;&#x65f6;k&#x7ebf;demo"
             ReferencedContainer = "container:&#x5206;&#x65f6;k&#x7ebf;demo.xcodeproj">
          </BuildableReference>
