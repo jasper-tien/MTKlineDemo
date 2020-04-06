@@ -85,4 +85,15 @@ typedef NS_ENUM(NSInteger, QSCurveTechType) {
 #define Curve_Color_Orange 0xff783c        //橘色RGB值
 #define Curve_Color_Green 0x32cd32         //绿色RGB值
 
+typedef NS_ENUM(NSInteger, QSRangeDirection) {
+    QSRangeDirectionLeft = 0,
+    QSRangeDirectionRight
+};
+
+typedef struct {
+    NSUInteger location;
+    NSUInteger length;
+    QSRangeDirection direction;
+} QSRange;
+
 #endif /* QSConstant_h */

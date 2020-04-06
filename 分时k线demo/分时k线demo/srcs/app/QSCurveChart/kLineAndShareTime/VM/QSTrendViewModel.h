@@ -7,6 +7,7 @@
 //
 
 #import "QSBaseViewModel.h"
+#import "QSConstant.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -31,7 +32,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (NSArray *)getMainKLineDatas;
 
-- (void)drawKLineWithRange:(NSRange)range;
+- (void)drawKLineWithRange:(QSRange)range;
+- (void)drawKLineWithRange:(NSRange)range direction:(QSRangeDirection)direction;
 
 @end
 

@@ -13,7 +13,7 @@
 #import "QSTrendShareTimeVM.h"
 #import "QSTrendKLineVM.h"
 #import "QSCurveProcess.h"
-#import "QSConstant.h"
+#import "QSKLineHelper.h"
 
 @interface QSTrendViewModel()
 @property (nonatomic, strong, readwrite) QSTrendShareTimeVM *shareTimeVM;
@@ -53,13 +53,23 @@
     
 }
 
-- (void)drawKLineWithRange:(NSRange)range {
-    NSArray *needShowDatas = [self getMainKLineDatasWithRange:range];
-    if (!needShowDatas || needShowDatas.count == 0) {
-        return;
+- (void)drawKLineWithRange:(QSRange)range {
+    [self drawKLineWithRange:NSMakeRange(range.location, range.length) direction:QSRangeDirectionRight];
+}
+
+- (void)drawKLineWithRange:(NSRange)range direction:(QSRangeDirection)direction {
+    NSArray *needShowDatas = [self kLineNeedDrawDatasWithRange:range direction:direction];
+    [self.kLineVM drawView:needShowDatas];
+}
+
+- (NSArray *)kLineNeedDrawDatasWithRange:(NSRange)range direction:(QSRangeDirection)direction {
+    NSArray *allKLineDatas = [self getMainKLineDatas];
+    if (!allKLineDatas || allKLineDatas.count == 0) {
+        return nil;
     }
     
-    [self.kLineVM drawView:needShowDatas];
+    NSRange newRange = [QSKLineHelper rangeWithArrayCount:allKLineDatas.count oldRange:range direction:direction];
+    return [self getMainKLineDatasWithRange:newRange];
 }
 
 #pragma mark - kLine data
@@ -201,8 +211,8 @@
 
 - (void)successBackData:(NSArray *)datas {
     [self updateData:datas];
-    NSArray *needShowDatas = [self getMainKLineDatasWithRange:NSMakeRange(0, 100)];
-    [self.kLineVM drawView:needShowDatas];
+    NSArray *allKLineDatas = [self getMainKLineDatas];
+    [self drawKLineWithRange:NSMakeRange(allKLineDatas.count-1, 100) direction:QSRangeDirectionLeft];
 }
 
 - (void)loadMoreData {

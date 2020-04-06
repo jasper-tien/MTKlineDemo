@@ -44,6 +44,7 @@
 
 - (instancetype)initWithFrame:(CGRect)frame viewModel:(QSTrendViewModel *)viewModel {
     if (self = [super initWithFrame:frame]) {
+        self.backgroundColor = [UIColor lightGrayColor];
         self.viewModel = viewModel;
         self.showCount = frame.size.width / ([QSCurveChartGlobalVariable kLineGap] + [QSCurveChartGlobalVariable kLineWidth]);
         [self makePanScrollView];
@@ -51,11 +52,6 @@
         [self registerEvent];
     }
     return self;;
-}
-
-- (void)layoutSubviews {
-    [super layoutSubviews];
-    self.mainKlineView.frame = CGRectMake(0, 50, self.frame.size.width, 200);
 }
 
 #pragma mark - Private Methods
@@ -84,6 +80,8 @@
                         change:(NSDictionary<NSKeyValueChangeKey,id> *)change
                        context:(void *)contex {
     [self updateScrollViewContenSize];
+    CGFloat contentOffsetXMax = self.panScrollView.contentSize.width - CGRectGetWidth(self.panScrollView.frame);
+    self.panScrollView.contentOffset = CGPointMake(contentOffsetXMax , 0);
 }
 
 #pragma mark - Events Response
@@ -194,8 +192,7 @@
         self.showStartIndex = scrollViewOffset.x / ([QSCurveChartGlobalVariable kLineWidth] + [QSCurveChartGlobalVariable kLineGap]);
         
         //刷新主k线的数据
-        [self.viewModel drawKLineWithRange:NSMakeRange(self.showStartIndex, self.showCount)];
-
+        [self.viewModel drawKLineWithRange:NSMakeRange(self.showStartIndex, self.showCount) direction:QSRangeDirectionRight];
         self.previousScrollViewOffsetX = scrollViewOffset.x;
     }
 }
@@ -229,6 +226,7 @@
     if (!_mainKlineView) {
         _mainKlineView = [[QSMainKLineView alloc] initWithViewModel:self.viewModel.kLineVM];
         _mainKlineView.delegate = self;
+        _mainKlineView.frame = CGRectMake(0, 0, self.frame.size.width, 200);
         [self.panScrollView addSubview:_mainKlineView];
     }
 }
