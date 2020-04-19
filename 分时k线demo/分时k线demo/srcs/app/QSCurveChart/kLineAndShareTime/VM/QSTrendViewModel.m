@@ -158,11 +158,11 @@
     NSArray *techModels = @[];
     switch (techType) {
         case QSCurveTechType_KLine:{
-            techModels = self.techsDataModelDic[@"mainKLineDatas"];
+            techModels = self.techsDataModelDic[kMainKLineKey];
         }
             break;
         case QSCurveTechType_Volume:{
-            techModels = self.techsDataModelDic[@"mainKLineDatas"];
+            techModels = self.techsDataModelDic[kMainKLineKey];
         }
             break;
         case QSCurveTechType_Jine:{
@@ -170,15 +170,15 @@
         }
             break;
         case QSCurveTechType_MACD:{
-            techModels = self.techsDataModelDic[@"MTCurveMACDKey"];
+            techModels = self.techsDataModelDic[kCurveMACDKey];
         }
             break;
         case QSCurveTechType_KDJ:{
-            techModels = self.techsDataModelDic[@"MTCurveKDJKey"];
+            techModels = self.techsDataModelDic[kCurveKDJKey];
         }
             break;
         case QSCurveTechType_BOLL:{
-            techModels = self.techsDataModelDic[@"MTCurveBOLLKey"];
+            techModels = self.techsDataModelDic[kCurveBOLLKey];
         }
             break;
             

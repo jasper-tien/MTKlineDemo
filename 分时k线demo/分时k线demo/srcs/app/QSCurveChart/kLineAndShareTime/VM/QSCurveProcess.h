@@ -10,6 +10,11 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+extern NSString const* kMainKLineKey;
+extern NSString const* kCurveKDJKey;
+extern NSString const* kCurveMACDKey;
+extern NSString const* kCurveBOLLKey;
+
 @class QSKlineModel;
 @interface QSCurveProcess : NSObject
 //计算指标

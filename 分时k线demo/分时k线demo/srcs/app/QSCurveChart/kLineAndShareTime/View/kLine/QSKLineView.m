@@ -18,16 +18,24 @@
 // Views
 #import "QSMainKLineView.h"
 #import "QSTrackingCrossView.h"
+#import "QSTechView.h"
 
-@interface QSKLineView()<UIScrollViewDelegate, QSMainKLineViewDelegate>
+@interface QSKLineView()<UIScrollViewDelegate, QSMainKLineViewDelegate, QSTechViewDelegate>
 
 @property (nonatomic, strong) UIScrollView *panScrollView;
 @property (nonatomic, strong) QSMainKLineView *mainKlineView; //主k线
+@property (nonatomic, strong) QSTechView *techView; //指标view
 @property (nonatomic, strong) QSTrackingCrossView *trackingCrossView;//十字光标
+
 @property (nonatomic, strong) NSTimer *longPressTimer;//长按手势计时器
 @property (nonatomic, assign) NSInteger showStartIndex;//数据开始显示的位置
 @property (nonatomic, assign) NSInteger showCount;//数据的长度
+@property (nonatomic, assign) QSCurveTechType techType; //当前需要实现的指标类型
 @property (nonatomic, assign) CGFloat previousScrollViewOffsetX;//记录ScrollView上一次次滑动的偏移量
+
+@property (nonatomic, copy) NSArray *testTechArr;
+@property (nonatomic, assign) NSInteger testIndex;
+
 @property (nonatomic, strong) QSTrendViewModel *viewModel;
 
 @end
@@ -47,9 +55,13 @@
         self.backgroundColor = [UIColor lightGrayColor];
         self.viewModel = viewModel;
         self.showCount = frame.size.width / ([QSCurveChartGlobalVariable kLineGap] + [QSCurveChartGlobalVariable kLineWidth]);
+        // 指标类型默认时成交量
+        self.techType = QSCurveTechType_KDJ;
         [self makePanScrollView];
         [self makeMainKlineView];
+        [self makeTechView];
         [self registerEvent];
+        [self setupSwitchTechBtn];
     }
     return self;;
 }
@@ -73,6 +85,36 @@
     self.panScrollView.contentSize = CGSizeMake(scrollViewContentWidth, self.panScrollView.frame.size.height);
 }
 
+- (void)updateKLineViewAndTechViewData {
+    //刷新
+    if (self.techType == QSCurveTechType_Volume) {
+        self.techView.needDrawTechModels = [self.viewModel getMainKLineDatasWithRange:NSMakeRange(self.showStartIndex, self.showCount)];
+        [self.techView drawTechViewWithType:QSCurveTechType_Volume];
+    } else if (self.techType == QSCurveTechType_KDJ) {
+        self.techView.needDrawTechModels = [self.viewModel getKDJDatasWithRange:NSMakeRange(self.showStartIndex, self.showCount)];
+        [self.techView drawTechViewWithType:QSCurveTechType_KDJ];
+    } else if (self.techType == QSCurveTechType_BOLL) {
+        self.techView.needDrawTechModels = [self.viewModel getBOLLDatasWithRange:NSMakeRange(self.showStartIndex, self.showCount)];
+        self.techView.needDrawKlineModels = [self.viewModel getMainKLineDatasWithRange:NSMakeRange(self.showStartIndex, self.showCount)];
+        [self.techView drawTechViewWithType:QSCurveTechType_BOLL];
+    } else if (self.techType == QSCurveTechType_MACD) {
+        self.techView.needDrawTechModels = [self.viewModel getMACDDatasWithRange:NSMakeRange(self.showStartIndex, self.showCount)];
+        [self.techView drawTechViewWithType:QSCurveTechType_MACD];
+    }
+}
+
+- (void)setupSwitchTechBtn {
+    self.testTechArr = [NSArray arrayWithObjects:@(QSCurveTechType_Volume),@(QSCurveTechType_KDJ),@(QSCurveTechType_BOLL), @(QSCurveTechType_MACD), nil];
+    self.testIndex = 0;
+    
+    UIButton *btn = [[UIButton alloc] initWithFrame:CGRectMake(0, self.frame.size.height  - 200, 100, 30)];
+    btn.titleLabel.font = [UIFont systemFontOfSize:13];
+    [btn setTitle:@"点我点我😊" forState:UIControlStateNormal];
+    [btn addTarget:self action:@selector(testAction:) forControlEvents:UIControlEventTouchUpInside];
+    [btn setTitleColor:[UIColor lightGrayColor] forState:UIControlStateNormal];
+    [self addSubview:btn];
+}
+
 #pragma mark - KVO
 
 - (void)observeValueForKeyPath:(NSString *)keyPath
@@ -85,6 +127,26 @@
 }
 
 #pragma mark - Events Response
+
+- (void)testAction:(UIButton *)sender {
+    self.testIndex++;
+    if (self.testIndex > (self.testTechArr.count - 1)) {
+        self.testIndex = 0;
+    }
+    NSNumber *num = self.testTechArr[self.testIndex];
+    NSInteger index = [num integerValue];
+    if (index == QSCurveTechType_Volume) {
+        self.techType = QSCurveTechType_Volume;
+    } else if (index == QSCurveTechType_KDJ) {
+        self.techType = QSCurveTechType_KDJ;
+    } else if (index == QSCurveTechType_BOLL) {
+        self.techType = QSCurveTechType_BOLL;
+    } else if (index == QSCurveTechType_MACD){
+        self.techType = QSCurveTechType_MACD;
+    }
+    
+    [self updateKLineViewAndTechViewData];
+}
 
 - (void)pinchMethod:(UIPinchGestureRecognizer *)pinch {
     static CGFloat oldScale = 1.0f;
@@ -155,6 +217,7 @@
 #pragma mark -  QSMainKLineViewDelegate
 
 - (void)kLineMainViewLongPressExactPosition:(CGPoint)longPressPosition selectedIndex:(NSInteger)index longPressPrice:(CGFloat)price {
+    [self.techView reDrawTechShowViewWithIndex:index];
     self.trackingCrossView.showValue = price;
     CGFloat trackingCrossViewPointX = longPressPosition.x;
     if (trackingCrossViewPointX < 0) {
@@ -166,6 +229,25 @@
     CGFloat trackingCrossViewPointY = longPressPosition.y;
     if (trackingCrossViewPointY < 0) {
         trackingCrossViewPointY = 0;
+    }
+    self.trackingCrossView.crossPoint = CGPointMake(trackingCrossViewPointX, trackingCrossViewPointY);
+    [self.trackingCrossView updateTrackingCrossView];
+}
+
+#pragma mark - QSTechViewDelegate
+- (void)techViewLongPressExactPosition:(CGPoint)longPressPosition selectedIndex:(NSInteger)index longPressValue:(CGFloat)longPressValue {
+    [self.mainKlineView reDrawShowViewWithIndex:index];
+    self.trackingCrossView.showValue = longPressValue;
+    CGFloat trackingCrossViewPointX = longPressPosition.x;
+    if (trackingCrossViewPointX < 0) {
+        trackingCrossViewPointX = 0;
+    }
+    if (trackingCrossViewPointX > self.techView.frame.size.width) {
+        trackingCrossViewPointX = self.techView.frame.size.width;
+    }
+    CGFloat trackingCrossViewPointY = longPressPosition.y+ self.techView.frame.origin.y;
+    if (trackingCrossViewPointY > (self.techView.frame.size.height + self.techView.frame.origin.y) ) {
+        trackingCrossViewPointY = self.techView.frame.size.height + self.techView.frame.origin.y;
     }
     self.trackingCrossView.crossPoint = CGPointMake(trackingCrossViewPointX, trackingCrossViewPointY);
     [self.trackingCrossView updateTrackingCrossView];
@@ -183,6 +265,9 @@
     // 刷新主k线和指标view的位置
     self.mainKlineView.frame = CGRectMake(scrollViewOffset.x, self.mainKlineView.frame.origin.y, self.mainKlineView.frame.size.width, self.mainKlineView.frame.size.height);
     
+    // 刷新主k线和指标view的位置
+    self.techView.frame = CGRectMake(scrollViewOffset.x, self.techView.frame.origin.y, self.techView.frame.size.width, self.techView.frame.size.height);
+    
     if (ABS(difValue) < ([QSCurveChartGlobalVariable kLineGap] + [QSCurveChartGlobalVariable kLineWidth])) {
         return;
     }
@@ -193,6 +278,10 @@
         
         //刷新主k线的数据
         [self.viewModel drawKLineWithRange:NSMakeRange(self.showStartIndex, self.showCount) direction:QSRangeDirectionRight];
+        
+        //绘制指标
+        [self updateKLineViewAndTechViewData];
+        
         self.previousScrollViewOffsetX = scrollViewOffset.x;
     }
 }
@@ -238,6 +327,16 @@
         _trackingCrossView.hidden = YES;
         
         [self addSubview:_trackingCrossView];
+    }
+}
+
+- (void)makeTechView {
+    if (!_techView) {
+        CGFloat techViewWidth = self.panScrollView.frame.size.width;
+        CGFloat techViewHeight = 150;
+        _techView = [[QSTechView alloc] initWithFrame:CGRectMake(0, self.frame.size.height - 200  + 50, techViewWidth, techViewHeight)];
+        _techView.delegate = self;
+        [self.panScrollView addSubview:_techView];
     }
 }
 

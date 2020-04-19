@@ -59,6 +59,16 @@
 		8E6D18DF1F905C4500A82C39 /* MTBOLLUSALine.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E6D18DE1F905C4500A82C39 /* MTBOLLUSALine.m */; };
 		8E6D18E31F908F5400A82C39 /* MTTechMACDView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E6D18E21F908F5400A82C39 /* MTTechMACDView.m */; };
 		8E6D18E61F9094FB00A82C39 /* MTMACDLine.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E6D18E51F9094FB00A82C39 /* MTMACDLine.m */; };
+		8E7BF544244C1D4300B4073E /* QSTechView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E7BF543244C1D4300B4073E /* QSTechView.m */; };
+		8E7BF547244C1DFF00B4073E /* QSTechBaseView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E7BF546244C1DFF00B4073E /* QSTechBaseView.m */; };
+		8E7BF54B244C1F4700B4073E /* QSTechMACDView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E7BF54A244C1F4700B4073E /* QSTechMACDView.m */; };
+		8E7BF54E244C1FB300B4073E /* QSMACDLine.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E7BF54D244C1FB300B4073E /* QSMACDLine.m */; };
+		8E7BF552244C227A00B4073E /* QSTechBOLLView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E7BF551244C227A00B4073E /* QSTechBOLLView.m */; };
+		8E7BF555244C229800B4073E /* QSBOLLUSALine.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E7BF554244C229800B4073E /* QSBOLLUSALine.m */; };
+		8E7BF559244C256300B4073E /* QSTechKDJView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E7BF558244C256300B4073E /* QSTechKDJView.m */; };
+		8E7BF55D244C265800B4073E /* QSTechVolumeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E7BF55C244C265800B4073E /* QSTechVolumeView.m */; };
+		8E7BF560244C267000B4073E /* QSVolume.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E7BF55F244C267000B4073E /* QSVolume.m */; };
+		8E7BF563244C273000B4073E /* QSVolumePositionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E7BF562244C273000B4073E /* QSVolumePositionModel.m */; };
 		8EA639E123C0892F002E8A81 /* QSCurveChartGlobalVariable.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EA639E023C0892F002E8A81 /* QSCurveChartGlobalVariable.m */; };
 		8EA639E423C08F73002E8A81 /* UIColor+CurveColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EA639E323C08F73002E8A81 /* UIColor+CurveColor.m */; };
 		8EA639E723C0918F002E8A81 /* QSShowDetailsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EA639E623C0918F002E8A81 /* QSShowDetailsView.m */; };
@@ -209,6 +219,26 @@
 		8E6D18E21F908F5400A82C39 /* MTTechMACDView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MTTechMACDView.m; sourceTree = "<group>"; };
 		8E6D18E41F9094FB00A82C39 /* MTMACDLine.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MTMACDLine.h; sourceTree = "<group>"; };
 		8E6D18E51F9094FB00A82C39 /* MTMACDLine.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MTMACDLine.m; sourceTree = "<group>"; };
+		8E7BF542244C1D4300B4073E /* QSTechView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QSTechView.h; sourceTree = "<group>"; };
+		8E7BF543244C1D4300B4073E /* QSTechView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QSTechView.m; sourceTree = "<group>"; };
+		8E7BF545244C1DFF00B4073E /* QSTechBaseView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QSTechBaseView.h; sourceTree = "<group>"; };
+		8E7BF546244C1DFF00B4073E /* QSTechBaseView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QSTechBaseView.m; sourceTree = "<group>"; };
+		8E7BF549244C1F4700B4073E /* QSTechMACDView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QSTechMACDView.h; sourceTree = "<group>"; };
+		8E7BF54A244C1F4700B4073E /* QSTechMACDView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QSTechMACDView.m; sourceTree = "<group>"; };
+		8E7BF54C244C1FB300B4073E /* QSMACDLine.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QSMACDLine.h; sourceTree = "<group>"; };
+		8E7BF54D244C1FB300B4073E /* QSMACDLine.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QSMACDLine.m; sourceTree = "<group>"; };
+		8E7BF550244C227A00B4073E /* QSTechBOLLView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QSTechBOLLView.h; sourceTree = "<group>"; };
+		8E7BF551244C227A00B4073E /* QSTechBOLLView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QSTechBOLLView.m; sourceTree = "<group>"; };
+		8E7BF553244C229800B4073E /* QSBOLLUSALine.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QSBOLLUSALine.h; sourceTree = "<group>"; };
+		8E7BF554244C229800B4073E /* QSBOLLUSALine.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QSBOLLUSALine.m; sourceTree = "<group>"; };
+		8E7BF557244C256300B4073E /* QSTechKDJView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QSTechKDJView.h; sourceTree = "<group>"; };
+		8E7BF558244C256300B4073E /* QSTechKDJView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QSTechKDJView.m; sourceTree = "<group>"; };
+		8E7BF55B244C265800B4073E /* QSTechVolumeView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QSTechVolumeView.h; sourceTree = "<group>"; };
+		8E7BF55C244C265800B4073E /* QSTechVolumeView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QSTechVolumeView.m; sourceTree = "<group>"; };
+		8E7BF55E244C267000B4073E /* QSVolume.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QSVolume.h; sourceTree = "<group>"; };
+		8E7BF55F244C267000B4073E /* QSVolume.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QSVolume.m; sourceTree = "<group>"; };
+		8E7BF561244C273000B4073E /* QSVolumePositionModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QSVolumePositionModel.h; sourceTree = "<group>"; };
+		8E7BF562244C273000B4073E /* QSVolumePositionModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QSVolumePositionModel.m; sourceTree = "<group>"; };
 		8EA639DF23C0892F002E8A81 /* QSCurveChartGlobalVariable.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QSCurveChartGlobalVariable.h; sourceTree = "<group>"; };
 		8EA639E023C0892F002E8A81 /* QSCurveChartGlobalVariable.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QSCurveChartGlobalVariable.m; sourceTree = "<group>"; };
 		8EA639E223C08F73002E8A81 /* UIColor+CurveColor.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIColor+CurveColor.h"; sourceTree = "<group>"; };
@@ -711,6 +741,8 @@
 				8E666A1123BCB0D8000CE08E /* QSCurveBOLL.m */,
 				8E666A0423BCA1E0000CE08E /* QSKlineModel.h */,
 				8E666A0523BCA1E0000CE08E /* QSKlineModel.m */,
+				8E7BF561244C273000B4073E /* QSVolumePositionModel.h */,
+				8E7BF562244C273000B4073E /* QSVolumePositionModel.m */,
 				8E6669F223BC8E38000CE08E /* QSPointShareTimeModel.h */,
 				8E6669F323BC8E38000CE08E /* QSPointShareTimeModel.m */,
 			);
@@ -748,6 +780,7 @@
 				8EA639E923C0922E002E8A81 /* QSKLine.m */,
 				8EA639EB23C09309002E8A81 /* QSMALine.h */,
 				8EA639EC23C09309002E8A81 /* QSMALine.m */,
+				8E7BF541244C1CFB00B4073E /* Techs */,
 				8E09F782243A15CF00A21CAF /* TrackingCrossView */,
 			);
 			path = kLine;
@@ -848,6 +881,63 @@
 				8E6D18E51F9094FB00A82C39 /* MTMACDLine.m */,
 			);
 			path = MACDView;
+			sourceTree = "<group>";
+		};
+		8E7BF541244C1CFB00B4073E /* Techs */ = {
+			isa = PBXGroup;
+			children = (
+				8E7BF542244C1D4300B4073E /* QSTechView.h */,
+				8E7BF543244C1D4300B4073E /* QSTechView.m */,
+				8E7BF545244C1DFF00B4073E /* QSTechBaseView.h */,
+				8E7BF546244C1DFF00B4073E /* QSTechBaseView.m */,
+				8E7BF55A244C264C00B4073E /* Volume */,
+				8E7BF556244C255600B4073E /* KDJ */,
+				8E7BF54F244C225E00B4073E /* BOLL */,
+				8E7BF548244C1F2400B4073E /* MACD */,
+			);
+			path = Techs;
+			sourceTree = "<group>";
+		};
+		8E7BF548244C1F2400B4073E /* MACD */ = {
+			isa = PBXGroup;
+			children = (
+				8E7BF549244C1F4700B4073E /* QSTechMACDView.h */,
+				8E7BF54A244C1F4700B4073E /* QSTechMACDView.m */,
+				8E7BF54C244C1FB300B4073E /* QSMACDLine.h */,
+				8E7BF54D244C1FB300B4073E /* QSMACDLine.m */,
+			);
+			path = MACD;
+			sourceTree = "<group>";
+		};
+		8E7BF54F244C225E00B4073E /* BOLL */ = {
+			isa = PBXGroup;
+			children = (
+				8E7BF550244C227A00B4073E /* QSTechBOLLView.h */,
+				8E7BF551244C227A00B4073E /* QSTechBOLLView.m */,
+				8E7BF553244C229800B4073E /* QSBOLLUSALine.h */,
+				8E7BF554244C229800B4073E /* QSBOLLUSALine.m */,
+			);
+			path = BOLL;
+			sourceTree = "<group>";
+		};
+		8E7BF556244C255600B4073E /* KDJ */ = {
+			isa = PBXGroup;
+			children = (
+				8E7BF557244C256300B4073E /* QSTechKDJView.h */,
+				8E7BF558244C256300B4073E /* QSTechKDJView.m */,
+			);
+			path = KDJ;
+			sourceTree = "<group>";
+		};
+		8E7BF55A244C264C00B4073E /* Volume */ = {
+			isa = PBXGroup;
+			children = (
+				8E7BF55B244C265800B4073E /* QSTechVolumeView.h */,
+				8E7BF55C244C265800B4073E /* QSTechVolumeView.m */,
+				8E7BF55E244C267000B4073E /* QSVolume.h */,
+				8E7BF55F244C267000B4073E /* QSVolume.m */,
+			);
+			path = Volume;
 			sourceTree = "<group>";
 		};
 		8ED2E2401F76414800251618 /* techs */ = {
@@ -1102,13 +1192,17 @@
 				8ED2E2491F76420400251618 /* MTCurveObject.m in Sources */,
 				8E6669E123BC89F7000CE08E /* QSBaseViewModel.m in Sources */,
 				8EA639EA23C0922E002E8A81 /* QSKLine.m in Sources */,
+				8E7BF552244C227A00B4073E /* QSTechBOLLView.m in Sources */,
 				8EA639E423C08F73002E8A81 /* UIColor+CurveColor.m in Sources */,
 				8EEF24951F8B159100C35E1C /* MTCurveChartGlobalVariable.m in Sources */,
 				8EEF24921F8B0E0600C35E1C /* UIColor+CurveChart.m in Sources */,
 				8E09F7732439ED5A00A21CAF /* ViewController.m in Sources */,
 				8E4F2C0E1F7D031F0082A3F5 /* MTCurveBOLL.m in Sources */,
+				8E7BF563244C273000B4073E /* QSVolumePositionModel.m in Sources */,
+				8E7BF555244C229800B4073E /* QSBOLLUSALine.m in Sources */,
 				8EA639ED23C09309002E8A81 /* QSMALine.m in Sources */,
 				8EA639E723C0918F002E8A81 /* QSShowDetailsView.m in Sources */,
+				8E7BF544244C1D4300B4073E /* QSTechView.m in Sources */,
 				8E4F2C0B1F7CFB990082A3F5 /* MTCurveKDJ.m in Sources */,
 				8E21E76C1F564DB700CD55E0 /* AppDelegate.m in Sources */,
 				8EEF248E1F8B0BDE00C35E1C /* MTKLinePositionModel.m in Sources */,
@@ -1133,15 +1227,19 @@
 				8E18DCB81F9EEBAF003C47C0 /* MTTimeLineTableView.m in Sources */,
 				8E666A1223BCB0D8000CE08E /* QSCurveBOLL.m in Sources */,
 				8E666A0323BCA024000CE08E /* QSPointPositionKLineModel.m in Sources */,
+				8E7BF54B244C1F4700B4073E /* QSTechMACDView.m in Sources */,
 				8E6669F123BC8DB5000CE08E /* QSPointKLineModel.m in Sources */,
 				8E18DCCF1F9F257D003C47C0 /* MTDaDanView.m in Sources */,
 				8EF933491F8F45130011E352 /* MTTechBaseView.m in Sources */,
+				8E7BF560244C267000B4073E /* QSVolume.m in Sources */,
 				8E666A0F23BCB0BF000CE08E /* QSCurveKDJ.m in Sources */,
 				8E09F7812439F36C00A21CAF /* QSKLineView.m in Sources */,
 				8E6669E823BC8B2F000CE08E /* QSBaseModel.m in Sources */,
 				8E666A0623BCA1E0000CE08E /* QSKlineModel.m in Sources */,
 				8E666A1923BCB35C000CE08E /* QSCurveProcess.m in Sources */,
 				8E666A0923BCB08B000CE08E /* QSCurveModel.m in Sources */,
+				8E7BF547244C1DFF00B4073E /* QSTechBaseView.m in Sources */,
+				8E7BF559244C256300B4073E /* QSTechKDJView.m in Sources */,
 				8E2299431FA031C8008BC129 /* MTShowDetailsView.m in Sources */,
 				8E6669E423BC8A16000CE08E /* QSTrendViewModel.m in Sources */,
 				8EE799361F9DD000005F518C /* MTTimeLineView.m in Sources */,
@@ -1153,10 +1251,12 @@
 				8EF4B3051F95A86B0090FEB7 /* MTTrackingCrossView.m in Sources */,
 				8EF933521F8F45DA0011E352 /* MTVolume.m in Sources */,
 				8E3B2056243B30EE00753592 /* QSKLineHelper.m in Sources */,
+				8E7BF54E244C1FB300B4073E /* QSMACDLine.m in Sources */,
 				8E6669FA23BC9262000CE08E /* QSTrendKLineVM.m in Sources */,
 				8EF9334F1F8F45A50011E352 /* MTTechVolumeView.m in Sources */,
 				8E6669D523BC8882000CE08E /* QSBaseViewController.m in Sources */,
 				8E0244771F8C68C1004AA725 /* MTMALine.m in Sources */,
+				8E7BF55D244C265800B4073E /* QSTechVolumeView.m in Sources */,
 				8EFBDE171F735E7C00F8554E /* SJCurveObject.m in Sources */,
 				8EA639E123C0892F002E8A81 /* QSCurveChartGlobalVariable.m in Sources */,
 				8EE7993C1F9E01BD005F518C /* MTTimeLineVolumeView.m in Sources */,

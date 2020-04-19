@@ -35,6 +35,11 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)drawKLineWithRange:(QSRange)range;
 - (void)drawKLineWithRange:(NSRange)range direction:(QSRangeDirection)direction;
 
+- (NSArray *)getBOLLDatasWithRange:(NSRange)range;
+- (NSArray *)getKDJDatasWithRange:(NSRange)range;
+- (NSArray *)getMACDDatasWithRange:(NSRange)range;
+- (NSArray *)getMainKLineDatasWithRange:(NSRange)range;
+
 @end
 
 NS_ASSUME_NONNULL_END

@@ -7,11 +7,16 @@
 //
 
 #import "QSCurveProcess.h"
-#import "MTCurveMACD.h"
+#import "QSCurveModel.h"
 #import <objc/runtime.h>
 
 #define RegisterClassName @"registerClassName"
 #define RegisterClassKey @"registerClassKey"
+
+NSString const* kMainKLineKey = @"QSMainKLineKey";
+NSString const* kCurveKDJKey = @"QSCurveKDJKey";
+NSString const* kCurveMACDKey = @"QSCurveMACDKey";
+NSString const* kCurveBOLLKey = @"QSCurveBOLLKey";
 
 @interface QSCurveProcess()
 @property (nonatomic, copy) NSArray *curveSubclassArray;
@@ -32,11 +37,11 @@
 - (void)registerCurveSubclass {
     NSMutableArray *curveSubclassArray = [NSMutableArray array];
     //注册MACD指标类名
-    NSDictionary *MACDDic = [NSDictionary dictionaryWithObjectsAndKeys:@"QSCurveMACD", RegisterClassName, @"QSCurveMACDKey", RegisterClassKey, nil];
+    NSDictionary *MACDDic = [NSDictionary dictionaryWithObjectsAndKeys:@"QSCurveMACD", RegisterClassName, kCurveMACDKey, RegisterClassKey, nil];
     //注册KDJ指标类名
-    NSDictionary *KDJDic = [NSDictionary dictionaryWithObjectsAndKeys:@"QSCurveKDJ", RegisterClassName, @"QSCurveKDJKey", RegisterClassKey, nil];
+    NSDictionary *KDJDic = [NSDictionary dictionaryWithObjectsAndKeys:@"QSCurveKDJ", RegisterClassName, kCurveKDJKey, RegisterClassKey, nil];
     //注册BOLL指标类名
-    NSDictionary *BOLLDic = [NSDictionary dictionaryWithObjectsAndKeys:@"QSCurveBOLL", RegisterClassName, @"QSCurveBOLLKey", RegisterClassKey, nil];
+    NSDictionary *BOLLDic = [NSDictionary dictionaryWithObjectsAndKeys:@"QSCurveBOLL", RegisterClassName, kCurveBOLLKey, RegisterClassKey, nil];
     
     [curveSubclassArray addObject:MACDDic];
     [curveSubclassArray addObject:KDJDic];
@@ -45,16 +50,16 @@
 }
 
 //创建指标实例
-- (MTCurveObject *)createWithClassName:(NSString *)clsName {
+- (QSCurveModel *)createWithClassName:(NSString *)clsName {
     if (!clsName || ![clsName isKindOfClass:[NSString class]]) {
         return nil;
     }
     Class cls = NSClassFromString(clsName);
-    return (MTCurveObject *)[[cls alloc] init];
+    return (QSCurveModel *)[[cls alloc] init];
 }
 
 //计算指标
-- (NSDictionary *)curvTechDatasWithArray:(NSArray<SJKlineModel *> *)baseDatas {
+- (NSDictionary *)curvTechDatasWithArray:(NSArray<QSKlineModel *> *)baseDatas {
     if (baseDatas.count <= 0) {
         return nil;
     }
@@ -72,30 +77,30 @@
         NSString *techKey = registerClsDic[RegisterClassKey];
         [techsDataModelDic setValue:array forKey:techKey];
     }
-    [techsDataModelDic setObject:baseDatas forKey:@"mainKLineDatas"];
+    [techsDataModelDic setObject:baseDatas forKey:kMainKLineKey];
     self.techDatasDic = techsDataModelDic;
     
     //计算指标
     __weak QSCurveProcess *weakSelf = self;
-    [baseDatas enumerateObjectsUsingBlock:^(SJKlineModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+    [baseDatas enumerateObjectsUsingBlock:^(QSKlineModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         for (NSDictionary *registerClsDic in weakSelf.curveSubclassArray) {
-            MTCurveObject *curveObject = [weakSelf createWithClassName:registerClsDic[RegisterClassName]];
-            if (![curveObject isKindOfClass:[MTCurveObject class]]) {
+            QSCurveModel *curveObject = [weakSelf createWithClassName:registerClsDic[RegisterClassName]];
+            if (![curveObject isKindOfClass:[QSCurveModel class]]) {
                 break;
             }
             
             switch (curveObject.curveTechType) {
-                case SJCurveTechType_KLine:
+                case QSCurveTechType_KLine:
                     break;
-                case SJCurveTechType_Volume:
+                case QSCurveTechType_Volume:
                     // 成交量
                     break;
-                case SJCurveTechType_Jine:
+                case QSCurveTechType_Jine:
                     //  成交额
                     break;
-                case SJCurveTechType_MACD: {
+                case QSCurveTechType_MACD: {
                     //  MACD
-                    NSMutableArray *array = (NSMutableArray *)self.techDatasDic[@"QSCurveMACDKey"];
+                    NSMutableArray *array = (NSMutableArray *)self.techDatasDic[kCurveMACDKey];
                     //计算指标
                     [curveObject reckonTechWithArray:baseDatas container:array index:idx];
                     if (array) {
@@ -103,9 +108,9 @@
                     }
                     break;
                 }
-                case SJCurveTechType_KDJ: {
+                case QSCurveTechType_KDJ: {
                     //  KDJ
-                    NSMutableArray *array = (NSMutableArray *)self.techDatasDic[@"QSCurveKDJKey"];
+                    NSMutableArray *array = (NSMutableArray *)self.techDatasDic[kCurveKDJKey];
                     //计算指标
                     [curveObject reckonTechWithArray:baseDatas container:array index:idx];
                     if (array) {
@@ -113,9 +118,9 @@
                     }
                     break;
                 }
-                case SJCurveTechType_BOLL: {
+                case QSCurveTechType_BOLL: {
                     //  布林线
-                    NSMutableArray *array = (NSMutableArray *)self.techDatasDic[@"QSCurveBOLLKey"];
+                    NSMutableArray *array = (NSMutableArray *)self.techDatasDic[kCurveBOLLKey];
                     //计算指标
                     [curveObject reckonTechWithArray:baseDatas container:array index:idx];
                     if (array) {
