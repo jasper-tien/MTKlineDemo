@@ -8,10 +8,13 @@
 
 #import <Foundation/Foundation.h>
 #import <CoreGraphics/CoreGraphics.h>
+#import "QSTrendViewModelProtocol.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface QSBaseViewModel : NSObject
+
+@property (nonatomic, weak) id<QSTrendViewModelProtocol> parentViewModel;
 
 @end
 

@@ -19,4 +19,10 @@
     
 }
 
+#pragma mark - QSTrendViewModelCastProtocol
+
+- (void)m_castNeedUpdateIfNeed {
+    NSLog(@"QSTrendShareTimeVM m_castNeedUpdateIfNeed");
+}
+
 @end

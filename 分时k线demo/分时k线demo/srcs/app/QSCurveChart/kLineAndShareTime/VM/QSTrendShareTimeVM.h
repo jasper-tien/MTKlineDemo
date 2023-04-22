@@ -7,6 +7,7 @@
 //
 
 #import "QSBaseViewModel.h"
+#import "QSTrendViewModelProtocol.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -21,7 +22,7 @@ NS_ASSUME_NONNULL_BEGIN
 @end
 
 @class QSPointShareTimeModel;
-@interface QSTrendShareTimeVM : QSBaseViewModel
+@interface QSTrendShareTimeVM : QSBaseViewModel<QSTrendViewModelCastProtocol>
 
 - (void)updateData:(NSArray<QSPointShareTimeModel *> *)datas;
 

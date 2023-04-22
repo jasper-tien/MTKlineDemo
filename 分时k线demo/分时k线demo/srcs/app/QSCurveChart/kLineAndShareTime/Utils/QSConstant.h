@@ -96,4 +96,10 @@ typedef struct {
     QSRangeDirection direction;
 } QSRange;
 
+typedef NS_ENUM(NSInteger, QSPressTriggerPosition) {
+    QSPressTriggerPositionNone,
+    QSPressTriggerPositionKLine,
+    QSPressTriggerPositionTech,
+};
+
 #endif /* QSConstant_h */

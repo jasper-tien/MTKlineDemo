@@ -22,8 +22,7 @@
     [self volumeMA_20];
 }
 
-- (NSNumber *)sumOfLastClose
-{
+- (NSNumber *)sumOfLastClose {
     if(!_sumOfLastClose) {
         _sumOfLastClose = @(self.previousKlineModel.sumOfLastClose.floatValue + self.close.floatValue);
     }
@@ -55,8 +54,7 @@
     return _MA_5;
 }
 
-- (NSNumber *)MA_10
-{
+- (NSNumber *)MA_10 {
     if (!_MA_10) {
         NSInteger index = [self.mainKLineModels indexOfObject:self];
         if (index >= 9) {
@@ -72,8 +70,7 @@
     return _MA_10;
 }
 
-- (NSNumber *)MA_20
-{
+- (NSNumber *)MA_20 {
     if (!_MA_20) {
         NSInteger index = [self.mainKLineModels indexOfObject:self];
         if (index >= 19) {
@@ -89,8 +86,7 @@
     return _MA_20;
 }
 
-- (NSNumber *)MA_30
-{
+- (NSNumber *)MA_30 {
     if (!_MA_30) {
         NSInteger index = [self.mainKLineModels indexOfObject:self];
         if (index >= 29 && index < self.mainKLineModels.count) {
@@ -106,8 +102,7 @@
     return _MA_30;
 }
 
-- (NSNumber *)volumeMA_5
-{
+- (NSNumber *)volumeMA_5 {
     if (!_volumeMA_5) {
         NSInteger index = [self.mainKLineModels indexOfObject:self];
         if (index >= 4) {
@@ -123,8 +118,7 @@
     return _volumeMA_5;
 }
 
-- (NSNumber *)volumeMA_10
-{
+- (NSNumber *)volumeMA_10 {
     if (!_volumeMA_10) {
         NSInteger index = [self.mainKLineModels indexOfObject:self];
         if (index >= 9) {
@@ -140,8 +134,7 @@
     return _volumeMA_10;
 }
 
-- (NSNumber *)volumeMA_20
-{
+- (NSNumber *)volumeMA_20 {
     if (!_volumeMA_20) {
         NSInteger index = [self.mainKLineModels indexOfObject:self];
         if (index >= 19) {

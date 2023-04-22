@@ -129,6 +129,10 @@
 #pragma mark - Events Response
 
 - (void)testAction:(UIButton *)sender {
+    
+    [self.viewModel pritfTestLog]; /// test tianmaotao
+    
+    
     self.testIndex++;
     if (self.testIndex > (self.testTechArr.count - 1)) {
         self.testIndex = 0;
@@ -218,7 +222,7 @@
 
 - (void)kLineMainViewLongPressExactPosition:(CGPoint)longPressPosition selectedIndex:(NSInteger)index longPressPrice:(CGFloat)price {
     [self.techView reDrawTechShowViewWithIndex:index];
-    self.trackingCrossView.showValue = price;
+    self.viewModel.trackingCrossVM.showValue = price;
     CGFloat trackingCrossViewPointX = longPressPosition.x;
     if (trackingCrossViewPointX < 0) {
         trackingCrossViewPointX = 0;
@@ -230,14 +234,14 @@
     if (trackingCrossViewPointY < 0) {
         trackingCrossViewPointY = 0;
     }
-    self.trackingCrossView.crossPoint = CGPointMake(trackingCrossViewPointX, trackingCrossViewPointY);
+    self.viewModel.trackingCrossVM.crossPoint = CGPointMake(trackingCrossViewPointX, trackingCrossViewPointY);
     [self.trackingCrossView updateTrackingCrossView];
 }
 
 #pragma mark - QSTechViewDelegate
 - (void)techViewLongPressExactPosition:(CGPoint)longPressPosition selectedIndex:(NSInteger)index longPressValue:(CGFloat)longPressValue {
     [self.mainKlineView reDrawShowViewWithIndex:index];
-    self.trackingCrossView.showValue = longPressValue;
+    self.viewModel.trackingCrossVM.showValue = longPressValue;
     CGFloat trackingCrossViewPointX = longPressPosition.x;
     if (trackingCrossViewPointX < 0) {
         trackingCrossViewPointX = 0;
@@ -249,7 +253,7 @@
     if (trackingCrossViewPointY > (self.techView.frame.size.height + self.techView.frame.origin.y) ) {
         trackingCrossViewPointY = self.techView.frame.size.height + self.techView.frame.origin.y;
     }
-    self.trackingCrossView.crossPoint = CGPointMake(trackingCrossViewPointX, trackingCrossViewPointY);
+    self.viewModel.trackingCrossVM.crossPoint = CGPointMake(trackingCrossViewPointX, trackingCrossViewPointY);;
     [self.trackingCrossView updateTrackingCrossView];
 }
 
@@ -322,10 +326,10 @@
 
 - (void)makeTrackingCrossView {
     if (!_trackingCrossView) {
-        CGRect dateRect = CGRectMake(0, self.mainKlineView.frame.origin.y + self.mainKlineView.frame.size.height, self.mainKlineView.frame.size.width, 20);
-        _trackingCrossView = [[QSTrackingCrossView alloc] initWithFrame:self.bounds crossPoint:CGPointZero dateRect:dateRect];
+        self.viewModel.trackingCrossVM.dateRect = CGRectMake(0, self.mainKlineView.frame.origin.y + self.mainKlineView.frame.size.height, self.mainKlineView.frame.size.width, 20);
+        _trackingCrossView = [[QSTrackingCrossView alloc] initWithFrame:self.bounds];
         _trackingCrossView.hidden = YES;
-        
+        [_trackingCrossView bindVM:self.viewModel.trackingCrossVM];
         [self addSubview:_trackingCrossView];
     }
 }

@@ -7,10 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "QSCurveContext.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface QSBaseViewController : UIViewController
+
+@property (nonatomic, strong, readonly) QSCurveContext *context;
 
 @end
 

@@ -10,14 +10,27 @@
 
 @interface QSBaseViewController ()
 
+@property (nonatomic, strong, readwrite) QSCurveContext *context;
+
 @end
 
 @implementation QSBaseViewController
+
+- (instancetype)init {
+    if (self = [super init]) {
+        [self setupConfig];
+    }
+    return self;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.view.backgroundColor = [UIColor whiteColor];
+}
+
+- (void)setupConfig {
+    _context = [[QSCurveContext alloc] init];
 }
 
 @end

@@ -8,6 +8,7 @@
 
 #import "QSBaseViewModel.h"
 #import "QSConstant.h"
+#import "QSTrendViewModelProtocol.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -20,9 +21,11 @@ NS_ASSUME_NONNULL_BEGIN
 
 @class QSTrendShareTimeVM;
 @class QSTrendKLineVM;
-@interface QSTrendViewModel : QSBaseViewModel
+@class QSTrackingCrossVM;
+@interface QSTrendViewModel : QSBaseViewModel<QSTrendViewModelProtocol>
 @property (nonatomic, strong, readonly) QSTrendShareTimeVM *shareTimeVM;
 @property (nonatomic, strong, readonly) QSTrendKLineVM *kLineVM;
+@property (nonatomic, strong, readonly) QSTrackingCrossVM *trackingCrossVM;
 @property (nonatomic, copy, readonly) NSDictionary *techsDataModelDic;
 
 - (void)loadShareTimeData;
@@ -39,6 +42,8 @@ NS_ASSUME_NONNULL_BEGIN
 - (NSArray *)getKDJDatasWithRange:(NSRange)range;
 - (NSArray *)getMACDDatasWithRange:(NSRange)range;
 - (NSArray *)getMainKLineDatasWithRange:(NSRange)range;
+
+- (void)addDelegate:(id<QSTrendViewModelCastProtocol>)delegate;
 
 @end
 

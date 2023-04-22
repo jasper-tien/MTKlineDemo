@@ -86,6 +86,7 @@ static CGFloat mtCurveChartTimeLineGapWidth = 0.3;
 + (CGFloat)timeLineVolumeGapWidth {
     return mtCurveChartTimeLineGapWidth;
 }
+
 + (void)setTimeLineVolumeGapWidth:(CGFloat)volumeGapWidth {
     mtCurveChartTimeLineGapWidth = volumeGapWidth;
 }

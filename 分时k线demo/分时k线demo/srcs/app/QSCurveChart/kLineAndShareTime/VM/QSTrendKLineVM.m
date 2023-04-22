@@ -196,4 +196,16 @@
     }
 }
 
+#pragma mark - QSTrendViewModelCastProtocol
+
+- (void)m_castNeedUpdateIfNeed {
+    NSLog(@"QSTrendKLineVM m_castNeedUpdateIfNeed");
+}
+
+- (void)m_castLongPress:(QSPressTriggerPosition)postion selectedIndex:(NSInteger)index xPoint:(CGFloat)xPoint yPoint:(CGFloat)yPoint xValue:(CGFloat)xValue yValue:(CGFloat)yValue {
+    if (postion == QSPressTriggerPositionTech) {
+        
+    }
+}
+
 @end

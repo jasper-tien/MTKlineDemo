@@ -160,8 +160,6 @@
             }
         }
         
-        NSAssert(!isnan(KDJ_K_ScreenY) && !isnan(KDJ_D_ScreenY) && !isnan(KDJ_J_ScreenY), @"出现NAN值");
-        
         CGPoint KDJ_KScreenPoint = CGPointMake(ponitScreenX, KDJ_K_ScreenY);
         CGPoint KDJ_DScreenPoint = CGPointMake(ponitScreenX, KDJ_D_ScreenY);
         CGPoint KDJ_JScreenPoint = CGPointMake(ponitScreenX, KDJ_J_ScreenY);

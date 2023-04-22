@@ -12,14 +12,18 @@
 #import "QSPointShareTimeModel.h"
 #import "QSTrendShareTimeVM.h"
 #import "QSTrendKLineVM.h"
+#import "QSTrackingCrossVM.h"
 #import "QSCurveProcess.h"
 #import "QSKLineHelper.h"
+#import "GCDMulticastDelegate.h"
 
 @interface QSTrendViewModel()
 @property (nonatomic, strong, readwrite) QSTrendShareTimeVM *shareTimeVM;
 @property (nonatomic, strong, readwrite) QSTrendKLineVM *kLineVM;
+@property (nonatomic, strong, readwrite) QSTrackingCrossVM *trackingCrossVM;
 @property (nonatomic, copy) NSDictionary *techsDataModelDic;//数据管理池(数据容器)
 @property (nonatomic, strong) QSCurveProcess *curveProcess;
+@property (nonatomic, strong) GCDMulticastDelegate<QSTrendViewModelCastProtocol> *multicastDelegate;
 
 @end
 
@@ -29,8 +33,10 @@
 
 - (instancetype)init {
     if (self = [super init]) {
+        [self makeMakeMulticastDelegate];
         [self makeCurveProcess];
         [self makeKLineVM];
+        [self makeTrackingCrossVM];
     }
     return self;
 }
@@ -114,6 +120,20 @@
     if (!self.curveProcess) {
         self.curveProcess = [[QSCurveProcess alloc] init];
     }
+}
+
+#pragma mark - MulticastDelegate
+
+- (void)makeMakeMulticastDelegate {
+    self.multicastDelegate = (id)[[GCDMulticastDelegate alloc] init];
+}
+
+- (void)addDelegate:(id<QSTrendViewModelCastProtocol>)delegate {
+    [self.multicastDelegate addDelegate:delegate delegateQueue:dispatch_get_main_queue()];
+}
+
+- (void)pritfTestLog {
+    [self.multicastDelegate m_castNeedUpdateIfNeed];
 }
 
 #pragma mark - get
@@ -222,12 +242,24 @@
 - (void)makeShareTimeVM {
     if (!self.shareTimeVM) {
         self.shareTimeVM = [[QSTrendShareTimeVM alloc] init];
+        self.shareTimeVM.parentViewModel = self;
+        [self addDelegate:self.shareTimeVM];
     }
 }
 
 - (void)makeKLineVM {
     if (!self.kLineVM) {
         self.kLineVM = [[QSTrendKLineVM alloc] init];
+        self.kLineVM.parentViewModel = self;
+        [self addDelegate:self.kLineVM];
+    }
+}
+
+- (void)makeTrackingCrossVM {
+    if (!self.trackingCrossVM) {
+        self.trackingCrossVM = [[QSTrackingCrossVM alloc] init];
+        self.trackingCrossVM.parentViewModel = self;
+        [self addDelegate:self.trackingCrossVM];
     }
 }
 

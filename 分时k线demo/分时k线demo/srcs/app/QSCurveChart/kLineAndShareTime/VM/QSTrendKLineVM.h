@@ -7,6 +7,7 @@
 //
 
 #import "QSBaseViewModel.h"
+#import "QSTrendViewModelProtocol.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -23,7 +24,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @class QSPointPositionKLineModel;
 @class QSKlineModel;
-@interface QSTrendKLineVM : QSBaseViewModel
+@interface QSTrendKLineVM : QSBaseViewModel<QSTrendViewModelCastProtocol>
 
 @property (nonatomic, weak) id<QSTrendKLineVMDelegate> delegate;
 
